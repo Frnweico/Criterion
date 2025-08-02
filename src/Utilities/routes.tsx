@@ -10,6 +10,13 @@ export const routes = [
     route: "/about-us",
     relatedRoutes: ["/about-us"],
   },
+
+  {
+    title: "PROPERTIES",
+    route: "/properties",
+    relatedRoutes: ["/properties"],
+  },
+  
   {
     title: "CAREERS",
     route: "/careers",

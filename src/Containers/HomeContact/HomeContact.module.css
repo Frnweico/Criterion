@@ -1,0 +1,69 @@
+.homeContact {
+  background: #000;
+  color: #f4f4f4;
+  padding: 0 1.5em 4em 0;
+  /* text-align: center; */
+}
+
+.homeContact h2 {
+  font-family: "Mazius Display";
+  font-weight: 400;
+  font-size: 176px;
+  line-height: 92%;
+  letter-spacing: -4%;
+  margin-bottom: 0.5em;
+}
+
+.homeContactDetails {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2.5em;
+  font-family: "Poppins";
+}
+
+.homeContactDetailsText {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
+.homeContactDetailsText p {
+  text-align: left;
+  font-weight: 300;
+  font-size: 22px;
+  line-height: 140%;
+}
+
+.homeContactDetails a {
+  color: #f4f4f4;
+  text-decoration: underline;
+  font-weight: 500;
+  display: block;
+  transition: color 0.2s ease-in-out;
+  font-size: 22px;
+}
+
+.homeContactDetails a:hover {
+  color: #a49031;
+  text-decoration: none;
+}
+
+/* Tablet and Below */
+@media screen and (max-width: 768px) {
+  .homeContact h2 {
+    font-size: 64px;
+    line-height: 100%;
+    margin-bottom: 1em;
+  }
+
+  .homeContactDetailsText p,
+  .homeContactDetails a {
+    font-size: 18px;
+  }
+
+  .homeContactDetails {
+    gap: 2em;
+  }
+}

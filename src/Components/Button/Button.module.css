@@ -1,107 +1,176 @@
 .button {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	font-family: 'Poppins';
-	font-size: 14px;
-	font-weight: 600;
-	line-height: 17.86px;
-	letter-spacing: -0.04em;
-	cursor: pointer;
-	white-space: nowrap;
-	transition: all 0.2s ease-in-out;
-	padding: 8px 30px;
-	gap: 8px;
-	border-radius: 1px;
-	white-space: nowrap;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Poppins";
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 17.86px;
+  letter-spacing: -0.04em;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s ease-in-out;
+  padding: 8px 30px;
+  gap: 8px;
+  border-radius: 1px;
+  white-space: nowrap;
 }
 
 .button svg {
-	flex-grow: 0;
-	flex-shrink: 0;
-	transition: all 0.2s ease-in-out;
+  flex-grow: 0;
+  flex-shrink: 0;
+  transition: all 0.2s ease-in-out;
 }
 
 .button:hover {
-	gap: 14px;
+  gap: 14px;
 }
 
 .primary:not(.normal),
 .secondary:not(.normal):hover {
-	background: #a49031;
-	border: none;
-	color: #f4f4f4;
+  background: #a49031;
+  border: none;
+  color: #f4f4f4;
 }
 
 .primary:not(.normal) > svg,
 .secondary:not(.normal):hover > svg {
-	fill: #f4f4f4;
+  fill: #f4f4f4;
 }
 
 .secondary:not(.normal) {
-	border: 1.5px solid #a49031;
-	color: #a49031;
-	background: transparent;
+  border: 1.5px solid #a49031;
+  color: #a49031;
+  background: transparent;
 }
 
 .secondary:not(.normal) > svg {
-	fill: #a49031;
+  fill: #a49031;
 }
 
 .secondary:not(.normal):hover > svg {
-	fill: #f4f4f4;
+  fill: #f4f4f4;
 }
 
 .primary:not(.gold),
 .secondary:not(.gold):hover {
-	background: #dc7322;
-	border: none;
-	color: #f4f4f4;
+  background: #dc7322;
+  border: none;
+  color: #f4f4f4;
 }
 
 .primary:not(.gold) svg,
 .secondary:not(.gold):hover svg {
-	fill: #f4f4f4;
+  fill: #f4f4f4;
 }
 
 .secondary:not(.gold),
 .primary:not(.gold):hover {
-	border: 1.5px solid #dc7322;
-	color: #dc7322;
-	background: transparent;
+  border: 1.5px solid #dc7322;
+  color: #dc7322;
+  background: transparent;
 }
 
 .secondary:not(.gold) > svg,
 .primary:not(.gold):hover > svg {
-	fill: #dc7322;
+  fill: #dc7322;
+}
+
+.footerBtn {
+  background: #dc7322;
+  color: #f4f4f4;
+  border: none;
+}
+
+.footerBtn:hover {
+  background: transparent;
+  border: 1px solid #f4f4f4;
+}
+
+.footerBtn > svg {
+  fill: #f4f4f4;
 }
 
 .primary:disabled,
 .tertiary:disabled {
-	background-color: #d0caca;
+  background-color: #d0caca;
 }
 
 .black {
-	color: #f4f4f4;
-	background: #191919;
-	border: none;
+  color: #f4f4f4;
+  background: #000;
+  border: none;
+  padding: 8px 0px;
+}
+
+.black:hover {
+  padding: 8px 30px;
 }
 
 .black > svg,
 .black:hover > svg {
-	fill: #f4f4f4;
+  fill: #f4f4f4;
+}
+
+.white {
+  background: #f4f4f4;
+  color: #191919;
+  border: none;
+}
+
+.white:hover {
+  background: #191919;
+  color: #f4f4f4;
+}
+
+.plain {
+  color: #191919;
+  background: transparent;
+  border: none;
+  padding: 8px 0px;
+}
+
+.plain:hover {
+  background: #191919;
+  color: #f4f4f4;
+  padding: 8px 30px;
+}
+
+.plain > svg,
+.white > svg {
+  fill: #191919;
+}
+
+.plain:hover > svg,
+.white:hover > svg {
+  fill: #f4f4f4;
+}
+
+.enriched {
+  background: transparent;
+  border: 1px solid #f4f4f4;
+  color: #f4f4f4;
+}
+
+.enriched:hover {
+  background: transparent;
+  border: none;
+}
+
+.enriched > svg {
+  fill: #f4f4f4;
 }
 
 @media screen and (min-width: 767px) and (max-width: 1023px) {
-	.button {
-		font-size: 14px;
-		line-height: 23px;
-	}
+  .button {
+    font-size: 14px;
+    line-height: 23px;
+  }
 }
 
 @media screen and (max-width: 767px) {
-	.button {
-		font-size: 14px;
-		line-height: 23px;
-	}
+  .button {
+    font-size: 14px;
+    line-height: 23px;
+  }
 }

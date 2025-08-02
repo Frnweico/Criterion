@@ -1,0 +1,403 @@
+.container {
+  /* gap: 2rem; */
+  padding: 5em 0 1em 0;
+  background-color: #f4f4f4;
+}
+
+.createContainer {
+  position: relative;
+  padding: 0 4em 650px 4em;
+  /* padding-bottom: 650px; */
+}
+
+.homeCreateMain {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  align-items: flex-start;
+  justify-content: flex-start;
+  width: 90%;
+  height: 100%;
+}
+
+.CreateImg {
+  position: absolute;
+  bottom: 0;
+  top: 20%;
+  left: 5%;
+  height: auto;
+  object-fit: cover;
+  mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
+  width: 100%;
+  max-width: 100%;
+  z-index: 1;
+}
+
+.CreateImg img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+
+.heading {
+  text-align: left;
+  margin-right: auto;
+  font-family: "Space Grotesk";
+  font-size: 64px;
+  font-weight: 300;
+  letter-spacing: -4%;
+  line-height: 88%;
+  margin-bottom: -2em;
+}
+
+.textSection {
+  display: flex;
+  gap: 2em;
+  align-self: flex-start;
+}
+
+.checkFutureWrapper {
+  align-self: flex-start;
+}
+
+.mainTextWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  color: #000;
+  margin-left: auto;
+  width: 65%;
+}
+
+.mainText {
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+  font-weight: 400;
+}
+
+.mainText p {
+  font-family: "Poppins", sans-serif;
+  font-weight: 300;
+  font-size: 18px;
+  line-height: 124%;
+  letter-spacing: 0%;
+  color: #191919;
+}
+
+.mainText p:first-of-type {
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+button span {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+/* declaration  */
+.declarationContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 100vw;
+  /* margin: 0 0.5em; */
+  gap: 1.5em;
+  border-radius: 32px;
+  padding: 7em;
+  background-image: url("../../Assets/Images/Group 282.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  color: #f4f4f4;
+  object-fit: cover;
+}
+
+.declarationContainer h2 {
+  font-family: "Space Grotesk";
+  line-height: 92%;
+  letter-spacing: -4%;
+  font-size: 64px;
+  margin-right: auto;
+  font-weight: 300;
+  margin-left: 0.5em;
+}
+
+.declarationContainer h2 span {
+  font-family: "Mazius Display";
+  font-weight: 400;
+  font-size: 96px;
+}
+
+.declarationText {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  text-align: right;
+  width: 31.5%;
+  margin-left: auto;
+}
+
+.declarationText p {
+  font-family: "Poppins";
+  font-weight: 300;
+  line-height: 150%;
+}
+
+.declarationText button {
+  margin-top: 2em;
+}
+
+/* midtown terrace  */
+.midtownTerraceContainer {
+  display: grid;
+  grid-template-columns: 40% 60%;
+  align-items: top;
+  justify-content: center;
+  text-align: center;
+}
+
+.midtownTerraceContainer img {
+  max-width: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.midtownTextSection {
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+  align-items: center;
+  justify-content: center;
+  padding: 0 2em;
+}
+
+.midtownTextLineWrapper {
+  width: 80%;
+}
+
+.midtownTextLine {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75em;
+  width: fit-content;
+  margin-left: auto;
+  margin-bottom: 6em;
+  margin-top: 2em;
+}
+
+.midtownTextLine p {
+  margin-top: 1em;
+  margin-left: auto;
+}
+
+.midtownTextSection h2 {
+  font-family: "Mazius Display";
+  font-weight: 400;
+  font-size: 68px;
+  letter-spacing: -4%;
+  line-height: 91.5%;
+  text-align: left;
+}
+
+.midtownTextSection p {
+  text-align: right;
+  font-family: "Poppins";
+  font-weight: 300;
+  line-height: 150%;
+}
+
+.midtownText {
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+  align-items: center;
+  justify-content: center;
+  padding: 0 3em;
+}
+
+.midtownText p {
+  width: 85%;
+  text-align: left;
+  margin-right: auto;
+  line-height: 150%;
+}
+
+.midtownText img {
+  width: 100%;
+  height: auto;
+}
+
+.midtownImageSection {
+  background: #000;
+  color: #f4f4f4;
+}
+
+.midtownImageSection img {
+  width: 100%;
+  height: auto;
+}
+
+.midtownDetailsWrapper {
+  padding: 2em 3em;
+}
+.midtownDetails {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1px solid #f4f4f4;
+  gap: 3em;
+  padding: 1em 0.5em;
+  font-family: "Poppins";
+}
+
+.midtownDetails h3 {
+  text-align: left;
+  line-height: 104%;
+  letter-spacing: -2%;
+  font-size: 18px;
+}
+
+.midtownDetails p {
+  font-weight: 300;
+  line-height: 150%;
+  width: 70%;
+  text-align: left;
+}
+
+/* ------------ TABLET (up to 1024px) ------------ */
+@media screen and (max-width: 1024px) {
+  .createContainer {
+    padding: 0 2em 650px 2em;
+  }
+
+  .homeCreateMain {
+    width: 100%;
+    gap: 2em;
+  }
+
+  .CreateImg {
+    top: 40%;
+    left: 0;
+  }
+
+  .homeCreateMain img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+  }
+
+  .mainTextWrapper {
+    width: 100%;
+    margin-left: 0;
+  }
+
+  /* Declaration */
+  .declarationContainer {
+    padding: 4em 2em;
+  }
+  .declarationContainer h2 {
+    font-size: 56px;
+  }
+  .declarationContainer h2 span {
+    font-size: 72px;
+  }
+
+  .declarationText {
+    width: 60%;
+  }
+
+  /* MidtownTerrace */
+  .midtownTextSection h2 {
+    font-size: 48px;
+  }
+  .midtownText {
+    padding: 0 1em;
+  }
+  .midtownText p {
+    width: 100%;
+  }
+  .midtownDetails {
+    gap: 0;
+  }
+  .midtownDetailsWrapper {
+    padding: 2em 1em;
+  }
+  .midtownDetails p {
+    width: 100%;
+  }
+}
+
+/* ------------ MOBILE (up to 768px) ------------ */
+@media screen and (max-width: 768px) {
+  /* HomeCreate */
+  .createContainer {
+    padding: 0 0 0 0;
+  }
+
+  .homeCreateMain {
+    grid-template-columns: repeat(1, 1fr);
+    width: 100%;
+    gap: 2em;
+    padding: 0 1.5em;
+  }
+
+  .CreateImg {
+    position: relative;
+  }
+
+  .CreateImg img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+  }
+
+  .mainTextWrapper {
+    width: 100%;
+    margin-left: 0;
+    margin-top: 8em;
+  }
+
+  /* Declaration */
+  .declarationContainer {
+    padding: 4em 2em;
+  }
+  .declarationContainer h2 {
+    font-size: 48px;
+    text-align: center;
+  }
+  .declarationContainer h2 span {
+    font-size: 56px;
+  }
+
+  .declarationText {
+    width: 100%;
+    text-align: center;
+    align-items: center;
+  }
+
+  /* MidtownTerrace */
+  .midtownTerraceContainer {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  .midtownTextSection {
+    margin-bottom: 3em;
+  }
+  .midtownTextLineWrapper {
+    width: 100%;
+    margin-top: 4em;
+  }
+  .midtownTextLine {
+    margin-bottom: 3em;
+  }
+  .midtownText p {
+    text-align: center;
+  }
+}

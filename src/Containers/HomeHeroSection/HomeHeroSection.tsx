@@ -1,6 +1,7 @@
 import Button from '../../Components/Button/Button';
 import classes from './HomeHeroSection.module.css';
-import heroImage from '../../Assets/Images/heroImage.svg';
+// import heroImage from '../../Assets/Images/heroImage.svg';
+import heroImage from '../../Assets/Images/CHOme 2 1_cutout 2.png';
 import { motion } from 'framer-motion';
 import { AppContext } from '../../Context/AppContext';
 import { useContext } from 'react';
@@ -12,8 +13,8 @@ const HomeHeroSection = () => {
 	const { scrollToRef } = useContext(AppContext);
 	return (
 		<section className={classes.container}>
-			<motion.div className={classes.textSection}>
-				<h4>
+			<motion.div className={`${classes.textSection}`}>
+				{/* <h4>
 					CREATING{' '}
 					<motion.span>
 						TOMORROW'S <br />
@@ -21,9 +22,19 @@ const HomeHeroSection = () => {
 					</motion.span>
 					INSPIRED BY
 					<motion.span>TODAY 'S NEEDS</motion.span>
+				</h4> */}
+				<h4 data-aos="fade-up"><span>THE<span className={classes.mazius}> MEASURE</span></span> 
+				<motion.span>
+					OF HOW HOMES <br />
+					</motion.span>
+					<motion.span className={classes.mazius}>
+					SHOULD BE BUILT
+					</motion.span>
 				</h4>
-				<Button onClick={scrollToRef}>
-					<span>GET IN TOUCH</span>
+
+				<p className = {classes.text}>A PHILOSPHY OF CRAFT, RESTRAINT, SUSTAINABILITY AND TIMELESS VALUE.</p>
+				<Button onClick={scrollToRef} type='secondary' subType='gold'>
+					<span>TALK TO US</span>
 					<svg
 						width='16'
 						height='14'
@@ -35,6 +46,7 @@ const HomeHeroSection = () => {
 				</Button>
 			</motion.div>
 
+{/* <div className="image-wrapper" style={{ width: '100%', height: '849px', position: 'relative', border: '2px solid red' }}> */}
 			<Image
 				src={heroImage}
 				alt='Develop'
@@ -57,6 +69,7 @@ const HomeHeroSection = () => {
 				}}
 				hash='L9HoOL9v3F5pyZs9Els7pw%LMJ$N'
 			/>
+			{/* </div> */}
 		</section>
 	);
 };

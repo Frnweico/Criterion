@@ -1,0 +1,111 @@
+.homeServices {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 3em 4em 0 4em;
+  background-color: #000;
+  color: #f4f4f4;
+  width: 100vw;
+}
+
+.homeServicesHeading {
+  font-family: "Space Grotesk";
+  font-weight: 300;
+  line-height: 88%;
+  letter-spacing: -5%;
+  font-size: 100px;
+  margin-bottom: 1em;
+  padding: 0 2em;
+}
+
+.homeServicesDetails {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 4em;
+}
+
+.homeServicesImage h2 {
+  font-family: "Space Grotesk";
+  font-weight: 300;
+  line-height: 89%;
+  letter-spacing: -4%;
+  font-size: 135px;
+  margin-bottom: 0.5em;
+}
+.homeServicesImage img {
+  width: 100%;
+}
+
+.homeServicesText h2 {
+  font-family: "Space Grotesk";
+  font-weight: 300;
+  line-height: 89%;
+  letter-spacing: -2%;
+  font-size: 64px;
+  margin-bottom: 0.5em;
+}
+
+.homeServicesText p {
+  font-family: "Poppins";
+  font-weight: 300;
+  line-height: 140%;
+  width: 60%;
+  text-align: left;
+  margin-right: auto;
+  font-size: 22px;
+  align-self: center;
+  justify-self: center;
+  margin-top: 9em;
+  margin-bottom: 2em;
+}
+
+@media screen and (max-width: 1024px) {
+  .homeServices {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 3em 2em 0 2em;
+  }
+  .homeServicesDetails {
+    gap: 2em;
+  }
+  .homeServicesHeading {
+    font-size: 72px;
+    margin-bottom: 1em;
+    padding: 0 1em;
+  }
+  .homeServicesImage h2 {
+    font-size: 100px;
+  }
+  .homeServicesText {
+    margin-bottom: 4em;
+  }
+  .homeServicesText h2 {
+    font-size: 48px;
+  }
+  .homeServicesText p {
+    width: 100%;
+    margin-top: 8em;
+    margin-bottom: 2em;
+  }
+}
+@media screen and (max-width: 768px) {
+  .homeServicesDetails {
+    grid-template-columns: 1fr;
+  }
+  .homeServicesHeading {
+    padding: 0;
+  }
+  .homeServicesImage {
+    margin-bottom: 3em;
+  }
+  .homeServicesImage img {
+    width: 80%;
+  }
+  .homeServicesText p {
+    font-size: 20px;
+    margin: 2em 0;
+  }
+}

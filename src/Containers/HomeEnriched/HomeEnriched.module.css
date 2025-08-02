@@ -1,0 +1,43 @@
+.homeEnriched {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4rem;
+  padding: 5em 4em;
+  background-color: #191919;
+}
+
+.homeEnriched h2 {
+  font-family: "Mazius Display";
+  font-size: 96px;
+  font-weight: 400;
+  line-height: 92%;
+  letter-spacing: -4%;
+  text-align: center;
+  color: #f4f4f4;
+}
+
+.homeEnriched h2 span {
+  color: #a49031;
+  font-style: oblique;
+}
+
+@media screen and (max-width: 1024px) {
+  .homeEnriched {
+    padding: 3em 2em;
+    padding-bottom: 4em;
+  }
+  .homeEnriched h2 {
+    font-size: 72px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .homeEnriched {
+    padding: 2.5em 1em;
+  }
+  .homeEnriched h2 {
+    font-size: 60px;
+  }
+}

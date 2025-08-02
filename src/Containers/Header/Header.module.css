@@ -1,104 +1,105 @@
 .container {
-	display: flex;
-	align-items: center;
-	gap: 2rem;
-	padding: 18px 120px;
-	transition: background-color 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  padding: 18px 120px;
+  transition: background-color 0.3s ease;
 }
 
 .container > img {
-	width: 126px;
-	height: 36.1px;
-	cursor: pointer;
+  width: 126px;
+  height: 36.1px;
+  cursor: pointer;
 }
 
 .container > a,
 .container > p {
-	font-family: 'Poppins';
-	font-size: 18px;
-	font-weight: 600;
-	line-height: 22.97px;
-	text-decoration: none;
-	transition: all 0.3s ease-in-out;
-	cursor: pointer;
+  font-family: "Poppins";
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 22.97px;
+  text-decoration: none;
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
 }
 
 .container > a:hover,
 .container > p:hover {
-	color: #a49031;
+  color: #a49031;
 }
 
 .container > a:nth-child(2) {
-	margin-left: auto;
+  margin-left: auto;
 }
 
 .darkColor {
-	color: #f4f4f4;
+  color: #f4f4f4;
 }
 
 .lightColor {
-	color: #191919;
+  color: #191919;
 }
 
 .active {
-	color: #a49031;
+  color: #a49031;
 }
 
 .sidenavOpener {
-	width: 40px;
-	height: 40px;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	background: #dc7322;
-	border-radius: 50%;
-	display: none;
-	margin-left: auto;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #dc7322;
+  border-radius: 50%;
+  display: none;
+  margin-left: auto;
+  cursor: pointer;
 }
 
 .sideNav {
-	height: 100%;
-	position: fixed;
-	top: 0;
-	right: 0;
-	z-index: 30;
-	overflow: hidden;
-	width: 0;
-	transition: 0.3s;
-	background: url('../../Assets/Images/greenbgMobile.svg');
-	background-position: center center;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 30;
+  overflow: hidden;
+  width: 0;
+  transition: 0.3s;
+  background: url("../../Assets/Images/greenbgMobile.svg");
+  background-position: center center;
 }
 
 @media screen and (min-width: 767px) and (max-width: 1023px) {
-	.container {
-		gap: 2rem;
-		padding: 28px 32px;
-	}
+  .container {
+    gap: 2rem;
+    padding: 28px 32px;
+  }
 
-	.container > a,
-	.container > button,
-	.container > p {
-		display: none;
-	}
+  .container > a,
+  .container > button,
+  .container > p {
+    display: none;
+  }
 
-	.sidenavOpener {
-		display: flex;
-	}
+  .sidenavOpener {
+    display: flex;
+  }
 }
 
 @media screen and (max-width: 767px) {
-	.container {
-		gap: 2rem;
-		padding: 28px 32px;
-	}
+  .container {
+    gap: 2rem;
+    padding: 28px 32px;
+  }
 
-	.container > a,
-	.container > button,
-	.container > p {
-		display: none;
-	}
+  .container > a,
+  .container > button,
+  .container > p {
+    display: none;
+  }
 
-	.sidenavOpener {
-		display: flex;
-	}
+  .sidenavOpener {
+    display: flex;
+  }
 }

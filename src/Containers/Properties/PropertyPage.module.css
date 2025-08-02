@@ -1,0 +1,943 @@
+.propertyPageContainer {
+  display: flex;
+  flex-direction: column;
+  background-color: #191919;
+  color: #f4f4f4;
+  border-bottom: 1px solid #f4f4f4;
+  padding-bottom: 4em;
+}
+.propertyImageContainer {
+  margin: 0.5em 0.5em 0 0.5em;
+}
+.propertyImageContainer img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+.propertyPageContainer header {
+  background-color: #30352f;
+  width: 80%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2em;
+  padding: 5em 0 3em 0;
+}
+.propertyHeaderText {
+  text-align: center;
+  font-family: "Poppins";
+  line-height: 150%;
+  font-weight: 300;
+  color: #fff;
+}
+.propertyHeaderText h2 {
+  font-family: "Space Grotesk";
+  font-size: 64px;
+  line-height: 88%;
+  letter-spacing: -2%;
+  margin-bottom: 0.25em;
+}
+.propertyHeaderText p {
+  margin-top: 1em;
+  font-weight: 400;
+}
+.propertyHeaderDetails {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2em;
+  padding: 2em 0;
+  border-top: 1px solid #fff;
+  border-bottom: 1px solid #fff;
+  font-family: "Poppins";
+}
+.propertyHeaderDetail {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 300;
+}
+.propertyPageContact {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  /* gap: 2em; */
+  width: 80%;
+  margin: 0 auto;
+  padding: 2em 0;
+}
+.propertyPageContactText {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  font-family: "Poppins";
+}
+.propertyPageContactText p {
+  font-size: 18px;
+  line-height: 104%;
+}
+.propertyPageContactText h4 {
+  font-family: "Space Grotesk";
+  font-size: 32px;
+  line-height: 124%;
+  letter-spacing: -2%;
+  font-weight: 300;
+}
+.propertyPageContactTextInfo {
+  font-weight: 300;
+  line-height: 150%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5em;
+  font-size: 14px;
+}
+.propertyPageContactDetails {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  align-items: center;
+  justify-content: center;
+  padding: 1em;
+  background-color: #000;
+  width: 60%;
+  margin-left: auto;
+}
+.propertyPageContactDetails h3 {
+  font-family: "Space Grotesk";
+  font-size: 30px;
+  line-height: 104%;
+  text-align: center;
+}
+.propertyPageContactDetails div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 300;
+  line-height: 150%;
+}
+.propertyPageContactDetails button {
+  padding: 20px 48px;
+}
+/* PROJECT DETAILS  */
+.projectDetails h3,
+.projectLocation h3,
+.floorPlanWrapper h3 {
+  font-family: "Space Grotesk";
+  font-size: 30px;
+  line-height: 89%;
+  background-color: #30352f;
+  text-align: center;
+  padding: 0.75em;
+  border-bottom: 1px solid #f4f4f4;
+}
+.midtownDetailsWrapper {
+  padding: 2em 3em;
+}
+.midtownDetails {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1px solid #f4f4f4;
+  gap: 3em;
+  padding: 1em 0.5em;
+  font-family: "Poppins";
+}
+
+.midtownDetails h3 {
+  text-align: left;
+  line-height: 104%;
+  letter-spacing: -2%;
+  font-size: 18px;
+  background-color: transparent;
+  border-bottom: none;
+}
+
+.midtownDetails p {
+  margin-left: auto;
+  font-weight: 300;
+  line-height: 150%;
+  width: 32%;
+  text-align: right;
+  margin-right: 1em;
+}
+
+.projectLocation h2 {
+  font-family: "Mazius Display";
+  font-size: 96px;
+  line-height: 92%;
+  letter-spacing: -4%;
+}
+
+.projectLocation h2:nth-of-type(2) {
+  opacity: 50%;
+}
+
+.projectLocationGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  /* gap: 1em; */
+  padding: 2em 0 4em 4em;
+}
+
+.projectLocationText {
+  padding: 3em 0;
+}
+
+.projectLocationTextLine {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  margin-bottom: 4em;
+}
+
+.projectLocationTextLine p {
+  text-transform: uppercase;
+  width: 40%;
+  text-align: right;
+  margin-left: auto;
+}
+
+.projectLocationTextDescription {
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+}
+
+.projectLocationMapWrapper {
+  width: 100%;
+  height: 100%;
+}
+
+/* property showcase  */
+.propertyDetailsWrapper {
+  padding: 2rem 4rem;
+}
+
+.propertyDetailsInfo {
+  /* border: 1px solid red; */
+  margin-left: 7em;
+}
+.propertyDetailsInfo h2 {
+  text-transform: uppercase;
+  font-family: "Space Grotesk";
+  font-size: 30px;
+  line-height: 89%;
+  /* padding-bottom: 3em; */
+}
+.propertyDetailsLine {
+  height: 170px;
+  width: 41.5%;
+  margin-left: 18em;
+  border-right: 1px solid #fff;
+  border-top: 1px solid #fff;
+  color: #fff;
+}
+
+.propertyShowcaseContent {
+  display: flex;
+  gap: 4rem;
+  align-items: flex-start;
+  /* margin-top: 2rem; */
+}
+
+.propertyDetailsFeatures {
+  flex: 1;
+  position: relative;
+}
+
+.propertyDetailsFeatureItem {
+  display: flex;
+  align-items: center;
+  margin-bottom: 2.5em;
+  position: relative;
+}
+
+.propertyDetailsFeatureItem h4 {
+  font-family: "Space Grotesk", sans-serif;
+  /* font-size: 0.9em; */
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin: 0;
+  width: 180px;
+  text-align: right;
+  flex-shrink: 0;
+  position: relative;
+}
+
+.propertyDetailsFeatureItem::after {
+  content: "";
+  position: absolute;
+  left: 185px;
+  top: 50%;
+  width: 40px;
+  height: 1px;
+  background-color: #fff;
+  transform: translateY(-50%);
+  z-index: 2;
+}
+
+.propertyDetailsFeatureItem::before {
+  content: "";
+  position: absolute;
+  left: 205px;
+  top: 60%;
+  width: 0.5px;
+  height: 65px;
+  background-color: #fff;
+  transform: translateY(0);
+  z-index: 2;
+}
+
+.propertyDetailsFeatureItem p {
+  font-family: "Poppins", sans-serif;
+  font-size: 0.9em;
+  line-height: 1.5;
+  margin: 0;
+  margin-left: 60px;
+  flex: 1;
+  font-weight: 300;
+}
+
+.propertyDetailsImages {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.propertyDetailsMainImage {
+  width: 100%;
+  height: 400px;
+  overflow: hidden;
+}
+
+.propertyDetailsMainImage img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.propertyDetailsThumbnails {
+  display: flex;
+  gap: 1em;
+  margin-top: 1em;
+  align-self: flex-start;
+}
+
+.propertyDetailsThumbnail,
+.propertyDetailsThumbnailActive {
+  width: 80px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.propertyDetailsThumbnailActive {
+  outline: 3px solid white;
+  transform: scale(1.05);
+}
+
+/* floor plan  */
+
+.floorPlanHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 70%;
+  margin: 0 auto;
+  margin-top: 5em;
+  margin-bottom: 2em;
+}
+.floorPlanHeader h2 {
+  font-family: "Mazius Display";
+  font-size: 96px;
+  line-height: 92%;
+  letter-spacing: -4%;
+  color: #fff;
+}
+.floorPlanHeaderItems {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+  font-family: "Poppins";
+  color: #fff;
+}
+.floorPlanHeaderItems p {
+  font-size: 18px;
+  line-height: 104%;
+  border-bottom: 1px solid #fff;
+  text-align: right;
+  text-transform: uppercase;
+  padding-bottom: 0.25em;
+}
+.floorPlanHeaderItems p:hover {
+  cursor: pointer;
+  border-bottom: none;
+}
+.floorPlanTitle span {
+  color: #a49031;
+}
+.floorPlanImageWrapper {
+  width: 70%;
+  margin: 0 auto;
+  margin-bottom: 5em;
+  max-width: 100%;
+  flex-shrink: 0;
+}
+.floorPlanImageWrapper img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  display: block;
+  margin: 0 auto;
+}
+.floorPlanImageWithNav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1.5rem;
+  width: 80%;
+  margin: 0 auto;
+  /* border: 1px solid #fff; */
+}
+
+.arrowButton {
+  background: none;
+  border: none;
+  font-size: 2rem;
+  color: #f4f4f4; /* or white depending on your theme */
+  cursor: pointer;
+  padding: 0.5rem;
+  transition: opacity 0.3s ease;
+}
+
+.arrowButton:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+/* reasons  */
+.propertyReasons {
+  width: 70%;
+  margin: 0 auto;
+}
+.propertyReasons h2 {
+  text-transform: uppercase;
+  font-family: "Mazius Display";
+  font-size: 96px;
+  line-height: 92%;
+  letter-spacing: -4%;
+  text-align: center;
+}
+.propertyReasons h2 span {
+  font-style: italic;
+}
+.propertyReasonsWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  color: #fff;
+  margin-top: 5em;
+}
+.propertyReason {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1em;
+  text-align: center;
+  font-family: "Poppins";
+  width: 33%;
+  margin-bottom: 3em;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  padding: 8px;
+  box-sizing: border-box;
+  min-height: 180px;
+}
+.propertyReason h4 {
+  font-size: 18px;
+  line-height: 104%;
+  text-transform: uppercase;
+}
+.propertyReason p {
+  line-height: 150%;
+  font-weight: 300;
+  width: 80%;
+}
+.propertyReason:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 20px #191919;
+  cursor: pointer;
+}
+
+/* pricing  */
+.propertyPricing {
+  width: 80%;
+  margin-top: 5em;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2em;
+  overflow-x: hidden;
+}
+.propertyPricing h2 {
+  text-transform: uppercase;
+  font-family: "Mazius Display";
+  font-size: 90px;
+  line-height: 92%;
+  letter-spacing: -4%;
+  text-align: left;
+}
+.propertyPricingContent {
+  margin-top: 4em;
+}
+.propertyTableWrapper {
+  margin-top: 4em;
+  width: 100%;
+}
+.pricingTable {
+  border: none;
+  border-bottom: 1px solid #fff;
+  border-collapse: collapse;
+  font-family: "Poppins";
+  width: 100%;
+  max-width: 100%;
+  table-layout: fixed;
+  /* min-width: 750px; */
+  margin-bottom: 4em;
+}
+
+.pricingTable th {
+  background-color: #000;
+  color: white;
+  text-transform: uppercase;
+  border-collapse: collapse;
+  font-size: 18px;
+  line-height: 104%;
+  padding: 1em;
+  border: none;
+  border-bottom: 1px solid #fff;
+}
+
+.pricingTable td {
+  /* border: none; */
+  border-bottom: none;
+  border-left: 1px solid #fff;
+  border-right: 1px solid #fff;
+  padding: 1em;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.pricingTable tbody tr:nth-child(odd) {
+  background-color: transparent;
+}
+
+.pricingTable tbody tr:nth-child(even) {
+  background-color: black;
+}
+
+.pricingMobileTables {
+  display: none;
+}
+
+.propertyPricingContact {
+  background-color: #d9d9d9;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1em 3em;
+  color: #000;
+  width: 50%;
+  margin: 0 auto;
+  /* margin: 3em 0; */
+}
+.propertyPricingContactText h3 {
+  font-family: "Space Grotesk";
+  font-size: 30px;
+  line-height: 89%;
+  margin-bottom: 0.25em;
+}
+.propertyPricingContactText div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 90%;
+}
+.propertyPricingContactText div span {
+  margin-left: 1em;
+}
+
+.propertyPricingContact button {
+  height: 100%;
+  padding: 25px 48px;
+}
+.propertyPricingContact button:hover {
+  color: #000;
+  border: 1px solid #000;
+}
+.propertyPricingContact button svg:hover {
+  fill: #000;
+}
+
+/* ───────────────────────── TABLET ≤ 1024 px ───────────────────────── */
+@media (max-width: 1024px) {
+  /* hero header */
+  .propertyHeaderText h2 {
+    font-size: 48px;
+  }
+  .propertyHeaderText p {
+    font-size: 14px;
+  }
+
+  /* bullet strip in header */
+  .propertyHeaderDetails {
+    gap: 1.25em;
+  }
+
+  /* 2-col contact section → 1-col */
+  .propertyPageContact {
+    grid-template-columns: 1fr;
+    row-gap: 2.5em;
+  }
+  .propertyPageContactDetails {
+    width: 100%;
+    margin-left: 0;
+    padding: 2em 0;
+  }
+
+  /* midtown details spacing */
+  .midtownDetails h3 {
+    font-size: 16px;
+    text-align: left;
+    padding: 0;
+  }
+  .midtownDetails p {
+    width: 50%;
+  }
+
+  /* location  */
+  .projectLocationGrid {
+    grid-template-columns: 1fr;
+    margin-left: 0;
+    padding: 2em;
+  }
+  /* showcase layout → side-by-side but narrower gaps */
+  .propertyDetailsWrapper {
+    padding: 4em 2.5em;
+  }
+
+  .propertyDetailsInfo h2 {
+    font-size: 2.25em;
+  }
+  .propertyDetailsLine {
+    width: 36%;
+    margin-left: 0;
+  }
+
+  .propertyShowcaseContent {
+    gap: 3.5em;
+  }
+
+  .propertyDetailsFeatureItem h4 {
+    width: 160px;
+    font-size: 0.85em;
+  }
+
+  .propertyDetailsFeatureItem::after {
+    left: 165px;
+    width: 50px;
+  }
+
+  .propertyDetailsFeatureItem::before {
+    left: 190px;
+  }
+
+  .propertyDetailsFeatureItem h4::after {
+    right: -55px;
+  }
+
+  .propertyDetailsFeatures::before {
+    left: 110px;
+  }
+
+  .propertyDetailsFeatureItem p {
+    margin-left: 70px;
+    font-size: 0.85em;
+  }
+
+  /* images */
+  .propertyDetailsMainImage {
+    height: 320px;
+  }
+  .propertyDetailsThumbnail,
+  .propertyDetailsThumbnailActive {
+    width: 64px;
+    height: 48px;
+  }
+
+  /* floor plan  */
+  .floorPlanHeader {
+    width: 90%;
+  }
+  .floorPlanHeader h2 {
+    font-size: 72px;
+  }
+  .floorPlanImageWrapper {
+    width: 90%;
+  }
+
+  /* reasons grid → 2-up */
+  .propertyReasons {
+    width: 90%;
+  }
+  .propertyReasons h2 {
+    font-size: 60px;
+  }
+  .propertyReason {
+    width: 50%;
+  }
+
+  /* pricing grid becomes stacked */
+  .propertyPricing {
+    width: 90%;
+    grid-template-columns: 1fr;
+    gap: 1em;
+  }
+  .propertyPricingContent img {
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+  }
+  .propertyPricing h2 {
+    font-size: 60px;
+    text-align: center;
+  }
+  .propertyPricingContent {
+    margin-top: 2em;
+  }
+  .pricingTable {
+    /* width: 700px; */
+    margin: 0 auto;
+  }
+  .pricingMobileTables {
+    display: none;
+  }
+  .propertyPricingContact {
+    width: 80%;
+    margin-top: 4em;
+    /* gap: 1em; */
+  }
+  .propertyPricingContactText div span {
+    margin-left: 0.5em;
+  }
+  .propertyPricingContact button {
+    height: 100%;
+    padding: 25px 50px;
+  }
+}
+
+/* ───────────────────────── PHONE ≤ 600 px ───────────────────────── */
+@media (max-width: 768px) {
+  .propertyImageContainer img {
+    width: 100%;
+    min-height: 35vh;
+    object-fit: cover;
+  }
+
+  /* headline & typography */
+  .propertyHeaderText h2,
+  .propertyLocation h2,
+  .floorPlanHeader h2,
+  .propertyReasons h2,
+  .propertyPricing h2 {
+    font-size: 36px;
+    line-height: 1.05;
+  }
+
+  /* hero header box */
+  .propertyPageContainer header {
+    width: 100%;
+    padding: 3em 1.25em;
+  }
+
+  /* header bullet strip → wrap */
+  .propertyHeaderDetails {
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  .propertyHeaderDetail {
+    width: 40%;
+    /* border: 1px solid #fff; */
+  }
+
+  /* contact section */
+  .propertyPageContactText h4 {
+    font-size: 24px;
+  }
+  .propertyPageContactDetails h3 {
+    font-size: 24px;
+  }
+
+  /* midtown details list → single column */
+  .midtownDetails {
+    /* flex-direction: column; */
+    /* align-items: flex-start; */
+    gap: 1em;
+    padding: 1em 0;
+  }
+
+  .midtownDetails p {
+    width: 80%;
+    margin: 0;
+    text-align: right;
+    margin-right: 0;
+    margin-left: auto;
+  }
+
+  .propertyShowcaseContent {
+    flex-direction: column;
+    gap: 2em;
+  }
+
+  .propertyDetailsFeatureItem {
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .propertyDetailsFeatureItem h4 {
+    text-align: left;
+    width: auto;
+    margin-bottom: 0.5em;
+  }
+
+  .propertyDetailsFeatureItem::after {
+    display: none;
+  }
+
+  .propertyDetailsFeatureItem p {
+    margin-left: 0;
+  }
+
+  /* project location grid → stacked */
+  .projectLocationGrid {
+    grid-template-columns: 1fr;
+    margin-left: 0;
+  }
+
+  .projectLocation h2 {
+    font-size: 60px;
+  }
+
+  .projectLocationTextLine p {
+    font-size: 14px;
+  }
+
+  /* showcase layout → column */
+  .propertyShowcaseContent {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  .propertyDetailsMainImage {
+    height: 240px;
+  }
+  .propertyDetailsFeatures {
+    gap: 1.75rem;
+  }
+
+  /* floor-plan header centre & shrink */
+  .floorPlanHeader {
+    width: 90%;
+  }
+  .floorPlanHeader h2 {
+    font-size: 60px;
+  }
+  .floorPlanImageWrapper {
+    width: 90%;
+  }
+
+  /* reasons grid → single column */
+  .propertyReasons {
+    width: 90%;
+  }
+  .propertyReason {
+    width: 100%;
+  }
+
+  /* pricing  */
+  .pricingTable {
+    display: none;
+  }
+  .propertyPricingContent img {
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+  }
+  .pricingMobileTables {
+    display: flex;
+    flex-direction: column;
+    /* gap: 2rem; */
+    width: 100%;
+    margin-top: 2rem;
+  }
+
+  .mobileTable {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.875rem;
+    color: #fff;
+    border-top: none;
+    border-bottom: 1px solid #fff;
+  }
+
+  .mobileTable thead th {
+    text-align: left;
+    padding: 0.75rem;
+    background-color: #000;
+    font-weight: 600;
+    border-bottom: 1px solid #fff;
+    width: 50%;
+  }
+
+  .mobileTable tbody td {
+    padding: 0.75rem;
+    border-left: 1px solid #fff;
+    border-right: 1px solid #fff;
+    vertical-align: middle;
+    width: 50%;
+  }
+
+  /* Remove horizontal borders but keep vertical ones */
+  .mobileTable tbody tr {
+    background-color: transparent;
+  }
+
+  .mobileTable tbody tr:nth-child(even) {
+    background-color: #000; /* alternate black */
+  }
+
+  .propertyPricingContact {
+    width: 100%;
+    padding: 1em;
+  }
+  .propertyPricingContactText div {
+    width: 100%;
+  }
+  .propertyPricingContactText h3 {
+    font-size: 22px;
+  }
+  .propertyPricingContact button {
+    width: 100%;
+    padding: 25px 40px;
+  }
+  .propertyPricingContactText div span {
+    font-size: 14px;
+  }
+}

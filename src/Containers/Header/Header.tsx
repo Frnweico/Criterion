@@ -97,8 +97,7 @@ const Header = ({ isDark }: HeaderProps) => {
         CONTACT US
       </p>
 
-      <Button
-        subType="gold"
+      <Button type='secondary' subType='gold'
         onClick={() => {
           window.open(
             "https://drive.google.com/file/d/1KtJxkCViVfCnSWYAcuvd82-CGjaNISaC/view?pli=1"

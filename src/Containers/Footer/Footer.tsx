@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import Button from '../../Components/Button/Button';
-import { routes } from '../../Utilities/routes';
+// import { routes } from '../../Utilities/routes';
 import classes from './Footer.module.css';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import XIcon from '@mui/icons-material/X';
@@ -10,6 +10,7 @@ import { scrollToTheTop } from '../../HelperFunctions/scrollToTop';
 import { Facebook } from '@mui/icons-material';
 import { useContext, useEffect, useState } from 'react';
 import { AppContext } from '../../Context/AppContext';
+import { footerRoutes } from '../../Utilities/footerRoutes';
 
 export const openExternalLink = (link: string) => {
 	if (link) {
@@ -34,7 +35,11 @@ const Footer = () => {
 	return (
 		<div className={classes.container}>
 			<div className={classes.topSection}>
-				<p>Stay up to date with our projects and developments</p>
+				<div className={classes.topSectionMain}>
+				<h4>STAY ONE STEP AHEAD</h4>
+				<p>Get exclusive property listings, smart tips and market updates delivered straight to your inbox.
+<span>Sign up for our newsletter today.</span></p>
+				</div>
 				<div>
 					<input
 						type='text'
@@ -43,9 +48,11 @@ const Footer = () => {
 							setEmailAddress(e.target.value);
 						}}
 						value={emailAddress}
+						placeholder='Email Address'
 					/>
 					<Button
-						subType='normal'
+						type="footerBtn"
+						subType='gold'
 						disabled={!emailAddress}
 						loading={requestState.isLoading}
 						onClick={() => emailSignUp(emailAddress)}>
@@ -64,18 +71,18 @@ const Footer = () => {
 
 			<div className={classes.middleSection}>
 				<div>
-					{routes.map((data, i) => {
+					{footerRoutes.map((data, i) => {
 						return (
 							<Link to={data.route} key={i} onClick={scrollToTheTop}>
 								{data.title}
 							</Link>
 						);
 					})}
-					<Link
+					{/* <Link
 						to='https://drive.google.com/file/d/1KtJxkCViVfCnSWYAcuvd82-CGjaNISaC/view?pli=1'
 						target='_blank'>
 						{'view profile'.toUpperCase()}
-					</Link>
+					</Link> */}
 				</div>
 
 				<div>

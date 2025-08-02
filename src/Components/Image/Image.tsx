@@ -60,7 +60,6 @@ const Image = ({
 			dimensions.width = width as number;
 			dimensions.height = height as number;
 		}
-
 		// eslint-disable-next-line
 	}, []);
 

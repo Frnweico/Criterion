@@ -1,202 +1,215 @@
 .container {
-	display: flex;
-	align-items: center;
-	padding: 125px 116px;
-	min-height: calc(900px - 125px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 95px 0px;
+  min-height: calc(900px - 125px);
+  position: relative;
+  overflow: hidden;
 }
 
 .textSection {
-	flex-basis: 50%;
-	height: 100%;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 2rem;
 }
 
 .textSection > h4 {
-	font-weight: 300;
-}
-
-.textSection > h4:not(.textSection > h4 > span:nth-child(1)) {
-	font-size: 80px;
-	line-height: 70.4px;
-	letter-spacing: -0.04em;
-	text-align: left;
-	color: #191919;
+  font-weight: 300;
+  font-size: 80px;
+  line-height: 88%;
+  letter-spacing: -0.04em;
+  text-align: center;
+  color: #191919;
 }
 
 .textSection > h4 > span {
-	display: block;
-}
-
-.textSection > h4 > span:nth-child(1) {
-	font-size: 80px;
-	line-height: 70.4px;
-	letter-spacing: -0.04em;
-	text-align: left;
-	color: #a49031;
-}
-
-.textSection > h4 > span:nth-child(2) {
-  font-family: "Mazius Display";
-  font-size: 80px;
-  font-style: italic;
-  font-weight: 400;
-  line-height: 70.4px;
-  letter-spacing: -0.04em;
-  text-align: left;
   display: block;
-  width: 110%;
+}
+
+.mazius {
+  font-family: "Mazius Display";
+  font-weight: 400;
+  color: #191919;
 }
 
 .textSection > button {
-	margin-top: 1.5rem;
-	min-width: 220px;
+  margin-top: 1.5rem;
+  min-width: 220px;
 }
 
+.text {
+  font-family: "Poppins, sans-serif";
+  color: #191919;
+  margin-top: 1em;
+  font-size: 18px;
+}
+
+.image-wrapper {
+  margin-top: 2rem;
+  width: 100%;
+  height: calc(900px - 125px + 74px);
+  border: 1px solid red;
+}
+
+/* .image-wrapper img {
+  height: calc(900px - 125px + 74px);
+  object-fit: cover;
+  width: 100%;
+} */
 .container > img,
 .container > div > img {
-	position: absolute;
-	right: 0;
-	top: 0px;
-	height: calc(900px - 125px + 74px);
-	width: 500px;
-	z-index: 0;
-	object-fit: cover;
+  height: calc(400px);
+  object-fit: cover;
+  width: 100%;
+  max-width: 100%;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  z-index: 0;
 }
 
 .container > div:has(.desktopImage) {
-	display: block;
+  display: block;
 }
-
+.mobileImage {
+  display: none;
+}
 .container > div:has(.mobileImage) {
-	display: none;
+  display: none;
 }
 
 @media screen and (min-width: 767px) and (max-width: 1023px) {
-	.container {
-		padding: 53px 32px;
-		min-height: 70vh;
-		align-items: flex-start;
-		position: relative;
-		overflow: hidden;
-	}
+  .container {
+    padding: 53px 0;
+    min-height: 70vh;
+    align-items: flex-start;
+    position: relative;
+    overflow: hidden;
+  }
 
-	.textSection {
-		flex-basis: 100%;
-		position: relative;
-		z-index: 1;
-	}
+  .textSection {
+    flex-basis: 100%;
+    position: relative;
+    z-index: 1;
+  }
 
-	.textSection > h4:not(.textSection > h4 > span:nth-child(1)) {
-		font-size: 48px;
-		line-height: 42.24px;
-		letter-spacing: -0.04em;
-	}
+  .textSection > h4:not(.textSection > h4 > span:nth-child(1)) {
+    font-size: 48px;
+    line-height: 88%;
+    letter-spacing: -0.04em;
+  }
 
-	.textSection > h4 > span {
-		display: block;
-	}
+  .textSection > h4 > span {
+    display: block;
+  }
 
-	.textSection > h4 > span:nth-child(1) {
-		font-size: 48px;
-		line-height: 42.24px;
-		letter-spacing: -0.04em;
-	}
+  .textSection > h4 > span:nth-child(1) {
+    font-size: 48px;
+    line-height: 42.24px;
+    letter-spacing: -0.04em;
+  }
 
-	.textSection > h4 > span:nth-child(2) {
-		font-size: 48px;
-		line-height: 42.24px;
-		letter-spacing: -0.04em;
-	}
+  .textSection > h4 > span:nth-child(2) {
+    font-size: 48px;
+    line-height: 42.24px;
+    letter-spacing: -0.04em;
+  }
 
-	.container > img {
-		height: calc(100%);
-		z-index: 0;
-		right: 0px;
-		top: 0px;
-		z-index: 0;
-		object-fit: cover;
-	}
+  .container > img {
+    height: calc(100%);
+    z-index: 0;
+    right: 0px;
+    top: 0px;
+    z-index: 0;
+    object-fit: cover;
+  }
 
-	/* .container > img:nth-child(2) {
+  /* .container > img:nth-child(2) {
 		display: none;
 	} */
 
-	.container > div:has(.desktopImage) {
-		display: block;
-	}
+  .container > div:has(.desktopImage) {
+    display: block;
+  }
 
-	.container > div:has(.mobileImage) {
-		display: none;
-	}
+  .container > div:has(.mobileImage) {
+    display: none;
+  }
 }
 
 @media screen and (max-width: 767px) {
-	.container {
-		padding: 53px 32px;
-		height: 70vh;
-		/* to cancel the min-height set by initial css */
-		min-height: 20px;
-		max-height: 725px !important;
-		align-items: flex-start;
-		position: relative;
-	}
+  .container {
+    padding: 53px 32px;
+    height: 70vh;
+    /* to cancel the min-height set by initial css */
+    min-height: 20px;
+    max-height: 725px !important;
+    align-items: flex-start;
+    position: relative;
+  }
 
-	.textSection {
-		flex-basis: 100%;
-		position: relative;
-		z-index: 1;
-	}
+  .textSection {
+    flex-basis: 100%;
+    position: relative;
+    z-index: 1;
+  }
 
-	.textSection > h4:not(.textSection > h4 > span:nth-child(1)) {
-		font-size: 48px;
-		line-height: 42.24px;
-		letter-spacing: -0.04em;
-	}
+  .textSection > h4:not(.textSection > h4 > span:nth-child(1)) {
+    font-size: 48px;
+    line-height: 42.24px;
+    letter-spacing: -0.04em;
+  }
 
-	.textSection > h4 > span {
-		display: block;
-	}
+  .textSection > h4 > span {
+    display: block;
+  }
 
-	.textSection > h4 > span:nth-child(1) {
-		font-size: 48px;
-		line-height: 42.24px;
-		letter-spacing: -0.04em;
-	}
+  .textSection > h4 > span:nth-child(1) {
+    font-size: 48px;
+    line-height: 42.24px;
+    letter-spacing: -0.04em;
+  }
 
-	.textSection > h4 > span:nth-child(2) {
-		font-size: 48px;
-		line-height: 42.24px;
-		letter-spacing: -0.04em;
-	}
+  .textSection > h4 > span:nth-child(2) {
+    font-size: 48px;
+    line-height: 42.24px;
+    letter-spacing: -0.04em;
+  }
 
-	.container > img,
-	.container > div > img {
-		height: calc(100%);
-		z-index: 0;
-		right: -40px;
-		top: 0px;
-		z-index: 0;
-		object-fit: cover;
-	}
+  .container > img,
+  .container > div > img {
+    height: calc(100%);
+    z-index: 0;
+    right: -40px;
+    top: 0px;
+    z-index: 0;
+    object-fit: cover;
+  }
 
-	.container > div > div {
-		width: 1198px !important;
-		height: calc(100%) !important;
-		z-index: 0 !important;
-		right: 0px !important;
-		top: 0px !important;
-		z-index: 0 !important;
-		object-fit: cover !important;
-	}
+  .container > div > div {
+    width: 1198px !important;
+    height: calc(100%) !important;
+    z-index: 0 !important;
+    right: 0px !important;
+    top: 0px !important;
+    z-index: 0 !important;
+    object-fit: cover !important;
+  }
 
-	/* .container > img:nth-child(2) {
+  /* .container > img:nth-child(2) {
 		display: none;
 	} */
 
-	.container > div:has(.desktopImage) {
-		display: none;
-	}
+  .container > div:has(.desktopImage) {
+    display: none;
+  }
 
-	.container > div:has(.mobileImage) {
-		display: block;
-	}
+  .container > div:has(.mobileImage) {
+    display: block;
+  }
 }

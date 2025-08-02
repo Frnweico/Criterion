@@ -12,10 +12,22 @@ const HomeEmbedding = () => {
     <section className={classes.container}>
       <div className={classes.textSection}>
         <h4 data-aos="fade-up">
-          EMBEDDING <span>SUSTAINABILITY</span> INTO EVERYDAY LIVING
+          EVERYDAY LIVING, <br /> ENRICHED BY <span>NATURE</span>
         </h4>
 
-        <Button
+      </div>
+
+      <Image
+        src={embedding}
+        alt="Embedding"
+        loading="lazy"
+        data-aos="fade-up"
+        hash="L3ECqFpJ00H=^+xVEMI.Di-;VsM|"
+        height={300}
+        adaptToParentDimensions
+      />
+
+      <Button
           type="secondary"
           onClick={() => {
             navigate("/about-us");
@@ -33,17 +45,6 @@ const HomeEmbedding = () => {
             <path d="M9.36307 0.119751L8.08108 1.39062L12.9858 6.11082H0.5V7.89493H12.9798L8.08108 12.6094L9.36307 13.8803L16.5 7.00012L9.36307 0.119751Z" />
           </svg>
         </Button>
-      </div>
-
-      <Image
-        src={embedding}
-        alt="Embedding"
-        loading="lazy"
-        data-aos="fade-up"
-        hash="L3ECqFpJ00H=^+xVEMI.Di-;VsM|"
-        height={300}
-        adaptToParentDimensions
-      />
     </section>
   );
 };

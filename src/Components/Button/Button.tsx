@@ -3,7 +3,7 @@ import { CircularProgress } from "@mui/material";
 
 type ButtonPropTypes = {
   children: React.ReactNode;
-  type?: "primary" | "secondary" | "tertiary" | "black";
+  type?: "primary" | "secondary" | "tertiary" | "black" | "plain" | "white" | "enriched" | "footerBtn";
   disabled?: boolean;
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
   loading?: boolean;
@@ -29,7 +29,15 @@ const Button = ({
           ? classes.tertiary
           : type === "black"
           ? classes.black
-          : classes.primary
+          : type === "plain"
+          ? classes.plain
+           : type === "white"
+      ? classes.white
+      : type === "enriched"
+      ? classes.enriched
+      : type === "footerBtn"
+      ? classes.footerBtn
+      : classes.primary
       } `}
       onClick={onClick}
       disabled={loading || disabled}
