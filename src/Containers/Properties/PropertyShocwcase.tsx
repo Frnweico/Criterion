@@ -3,7 +3,6 @@ import classes from "./PropertyPage.module.css";
 import mainProperyImg from "../../Assets/Images/mainPropertyImg.svg";
 import propertyImg1 from "../../Assets/Images/propertyImg1.svg";
 import propertyImg2 from "../../Assets/Images/propertyImg2.svg";
-import horizontalLine from "../../Assets/Images/Line 10.svg";
 
 const PropertyShocwcase = () => {
     const features = [
@@ -46,9 +45,7 @@ const images =[mainProperyImg, propertyImg1, propertyImg2]
           are:
         </h2>
         <div className={classes.propertyDetailsLine}>
-          {/* Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe, explicabo ad! Nisi, dolorem reiciendis architecto quidem fuga praesentium, eius, beatae quisquam expedita doloremque officia officiis neque dolores illo ipsa consectetur. */}
-        </div>
-        
+        </div>     
       </div>
 
       <div className={classes.propertyShowcaseContent}>
