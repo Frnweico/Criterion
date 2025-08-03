@@ -76,7 +76,6 @@ const images =[mainProperyImg, propertyImg1, propertyImg2]
               className={`${classes.propertyDetailsFeatureItem} ${classes.propertyDetailsFeatureVisible}`}
             >
               <h4>{item.title}</h4>
-              {/* <img src={horizontalLine} alt="horizontal line" /> */}
               <p>{item.description}</p>
             </div>
           ))}

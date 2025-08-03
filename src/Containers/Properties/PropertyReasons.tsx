@@ -50,7 +50,7 @@ const PropertyReasons = () => {
       <h2>Why Buy Into <br /> <span> The Midtown Terraces,</span> <br /> Gwarinpa, Abuja?</h2>
         <div className={classes.propertyReasonsWrapper}>
             {PropertyReasonsData.map((item, idx) => (
-            <div key={idx} className={classes.propertyReason}>
+            <div  key={idx} className={classes.propertyReason}>
                 <img src={item.image} alt={item.title} />
                 <h4>{item.title}</h4>
                 <p>{item.description}</p>
