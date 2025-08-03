@@ -1,11 +1,1 @@
-<svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M4.20703 7.24506V22.739H10.6538V7.24506L7.30512 4.49609L4.20703 7.24506Z" stroke="#F4F4F4" stroke-width="0.634604"/>
-<path d="M10.6523 7.24506V22.739H17.0991V7.24506L13.7504 4.49609L10.6523 7.24506Z" stroke="#F4F4F4" stroke-width="0.634604"/>
-<path d="M17.1016 7.24506V22.739H23.5484V7.24506L20.1997 4.49609L17.1016 7.24506Z" stroke="#F4F4F4" stroke-width="0.634604"/>
-<rect x="6.90625" y="9.24512" width="1.05503" height="1.32368" fill="#F4F4F4"/>
-<rect x="13.3516" y="9.24512" width="1.05503" height="1.32368" fill="#F4F4F4"/>
-<rect x="19.7969" y="9.24512" width="1.05503" height="1.32368" fill="#F4F4F4"/>
-<rect x="6.90625" y="14.9092" width="1.05503" height="1.32368" fill="#F4F4F4"/>
-<rect x="13.3516" y="14.9092" width="1.05503" height="1.32368" fill="#F4F4F4"/>
-<rect x="19.7969" y="14.9092" width="1.05503" height="1.32368" fill="#F4F4F4"/>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="none" viewBox="0 0 28 28"><path stroke="#f4f4f4" stroke-width=".635" d="M4.207 7.245V22.74h6.447V7.245L7.305 4.496z"/><path stroke="#f4f4f4" stroke-width=".635" d="M10.652 7.245V22.74H17.1V7.245L13.75 4.496zM17.102 7.245V22.74h6.446V7.245L20.2 4.496z"/><path fill="#f4f4f4" d="M6.906 9.245h1.055v1.324H6.906zM13.352 9.245h1.055v1.324h-1.055zM19.797 9.245h1.055v1.324h-1.055zM6.906 14.909h1.055v1.324H6.906zM13.352 14.909h1.055v1.324h-1.055zM19.797 14.909h1.055v1.324h-1.055z"/></svg>
