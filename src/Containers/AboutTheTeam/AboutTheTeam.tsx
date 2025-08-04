@@ -1,7 +1,7 @@
 import classes from "./AboutTheTeam.module.css";
-import hakeemBakare from "../../Assets/Images/hakeemBakare.svg";
-import letamWiwa from "../../Assets/Images/letamWiwa.svg";
-import babatunde from "../../Assets/Images/babatunde.svg";
+import hakeemBakare from "../../Assets/Images/hakeemBakare.jpg";
+import letamWiwa from "../../Assets/Images/letamWiwa.png";
+import babatunde from "../../Assets/Images/babatunde.png";
 import { useLocation, useSearchParams } from "react-router-dom";
 import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";

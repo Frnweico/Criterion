@@ -1,11 +1,11 @@
 import { useState } from "react";
 import classes from "./PropertyPage.module.css";
-import groundFloorImg from "../../Assets/Images/groundFloorImg.svg";
-import firstFloorImg from "../../Assets/Images/firstFloorImg.svg";
-import secondFloorImg from "../../Assets/Images/secondFloorImg.svg";
-import groundFloorSingleImg from "../../Assets/Images/groundFloorSingleImg.svg";
-import firstFloorSingleImg from "../../Assets/Images/firstFloorSingleImg.svg";
-import secondFloorSingleImg from "../../Assets/Images/secondFloorSingleImg.svg";
+import groundFloorImg from "../../Assets/Images/groundFloorImg.jpg";
+import firstFloorImg from "../../Assets/Images/firstFloorImg.jpg";
+import secondFloorImg from "../../Assets/Images/secondFloorImg.jpg";
+import groundFloorSingleImg from "../../Assets/Images/groundFloorSingleImg.jpg";
+import firstFloorSingleImg from "../../Assets/Images/firstFloorSingleImg.jpg";
+import secondFloorSingleImg from "../../Assets/Images/secondFloorSingleImg.jpg";
 import {ArrowBackIos,  ArrowForwardIos} from '@mui/icons-material';
 
 // Component to show room labels

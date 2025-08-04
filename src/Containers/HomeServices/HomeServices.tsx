@@ -1,6 +1,6 @@
 import classes from './HomeServices.module.css';
 import Button from '../../Components/Button/Button';
-import homeServiceImg from '../../Assets/Images/homeServiceImg.svg';
+import homeServiceImg from '../../Assets/Images/homeServiceImg.png';
 import { useContext } from 'react';
 import { AppContext } from '../../Context/AppContext';
 const HomeServices = () => {

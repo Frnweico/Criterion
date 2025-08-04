@@ -1,6 +1,6 @@
 import Button from "../../Components/Button/Button";
 import classes from "./HomeTranscending.module.css";
-import transcend from "../../Assets/Images/transcend.svg";
+import transcend from "../../Assets/Images/transcend.png";
 import { useContext, useEffect } from "react";
 import Aos from "aos";
 import "aos/dist/aos.css";

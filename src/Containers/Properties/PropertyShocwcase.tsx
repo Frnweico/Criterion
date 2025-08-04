@@ -1,8 +1,8 @@
 import { useState } from "react";
 import classes from "./PropertyPage.module.css";
-import mainProperyImg from "../../Assets/Images/mainPropertyImg.svg";
-import propertyImg1 from "../../Assets/Images/propertyImg1.svg";
-import propertyImg2 from "../../Assets/Images/propertyImg2.svg";
+import mainProperyImg from "../../Assets/Images/mainPropertyImg.jpg";
+import propertyImg1 from "../../Assets/Images/propertyImg1.jpg";
+import propertyImg2 from "../../Assets/Images/propertyImg2.jpg";
 
 const PropertyShocwcase = () => {
     const features = [

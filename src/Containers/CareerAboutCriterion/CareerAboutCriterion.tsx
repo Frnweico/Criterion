@@ -1,8 +1,8 @@
 import classes from './CareerAboutCriterion.module.css';
-import careerAbout from '../../Assets/Images/careerAbout.svg';
-import career1 from '../../Assets/Images/career1.svg';
-import career2 from '../../Assets/Images/career2.svg';
-import career3 from '../../Assets/Images/career3.svg';
+import careerAbout from '../../Assets/Images/careerAbout.jpg';
+import career1 from '../../Assets/Images/career1.png';
+import career2 from '../../Assets/Images/career2.png';
+import career3 from '../../Assets/Images/career3.png';
 import Aos from 'aos';
 import 'aos/dist/aos.css';
 import React, { useEffect } from 'react';

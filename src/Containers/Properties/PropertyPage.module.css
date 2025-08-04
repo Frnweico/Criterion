@@ -178,6 +178,7 @@
   grid-template-columns: repeat(2, 1fr);
   padding: 2em 0 4em 4em;
   gap: 2em;
+  align-items: stretch;
 }
 
 .projectLocationText {
@@ -207,6 +208,24 @@
 .projectLocationMapWrapper {
   width: 100%;
   height: 100%;
+  display: flex;
+  position: relative;
+}
+
+.mapOverlay {
+  width: 100%;
+  height: 100%;
+  display: block;
+  position: relative;
+}
+
+.mapPreview {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 
 /* property showcase  */
@@ -632,6 +651,26 @@
     width: 20%;
     text-align: right;
     margin-left: 0;
+  }
+
+  .projectLocationMapWrapper {
+    aspect-ratio: 16/9;
+  }
+
+  .mapOverlay {
+    width: 100%;
+    height: 100%;
+    display: block;
+    position: relative;
+  }
+
+  .mapPreview {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
   }
   /* showcase layout → side-by-side but narrower gaps */
   .propertyDetailsWrapper {

@@ -1,11 +1,10 @@
 import Button from '../../Components/Button/Button';
 import classes from './HomeHeroSection.module.css';
-// import heroImage from '../../Assets/Images/heroImage.svg';
 import heroImage from '../../Assets/Images/CHOme 2 1_cutout 2.png';
 import { motion } from 'framer-motion';
 import { AppContext } from '../../Context/AppContext';
 import { useContext } from 'react';
-import heroMobile from '../../Assets/Images/heroMobile.svg';
+import heroMobile from '../../Assets/Images/heroMobile.jpg';
 import Image from '../../Components/Image/Image';
 
 const HomeHeroSection = () => {

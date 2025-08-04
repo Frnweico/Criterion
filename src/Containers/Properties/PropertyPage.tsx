@@ -1,4 +1,4 @@
-import property1 from "../../Assets/Images/property1.svg"
+import property1 from "../../Assets/Images/property1.jpg"
 import terraceIcon from "../../Assets/Images/terrace icon.svg"
 import bedIcon from "../../Assets/Images/bed icon.svg"
 import floorsIcon from "../../Assets/Images/floors icon.svg"
