@@ -16,6 +16,9 @@ type HeaderProps = {
 const Header = ({ isDark }: HeaderProps) => {
   // States
   const [navBackground, setNavBackground] = useState("transparent");
+  const [isVisible, setIsVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
+
 
   // Context
   const { scrollToRef } = useContext(AppContext);
@@ -24,20 +27,43 @@ const Header = ({ isDark }: HeaderProps) => {
   const location = useLocation();
   const navigate = useNavigate();
 
+  // Refs
+  const sideNav = useRef<null | HTMLDivElement>(null);
+  const scrollTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+
   // Utils
   const handleScroll = () => {
-    const scrollY = window.scrollY || window.pageYOffset;
-    if (scrollY > 400) {
+    const currentScrollY = window.scrollY || window.pageYOffset;
+    if (currentScrollY > 400) {
       setNavBackground(isDark ? "#191919" : "#F4F4F4");
     } else {
       setNavBackground("transparent");
     }
+
+    // Handle navbar visibility based on scroll direction
+    if (currentScrollY < 100) {
+      // Always show navbar at the top
+      setIsVisible(true);
+    } else if (currentScrollY > lastScrollY && currentScrollY > 100) {
+      // Scrolling down - hide navbar
+      setIsVisible(false);
+    } else if (currentScrollY < lastScrollY) {
+      // Scrolling up - show navbar
+      setIsVisible(true);
+    }
+
+    setLastScrollY(currentScrollY);
+
+    // Clear existing timeout
+    if (scrollTimeoutRef.current) {
+      clearTimeout(scrollTimeoutRef.current);
+    }
+
+    // Set timeout to ensure navbar is visible when user stops scrolling
+    scrollTimeoutRef.current = setTimeout(() => {
+      setIsVisible(true);
+    }, 150); // Show navbar 150ms after user stops scrolling
   };
-
-  // Refs
-  const sideNav = useRef<null | HTMLDivElement>(null);
-
-  // Router
 
   // Utils
   const openSideNav = () => {
@@ -58,13 +84,16 @@ const Header = ({ isDark }: HeaderProps) => {
 
     return () => {
       window.removeEventListener("scroll", handleScroll);
+      if (scrollTimeoutRef.current) {
+        clearTimeout(scrollTimeoutRef.current);
+      }
     };
 
     // eslint-disable-next-line
-  }, []);
+  }, [lastScrollY]);
   return (
     <div
-      className={classes.container}
+      className={`${classes.container} ${!isVisible ? classes.hidden : ''}`}
       style={{ backgroundColor: navBackground }}
     >
       <img

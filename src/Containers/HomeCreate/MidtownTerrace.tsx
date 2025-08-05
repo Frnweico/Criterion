@@ -4,6 +4,7 @@ import midtownTerrace2 from "../../Assets/Images/midtownTerrace2.svg"
 import Button from '../../Components/Button/Button';
 import line from "../../Assets/Images/Line 2-1.svg"
 import { useNavigate } from 'react-router-dom';
+import { scrollToTheTop } from '../../HelperFunctions/scrollToTop';
 
 const MidtownTerrace = () => {
     const navigate = useNavigate();
@@ -38,7 +39,7 @@ const MidtownTerrace = () => {
             <div data-aos="fade-up" className={classes.midtownText}>
             <img src={midtownTerrace1} alt="midtown terrace" />
             <Button type='plain' onClick={() => {
-          navigate("/properties");
+          navigate("/properties"); scrollToTheTop();
         }}>
                 <span>LEARN MORE</span>
                  <svg
