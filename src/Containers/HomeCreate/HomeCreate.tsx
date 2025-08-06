@@ -4,7 +4,7 @@ import { AppContext } from '../../Context/AppContext';
 import { useContext } from 'react';
 import classes from './HomeCreate.module.css';
 import Declaration from './Declaration';
-import createImg from "../../Assets/Images/Tomorrows Spaces Section - Image.png";
+import createImg from "../../Assets/Images/Tagline Section Image 1.png";
 
 const HomeCreate = () => {
     const { scrollToRef } = useContext(AppContext);

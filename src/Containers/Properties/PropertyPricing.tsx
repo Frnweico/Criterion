@@ -3,7 +3,15 @@ import line from "../../Assets/Images/Line 8.svg";
 import Button from "../../Components/Button/Button";
 import { WhatsApp } from '@mui/icons-material';
 import phone from "../../Assets/Images/Phone Call Streamline Feather1.svg";
+import { useEffect } from "react";
+import Aos from 'aos';
+import 'aos/dist/aos.css';
+
 const PropertyPricing = () => {
+  useEffect(() => {
+		Aos.init({ duration: 1000 });
+	}, []);
+
     const rows = [
     {
       payment: '20% – 1st Instalment\n₦55,000,000',
@@ -34,14 +42,14 @@ const PropertyPricing = () => {
 
   return (
     <div>
-    <div className={classes.propertyPricing}>
+    <div data-aos="fade-up" className={classes.propertyPricing}>
       <h2>
         Pricing & Payment Plan
       </h2>
       <div className={classes.propertyPricingContent}>
         <img src={line} alt="a line" />
         <div className={classes.propertyTableWrapper}>
-      <table className={classes.pricingTable}>
+      <table data-aos="fade-up" className={classes.pricingTable}>
         <thead>
           <tr>
             <th>HOUSE TYPE</th>
@@ -67,7 +75,7 @@ const PropertyPricing = () => {
       </table>
 
 {/* Mobile Split Tables - Just 2 Total Tables */}
-<div className={classes.pricingMobileTables}>
+<div data-aos="fade-up" className={classes.pricingMobileTables}>
   {/* Table 1: HOUSE TYPE and PAYMENT */}
   <table className={classes.mobileTable}>
     <thead>
@@ -112,7 +120,7 @@ const PropertyPricing = () => {
     </div>
       </div>
     </div>
-    <div className={classes.propertyPricingContact}>
+    <div data-aos="fade-up" className={classes.propertyPricingContact}>
         <div className={classes.propertyPricingContactText}>
             <h3>CRITERION <br /> HOMES' CONTACT</h3>
             <div> <WhatsApp style={{fontSize: '16px'}} /> <img src={phone} alt="phone icon" /><span>+234 805 857 3915</span></div>

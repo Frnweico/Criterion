@@ -4,11 +4,11 @@ import classes from './HomeCreate.module.css';
 const Declaration = () => {
   return (
     <div className={classes.declarationContainer}>
-      <h2><sup>THE</sup> <span >CRITERION</span> <br />DECLARATION</h2>
+      <h2><sup className={classes.declarationSup}>THE</sup> <span >CRITERION</span> <br />DECLARATION</h2>
 
 <div className={classes.declarationText}>
-      <p>The Criterion Declaration is our statement of intent.
-A philosophy that defines how we build, why we build, and who we build for. It reflects our commitment to thoughtful design, disciplined delivery, sustainability and homes created to hold their worth over time. Not a campaign. Not a slogan. A standard.</p>
+      <p>The Criterion Declaration is our statement of intent.<br />
+A philosophy that defines how we build, why we build, and who we build for. It reflects our commitment to thoughtful design, disciplined delivery, sustainability and homes created to hold their worth over time. <br /> It's not a campaign. Not a slogan. A standard.</p>
 <Button type='white'>
                 <span>WATCH THE DECLARATION</span>
                 <svg

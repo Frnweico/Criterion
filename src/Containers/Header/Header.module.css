@@ -1,6 +1,8 @@
 .container {
   display: flex;
   align-items: center;
+  justify-content: center;
+  /* border: 1px solid red; */
   gap: 2rem;
   padding: 18px 120px;
   transition: background-color 0.3s ease, transform 0.3s ease;
@@ -26,7 +28,7 @@
 .container > p {
   font-family: "Poppins";
   font-size: 18px;
-  font-weight: 600;
+  font-weight: 400;
   line-height: 22.97px;
   text-decoration: none;
   transition: all 0.3s ease-in-out;
@@ -78,6 +80,10 @@
   transition: 0.3s;
   background: url("../../Assets/Images/greenbgMobile.svg");
   background-position: center center;
+}
+
+button {
+  border: 1px solid red;
 }
 
 @media screen and (min-width: 767px) and (max-width: 1023px) {

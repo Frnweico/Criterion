@@ -14,6 +14,9 @@
   gap: 8px;
   border-radius: 1px;
   white-space: nowrap;
+  margin: 0;
+  border: none;
+  vertical-align: top;
 }
 
 .button svg {
@@ -121,6 +124,35 @@
 .white:hover {
   background: #191919;
   color: #f4f4f4;
+}
+.gray {
+  background: #d9d9d9;
+  color: #191919;
+  border: none;
+}
+
+.gray:hover {
+  background: #000;
+  color: #d9d9d9;
+}
+
+.gray:hover > svg {
+  fill: #d9d9d9;
+}
+.orange {
+  background: #b45f1e;
+  color: #f4f4f4;
+  border: none;
+}
+
+.orange:hover {
+  background: transparent;
+  color: #b45f1e;
+  border: 1px solid #b45f1e;
+}
+
+.orange:hover > svg {
+  fill: #b45f1e;
 }
 
 .plain {

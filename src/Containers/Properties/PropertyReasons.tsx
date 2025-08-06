@@ -6,8 +6,15 @@ import investmentIcon from "../../Assets/Images/investment icon.svg"
 import customizationIcon from "../../Assets/Images/Cogwheel Settings Account Streamline Atlas Line.svg"
 import idealIcon from "../../Assets/Images/ideal icon.svg"
 import classes from "./PropertyPage.module.css";
+import { useEffect } from "react"
+import Aos from 'aos';
+import 'aos/dist/aos.css';
 
 const PropertyReasons = () => {
+    useEffect(() => {
+		Aos.init({ duration: 1000 });
+	}, []);
+
     const PropertyReasonsData = [
         {
             image: locationIcon,
@@ -47,10 +54,10 @@ const PropertyReasons = () => {
     ]
   return (
     <div className={classes.propertyReasons}>
-      <h2>Why Buy Into <br /> <span> The Midtown Terraces,</span> <br /> Gwarinpa, Abuja?</h2>
+      <h2 data-aos="fade-right"><span className={classes.propertyReasonsSpan1}>Why Buy Into</span> <br /> <span className={classes.propertyReasonsSpan2}> The Midtown Terraces,</span> <br /> Gwarinpa, Abuja?</h2>
         <div className={classes.propertyReasonsWrapper}>
             {PropertyReasonsData.map((item, idx) => (
-            <div  key={idx} className={classes.propertyReason}>
+            <div data-aos="fade-up" key={idx} className={classes.propertyReason}>
                 <img src={item.image} alt={item.title} />
                 <h4>{item.title}</h4>
                 <p>{item.description}</p>

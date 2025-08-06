@@ -13,15 +13,6 @@ const HomeHeroSection = () => {
 	return (
 		<section className={classes.container}>
 			<motion.div className={`${classes.textSection}`}>
-				{/* <h4>
-					CREATING{' '}
-					<motion.span>
-						TOMORROW'S <br />
-						SPACES,{' '}
-					</motion.span>
-					INSPIRED BY
-					<motion.span>TODAY 'S NEEDS</motion.span>
-				</h4> */}
 				<h4 data-aos="fade-up"><span>THE<span className={classes.mazius}> MEASURE</span></span> 
 				<motion.span>
 					OF HOW HOMES <br />
@@ -32,7 +23,7 @@ const HomeHeroSection = () => {
 				</h4>
 
 				<p className = {classes.text}>A PHILOSPHY OF CRAFT, RESTRAINT, SUSTAINABILITY AND TIMELESS VALUE.</p>
-				<Button onClick={scrollToRef} type='secondary' subType='gold'>
+				<Button onClick={scrollToRef} type='secondary' subType='normal'>
 					<span>TALK TO US</span>
 					<svg
 						width='16'
@@ -45,28 +36,19 @@ const HomeHeroSection = () => {
 				</Button>
 			</motion.div>
 
-{/* <div className="image-wrapper" style={{ width: '100%', height: '849px', position: 'relative', border: '2px solid red' }}> */}
-			<Image
+{/* <div className={classes.imageSection}> */}
+
+			<img
 				src={heroImage}
 				alt='Develop'
 				loading='lazy'
-				hash='LIH2fyO[0$pI_NIoS3RjM|xaV@%M'
 				className={classes.desktopImage}
-				containerClassName={{
-					width: 'auto',
-					flex: 'auto',
-				}}
 			/>
-			<Image
+			<img
 				src={heroMobile}
 				alt='Hero'
 				loading='lazy'
 				className={classes.mobileImage}
-				containerClassName={{
-					width: 'auto',
-					flex: 'auto',
-				}}
-				hash='L9HoOL9v3F5pyZs9Els7pw%LMJ$N'
 			/>
 			{/* </div> */}
 		</section>

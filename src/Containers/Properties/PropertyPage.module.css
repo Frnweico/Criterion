@@ -38,10 +38,13 @@
   line-height: 88%;
   letter-spacing: -2%;
   margin-bottom: 0.25em;
+  font-weight: 300;
 }
 .propertyHeaderText p {
   margin-top: 1em;
   font-weight: 400;
+  font-size: 16px;
+  font-weight: 500;
 }
 .propertyHeaderDetails {
   display: flex;
@@ -58,6 +61,7 @@
   justify-content: space-between;
   align-items: center;
   font-weight: 300;
+  gap: 0.5em;
 }
 .propertyPageContact {
   display: grid;
@@ -65,12 +69,12 @@
   /* gap: 2em; */
   width: 80%;
   margin: 0 auto;
-  padding: 2em 0;
+  padding: 7em 0;
 }
 .propertyPageContactText {
   display: flex;
   flex-direction: column;
-  gap: 1em;
+  gap: 1.5em;
   font-family: "Poppins";
 }
 .propertyPageContactText p {
@@ -85,12 +89,12 @@
   font-weight: 300;
 }
 .propertyPageContactTextInfo {
-  font-weight: 300;
+  font-weight: 200;
   line-height: 150%;
   display: flex;
   flex-direction: column;
   gap: 1.5em;
-  font-size: 14px;
+  font-size: 13px;
 }
 .propertyPageContactDetails {
   display: flex;
@@ -117,7 +121,10 @@
   line-height: 150%;
 }
 .propertyPageContactDetails button {
-  padding: 20px 48px;
+  padding: 25px 70px;
+}
+.propertyPageContactDetails button span {
+  font-weight: 600;
 }
 /* PROJECT DETAILS  */
 .projectDetails h3,
@@ -130,9 +137,12 @@
   text-align: center;
   padding: 0.75em;
   border-bottom: 1px solid #f4f4f4;
+  font-weight: 300;
 }
 .midtownDetailsWrapper {
-  padding: 2em 3em;
+  padding: 3em 3em 4em 3em;
+  width: 82%;
+  margin: 0 auto;
 }
 .midtownDetails {
   display: flex;
@@ -143,46 +153,58 @@
   padding: 1em 0.5em;
   font-family: "Poppins";
 }
+.midtownDetails:nth-of-type(1) {
+  border-top: 1px solid #f4f4f4;
+}
 
 .midtownDetails h3 {
   text-align: left;
-  line-height: 104%;
-  letter-spacing: -2%;
-  font-size: 18px;
+  line-height: 89%;
+  font-size: 30px;
   background-color: transparent;
   border-bottom: none;
+  font-family: "Space Grotesk";
 }
 
 .midtownDetails p {
   margin-left: auto;
   font-weight: 300;
   line-height: 150%;
-  width: 32%;
-  text-align: right;
+  width: 25%;
+  text-align: left;
   margin-right: 1em;
 }
-
+/* property location  */
+.projectLocation {
+  /* height: 90vh; */
+}
 .projectLocation h2 {
   font-family: "Mazius Display";
   font-size: 96px;
   line-height: 92%;
   letter-spacing: -4%;
+  font-weight: 300;
 }
 
 .projectLocationTextLine h2 {
-  color: rgba(244, 244, 244, 0.5);
+  color: #f4f4f480;
 }
 
 .projectLocationGrid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  padding: 2em 0 4em 4em;
-  gap: 2em;
+  padding: 2em 0 3em 4em;
+  /* gap: 2em; */
   align-items: stretch;
+  width: 90%;
+  margin-left: auto;
+  /* height: 90vh; */
 }
 
 .projectLocationText {
-  padding: 3em 0;
+  padding: 1.5em 0;
+  width: 95%;
+  margin-left: auto;
 }
 
 .projectLocationTextLine {
@@ -194,20 +216,26 @@
 
 .projectLocationTextLine p {
   text-transform: uppercase;
-  width: 40%;
+  width: 25%;
   text-align: right;
-  margin-left: auto;
+  font-size: 18px;
+  line-height: 104%;
+  font-family: "Poppins";
 }
 
 .projectLocationTextDescription {
   display: flex;
   flex-direction: column;
   gap: 2em;
+  width: 75%;
+  font-weight: 300;
+  line-height: 150%;
+  font-family: "Poppins";
 }
 
 .projectLocationMapWrapper {
   width: 100%;
-  height: 100%;
+  max-height: 90vh;
   display: flex;
   position: relative;
 }
@@ -241,6 +269,7 @@
   font-family: "Space Grotesk";
   font-size: 30px;
   line-height: 89%;
+  font-weight: 300;
 }
 .propertyDetailsLine {
   height: 170px;
@@ -351,7 +380,7 @@
   width: 80px;
   height: 60px;
   object-fit: cover;
-  border-radius: 6px;
+  border-radius: 2px;
   cursor: pointer;
   transition: 0.3s ease;
 }
@@ -362,15 +391,45 @@
 }
 
 /* floor plan  */
+.transitionWrapper {
+  position: relative;
+  width: 100%;
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  opacity: 1;
+  transform: translateX(0);
+  margin: 2em 0;
+}
+
+.fadeOut {
+  opacity: 0;
+  transform: translateX(10px);
+  pointer-events: none;
+}
+
+.floorPlanWithNavigation {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* gap: 3em; */
+  width: 100%;
+  /* padding: 2em 4em; */
+}
+
+.floorPlanContent {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  width: 100%;
+}
 
 .floorPlanHeader {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: space-between;
-  width: 70%;
-  margin: 0 auto;
-  margin-top: 5em;
-  margin-bottom: 2em;
+  justify-content: center;
+  width: 100%;
 }
 .floorPlanHeader h2 {
   font-family: "Mazius Display";
@@ -378,6 +437,7 @@
   line-height: 92%;
   letter-spacing: -4%;
   color: #fff;
+  font-weight: 300;
 }
 .floorPlanHeaderItems {
   display: flex;
@@ -385,12 +445,14 @@
   gap: 0.5em;
   font-family: "Poppins";
   color: #fff;
+  margin-right: auto;
+  margin-top: 2em;
 }
 .floorPlanHeaderItems p {
   font-size: 18px;
   line-height: 104%;
   border-bottom: 1px solid #fff;
-  text-align: right;
+  text-align: left;
   text-transform: uppercase;
   padding-bottom: 0.25em;
 }
@@ -402,10 +464,9 @@
   color: #a49031;
 }
 .floorPlanImageWrapper {
-  width: 70%;
+  width: 100%;
   margin: 0 auto;
-  margin-bottom: 5em;
-  max-width: 100%;
+  padding: 0 2em;
   flex-shrink: 0;
 }
 .floorPlanImageWrapper img {
@@ -428,11 +489,10 @@
 .arrowButton {
   background: none;
   border: none;
-  font-size: 2rem;
-  color: #f4f4f4; /* or white depending on your theme */
-  cursor: pointer;
   padding: 0.5rem;
-  transition: opacity 0.3s ease;
+  transition: transform 0.3s ease;
+  cursor: pointer;
+  margin: 0 4em;
 }
 
 .arrowButton:disabled {
@@ -440,54 +500,74 @@
   cursor: not-allowed;
 }
 
+.arrowButton:hover {
+  transform: scale(1.1);
+}
+
 /* reasons  */
 .propertyReasons {
-  width: 70%;
+  width: 80%;
   margin: 0 auto;
+  margin-top: 2em;
+  display: grid;
+  grid-template-columns: 55% 45%;
+  align-items: flex-start;
+  justify-content: center;
 }
 .propertyReasons h2 {
   text-transform: uppercase;
   font-family: "Mazius Display";
-  font-size: 96px;
+  font-size: 94px;
   line-height: 92%;
   letter-spacing: -4%;
-  text-align: center;
+  text-align: left;
+  font-weight: 300;
+  width: 100%;
+  margin-top: -0.4em;
 }
-.propertyReasons h2 span {
+.propertyReasonsSpan1 {
+  font-size: 30px;
+  font-family: "Space Grotesk";
+  line-height: 89%;
+  font-weight: 400;
+}
+.propertyReasonsSpan2 {
   font-style: italic;
 }
 .propertyReasonsWrapper {
   display: flex;
-  align-items: center;
-  justify-content: center;
+  align-items: flex-start;
+  justify-content: flex-start;
   flex-wrap: wrap;
   color: #fff;
-  margin-top: 5em;
 }
 .propertyReason {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
   gap: 1em;
-  text-align: center;
+  text-align: left;
   font-family: "Poppins";
-  width: 33%;
+  width: 50%;
   margin-bottom: 3em;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   padding: 8px;
-  box-sizing: border-box;
-  min-height: 180px;
 }
 .propertyReason h4 {
   font-size: 18px;
   line-height: 104%;
   text-transform: uppercase;
+  font-weight: 300;
 }
 .propertyReason p {
   line-height: 150%;
   font-weight: 300;
-  width: 80%;
+}
+.propertyReason img {
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
 }
 .propertyReason:hover {
   transform: scale(1.05);
@@ -498,8 +578,8 @@
 /* pricing  */
 .propertyPricing {
   width: 80%;
-  margin-top: 5em;
   margin: 0 auto;
+  margin-top: 5em;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 2em;
@@ -653,6 +733,9 @@
     margin-left: 0;
   }
 
+  .projectLocationTextDescription {
+    width: 80%;
+  }
   .projectLocationMapWrapper {
     aspect-ratio: 16/9;
   }
@@ -892,6 +975,10 @@
     width: 25%;
   }
 
+  .projectLocationTextDescription {
+    width: 100%;
+  }
+
   /* showcase layout → column */
   .propertyShowcaseContent {
     flex-direction: column;
@@ -913,6 +1000,15 @@
   }
   .floorPlanImageWrapper {
     width: 90%;
+  }
+  .arrowButton {
+    margin: 0 1em;
+    width: 100%;
+  }
+  .arrowButton img {
+    width: 30px;
+    height: 30px;
+    object-fit: contain;
   }
 
   /* reasons grid → single column */

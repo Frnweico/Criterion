@@ -7,6 +7,33 @@
   background-color: #000;
   color: #f4f4f4;
   width: 100vw;
+  /* min-height: 80vh; */
+}
+
+.homeServicesDetails {
+  display: grid;
+  grid-template-columns: 40% 60%;
+  gap: 4em;
+  width: 100%;
+}
+
+.homeServicesLeftSection {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  margin-left: 3em;
+  height: 100%;
+}
+
+.homeServicesRightSection {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  width: 70%;
+  margin-top: 6em;
+  margin-bottom: 3em;
 }
 
 .homeServicesHeading {
@@ -15,97 +42,211 @@
   line-height: 88%;
   letter-spacing: -5%;
   font-size: 100px;
-  margin-bottom: 1em;
-  padding: 0 2em;
+  margin-bottom: 0.1em;
+  text-align: right;
+  width: 100%;
 }
 
-.homeServicesDetails {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 4em;
+.homeServicesImage {
+  flex: 1;
+  width: 100%;
+  display: flex;
+  align-items: stretch;
 }
 
-.homeServicesImage h2 {
+.homeServicesImage img {
+  max-width: 100%;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.numberHeading {
   font-family: "Space Grotesk";
   font-weight: 300;
   line-height: 89%;
   letter-spacing: -4%;
   font-size: 135px;
-  margin-bottom: 0.5em;
-}
-.homeServicesImage img {
-  width: 100%;
+  margin-bottom: 0.2em;
+  margin-left: auto;
 }
 
-.homeServicesText h2 {
+.investmentHeading {
   font-family: "Space Grotesk";
   font-weight: 300;
-  line-height: 89%;
+  line-height: 88%;
   letter-spacing: -2%;
   font-size: 64px;
   margin-bottom: 0.5em;
 }
 
-.homeServicesText p {
+.homeServicesRightSection p {
   font-family: "Poppins";
   font-weight: 300;
   line-height: 140%;
-  width: 60%;
+  width: 80%;
   text-align: left;
   margin-right: auto;
   font-size: 22px;
-  align-self: center;
-  justify-self: center;
-  margin-top: 9em;
-  margin-bottom: 2em;
+  margin-top: 1em;
+}
+
+button {
+  margin-top: 2em;
+}
+
+@media screen and (max-width: 1200px) {
+  .homeServices {
+    padding: 2.5em 3em 0 3em;
+  }
+  .homeServicesLeftSection {
+    margin-left: 2em;
+  }
+  .homeServicesHeading {
+    font-size: 85px;
+  }
+  .numberHeading {
+    font-size: 120px;
+  }
+  .investmentHeading {
+    font-size: 56px;
+  }
+  .homeServicesRightSection p {
+    font-size: 20px;
+    width: 100%;
+  }
 }
 
 @media screen and (max-width: 1024px) {
   .homeServices {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
-    padding: 3em 2em 0 2em;
+    padding: 2em 2em 0 2em;
   }
   .homeServicesDetails {
-    gap: 2em;
+    gap: 3em;
+  }
+  .homeServicesLeftSection {
+    margin-left: 1em;
+  }
+  .homeServicesRightSection {
+    width: 80%;
+    margin-top: 4em;
+    margin-bottom: 2em;
   }
   .homeServicesHeading {
     font-size: 72px;
-    margin-bottom: 1em;
-    padding: 0 1em;
+    margin-bottom: 0.2em;
   }
-  .homeServicesImage h2 {
+  .numberHeading {
     font-size: 100px;
   }
-  .homeServicesText {
-    margin-bottom: 4em;
-  }
-  .homeServicesText h2 {
+  .investmentHeading {
     font-size: 48px;
   }
-  .homeServicesText p {
-    width: 100%;
-    margin-top: 8em;
-    margin-bottom: 2em;
+  .homeServicesRightSection p {
+    width: 90%;
+    font-size: 18px;
+    margin-top: 1.2em;
   }
 }
+
+/* Tablet Portrait - 768px and below */
 @media screen and (max-width: 768px) {
+  .homeServices {
+    padding: 2em 1.5em 0 1.5em;
+  }
   .homeServicesDetails {
     grid-template-columns: 1fr;
+    gap: 2em;
+  }
+  .homeServicesLeftSection {
+    margin-left: 0;
+    margin-bottom: 2em;
+    order: 1;
+  }
+  .homeServicesRightSection {
+    width: 100%;
+    margin-top: 0;
+    margin-bottom: 2em;
+    order: 2;
   }
   .homeServicesHeading {
-    padding: 0;
-  }
-  .homeServicesImage {
-    margin-bottom: 3em;
+    font-size: 60px;
+    text-align: left;
+    margin-bottom: 0.3em;
   }
   .homeServicesImage img {
     width: 80%;
+    object-fit: cover;
   }
-  .homeServicesText p {
-    font-size: 20px;
-    margin: 2em 0;
+  .numberHeading {
+    font-size: 80px;
+    margin-left: 0;
+  }
+  .investmentHeading {
+    font-size: 40px;
+  }
+  .homeServicesRightSection p {
+    width: 80%;
+    font-size: 16px;
+    margin-top: 1em;
+  }
+  button {
+    margin-top: 1.5em;
+  }
+}
+
+/* Mobile - 480px and below */
+@media screen and (max-width: 480px) {
+  .homeServices {
+    padding: 1.5em 1em 0 1em;
+  }
+  .homeServicesDetails {
+    gap: 1.5em;
+  }
+  .homeServicesHeading {
+    font-size: 48px;
+    line-height: 85%;
+  }
+  .homeServicesImage {
+    height: 250px;
+  }
+  .numberHeading {
+    font-size: 65px;
+    margin-bottom: 0.1em;
+  }
+  .investmentHeading {
+    font-size: 32px;
+    margin-bottom: 0.3em;
+  }
+  .homeServicesRightSection p {
+    font-size: 15px;
+    line-height: 135%;
+  }
+  button {
+    margin-top: 1em;
+  }
+}
+
+/* Very small mobile - 360px and below */
+@media screen and (max-width: 360px) {
+  .homeServices {
+    padding: 1em 0.8em 0 0.8em;
+  }
+  .homeServicesHeading {
+    font-size: 40px;
+  }
+  .homeServicesImage {
+    height: 220px;
+  }
+  .numberHeading {
+    font-size: 55px;
+  }
+  .investmentHeading {
+    font-size: 28px;
+  }
+  .homeServicesRightSection p {
+    font-size: 14px;
+    line-height: 130%;
   }
 }
