@@ -31,7 +31,7 @@
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
-  width: 70%;
+  width: 80%;
   margin-top: 6em;
   margin-bottom: 3em;
 }
@@ -96,12 +96,23 @@ button {
   margin-top: 2em;
 }
 
+@media screen and (max-width: 1300px) {
+  .homeServicesLeftSection {
+    margin-left: 1.5em;
+  }
+  .homeServicesHeading {
+    font-size: 90px;
+  }
+  .numberHeading {
+    font-size: 120px;
+  }
+}
 @media screen and (max-width: 1200px) {
   .homeServices {
     padding: 2.5em 3em 0 3em;
   }
   .homeServicesLeftSection {
-    margin-left: 2em;
+    margin-left: 3em;
   }
   .homeServicesHeading {
     font-size: 85px;
@@ -115,6 +126,18 @@ button {
   .homeServicesRightSection p {
     font-size: 20px;
     width: 100%;
+  }
+}
+
+@media screen and (max-width: 1100px) {
+  .homeServicesLeftSection {
+    margin-left: 2em;
+  }
+  .homeServicesHeading {
+    font-size: 80px;
+  }
+  .numberHeading {
+    font-size: 110px;
   }
 }
 

@@ -52,7 +52,7 @@ const MidtownTerrace = () => {
 						<path d='M8.86307 0.119629L7.58108 1.3905L12.4858 6.1107H0V7.89481H12.4798L7.58108 12.6092L8.86307 13.8801L16 7L8.86307 0.119629Z' />
 					</svg>
             </Button>
-            <p>The Midtown Residences is a thoughtfully designed three-storey apartment development that blends clean architectural lines with modern functionality. Positioned in a serene urban enclave, this project was conceived for residents who value simplicity, space, and intentional living.</p>
+            <p data-aos="fade-up">The Midtown Residences is a thoughtfully designed three-storey apartment development that blends clean architectural lines with modern functionality. Positioned in a serene urban enclave, this project was conceived for residents who value simplicity, space, and intentional living.</p>
             </div>
         </div>
         <div className={classes.midtownImageSection}>

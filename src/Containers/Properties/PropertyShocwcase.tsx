@@ -1,8 +1,8 @@
 import { useState } from "react";
 import classes from "./PropertyPage.module.css";
-import mainProperyImg from "../../Assets/Images/mainPropertyImg.jpg";
-import propertyImg1 from "../../Assets/Images/propertyImg1.jpg";
-import propertyImg2 from "../../Assets/Images/propertyImg2.png";
+import mainProperyImg from "../../Assets/Images/xV1.png";
+import propertyImg1 from "../../Assets/Images/xV2.png";
+import propertyImg2 from "../../Assets/Images/xV3.png";
 import { useEffect } from "react";
 import Aos from 'aos';
 import 'aos/dist/aos.css';

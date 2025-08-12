@@ -49,7 +49,7 @@ const PropertyPricing = () => {
       <div className={classes.propertyPricingContent}>
         <img src={line} alt="a line" />
         <div className={classes.propertyTableWrapper}>
-      <table data-aos="fade-up" className={classes.pricingTable}>
+      <table className={classes.pricingTable}>
         <thead>
           <tr>
             <th>HOUSE TYPE</th>
@@ -120,7 +120,7 @@ const PropertyPricing = () => {
     </div>
       </div>
     </div>
-    <div data-aos="fade-up" className={classes.propertyPricingContact}>
+    <div className={classes.propertyPricingContact}>
         <div className={classes.propertyPricingContactText}>
             <h3>CRITERION <br /> HOMES' CONTACT</h3>
             <div> <WhatsApp style={{fontSize: '16px'}} /> <img src={phone} alt="phone icon" /><span>+234 805 857 3915</span></div>

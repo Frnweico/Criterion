@@ -16,14 +16,14 @@
 }
 .propertyPageContainer header {
   background-color: #30352f;
-  width: 80%;
+  width: 85%;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 2em;
-  padding: 5em 0 3em 0;
+  padding: 6em 0 3em 0;
 }
 .propertyHeaderText {
   text-align: center;
@@ -67,7 +67,7 @@
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   /* gap: 2em; */
-  width: 80%;
+  width: 85%;
   margin: 0 auto;
   padding: 7em 0;
 }
@@ -78,8 +78,10 @@
   font-family: "Poppins";
 }
 .propertyPageContactText p {
-  font-size: 18px;
-  line-height: 104%;
+  font-size: 16px;
+  line-height: 150%;
+  width: 95%;
+  font-weight: 300;
 }
 .propertyPageContactText h4 {
   font-family: "Space Grotesk";
@@ -140,8 +142,8 @@
   font-weight: 300;
 }
 .midtownDetailsWrapper {
-  padding: 3em 3em 4em 3em;
-  width: 82%;
+  padding: 2em 0 4em 0;
+  width: 70%;
   margin: 0 auto;
 }
 .midtownDetails {
@@ -150,10 +152,10 @@
   justify-content: center;
   border-bottom: 1px solid #f4f4f4;
   gap: 3em;
-  padding: 1em 0.5em;
+  padding: 1em 0.25em;
   font-family: "Poppins";
 }
-.midtownDetails:nth-of-type(1) {
+.midtownDetails:first-of-type {
   border-top: 1px solid #f4f4f4;
 }
 
@@ -175,9 +177,6 @@
   margin-right: 1em;
 }
 /* property location  */
-.projectLocation {
-  /* height: 90vh; */
-}
 .projectLocation h2 {
   font-family: "Mazius Display";
   font-size: 96px;
@@ -193,18 +192,20 @@
 .projectLocationGrid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  padding: 2em 0 3em 4em;
+  padding: 5em 0 3em 4em;
   /* gap: 2em; */
   align-items: stretch;
-  width: 90%;
+  width: 92%;
   margin-left: auto;
   /* height: 90vh; */
 }
 
 .projectLocationText {
   padding: 1.5em 0;
+  /* border: 1px solid red; */
   width: 95%;
   margin-left: auto;
+  /* margin-top: 3em; */
 }
 
 .projectLocationTextLine {
@@ -227,7 +228,7 @@
   display: flex;
   flex-direction: column;
   gap: 2em;
-  width: 75%;
+  width: 77%;
   font-weight: 300;
   line-height: 150%;
   font-family: "Poppins";
@@ -254,11 +255,14 @@
   position: absolute;
   top: 0;
   left: 0;
+  filter: saturate(0.8) brightness(1.1) contrast(0.9);
 }
 
 /* property showcase  */
 .propertyDetailsWrapper {
-  padding: 2rem 4rem;
+  padding: 2em 0;
+  width: 85%;
+  margin: 0 auto;
 }
 
 .propertyDetailsInfo {
@@ -273,7 +277,7 @@
 }
 .propertyDetailsLine {
   height: 170px;
-  width: 41%;
+  width: 40%;
   margin-left: 18em;
   border-right: 1px solid #fff;
   border-top: 1px solid #fff;
@@ -353,12 +357,12 @@
   flex: 1;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
 }
 
 .propertyDetailsMainImage {
-  width: 100%;
-  height: 400px;
+  width: 90%;
+  /* height: 400px; */
   overflow: hidden;
 }
 
@@ -394,6 +398,7 @@
 .transitionWrapper {
   position: relative;
   width: 100%;
+  max-width: 100vw;
   transition: opacity 0.5s ease, transform 0.5s ease;
   opacity: 1;
   transform: translateX(0);
@@ -410,14 +415,12 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  /* gap: 3em; */
   width: 100%;
-  /* padding: 2em 4em; */
 }
 
 .floorPlanContent {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: 40% 60%;
   align-items: center;
   justify-content: center;
   transition: opacity 0.5s ease, transform 0.5s ease;
@@ -431,6 +434,7 @@
   justify-content: center;
   width: 100%;
 }
+
 .floorPlanHeader h2 {
   font-family: "Mazius Display";
   font-size: 96px;
@@ -455,6 +459,7 @@
   text-align: left;
   text-transform: uppercase;
   padding-bottom: 0.25em;
+  width: fit-content;
 }
 .floorPlanHeaderItems p:hover {
   cursor: pointer;
@@ -483,7 +488,6 @@
   margin-top: 1.5rem;
   width: 80%;
   margin: 0 auto;
-  /* border: 1px solid #fff; */
 }
 
 .arrowButton {
@@ -492,7 +496,7 @@
   padding: 0.5rem;
   transition: transform 0.3s ease;
   cursor: pointer;
-  margin: 0 4em;
+  margin: 0 2em;
 }
 
 .arrowButton:disabled {
@@ -505,8 +509,12 @@
 }
 
 /* reasons  */
+.propertReasonsWrappper {
+  width: 100%;
+  background: linear-gradient(to bottom, #191919 0%, #30352f 18%, #30352f 81%);
+}
 .propertyReasons {
-  width: 80%;
+  width: 85%;
   margin: 0 auto;
   margin-top: 2em;
   display: grid;
@@ -517,7 +525,7 @@
 .propertyReasons h2 {
   text-transform: uppercase;
   font-family: "Mazius Display";
-  font-size: 94px;
+  font-size: 96px;
   line-height: 92%;
   letter-spacing: -4%;
   text-align: left;
@@ -570,20 +578,21 @@
   flex-shrink: 0;
 }
 .propertyReason:hover {
-  transform: scale(1.05);
-  box-shadow: 0 10px 20px #191919;
+  transform: scale(1.1);
+  /* box-shadow: 0 10px 20px #191919; */
   cursor: pointer;
 }
 
 /* pricing  */
 .propertyPricing {
-  width: 80%;
+  width: 85%;
   margin: 0 auto;
-  margin-top: 5em;
+  margin-top: 2em;
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: 40% 60%;
   gap: 2em;
-  overflow-x: hidden;
+  overflow-x: visible;
+  scrollbar-width: 0;
 }
 .propertyPricing h2 {
   text-transform: uppercase;
@@ -592,12 +601,16 @@
   line-height: 92%;
   letter-spacing: -4%;
   text-align: left;
+  font-weight: 300;
+}
+.propertyPricingContent img {
+  width: 100%;
 }
 .propertyPricingContent {
   margin-top: 4em;
 }
 .propertyTableWrapper {
-  margin-top: 4em;
+  margin-top: 2em;
   width: 100%;
 }
 .pricingTable {
@@ -608,7 +621,6 @@
   width: 100%;
   max-width: 100%;
   table-layout: fixed;
-  /* min-width: 750px; */
   margin-bottom: 4em;
 }
 
@@ -619,9 +631,10 @@
   border-collapse: collapse;
   font-size: 18px;
   line-height: 104%;
-  padding: 1em;
+  padding: 1em 0.5em;
   border: none;
   border-bottom: 1px solid #fff;
+  text-align: left;
 }
 
 .pricingTable td {
@@ -629,8 +642,8 @@
   border-bottom: none;
   border-left: 1px solid #fff;
   border-right: 1px solid #fff;
-  padding: 1em;
-  text-align: center;
+  padding: 1em 0.5em;
+  text-align: left;
   vertical-align: middle;
 }
 
@@ -675,7 +688,7 @@
 
 .propertyPricingContact button {
   height: 100%;
-  padding: 25px 48px;
+  padding: 30px 60px;
 }
 .propertyPricingContact button:hover {
   color: #000;
@@ -813,14 +826,47 @@
   }
 
   /* floor plan  */
+  .floorPlanWithNavigation {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+  }
+  .floorPlanContent {
+    grid-template-columns: 35% 75%;
+    gap: 1.5em;
+    width: 100vw;
+    align-items: center;
+    /* border: 1px solid #fff; */
+  }
   .floorPlanHeader {
-    width: 90%;
+    width: 100%;
   }
   .floorPlanHeader h2 {
-    font-size: 72px;
+    font-size: 42px;
+  }
+  .floorPlanHeaderItems {
+    margin-right: auto;
   }
   .floorPlanImageWrapper {
-    width: 90%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+  .floorPlanImageWrapper img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    max-width: 100%;
+  }
+
+  .arrowButton {
+    width: 100%;
+  }
+  .arrowButton img {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
   }
 
   /* reasons grid → 2-up */
@@ -916,6 +962,11 @@
   }
 
   /* midtown details list → single column */
+
+  .midtownDetailsWrapper {
+    padding: 2em 1em;
+    width: 90%;
+  }
   .midtownDetails {
     gap: 1em;
     padding: 1em 0;
@@ -966,6 +1017,9 @@
     margin-left: 0;
   }
 
+  .projectLocationText {
+    width: 100%;
+  }
   .projectLocation h2 {
     font-size: 48px;
   }
@@ -992,17 +1046,32 @@
   }
 
   /* floor-plan header centre & shrink */
+  .floorPlanWithNavigation {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* gap: 3em; */
+    max-width: 100vw;
+    /* border: 1px solid #fff; */
+    /* padding: 2em 4em; */
+  }
+  .floorPlanContent {
+    grid-template-columns: 1fr;
+    width: 100%;
+  }
+
   .floorPlanHeader {
-    width: 90%;
+    flex-direction: row;
+    justify-content: space-between;
   }
   .floorPlanHeader h2 {
-    font-size: 50px;
+    font-size: 36px;
   }
-  .floorPlanImageWrapper {
-    width: 90%;
+  .floorPlanHeaderItems p {
+    font-size: 16px;
   }
+
   .arrowButton {
-    margin: 0 1em;
     width: 100%;
   }
   .arrowButton img {
@@ -1014,26 +1083,39 @@
   /* reasons grid → single column */
   .propertyReasons {
     width: 90%;
+    grid-template-columns: 1fr;
+  }
+  .propertyReasons h2 {
+    margin-top: 1em;
+  }
+  .propertyReasonsWrapper {
+    margin-top: 1.5em;
   }
   .propertyReason {
-    width: 100%;
+    width: 50%;
   }
 
   /* pricing  */
   .pricingTable {
     display: none;
   }
+  .propertyPricingContent {
+    margin-top: 0;
+  }
   .propertyPricingContent img {
     width: 100%;
     max-width: 100%;
     margin: 0 auto;
+  }
+  .propertyTableWrapper {
+    margin-top: 2em;
   }
   .pricingMobileTables {
     display: flex;
     flex-direction: column;
     /* gap: 2rem; */
     width: 100%;
-    margin-top: 2rem;
+    margin-top: 2em;
   }
 
   .mobileTable {

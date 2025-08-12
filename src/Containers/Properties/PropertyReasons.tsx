@@ -53,6 +53,7 @@ const PropertyReasons = () => {
         }
     ]
   return (
+    <div className={classes.propertReasonsWrappper}>
     <div className={classes.propertyReasons}>
       <h2 data-aos="fade-right"><span className={classes.propertyReasonsSpan1}>Why Buy Into</span> <br /> <span className={classes.propertyReasonsSpan2}> The Midtown Terraces,</span> <br /> Gwarinpa, Abuja?</h2>
         <div className={classes.propertyReasonsWrapper}>
@@ -63,6 +64,7 @@ const PropertyReasons = () => {
                 <p>{item.description}</p>
             </div>
             ))}
+    </div>
     </div>
     </div>
   )
