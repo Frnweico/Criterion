@@ -9,8 +9,8 @@
   font-family: "Mazius Display";
   font-weight: 400;
   font-size: 176px;
-  line-height: 92%;
-  letter-spacing: -4%;
+  line-height: 94%;
+  letter-spacing: -2%;
   margin-bottom: 0.5em;
 }
 
@@ -53,8 +53,7 @@
 /* Tablet and Below */
 @media screen and (max-width: 768px) {
   .homeContact h2 {
-    font-size: 64px;
-    line-height: 100%;
+    font-size: 69px;
     margin-bottom: 1em;
   }
 
@@ -65,5 +64,8 @@
 
   .homeContactDetails {
     gap: 2em;
+    align-items: flex-start;
+    width: 90%;
+    margin: 0 auto;
   }
 }

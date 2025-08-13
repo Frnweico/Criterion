@@ -96,6 +96,10 @@ button {
   margin-top: 2em;
 }
 
+.homeServicesDetailsMobile {
+  display: none;
+}
+
 @media screen and (max-width: 1300px) {
   .homeServicesLeftSection {
     margin-left: 1.5em;
@@ -179,37 +183,34 @@ button {
     padding: 2em 1.5em 0 1.5em;
   }
   .homeServicesDetails {
-    grid-template-columns: 1fr;
+    display: none;
+  }
+  .homeServicesDetailsMobile {
+    display: block;
+    display: flex;
+    flex-direction: column;
     gap: 2em;
-  }
-  .homeServicesLeftSection {
-    margin-left: 0;
-    margin-bottom: 2em;
-    order: 1;
-  }
-  .homeServicesRightSection {
-    width: 100%;
-    margin-top: 0;
-    margin-bottom: 2em;
-    order: 2;
+    align-items: flex-start;
   }
   .homeServicesHeading {
     font-size: 60px;
     text-align: left;
-    margin-bottom: 0.3em;
+    margin-bottom: 1em;
+    line-height: 88%;
+    letter-spacing: -4%;
   }
   .homeServicesImage img {
-    width: 80%;
+    width: 100%;
     object-fit: cover;
   }
   .numberHeading {
-    font-size: 80px;
+    font-size: 60px;
     margin-left: 0;
   }
   .investmentHeading {
     font-size: 40px;
   }
-  .homeServicesRightSection p {
+  .homeServicesDetailsMobile p {
     width: 80%;
     font-size: 16px;
     margin-top: 1em;

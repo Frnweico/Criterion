@@ -14,28 +14,28 @@ const PropertyPricing = () => {
 
     const rows = [
     {
-      payment: '20% – 1st Instalment\n₦55,000,000',
       milestone: 'Foundation',
+      payment: '20% – 1st Instalment\n₦55,000,000',
       timeline: 'After 8 Weeks of starting',
     },
     {
-      payment: '20% – 2nd Instalment\n₦55,000,000',
       milestone: '1st Floor Slab',
+      payment: '20% – 2nd Instalment\n₦55,000,000',
       timeline: 'After 8 Weeks',
     },
     {
-      payment: '20% – 3rd Instalment\n₦55,000,000',
       milestone: '2nd Floor Slab',
+      payment: '20% – 3rd Instalment\n₦55,000,000',
       timeline: 'After 8 Weeks',
     },
     {
-      payment: '20% – 4th Instalment\n₦55,000,000',
       milestone: 'Roofing and Plastering',
+      payment: '20% – 4th Instalment\n₦55,000,000',
       timeline: 'After 8 Weeks',
     },
     {
-      payment: '20% – 5th Instalment\n₦55,000,000',
       milestone: 'Finishes and Painting',
+      payment: '20% – 5th Instalment\n₦55,000,000',
       timeline: 'After 8 Weeks',
     },
   ];
@@ -52,16 +52,14 @@ const PropertyPricing = () => {
       <table className={classes.pricingTable}>
         <thead>
           <tr>
-            <th>HOUSE TYPE</th>
-            <th>PAYMENT</th>
             <th>MILESTONE</th>
+            <th>PAYMENT</th>
             <th>TIMELINE</th>
           </tr>
         </thead>
         <tbody>
           {rows.map((row, index) => (
             <tr key={index}>
-              <td>4 Bedroom Terrace Duplex</td>
               <td>
                 {row.payment.split('\n').map((line, i) => (
                   <div key={i}>{line}</div>
@@ -71,51 +69,19 @@ const PropertyPricing = () => {
               <td>{row.timeline}</td>
             </tr>
           ))}
+    <tr className={classes.staticRow}>
+    <td colSpan={1} style={{ width: '50%' }} >Project Completion</td>
+    <td></td>
+    <td colSpan={1}>10th Month</td>
+  </tr>
+  <tr className={classes.staticRow}>
+    <td colSpan={1} style={{ width: '50%' }}>Project Handover</td>
+    <td></td>
+    <td colSpan={1}>12th Month</td>
+  </tr>
         </tbody>
       </table>
 
-{/* Mobile Split Tables - Just 2 Total Tables */}
-<div data-aos="fade-up" className={classes.pricingMobileTables}>
-  {/* Table 1: HOUSE TYPE and PAYMENT */}
-  <table className={classes.mobileTable}>
-    <thead>
-      <tr>
-        <th>HOUSE TYPE</th>
-        <th>PAYMENT</th>
-      </tr>
-    </thead>
-    <tbody>
-      {rows.map((row, index) => (
-        <tr key={index}>
-          <td>4 Bedroom Terrace Duplex</td>
-          <td>
-            {row.payment.split('\n').map((line, i) => (
-              <div key={i}>{line}</div>
-            ))}
-          </td>
-        </tr>
-      ))}
-    </tbody>
-  </table>
-
-  {/* Table 2: MILESTONE and TIMELINE */}
-  <table className={classes.mobileTable}>
-    <thead>
-      <tr>
-        <th>MILESTONE</th>
-        <th>TIMELINE</th>
-      </tr>
-    </thead>
-    <tbody>
-      {rows.map((row, index) => (
-        <tr key={index}>
-          <td>{row.milestone}</td>
-          <td>{row.timeline}</td>
-        </tr>
-      ))}
-    </tbody>
-  </table>
-</div>
 
     </div>
       </div>

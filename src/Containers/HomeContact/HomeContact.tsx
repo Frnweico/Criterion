@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import classes from "./HomeContact.module.css";
 import { AppContext } from "../../Context/AppContext";
 
@@ -21,7 +21,7 @@ const HomeContact = () => {
           </p>
         <p>We'd love to hear from you</p>
         </div>
-        <div data-aos="fade-left" data-aos-delay="400">
+        <div>
           <a href="https://wa.me/+2348058573915" target="_blank">Send us a Whatsapp Message</a>
           <a href="mailto:info@criterionhomesltd.com" target="_blank">Send us an email</a>
         </div>

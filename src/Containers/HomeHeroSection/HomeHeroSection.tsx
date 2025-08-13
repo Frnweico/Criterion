@@ -4,7 +4,7 @@ import heroImage from '../../Assets/Images/CHOme 2 1_cutout 2.png';
 import { motion } from 'framer-motion';
 import { AppContext } from '../../Context/AppContext';
 import { useContext } from 'react';
-import heroMobile from '../../Assets/Images/heroMobile.jpg';
+// import heroMobile from '../../Assets/Images/heroMobile.jpg';
 import Image from '../../Components/Image/Image';
 
 const HomeHeroSection = () => {
@@ -36,21 +36,20 @@ const HomeHeroSection = () => {
 				</Button>
 			</motion.div>
 
-{/* <div className={classes.imageSection}> */}
-
-			<img
-				src={heroImage}
-				alt='Develop'
-				loading='lazy'
-				className={classes.desktopImage}
-			/>
-			<img
-				src={heroMobile}
-				alt='Hero'
-				loading='lazy'
-				className={classes.mobileImage}
-			/>
-			{/* </div> */}
+	<div className={classes.imageContainer}>
+				<img
+					src={heroImage}
+					alt='Criterion Homes Architecture'
+					loading='lazy'
+					className={classes.desktopImage}
+				/>
+				<img
+					src={heroImage}
+					alt='Criterion Homes Architecture'
+					loading='lazy'
+					className={classes.mobileImage}
+				/>
+			</div>
 		</section>
 	);
 };

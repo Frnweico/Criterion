@@ -12,18 +12,18 @@ const MidtownTerrace = () => {
     const midtownData = [
         {
             id: 1,
-            title: "#250,000,000",
-            description: "Installment Plan - 20% initial deposit (₦55M), flexible balance within 10 months."
+            title: "LOCATION",
+            description: "Gwarimpa II Estate. Abuja"
         },
         {
             id: 2,
             title: "TERRACE DUPLEXES",
-            description: "4 exclusively built 4-bedroom terrace duplexes \+ atrium for light and ventilation.",
+            description: "4 exclusively built 4-bedroom terrace duplexes \+ atrium for light and ventilation",
         },
         {
             id: 3,
             title: "EXTRA FEATURE",
-            description: "All units' bedrooms come with spacious balconies.",
+            description: "All units' bedrooms come with spacious balconies",
         },
     ]
   return (
@@ -31,7 +31,8 @@ const MidtownTerrace = () => {
     <div className={classes.midtownTerraceContainer}>
         <div data-aos="fade-up" className={classes.midtownTextSection}>
             <div className={classes.midtownTextLineWrapper}>
-            <h2 >THE <br /> MIDTOWN TERRACES</h2>
+            <h2 className={classes.midtownHeading} >THE <br /> MIDTOWN TERRACES</h2>
+            <h2 className={classes.midtownHeadingMobile} >THE MIDTOWN <br /> TERRACES</h2>
             <div className={classes.midtownTextLine}>
                 <img src={line} alt="a line" />
                 <p>Gwarinpa, Abuja</p>

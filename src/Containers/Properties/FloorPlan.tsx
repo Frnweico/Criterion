@@ -113,7 +113,7 @@ useEffect(() => {
                 isTransitioning ? classes.fadeOut : ""
               }`}
             >
-              <div data-aos="fade-up" className={classes.floorPlanWithNavigation}>
+              <div className={classes.floorPlanWithNavigation}>
                 {/* Left Arrow */}
                 <button
                   onClick={() => navigateFloor(unit.unit, "prev")}

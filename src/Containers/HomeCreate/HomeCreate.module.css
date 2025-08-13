@@ -99,6 +99,10 @@ button span {
   font-weight: 600;
 }
 
+.createContainerMobile {
+  display: none;
+}
+
 /* declaration  */
 .declarationContainer {
   display: flex;
@@ -208,13 +212,16 @@ button span {
   font-family: "Poppins";
 }
 
-.midtownTextSection h2 {
+.midtownHeading {
   font-family: "Mazius Display";
   font-weight: 400;
   font-size: 68px;
   letter-spacing: -4%;
   line-height: 91.5%;
   text-align: left;
+}
+.midtownHeadingMobile {
+  display: none;
 }
 
 .midtownTextSection p {
@@ -271,6 +278,7 @@ button span {
 
 .midtownDetails:nth-of-type(1) {
   border-top: 1px solid #f4f4f4;
+  padding: 1.5em 0.5em;
 }
 .midtownDetails h3 {
   text-align: left;
@@ -356,7 +364,7 @@ button span {
     padding: 0 0 0 1.5em;
   }
 
-  .midtownTextSection h2 {
+  .midtownHeading {
     font-size: 48px;
   }
 }
@@ -445,7 +453,7 @@ button span {
   .midtownTextSection {
     padding: 3em 1em 0 1em;
   }
-  .midtownTextSection h2 {
+  .midtownHeading {
     font-size: 48px;
   }
   .midtownText {
@@ -453,7 +461,6 @@ button span {
   }
   .midtownText p {
     width: 100%;
-    margin-top: 5em;
   }
   .midtownDetails {
     gap: 0;
@@ -470,54 +477,91 @@ button span {
 @media screen and (max-width: 768px) {
   /* HomeCreate */
   .createContainer {
-    padding: 0 0 0 0;
+    display: none;
   }
-
-  .homeCreateMain {
-    grid-template-columns: repeat(1, 1fr);
-    width: 100%;
-    gap: 2em;
-    padding: 0 1.5em;
-  }
-
-  .heading {
-    font-size: 48px;
-  }
-
-  .CreateImg {
-    position: relative;
-  }
-
-  .CreateImg img {
-    width: 100%;
-    height: auto;
+  .createContainerMobile {
     display: block;
-    object-fit: cover;
+    width: 90%;
+    margin: 0 auto;
+    margin-bottom: 2em;
+  }
+  .homeCreateMobile {
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+    /* justify-content: center; */
+  }
+  .headingMobile {
+    font-family: "Space Grotesk";
+    font-size: 32px;
+    font-weight: 300;
+    line-height: 92%;
+    letter-spacing: -2%;
+    color: #191919;
+  }
+  .mobileImage {
+    width: 100%;
+    margin: 0 auto;
+  }
+  .mobileImage img {
+    max-width: 100%;
+  }
+  .mobileTextWrapper {
+    width: 75%;
+    margin: 0 auto;
+  }
+  .mainTextMobile {
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+    font-weight: 400;
   }
 
-  .mainTextWrapper {
-    width: 100%;
-    margin-left: 0;
-    margin-top: 8em;
-    font-size: 15px;
+  .mainTextMobile p {
+    font-family: "Poppins";
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 156%;
+    letter-spacing: -2%;
+    color: #191919;
+  }
+
+  .mainTextMobile p:first-of-type {
+    font-weight: 600;
   }
 
   /* Declaration */
   .declarationContainer {
     padding: 7em 2em 4em 2em;
+    /* text-align: center; */
+    min-height: 300px;
+    border-radius: 20px;
+    width: 90%;
+    margin: 0 auto;
   }
   .declarationContainer h2 {
-    font-size: 48px;
-    text-align: center;
+    font-size: 34px;
+    width: 100%;
+    margin-left: 0;
   }
   .declarationContainer h2 span {
-    font-size: 56px;
+    font-size: 34px;
   }
 
   .declarationText {
     width: 100%;
-    text-align: center;
-    align-items: center;
+    align-items: flex-end;
+  }
+
+  .declarationText p {
+    font-size: 14px;
+    line-height: 150%;
+  }
+
+  .declarationText button {
+    margin-top: 1.5em;
+    padding: 8px 10px;
+    font-size: 12px;
   }
 
   /* MidtownTerrace */
@@ -526,10 +570,12 @@ button span {
     text-align: center;
   }
   .midtownTextSection {
+    width: 90%;
+    margin: 0 auto;
     margin-bottom: 3em;
   }
   .midtownTextLineWrapper {
-    width: 90%;
+    width: 100%;
     margin-top: 4em auto 0 auto;
   }
   .midtownTextLine {
@@ -537,5 +583,41 @@ button span {
   }
   .midtownText p {
     text-align: center;
+  }
+  .midtownHeadingMobile {
+    display: block;
+    font-family: "Mazius Display";
+    font-weight: 400;
+    font-size: 48px;
+    letter-spacing: -2%;
+    line-height: 94%;
+    text-align: left;
+  }
+  .midtownHeading {
+    display: none;
+  }
+  .midtownTextSection button {
+    min-width: 250px;
+    margin-bottom: 0;
+  }
+  .midtownText p {
+    text-align: left;
+    width: 95%;
+  }
+  .midtownText {
+    padding: 0;
+  }
+  .midtownImageSection img {
+    display: none;
+  }
+  .midtownDetails {
+    width: 90%;
+    margin: 0 auto;
+  }
+  .midtownDetails h3 {
+    font-size: 16px;
+  }
+  .midtownDetails p {
+    font-size: 10px;
   }
 }

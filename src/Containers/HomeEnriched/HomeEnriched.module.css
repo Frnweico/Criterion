@@ -33,7 +33,7 @@
   min-height: 45vh;
   object-fit: cover;
   object-position: center;
-  /* height: auto; */
+  border-radius: 8px;
 }
 
 @media screen and (max-width: 1024px) {
@@ -50,7 +50,8 @@
     padding: 2.5em 1em;
   }
   .homeEnriched h2 {
-    font-size: 60px;
+    font-size: 40px;
+    width: 90%;
   }
   .homeEnriched img {
     width: 100%;

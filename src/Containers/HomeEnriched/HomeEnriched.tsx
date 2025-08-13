@@ -6,8 +6,8 @@ const HomeEnriched = () => {
   return (
     <div className={classes.homeEnriched}>
       <h2 data-aos = "fade-up">EVERYDAY LIVING, <br /> ENRICHED BY <span>NATURE</span></h2>
-      <img data-aos = "fade-up" src={enrichedImg} alt="a street" />
-      <Button
+      <img src={enrichedImg} alt="a street" />
+      {/* <Button data-aos= "fade-up"
           type="enriched"
           onClick={() => {
           }}
@@ -22,7 +22,7 @@ const HomeEnriched = () => {
           >
             <path d="M9.36307 0.119751L8.08108 1.39062L12.9858 6.11082H0.5V7.89493H12.9798L8.08108 12.6094L9.36307 13.8803L16.5 7.00012L9.36307 0.119751Z" />
           </svg>
-        </Button>
+        </Button> */}
     </div>
   )
 }

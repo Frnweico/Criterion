@@ -61,11 +61,11 @@ const PropertyPage = () => {
             title: "EXTRA FEATURE",
             description: "All units' bedrooms come with spacious balconies.",
         },
-        {
-            id: 4,
-            title: "#250,000,000",
-            description: "Installment Plan - 20% initial deposit (₦55M), flexible balance within 10 months."
-        },
+        // {
+        //     id: 4,
+        //     title: "#250,000,000",
+        //     description: "Installment Plan - 20% initial deposit (₦55M), flexible balance within 10 months."
+        // },
     ]
 
   return (
@@ -89,7 +89,7 @@ const PropertyPage = () => {
         </header>
         <div className={classes.propertyPageContact}>
             <div className={classes.propertyPageContactText}>
-                <p data-aos= "fade-up">DESCRIPTION</p>
+                <p className={classes.propertyPageContactText1} data-aos= "fade-up">DESCRIPTION</p>
                 <h4 data-aos= "fade-up">Welcome to The Midtown Terraces</h4>
                 <div data-aos= "fade-up" className={classes.propertyPageContactTextInfo}>
                 <p>An exclusive collection of just 4 custom-built, 4-bedroom terrace duplexes with maid’s quarters, nestled in the heart of Gwarinpa, Abuja. This premium development is a celebration of modern architecture fused with nature—crafted for discerning families who crave serenity, function, and timeless elegance in one space.
@@ -98,7 +98,7 @@ const PropertyPage = () => {
 </div>
             </div>
             <div data-aos= "fade-up" className={classes.propertyPageContactDetails}>
-                <h3>CRITERION <br/> HOMES' CONTACT</h3>
+                <h3>CRITERION HOMES' CONTACT</h3>
                 <div> <WhatsApp style={{fontSize: '16px'}} /> <img src={phone} alt="phone icon" /><span>+234 805 857 3915</span></div>
                 <a href="https://wa.me/2348058573915" target='_blank' rel="noopener noreferrer" style={{ textDecoration: 'none' }}>
                 <Button type="gray"> <span>TALK TO US</span>

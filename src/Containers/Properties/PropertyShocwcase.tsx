@@ -17,7 +17,7 @@ const PropertyShocwcase = () => {
       {
         title: "MODERN",
         description:
-          "Clean lines, minimalist facades, large glass openings, and a balanced palette that blends beautifully.",
+          "Clean lines, minimalist facades, large glass openings, and a balanced palette that blends beautifully with the surrounding nature.",
       },
   {
     title: "WELL BUILT",
@@ -27,7 +27,7 @@ const PropertyShocwcase = () => {
   {
     title: "FUNCTIONAL",
     description:
-      "Open-plan layouts, intuitive kitchen/utility spaces, and integrated home automation.",
+      "Open-plan layouts, en-suite bedrooms, ample storage, intuitive kitchen and utility spaces, and integrated home automation options.",
   },
   {
     title: "NATURALLY ILLUMINATED",
@@ -37,7 +37,7 @@ const PropertyShocwcase = () => {
   {
     title: "GREEN INSPIRED",
     description:
-      "Each home is built around lushly landscaped compound spaces for mental well-being and air quality.",
+      "Each home is built around lushly landscaped compound spaces to enhance mental well-being, air quality, and aesthetics.",
   },
 ];
 
@@ -48,8 +48,12 @@ const images =[mainProperyImg, propertyImg1, propertyImg2]
   return (
     <div className={classes.propertyDetailsWrapper}>
       <div className={classes.propertyDetailsInfo}>
-        <h2>
+        <h2 className={classes.propertyHeaderText}>
           At The Midtown Terraces, <br /> we’ve gone beyond structure. <br /> Our homes
+          are:
+        </h2>
+        <h2 className={classes.propertyHeaderTextMobile}>
+          At The Midtown<br />  Terraces, we’ve gone <br />  beyond structure. <br /> Our homes
           are:
         </h2>
         <div className={classes.propertyDetailsLine}>
