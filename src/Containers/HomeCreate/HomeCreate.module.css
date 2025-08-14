@@ -186,6 +186,7 @@ button span {
   align-items: center;
   justify-content: flex-start;
   padding: 6em 4em 0 4em;
+  /* border: 1px solid red; */
 }
 
 .midtownTextLineWrapper {

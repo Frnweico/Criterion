@@ -23,7 +23,9 @@
   align-items: flex-start;
   justify-content: flex-start;
   margin-left: 3em;
+  margin-right: 1em;
   height: 100%;
+  /* border: 1px solid red; */
 }
 
 .homeServicesRightSection {
