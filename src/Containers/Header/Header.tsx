@@ -15,7 +15,7 @@ type HeaderProps = {
 
 const Header = ({ isDark }: HeaderProps) => {
   // States
-  const [navBackground, setNavBackground] = useState("transparent");
+  const [navBackground, setNavBackground] = useState(isDark ? "#191919" : "transparent");
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
 
@@ -48,14 +48,14 @@ const Header = ({ isDark }: HeaderProps) => {
 
     // Only set background if header will be visible
     if (shouldBeVisible) {
-    if (currentScrollY > 400) {
+ if (currentScrollY < 100) {
+      setNavBackground(isDark ? "#191919" : "#F4F4F4");
+    } else if (currentScrollY > 400) {
       setNavBackground(isDark ? "#191919" : "#F4F4F4");
     } else {
-      setNavBackground(isDark ? "#191919" : "transparent");
+      setNavBackground(isDark ? "#191919" : "#F4F4F4");
     }
-  } else {
-    setNavBackground(isDark ? "#191919" : "transparent");
-  }
+  } 
 
     setIsVisible(shouldBeVisible);
     setLastScrollY(currentScrollY);
@@ -69,10 +69,12 @@ const Header = ({ isDark }: HeaderProps) => {
     scrollTimeoutRef.current = setTimeout(() => {
       setIsVisible(true);
       // Set appropriate background when showing again
-      if (currentScrollY > 400) {
-        setNavBackground(isDark ? "#191919" : "#F4F4F4");
-      }  else {
-      setNavBackground(isDark ? "#191919" : "transparent");
+       if (currentScrollY < 100) {
+      setNavBackground(isDark ? "#191919" : "#F4F4F4");
+    } else if (currentScrollY > 400) {
+      setNavBackground(isDark ? "#191919" : "#F4F4F4");
+    } else {
+      setNavBackground(isDark ? "#191919" : "#F4F4F4");
     }
   }, 150);
   };
