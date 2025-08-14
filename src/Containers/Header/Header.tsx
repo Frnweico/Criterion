@@ -32,26 +32,32 @@ const Header = ({ isDark }: HeaderProps) => {
   const scrollTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   // Utils
-  const handleScroll = () => {
+ const handleScroll = () => {
     const currentScrollY = window.scrollY || window.pageYOffset;
+    
+    // Determine if header should be visible first
+    let shouldBeVisible = true;
+    
+    if (currentScrollY < 100) {
+      shouldBeVisible = true;
+    } else if (currentScrollY > lastScrollY && currentScrollY > 100) {
+      shouldBeVisible = false;
+    } else if (currentScrollY < lastScrollY) {
+      shouldBeVisible = true;
+    }
+
+    // Only set background if header will be visible
+    if (shouldBeVisible) {
     if (currentScrollY > 400) {
       setNavBackground(isDark ? "#191919" : "#F4F4F4");
     } else {
-      setNavBackground("transparent");
+      setNavBackground(isDark ? "#191919" : "transparent");
     }
+  } else {
+    setNavBackground(isDark ? "#191919" : "transparent");
+  }
 
-    // Handle navbar visibility based on scroll direction
-    if (currentScrollY < 100) {
-      // Always show navbar at the top
-      setIsVisible(true);
-    } else if (currentScrollY > lastScrollY && currentScrollY > 100) {
-      // Scrolling down - hide navbar
-      setIsVisible(false);
-    } else if (currentScrollY < lastScrollY) {
-      // Scrolling up - show navbar
-      setIsVisible(true);
-    }
-
+    setIsVisible(shouldBeVisible);
     setLastScrollY(currentScrollY);
 
     // Clear existing timeout
@@ -59,10 +65,16 @@ const Header = ({ isDark }: HeaderProps) => {
       clearTimeout(scrollTimeoutRef.current);
     }
 
-    // Set timeout to ensure navbar is visible when user stops scrolling
+    // Show navbar after user stops scrolling
     scrollTimeoutRef.current = setTimeout(() => {
       setIsVisible(true);
-    }, 150); // Show navbar 150ms after user stops scrolling
+      // Set appropriate background when showing again
+      if (currentScrollY > 400) {
+        setNavBackground(isDark ? "#191919" : "#F4F4F4");
+      }  else {
+      setNavBackground(isDark ? "#191919" : "transparent");
+    }
+  }, 150);
   };
 
   // Utils
@@ -90,11 +102,11 @@ const Header = ({ isDark }: HeaderProps) => {
     };
 
     // eslint-disable-next-line
-  }, [lastScrollY]);
+  }, [lastScrollY, isDark]);
   return (
     <div
       className={`${classes.container} ${!isVisible ? classes.hidden : ''}`}
-      style={{ backgroundColor: navBackground }}
+      style={{ backgroundColor: navBackground  }}
     >
       <img
         src={isDark ? logoLight : logo}

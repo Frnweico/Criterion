@@ -12,7 +12,6 @@ const Layout = ({ children, isDark }: LayoutProps) => {
     <section className={classes.container}>
       <section
         className={classes.header}
-        style={isDark ? { background: "#191919" } : undefined}
       >
         <Header isDark={isDark} />
       </section>

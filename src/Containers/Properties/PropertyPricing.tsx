@@ -69,7 +69,7 @@ const PropertyPricing = () => {
               <td>{row.timeline}</td>
             </tr>
           ))}
-    <tr className={classes.staticRow}>
+    {/* <tr className={classes.staticRow}>
     <td colSpan={1} style={{ width: '50%' }} >Project Completion</td>
     <td></td>
     <td colSpan={1}>10th Month</td>
@@ -78,9 +78,19 @@ const PropertyPricing = () => {
     <td colSpan={1} style={{ width: '50%' }}>Project Handover</td>
     <td></td>
     <td colSpan={1}>12th Month</td>
-  </tr>
+  </tr> */}
         </tbody>
       </table>
+       <div className={classes.staticRow}>
+            <div>
+              <p>Project Completion</p>
+              <p className={classes.staticRowText}>10th Month</p>
+            </div>
+            <div>
+              <p>Project Handover</p>
+              <p className={classes.staticRowText}>12th Month</p>
+            </div>
+          </div>
 
 
     </div>

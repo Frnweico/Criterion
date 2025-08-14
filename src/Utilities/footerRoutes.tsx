@@ -10,18 +10,23 @@ export const footerRoutes = [
     isExternal: false,
   },
   {
-    title: "CAREERS",
-    route: "/careers",
+    title: "PROPERTIES",
+    route: "/properties",
     isExternal: false,
   },
-  {
-    title: "DOWNLOAD PROFILE",
-    route: "https://drive.google.com/file/d/1KtJxkCViVfCnSWYAcuvd82-CGjaNISaC/view?pli=1",
-    isExternal: true,
-  },
+  // {
+  //   title: "CONTACT US",
+  //   route: "/properties",
+  //   isExternal: false,
+  // },
   {
     title: "CONTACT US",
     route: "/contact-us",
     isExternal: false,
+  },
+  {
+    title: "VIEW PROFILE",
+    route: "https://drive.google.com/file/d/1KtJxkCViVfCnSWYAcuvd82-CGjaNISaC/view?pli=1",
+    isExternal: true,
   },
 ];

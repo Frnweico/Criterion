@@ -622,7 +622,6 @@
   width: 100%;
   max-width: 100%;
   table-layout: fixed;
-  margin-bottom: 4em;
 }
 
 .pricingTable th {
@@ -651,16 +650,32 @@
   width: 33.33%;
 }
 .staticRow {
-  background-color: #000 !important;
-}
-
-.staticRow td {
-  color: #fff !important;
+  background-color: #000;
   border-left: 1px solid #fff;
   border-right: 1px solid #fff;
-  padding: 1em 0.5em;
+  border-bottom: 1px solid #fff;
+  text-transform: uppercase;
+  width: 100%;
+  margin-bottom: 4em;
+}
+.staticRow div {
+  display: flex;
+  align-items: center;
   text-align: left;
+}
+.staticRow div:first-of-type {
+  border-bottom: 1px solid #fff;
+}
+.staticRow div p {
   width: 50%;
+  padding: 1em 0.5em;
+  font-family: "Poppins";
+  font-weight: 300;
+  font-size: 16px;
+}
+
+.staticRowText {
+  border-left: 1px solid #fff;
 }
 
 .pricingTable tbody tr:nth-child(odd) {
@@ -1251,49 +1266,9 @@
   .propertyTableWrapper {
     margin-top: 2em;
   }
-  .pricingMobileTables {
-    display: flex;
-    flex-direction: column;
-    /* gap: 2rem; */
-    width: 100%;
-    margin-top: 2em;
+  .staticRow {
+    margin-bottom: 0;
   }
-
-  .mobileTable {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 0.875rem;
-    color: #fff;
-    border-top: none;
-    border-bottom: 1px solid #fff;
-  }
-
-  .mobileTable thead th {
-    text-align: left;
-    padding: 0.75rem;
-    background-color: #000;
-    font-weight: 600;
-    border-bottom: 1px solid #fff;
-    width: 50%;
-  }
-
-  .mobileTable tbody td {
-    padding: 0.75rem;
-    border-left: 1px solid #fff;
-    border-right: 1px solid #fff;
-    vertical-align: middle;
-    width: 50%;
-  }
-
-  /* Remove horizontal borders but keep vertical ones */
-  .mobileTable tbody tr {
-    background-color: transparent;
-  }
-
-  .mobileTable tbody tr:nth-child(even) {
-    background-color: #000; /* alternate black */
-  }
-
   .propertyPricingContact {
     width: 100%;
     padding: 1em;
