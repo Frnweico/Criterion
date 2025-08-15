@@ -273,7 +273,7 @@
 .propertyDetailsInfo {
   margin-left: 7em;
 }
-.propertyHeaderText {
+.propertyShowcaseHeaderText {
   text-transform: uppercase;
   font-family: "Space Grotesk";
   font-size: 30px;
@@ -285,7 +285,7 @@
 }
 .propertyDetailsLine {
   height: 170px;
-  width: 40%;
+  width: 39%;
   margin-left: 18em;
   border-right: 1px solid #fff;
   border-top: 1px solid #fff;
@@ -305,10 +305,11 @@
 
 .propertyDetailsFeatureItem {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   margin-bottom: 2.5em;
   position: relative;
+  /* border: 1px solid #fff; */
 }
 
 .propertyDetailsFeatureItem h4 {
@@ -327,9 +328,9 @@
   content: "";
   position: absolute;
   left: 185px;
-  top: 50%;
-  width: 40px;
-  height: 1.5px;
+  top: 15%;
+  width: 30px;
+  height: 0.5px;
   background-color: #fff;
   transform: translateY(-50%);
   z-index: 2;
@@ -338,10 +339,10 @@
 .propertyDetailsFeatureItem::before {
   content: "";
   position: absolute;
-  left: 205px;
-  top: 60%;
-  width: 0.5px;
-  height: 65px;
+  left: 190px;
+  top: 30%;
+  width: 0.25px;
+  height: 70px;
   background-color: #fff;
   transform: translateY(0);
   z-index: 2;
@@ -734,6 +735,27 @@
 }
 .propertyPricingContact button svg:hover {
   fill: #000;
+}
+
+@media (max-width: 1310px) {
+  .propertyDetailsLine {
+    width: 36.9%;
+  }
+}
+@media (min-width: 1210px) and (max-width: 1310px) {
+  .propertyDetailsLine {
+    width: 36.2%;
+  }
+}
+@media (min-width: 1066px) and (max-width: 1210px) {
+  .propertyDetailsLine {
+    width: 34%;
+  }
+}
+@media (min-width: 1024px) and (max-width: 1067px) {
+  .propertyDetailsLine {
+    width: 33.5%;
+  }
 }
 
 /* ───────────────────────── TABLET ≤ 1024 px ───────────────────────── */
