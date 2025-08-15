@@ -477,7 +477,7 @@
   color: #a49031;
 }
 .floorPlanImageWrapper {
-  width: 100%;
+  width: 90%;
   margin: 0 auto;
   padding: 0 2em;
   flex-shrink: 0;
@@ -1263,7 +1263,7 @@
   .floorPlanImageWrapper {
     padding: 0;
     box-sizing: border-box;
-    /* width: 80%; */
+    width: 100%;
   }
   .arrowButton {
     width: 100%;
