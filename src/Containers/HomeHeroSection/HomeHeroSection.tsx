@@ -5,7 +5,6 @@ import { motion } from 'framer-motion';
 import { AppContext } from '../../Context/AppContext';
 import { useContext } from 'react';
 // import heroMobile from '../../Assets/Images/heroMobile.jpg';
-import Image from '../../Components/Image/Image';
 
 const HomeHeroSection = () => {
 	// COntext

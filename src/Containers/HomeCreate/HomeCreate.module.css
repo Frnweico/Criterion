@@ -532,17 +532,23 @@ button span {
 
   /* Declaration */
   .declarationContainer {
-    padding: 7em 2em 4em 2em;
+    padding: 1em;
     /* text-align: center; */
     min-height: 300px;
     border-radius: 20px;
     width: 90%;
     margin: 0 auto;
+    aspect-ratio: 16 / 9;
+    justify-content: space-between;
+    overflow: hidden;
+    position: relative;
   }
   .declarationContainer h2 {
     font-size: 34px;
     width: 100%;
     margin-left: 0;
+    flex-shrink: 0;
+    line-height: 1.1;
   }
   .declarationContainer h2 span {
     font-size: 34px;
@@ -550,18 +556,23 @@ button span {
 
   .declarationText {
     width: 100%;
-    align-items: flex-end;
+    flex: 1;
+    min-height: 0;
+    margin-top: -2em;
   }
 
   .declarationText p {
-    font-size: 14px;
-    line-height: 150%;
+    font-size: 11px;
+    line-height: 130%;
+    margin: 0;
+    flex: 1;
   }
 
   .declarationText button {
-    margin-top: 1.5em;
-    padding: 8px 10px;
-    font-size: 12px;
+    margin-top: 1em;
+    padding: 6px 8px;
+    font-size: 9px;
+    flex-shrink: 0;
   }
 
   /* MidtownTerrace */

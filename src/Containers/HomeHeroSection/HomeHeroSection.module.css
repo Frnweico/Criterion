@@ -51,7 +51,7 @@
 }
 
 .imageContainer {
-  border: 1px solid red;
+  /* border: 1px solid red; */
   width: 100vw;
   max-width: 100vw;
   display: flex;
@@ -145,7 +145,7 @@
     font-size: 48px;
     line-height: 42.24px;
     letter-spacing: -0.04em;
-    margin-top: 2em;
+    margin-top: 1em;
   }
 
   .textSection > h4 > span {
