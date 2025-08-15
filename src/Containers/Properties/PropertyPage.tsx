@@ -81,11 +81,18 @@ const PropertyPage = () => {
             <p data-aos= "fade-up">Gwarinpa, Abuja,</p>
             </div>
             <div data-aos= "fade-up" className={classes.propertyHeaderDetails}>
-            {propertyData.map((item) => (
-                <div key={item.id} className={classes.propertyHeaderDetail}>
-                    <img src={item.icon} alt={item.name} />
-                    <span>{item.name}</span>
-                </div> ))}</div>
+             {Array.from({ length: Math.ceil(propertyData.length / 2) }, (_, groupIndex) => (
+    <div key={groupIndex} className={classes.propertyGroup}>
+      {propertyData
+        .slice(groupIndex * 2, groupIndex * 2 + 2)
+        .map((item) => (
+          <div key={item.id} className={classes.propertyHeaderDetail}>
+            <img src={item.icon} alt={item.name} />
+            <span>{item.name}</span>
+          </div>
+        ))}
+    </div>
+  ))}</div>
         </header>
         <div className={classes.propertyPageContact}>
             <div className={classes.propertyPageContactText}>

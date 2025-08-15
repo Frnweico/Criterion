@@ -23,7 +23,7 @@
   align-items: center;
   justify-content: center;
   gap: 2em;
-  padding: 6em 0 3em 0;
+  padding: 4em 0 3em 0;
 }
 .propertyHeaderText {
   text-align: center;
@@ -45,23 +45,30 @@
   font-weight: 400;
   font-size: 16px;
   font-weight: 300;
+  text-transform: capitalize;
 }
 .propertyHeaderDetails {
   display: flex;
-  justify-content: center;
+  /* flex-direction: column; */
+  justify-content: space-between;
   align-items: center;
-  gap: 2em;
+  /* gap: 2em; */
   padding: 2em 0;
   border-top: 1px solid #fff;
   border-bottom: 1px solid #fff;
   font-family: "Poppins";
+  width: 65%;
+}
+.propertyGroup {
+  display: contents;
 }
 .propertyHeaderDetail {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   font-weight: 300;
   gap: 0.5em;
+  white-space: nowrap;
 }
 .propertyPageContact {
   display: grid;
@@ -732,6 +739,9 @@
 /* ───────────────────────── TABLET ≤ 1024 px ───────────────────────── */
 @media (max-width: 1024px) {
   /* hero header */
+  .propertyPageContainer {
+    padding-top: 4em;
+  }
   .propertyHeaderText h2 {
     font-size: 48px;
   }
@@ -741,9 +751,10 @@
 
   /* bullet strip in header */
   .propertyHeaderDetails {
+    flex-wrap: wrap;
     gap: 1.25em;
+    justify-content: center;
   }
-
   /* 2-col contact section → 1-col */
   .propertyPageContact {
     grid-template-columns: 1fr;
@@ -957,10 +968,16 @@
 
 /* ───────────────────────── PHONE ≤ 600 px ───────────────────────── */
 @media (max-width: 768px) {
+  .propertyPageContainer {
+    padding-top: 5em;
+  }
   .propertyImageContainer img {
     width: 100%;
     min-height: 35vh;
     object-fit: cover;
+  }
+  .propertyPageContainer header {
+    gap: 1em;
   }
 
   /* headline & typography */
@@ -973,7 +990,9 @@
   .propertyPricing h3 {
     font-size: 22px;
   }
-
+  .propertyHeaderText img {
+    display: none;
+  }
   /* hero header box */
   .propertyPageContainer header {
     width: 100%;
@@ -983,14 +1002,21 @@
   /* header bullet strip → wrap */
   .propertyHeaderDetails {
     width: 80%;
-    flex-wrap: wrap;
+    flex-direction: column;
+    gap: 1.5em;
     justify-content: space-between;
     padding: 1em 0;
   }
-
-  .propertyHeaderDetail {
-    width: 40%;
-    /* border: 1px solid #fff; */
+  .propertyGroup {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+  .propertyHeaderDetails .propertyGroup:first-child > div:first-child {
+    margin-left: -1.5em;
+  }
+  .propertyGroup:first-child .propertyHeaderDetail:nth-child(2) {
+    margin-right: -1.5em;
   }
 
   /* contact section */
@@ -1067,7 +1093,7 @@
     flex-direction: column;
     gap: 2em;
   }
-  .propertyHeaderText {
+  .propertyShowcaseHeaderText {
     display: none;
   }
   .propertyHeaderTextMobile {

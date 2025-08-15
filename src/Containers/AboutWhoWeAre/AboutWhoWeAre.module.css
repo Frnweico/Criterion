@@ -1,74 +1,82 @@
 .container {
-	background: var(--Criterion-Black, #191919);
-	padding: 219px;
-	display: flex;
-	flex-direction: column;
+  background: var(--Criterion-Black, #191919);
+  padding: 219px;
+  display: flex;
+  flex-direction: column;
 }
 
 .container > h2 {
-	font-family: 'Mazius Display';
-	font-size: 96px;
-	font-style: italic;
-	font-weight: 400;
-	line-height: 88px;
-	letter-spacing: -0.04em;
-	text-align: left;
-	color: #f2f2f2;
-	margin-bottom: 88px;
+  font-family: "Mazius Display";
+  font-size: 96px;
+  font-style: italic;
+  font-weight: 400;
+  line-height: 88px;
+  letter-spacing: -0.04em;
+  text-align: left;
+  color: #f2f2f2;
+  margin-bottom: 88px;
 }
 
 .container > p {
-	font-family: 'Poppins';
-	font-size: 32px;
-	font-weight: 300;
-	line-height: 39.68px;
-	letter-spacing: -0.02em;
-	text-align: left;
-	max-width: 775.49px;
-	margin-left: auto;
-	color: #f2f2f2;
+  font-family: "Poppins";
+  font-size: 32px;
+  font-weight: 300;
+  line-height: 39.68px;
+  letter-spacing: -0.02em;
+  text-align: left;
+  max-width: 775.49px;
+  margin-left: auto;
+  color: #f2f2f2;
+}
+
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  .container {
+    margin-top: 3em;
+    border: 1px solid #f4f4f4;
+  }
 }
 
 @media screen and (max-width: 767px) {
-	.container {
-		padding: 44px 32px;
-	}
+  .container {
+    margin-top: 3em;
+    padding: 44px 32px;
+  }
 
-	.container > h2 {
-		font-size: 56px;
-		max-width: auto;
-		text-align: center;
-		margin-bottom: 18px;
-	}
+  .container > h2 {
+    font-size: 56px;
+    max-width: auto;
+    text-align: center;
+    margin-bottom: 18px;
+  }
 
-	.container > p {
-		font-size: 16px;
-		line-height: 24.96px;
-		letter-spacing: -0.02em;
-		margin-left: auto;
-		max-width: 100%;
-		max-width: 214.87px;
-	}
+  .container > p {
+    font-size: 16px;
+    line-height: 24.96px;
+    letter-spacing: -0.02em;
+    margin-left: auto;
+    max-width: 100%;
+    max-width: 214.87px;
+  }
 }
 
 @media screen and (min-width: 767px) and (max-width: 1023px) {
-	.container {
-		padding: 44px 32px;
-	}
+  .container {
+    padding: 44px 32px;
+  }
 
-	.container > h2 {
-		font-size: 56px;
-		max-width: auto;
-		text-align: center;
-		margin-bottom: 18px;
-	}
+  .container > h2 {
+    font-size: 56px;
+    max-width: auto;
+    text-align: center;
+    margin-bottom: 18px;
+  }
 
-	.container > p {
-		font-size: 16px;
-		line-height: 24.96px;
-		letter-spacing: -0.02em;
-		margin-left: auto;
-		max-width: 100%;
-		max-width: 214.87px;
-	}
+  .container > p {
+    font-size: 16px;
+    line-height: 24.96px;
+    letter-spacing: -0.02em;
+    margin-left: auto;
+    max-width: 100%;
+    max-width: 214.87px;
+  }
 }

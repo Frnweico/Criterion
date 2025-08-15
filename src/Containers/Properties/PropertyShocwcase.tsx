@@ -48,7 +48,7 @@ const images =[mainProperyImg, propertyImg1, propertyImg2]
   return (
     <div className={classes.propertyDetailsWrapper}>
       <div className={classes.propertyDetailsInfo}>
-        <h2 className={classes.propertyHeaderText}>
+        <h2 className={classes.propertyShowcaseHeaderText}>
           At The Midtown Terraces, <br /> we’ve gone beyond structure. <br /> Our homes
           are:
         </h2>
