@@ -19,7 +19,9 @@ const FloorPlanHeader = ({ title, description }: { title: string; description: s
       <h2>{title}</h2>
       <div className={classes.floorPlanHeaderItems}>
         {items.map((item, idx) => (
-          <p key={idx}>{item}</p>
+          <div key={idx}  className={`${title === "SECOND FLOOR" ? classes.secondFloorMobile : ""}`}>
+            <p>{item}</p>
+          </div>
         ))}
       </div>
     </div>
