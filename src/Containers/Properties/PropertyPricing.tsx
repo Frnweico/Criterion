@@ -61,24 +61,14 @@ const PropertyPricing = () => {
           {rows.map((row, index) => (
             <tr key={index}>
               <td>
-                {row.payment.split('\n').map((line, i) => (
+                {row.milestone.split('\n').map((line, i) => (
                   <div key={i}>{line}</div>
                 ))}
               </td>
-              <td>{row.milestone}</td>
+              <td>{row.payment}</td>
               <td>{row.timeline}</td>
             </tr>
           ))}
-    {/* <tr className={classes.staticRow}>
-    <td colSpan={1} style={{ width: '50%' }} >Project Completion</td>
-    <td></td>
-    <td colSpan={1}>10th Month</td>
-  </tr>
-  <tr className={classes.staticRow}>
-    <td colSpan={1} style={{ width: '50%' }}>Project Handover</td>
-    <td></td>
-    <td colSpan={1}>12th Month</td>
-  </tr> */}
         </tbody>
       </table>
        <div className={classes.staticRow}>

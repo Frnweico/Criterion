@@ -72,11 +72,13 @@ const HeaderSideNav = ({ closeSideNav }: HeaderSideNavProps) => {
         <p onClick={closeContactButton}>CONTACT US</p>
 
         <Button
-          onClick={() => {
-            window.open(
-              "https://drive.google.com/file/d/1KtJxkCViVfCnSWYAcuvd82-CGjaNISaC/view?pli=1"
-            );
-          }}
+           onClick={() => {
+    const fileId = "1KtJxkCViVfCnSWYAcuvd82-CGjaNISaC";
+    window.open(
+      `https://drive.google.com/file/d/${fileId}/preview`,
+      "_blank"
+    );
+  }}
         >
           <span>{"view profile".toUpperCase()}</span>
           <svg

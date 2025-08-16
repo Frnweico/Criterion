@@ -78,7 +78,7 @@ const PropertyPage = () => {
             <div className={classes.propertyHeaderText}>
             <h2 data-aos= "fade-up">THE MIDTOWN TERRACES</h2>
             <img src={line5} alt="line" />
-            <p data-aos= "fade-up">Gwarinpa, Abuja,</p>
+            <p data-aos= "fade-up">Gwarinpa, Abuja.</p>
             </div>
             <div data-aos= "fade-up" className={classes.propertyHeaderDetails}>
              {Array.from({ length: Math.ceil(propertyData.length / 2) }, (_, groupIndex) => (
@@ -99,7 +99,7 @@ const PropertyPage = () => {
                 <p className={classes.propertyPageContactText1} data-aos= "fade-up">DESCRIPTION</p>
                 <h4 data-aos= "fade-up">Welcome to The Midtown Terraces</h4>
                 <div data-aos= "fade-up" className={classes.propertyPageContactTextInfo}>
-                <p>An exclusive collection of just 4 custom-built, 4-bedroom terrace duplexes with maid’s quarters, nestled in the heart of Gwarinpa, Abuja. This premium development is a celebration of modern architecture fused with nature—crafted for discerning families who crave serenity, function, and timeless elegance in one space.
+                <p>An exclusive collection of just 4 custom-built, 4-bedroom terrace duplexes with maid’s quarters, nestled in the heart of Gwarinpa, Abuja. This premium development is a celebration of modern architecture fused with nature, crafted for discerning families who crave serenity, function, and timeless elegance in one space.
 </p>
 <p>Each home is designed with purposeful flow, generous natural lighting, and a signature private patch adorned with lush greenery, transforming daily living into an experience of peace, wellness, and connection.</p>
 </div>

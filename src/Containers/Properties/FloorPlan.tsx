@@ -19,7 +19,7 @@ const FloorPlanHeader = ({ title, description }: { title: string; description: s
       <h2>{title}</h2>
       <div className={classes.floorPlanHeaderItems}>
         {items.map((item, idx) => (
-          <div key={idx}  className={`${title === "SECOND FLOOR" ? classes.secondFloorMobile : ""}`}>
+          <div key={idx} >
             <p>{item}</p>
           </div>
         ))}
@@ -32,6 +32,7 @@ const FloorPlan = () => {
   const [doubleFloorIndex, setDoubleFloorIndex] = useState(0);
 const [singleFloorIndex, setSingleFloorIndex] = useState(0);
 const [transitioningUnit, setTransitioningUnit] = useState<string | null>(null);
+ const [swipeDirection, setSwipeDirection] = useState<'next' | 'prev' | null>(null);
 
 useEffect(() => {
 		Aos.init({ duration: 1000 });
@@ -80,9 +81,12 @@ useEffect(() => {
     },
   ];
 
- const navigateFloor = (unit: string, direction: "next" | "prev") => {
-  setTransitioningUnit(unit);
-  setTimeout(() => {
+
+  const navigateFloor = (unit: string, direction: "next" | "prev") => {
+    setTransitioningUnit(unit);
+    setSwipeDirection(direction);
+    
+    setTimeout(() => {
       if (unit === "SINGLE") {
         setSingleFloorIndex((prev) =>
           direction === "next" ? Math.min(prev + 1, 2) : Math.max(prev - 1, 0)
@@ -92,9 +96,40 @@ useEffect(() => {
           direction === "next" ? Math.min(prev + 1, 2) : Math.max(prev - 1, 0)
         );
       }
-      setTransitioningUnit(null); 
-    }, 300); 
-};
+      
+      // Reset transition states after content changes
+      setTimeout(() => {
+        setTransitioningUnit(null);
+        setSwipeDirection(null);
+      }, 50);
+    }, 500); // Wait for slide out animation
+  };
+
+  const getTransitionClass = (unit: { unit: string }) => {
+    const isTransitioning = transitioningUnit === unit.unit;
+    
+    if (!isTransitioning) return "";
+    
+    if (swipeDirection === "next") {
+      return classes.slideOutLeft;
+    } else if (swipeDirection === "prev") {
+      return classes.slideOutRight;
+    }
+    
+    return "";
+  };
+
+  const getSlideInClass = (unit: { unit: string }) => {
+    const wasTransitioning = transitioningUnit === unit.unit;
+    
+    if (wasTransitioning && swipeDirection === "next") {
+      return classes.slideInRight;
+    } else if (wasTransitioning && swipeDirection === "prev") {
+      return classes.slideInLeft;
+    }
+    
+    return "";
+  };
 
    return (
     <div className={classes.floorPlanWrapper}>
@@ -112,7 +147,7 @@ useEffect(() => {
 
             <div
               className={`${classes.transitionWrapper} ${
-                isTransitioning ? classes.fadeOut : ""
+                isTransitioning ? getTransitionClass(unit) : getSlideInClass(unit)
               }`}
             >
               <div className={classes.floorPlanWithNavigation}>

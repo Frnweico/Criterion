@@ -3,10 +3,11 @@ import classes from "./PropertyPage.module.css";
 import mainProperyImg from "../../Assets/Images/xV1.png";
 import propertyImg1 from "../../Assets/Images/xV2.png";
 import propertyImg2 from "../../Assets/Images/xV3.png";
+import line from "../../Assets/Images/Line 6.svg"
 import { useEffect } from "react";
 import Aos from 'aos';
 import 'aos/dist/aos.css';
-
+import horizontalLine from "../../Assets/Images/Frame 417.svg"
 
 const PropertyShocwcase = () => {
   useEffect(() => {
@@ -52,12 +53,15 @@ const images =[mainProperyImg, propertyImg1, propertyImg2]
           At The Midtown Terraces, <br /> we’ve gone beyond structure. <br /> Our homes
           are:
         </h2>
+        <div className={classes.propertyDetailsLinee}>
+          <img src={line} alt="line" />
+        </div>
         <h2 className={classes.propertyHeaderTextMobile}>
           At The Midtown<br />  Terraces, we’ve gone <br />  beyond structure. <br /> Our homes
           are:
         </h2>
-        <div className={classes.propertyDetailsLine}>
-        </div>     
+        {/* <div className={classes.propertyDetailsLine}>
+        </div>      */}
       </div>
 
       <div className={classes.propertyShowcaseContent}>
@@ -88,6 +92,7 @@ const images =[mainProperyImg, propertyImg1, propertyImg2]
               className={`${classes.propertyDetailsFeatureItem} ${classes.propertyDetailsFeatureVisible}`}
             >
               <h4>{item.title}</h4>
+              <img src={horizontalLine} alt="horizontal line" />
               <p>{item.description}</p>
             </div>
           ))}

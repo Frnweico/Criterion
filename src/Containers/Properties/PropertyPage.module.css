@@ -181,7 +181,7 @@
   margin-left: auto;
   font-weight: 300;
   line-height: 150%;
-  width: 25%;
+  width: 50%;
   text-align: left;
   margin-right: 1em;
 }
@@ -208,9 +208,10 @@
 }
 
 .projectLocationText {
-  padding: 1.5em 0;
+  padding: 0.5em 0;
   width: 95%;
   margin-left: auto;
+  /* border: 1px solid red; */
 }
 
 .projectLocationTextLine {
@@ -241,7 +242,7 @@
 
 .projectLocationMapWrapper {
   width: 100%;
-  max-height: 90vh;
+  /* max-height: 90vh; */
   display: flex;
   position: relative;
 }
@@ -268,10 +269,15 @@
   padding: 2em 0;
   width: 85%;
   margin: 0 auto;
+  position: relative;
+  /* border: 1px solid #fff; */
 }
 
 .propertyDetailsInfo {
   margin-left: 7em;
+  /* border: 1px solid red; */
+  position: relative;
+  height: 200px;
 }
 .propertyShowcaseHeaderText {
   text-transform: uppercase;
@@ -279,17 +285,21 @@
   font-size: 30px;
   line-height: 89%;
   font-weight: 300;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 60%;
+  /* border: 1px solid red; */
+}
+.propertyDetailsLinee {
+  position: absolute;
+  margin-left: auto;
+  left: 23%;
+  top: 30%;
+  overflow: hidden;
 }
 .propertyHeaderTextMobile {
   display: none;
-}
-.propertyDetailsLine {
-  height: 170px;
-  width: 39%;
-  margin-left: 18em;
-  border-right: 1px solid #fff;
-  border-top: 1px solid #fff;
-  color: #fff;
 }
 
 .propertyShowcaseContent {
@@ -300,16 +310,13 @@
 
 .propertyDetailsFeatures {
   flex: 1;
-  position: relative;
 }
 
 .propertyDetailsFeatureItem {
   display: flex;
-  align-items: flex-start;
-  justify-content: center;
+  align-items: center;
+  justify-content: space-between;
   margin-bottom: 2.5em;
-  position: relative;
-  /* border: 1px solid #fff; */
 }
 
 .propertyDetailsFeatureItem h4 {
@@ -318,38 +325,15 @@
   text-transform: uppercase;
   letter-spacing: 1px;
   margin: 0;
-  width: 180px;
+  width: 20%;
   text-align: right;
   flex-shrink: 0;
   position: relative;
 }
 
-.propertyDetailsFeatureItem::after {
-  content: "";
-  position: absolute;
-  left: 185px;
-  top: 15%;
-  width: 30px;
-  height: 0.5px;
-  background-color: #fff;
-  transform: translateY(-50%);
-  z-index: 2;
-}
-
-.propertyDetailsFeatureItem::before {
-  content: "";
-  position: absolute;
-  left: 190px;
-  top: 30%;
-  width: 0.25px;
-  height: 70px;
-  background-color: #fff;
-  transform: translateY(0);
-  z-index: 2;
-}
-
-.propertyDetailsFeatureItem:last-child::before {
-  display: none;
+.propertyDetailsFeatureItem img {
+  flex-shrink: 0;
+  z-index: 10;
 }
 
 .propertyDetailsFeatureItem p {
@@ -357,9 +341,10 @@
   font-size: 0.9em;
   line-height: 1.5;
   margin: 0;
-  margin-left: 60px;
+  margin-left: auto;
   flex: 1;
   font-weight: 300;
+  /* border: 1px solid red; */
 }
 
 .propertyDetailsImages {
@@ -407,16 +392,69 @@
   position: relative;
   width: 100%;
   max-width: 100vw;
-  transition: opacity 0.5s ease, transform 0.5s ease;
-  opacity: 1;
-  transform: translateX(0);
+  /* transition: opacity 0.5s ease, transform 0.5s ease; */
+  /* opacity: 1; */
+  /* transform: translateX(0); */
   margin: 2em 0;
 }
+.slideInRight {
+  animation: slideInFromRight 0.75s ease-out forwards;
+}
 
-.fadeOut {
-  opacity: 0;
-  transform: translateX(10px);
-  pointer-events: none;
+.slideOutLeft {
+  animation: slideOutToLeft 0.75s ease-out forwards;
+}
+
+.slideInLeft {
+  animation: slideInFromLeft 0.75s ease-out forwards;
+}
+
+.slideOutRight {
+  animation: slideOutToRight 0.75s ease-out forwards;
+}
+
+@keyframes slideInFromRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideOutToLeft {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+}
+
+@keyframes slideInFromLeft {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideOutToRight {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(100%);
+    opacity: 0;
+  }
 }
 
 .floorPlanWithNavigation {
@@ -428,19 +466,18 @@
 
 .floorPlanContent {
   display: grid;
-  grid-template-columns: 40% 60%;
+  grid-template-columns: 1fr;
   align-items: center;
   justify-content: center;
-  transition: opacity 0.5s ease, transform 0.5s ease;
   width: 100%;
 }
 
 .floorPlanHeader {
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
   width: 100%;
+  margin-bottom: 2em;
 }
 
 .floorPlanHeader h2 {
@@ -457,17 +494,17 @@
   gap: 0.5em;
   font-family: "Poppins";
   color: #fff;
-  margin-right: auto;
+  margin-left: auto;
   margin-top: 2em;
 }
 .floorPlanHeaderItems p {
   font-size: 18px;
   line-height: 104%;
   border-bottom: 1px solid #fff;
-  text-align: left;
+  text-align: right;
   text-transform: uppercase;
   padding-bottom: 0.25em;
-  width: fit-content;
+  width: 100%;
   font-weight: 300;
 }
 .floorPlanHeaderItems p:hover {
@@ -478,7 +515,7 @@
   color: #a49031;
 }
 .floorPlanImageWrapper {
-  width: 90%;
+  width: 100%;
   margin: 0 auto;
   padding: 0 2em;
   flex-shrink: 0;
@@ -490,19 +527,11 @@
   display: block;
   margin: 0 auto;
 }
-.floorPlanImageWithNav {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 1.5rem;
-  width: 80%;
-  margin: 0 auto;
-}
 
 .arrowButton {
   background: none;
   border: none;
-  padding: 0.5rem;
+  padding: 0.5em;
   transition: transform 0.3s ease;
   cursor: pointer;
   margin: 0 2em;
@@ -616,7 +645,7 @@
   width: 100%;
 }
 .propertyPricingContent {
-  margin-top: 4em;
+  margin-top: 2em;
 }
 .propertyTableWrapper {
   margin-top: 2em;
@@ -645,6 +674,21 @@
   text-align: left;
 }
 
+.pricingTable th:nth-child(1) {
+  /* MILESTONE column */
+  width: 30%;
+}
+
+.pricingTable th:nth-child(2) {
+  /* PAYMENT column */
+  width: 40%;
+}
+
+.pricingTable th:nth-child(3) {
+  /* TIMELINE column */
+  width: 30%;
+}
+
 .pricingTable td {
   /* border: none; */
   border-bottom: none;
@@ -654,8 +698,19 @@
   text-align: left;
   vertical-align: middle;
 }
-.pricingTable tr:not(.staticRow) td {
-  width: 33.33%;
+.pricingTable td:nth-child(1) {
+  /* MILESTONE column */
+  width: 30%;
+}
+
+.pricingTable td:nth-child(2) {
+  /* PAYMENT column */
+  width: 40%;
+}
+
+.pricingTable td:nth-child(3) {
+  /* TIMELINE column */
+  width: 30%;
 }
 .staticRow {
   background-color: #000;
@@ -694,10 +749,6 @@
   background-color: black;
 }
 
-.pricingMobileTables {
-  display: none;
-}
-
 .propertyPricingContact {
   background-color: #d9d9d9;
   display: flex;
@@ -707,7 +758,6 @@
   color: #000;
   width: 50%;
   margin: 0 auto;
-  /* margin: 3em 0; */
 }
 .propertyPricingContactText h3 {
   font-family: "Space Grotesk";
@@ -737,24 +787,140 @@
   fill: #000;
 }
 
-@media (max-width: 1310px) {
-  .propertyDetailsLine {
-    width: 36.9%;
+@media (min-width: 1180px) and (max-width: 1310px) {
+  .projectLocationText {
+    padding: 0.5em 4em 1.5em 0;
+    width: 100%;
+    margin-left: auto;
+  }
+  .projectLocationTextLine {
+    /* border: 1px solid red; */
+    width: 100%;
+    gap: 0;
+  }
+  .projectLocationTextLine p {
+    width: 40%;
+    /* border: 1px solid red; */
+  }
+  .projectLocationTextDescription {
+    width: 90%;
   }
 }
-@media (min-width: 1210px) and (max-width: 1310px) {
-  .propertyDetailsLine {
-    width: 36.2%;
+@media (min-width: 1024px) and (max-width: 1180px) {
+  .projectLocationGrid {
+    width: 96%;
+  }
+  .projectLocationText {
+    padding: 0.5em 4em 1.5em 0;
+    width: 100%;
+    margin-left: auto;
+  }
+  .projectLocationTextLine {
+    /* border: 1px solid red; */
+    width: 100%;
+    gap: 0;
+  }
+  .projectLocationTextLine p {
+    width: 40%;
+    /* border: 1px solid red; */
+  }
+  .projectLocationTextDescription {
+    width: 90%;
   }
 }
-@media (min-width: 1066px) and (max-width: 1210px) {
-  .propertyDetailsLine {
-    width: 34%;
+
+/* 1550px - 1600px */
+@media (min-width: 1550px) and (max-width: 1599px) {
+  .propertyDetailsLinee {
+    left: 23%;
+    top: 33%;
   }
 }
-@media (min-width: 1024px) and (max-width: 1067px) {
-  .propertyDetailsLine {
-    width: 33.5%;
+
+/* 1500px - 1549px */
+@media (min-width: 1500px) and (max-width: 1549px) {
+  .propertyDetailsLinee {
+    left: 21.5%;
+    top: 32%;
+  }
+}
+
+/* 1450px - 1499px */
+@media (min-width: 1450px) and (max-width: 1499px) {
+  .propertyDetailsLinee {
+    margin-left: 1em;
+    left: 19%;
+    top: 33%;
+  }
+}
+
+/* 1400px - 1449px */
+@media (min-width: 1400px) and (max-width: 1449px) {
+  .propertyDetailsLinee {
+    width: 450px;
+    left: 19%;
+    top: 34%;
+  }
+}
+
+/* 1350px - 1399px */
+@media (min-width: 1350px) and (max-width: 1399px) {
+  .propertyDetailsLinee {
+    left: 17%;
+    top: 35%;
+  }
+}
+
+/* 1300px - 1349px */
+@media (min-width: 1300px) and (max-width: 1349px) {
+  .propertyDetailsLinee {
+    left: 15%;
+    top: 36%;
+  }
+}
+
+/* 1250px - 1299px */
+@media (min-width: 1250px) and (max-width: 1299px) {
+  .propertyDetailsLinee {
+    /* margin-left: 3.5em; */
+    left: 14%;
+    top: 37%;
+  }
+}
+
+/* 1200px - 1249px */
+@media (min-width: 1200px) and (max-width: 1249px) {
+  .propertyDetailsLinee {
+    /* margin-left: 4em; */
+    left: 13%;
+    top: 38%;
+  }
+}
+
+/* 1150px - 1199px */
+@media (min-width: 1150px) and (max-width: 1199px) {
+  .propertyDetailsLinee {
+    /* margin-left: 4.5em; */
+    left: 12%;
+    top: 39%;
+  }
+}
+
+/* 1100px - 1149px */
+@media (min-width: 1100px) and (max-width: 1149px) {
+  .propertyDetailsLinee {
+    /* margin-left: 5em; */
+    left: 11%;
+    top: 40%;
+  }
+}
+
+/* 1050px - 1099px */
+@media (min-width: 1050px) and (max-width: 1099px) {
+  .propertyDetailsLinee {
+    /* margin-left: 5.5em; */
+    left: 10%;
+    top: 41%;
   }
 }
 
@@ -793,12 +959,27 @@
 
   /* midtown details spacing */
   .midtownDetails h3 {
-    font-size: 16px;
+    /* font-size: 16px; */
     text-align: left;
     padding: 0;
   }
   .midtownDetails p {
     width: 50%;
+  }
+  .propertyDetailsInfo {
+    height: fit-content;
+  }
+  .propertyDetailsLinee {
+    display: none;
+  }
+  .propertyDetailsFeatureItem {
+    /* justify-content: flex-start; */
+    /* gap: 1em; */
+    border: 1px solid #fff;
+  }
+  .propertyDetailsFeatureItem p {
+    width: 100%;
+    margin-right: auto;
   }
 
   /* location  */
@@ -807,6 +988,9 @@
     margin-left: 0;
     padding: 2em;
   }
+  .projectLocationText {
+    width: 100%;
+  }
   .projectLocationTextLine p {
     width: 20%;
     text-align: right;
@@ -814,7 +998,7 @@
   }
 
   .projectLocationTextDescription {
-    width: 80%;
+    width: 70%;
   }
   .projectLocationMapWrapper {
     aspect-ratio: 16/9;
@@ -861,25 +1045,6 @@
     width: 160px;
     font-size: 0.85em;
   }
-
-  .propertyDetailsFeatureItem::after {
-    left: 165px;
-    width: 50px;
-  }
-
-  .propertyDetailsFeatureItem::before {
-    left: 190px;
-    height: 55px;
-  }
-
-  .propertyDetailsFeatureItem h4::after {
-    right: -55px;
-  }
-
-  .propertyDetailsFeatures::before {
-    left: 110px;
-  }
-
   .propertyDetailsFeatureItem p {
     margin-left: 70px;
     font-size: 0.85em;
@@ -903,20 +1068,18 @@
     width: 100%;
   }
   .floorPlanContent {
-    grid-template-columns: 35% 75%;
-    gap: 1.5em;
-    width: 100vw;
+    width: 100%;
     align-items: center;
-    /* border: 1px solid #fff; */
   }
   .floorPlanHeader {
     width: 100%;
+    align-items: center;
   }
   .floorPlanHeader h2 {
     font-size: 42px;
   }
   .floorPlanHeaderItems {
-    margin-right: auto;
+    margin-left: auto;
   }
   .floorPlanImageWrapper {
     width: 100%;
@@ -932,6 +1095,7 @@
 
   .arrowButton {
     width: 100%;
+    margin: 0 -25em;
   }
   .arrowButton img {
     width: 40px;
@@ -988,7 +1152,45 @@
   }
 }
 
-/* ───────────────────────── PHONE ≤ 600 px ───────────────────────── */
+@media (max-width: 851px) {
+  .propertyReasons {
+    width: 90%;
+    grid-template-columns: 1fr;
+  }
+  .propertyReasons h2 {
+    margin-top: 1em;
+    text-align: center;
+    font-size: 40px;
+  }
+  .propertyReasonsSpan1 {
+    font-size: 30px;
+  }
+  .propertyReasonsWrapper {
+    margin-top: 3em;
+  }
+  .propertyReason {
+    width: 100%;
+    align-items: center;
+  }
+  .propertyReason p {
+    text-align: center;
+    width: 60%;
+    margin: 0 auto;
+  }
+}
+@media (max-width: 550px) {
+  .propertyReasons h2 {
+    width: 70%;
+    margin: 0 auto;
+  }
+  .propertyReason p {
+    text-align: center;
+    width: 80%;
+    margin: 0 auto;
+  }
+}
+
+/* ───────────────────────── PHONE ≤ 768 px ───────────────────────── */
 @media (max-width: 768px) {
   .propertyPageContainer {
     padding-top: 5em;
@@ -1071,6 +1273,7 @@
     flex-direction: column;
     align-items: flex-start;
     border-bottom: none;
+    position: relative;
   }
 
   .midtownDetails:first-of-type {
@@ -1079,26 +1282,18 @@
 
   .midtownDetails h3 {
     font-size: 22px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
   }
 
   .midtownDetails h3::after {
     content: "";
-    position: absolute;
-    right: 0;
-    top: 25%;
-    width: 190px;
+    flex: 1;
     height: 0.5px;
     background-color: #f4f4f4;
-  }
-  .midtownDetails:nth-of-type(1) h3::after {
-    width: 190px;
-  }
-  .midtownDetails:nth-of-type(2) h3::after {
-    width: 220px;
-    top: 22%;
-  }
-  .midtownDetails:nth-of-type(3) h3::after {
-    width: 130px;
+    margin-left: 1em;
   }
 
   .midtownDetails p {
@@ -1115,6 +1310,9 @@
     flex-direction: column;
     gap: 2em;
   }
+  .propertyDetailsInfo {
+    height: fit-content;
+  }
   .propertyShowcaseHeaderText {
     display: none;
   }
@@ -1125,6 +1323,9 @@
     font-size: 30px;
     line-height: 89%;
     font-weight: 300;
+  }
+  .propertyDetailsLinee {
+    display: none;
   }
   .propertyDetailsFeatureItem {
     flex-direction: column;
@@ -1138,18 +1339,12 @@
     margin-bottom: 0.5em;
   }
 
-  .propertyDetailsFeatureItem::after {
-    display: none;
-  }
-
-  .propertyDetailsFeatureItem::before {
-    display: none;
-  }
-
   .propertyDetailsFeatureItem h4 {
     font-size: 18px;
   }
-
+  .propertyDetailsFeatureItem img {
+    display: none;
+  }
   .propertyDetailsFeatureItem p {
     margin-left: 0;
     font-size: 15px;
@@ -1191,7 +1386,7 @@
   }
   .projectLocationTextLine p {
     font-size: 14px;
-    width: 50%;
+    width: 40%;
     margin-left: auto;
     margin-right: 0;
   }
@@ -1254,24 +1449,6 @@
     align-items: stretch;
     flex-wrap: wrap;
   }
-  .floorPlanHeaderItems div {
-    flex: 0 0 calc(40% - 0.25em);
-  }
-  .floorPlanHeaderItems div:nth-of-type(2) {
-    margin-left: -2em;
-  }
-  .floorPlanHeaderItems div:nth-of-type(3) {
-    flex: 0 0 calc(28% - 0.25em);
-  }
-  .floorPlanHeaderItems div:nth-of-type(4) {
-    flex: 0 0 calc(38% - 0.25em);
-  }
-  .secondFloorMobile:nth-of-type(1) {
-    flex: 0 0 calc(32% - 0.25em) !important;
-  }
-  .floorPlanHeaderItems .secondFloorMobile:nth-of-type(2) {
-    margin-left: 0 !important;
-  }
   .floorPlanHeaderItems p {
     height: 100%;
     font-size: 16px;
@@ -1296,35 +1473,6 @@
     height: 25px;
     object-fit: contain;
   }
-
-  /* reasons grid → single column */
-  .propertyReasons {
-    width: 90%;
-    grid-template-columns: 1fr;
-  }
-  .propertyReasons h2 {
-    margin-top: 1em;
-    text-align: center;
-    font-size: 40px;
-  }
-  .propertyReasonsSpan1 {
-    font-size: 30px;
-  }
-  .propertyReasonsWrapper {
-    margin-top: 3em;
-  }
-  .propertyReason {
-    width: 100%;
-    align-items: center;
-  }
-  .propertyReason p {
-    text-align: center;
-  }
-
-  /* pricing  */
-  /* .pricingTable {
-    display: none;
-  } */
   .propertyPricingContent {
     margin-top: 0;
   }
@@ -1332,51 +1480,38 @@
     display: none;
   }
   .propertyTableWrapper {
-    margin-top: 2em;
+    margin-top: 0.5em;
+  }
+  .pricingTable th {
+    font-size: 12px;
+  }
+  .pricingTable td {
+    font-size: 11.3px;
   }
   .staticRow {
     margin-bottom: 0;
   }
+  .staticRow div p {
+    font-size: 11.3px;
+  }
   .propertyPricingContact {
-    width: 100%;
+    width: 90%;
     padding: 1em;
+    flex-direction: column;
   }
   .propertyPricingContactText div {
-    width: 100%;
+    width: 70%;
+    margin: 0 auto;
   }
   .propertyPricingContactText h3 {
-    font-size: 22px;
+    font-size: 30px;
+    text-align: center;
   }
   .propertyPricingContact button {
     width: 100%;
-    padding: 25px 40px;
+    padding: 8px 30px;
   }
   .propertyPricingContactText div span {
     font-size: 14px;
-  }
-}
-
-@media (min-width: 500px) and (max-width: 768px) {
-  .midtownDetails h3 {
-    font-size: 22px;
-  }
-  .midtownDetails h3::after {
-    content: "";
-    position: absolute;
-    right: 0;
-    top: 26%;
-    width: 190px;
-    height: 0.5px;
-    background-color: #f4f4f4;
-  }
-  .midtownDetails:nth-of-type(1) h3::after {
-    width: 380px;
-  }
-  .midtownDetails:nth-of-type(2) h3::after {
-    width: 350px;
-    top: 22%;
-  }
-  .midtownDetails:nth-of-type(3) h3::after {
-    width: 300px;
   }
 }

@@ -17,9 +17,4 @@ export const routes = [
     relatedRoutes: ["/properties"],
   },
   
-  // {
-  //   title: "CAREERS",
-  //   route: "/careers",
-  //   relatedRoutes: ["/"],
-  // },
 ];
