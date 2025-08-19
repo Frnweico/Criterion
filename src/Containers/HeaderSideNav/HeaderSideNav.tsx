@@ -72,12 +72,7 @@ const HeaderSideNav = ({ closeSideNav }: HeaderSideNavProps) => {
         <p onClick={closeContactButton}>CONTACT US</p>
 
         <Button
-           onClick={() => {
-    const fileId = "1KtJxkCViVfCnSWYAcuvd82-CGjaNISaC";
-    window.open(
-      `https://drive.google.com/file/d/${fileId}/preview`,
-      "_blank"
-    );
+           onClick={() => { window.open("/documents/Criterion Homes Profile.pdf", "_blank")
   }}
         >
           <span>{"view profile".toUpperCase()}</span>

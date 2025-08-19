@@ -44,10 +44,11 @@
 }
 
 .text {
-  font-family: "Poppins, sans-serif";
+  font-family: "Poppins";
   color: #191919;
   margin-top: 0.5em;
-  font-size: 16.08px;
+  font-size: 16px;
+  line-height: 89%;
 }
 
 .imageContainer {
@@ -101,14 +102,14 @@
 
   .textSection > h4 > span:nth-child(1) {
     font-size: 48px;
-    line-height: 42.24px;
-    letter-spacing: -0.04em;
+    line-height: 88%;
+    letter-spacing: -2%;
   }
 
   .textSection > h4 > span:nth-child(2) {
     font-size: 48px;
-    line-height: 42.24px;
-    letter-spacing: -0.04em;
+    line-height: 88%;
+    letter-spacing: -2%;
   }
 
   .container > img,
@@ -129,6 +130,34 @@
   }
 }
 
+@media (min-width: 580px) and (max-width: 768px) {
+  .container {
+    padding: 53px 0px 0px 0px;
+    min-height: calc(800px - 125px);
+  }
+
+  .textSection {
+    padding: 0 0;
+  }
+  .imageContainer {
+    flex: 1;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    overflow: hidden;
+    margin-left: -32px;
+    margin-right: -32px;
+    width: 100vw;
+  }
+
+  .container > img,
+  .imageContainer > img {
+    width: 100%;
+    max-width: 100%;
+    object-fit: cover;
+  }
+}
+
 @media screen and (max-width: 767px) {
   .container {
     padding: 53px 32px 0px 32px;
@@ -142,9 +171,9 @@
   }
 
   .textSection > h4:not(.textSection > h4 > span:nth-child(1)) {
-    font-size: 48px;
+    font-size: 36px;
     line-height: 42.24px;
-    letter-spacing: -0.04em;
+    letter-spacing: -2%;
     margin-top: 1em;
   }
 
@@ -153,14 +182,14 @@
   }
 
   .textSection > h4 > span:nth-child(1) {
-    font-size: 48px;
-    line-height: 42.24px;
+    font-size: 36px;
+    line-height: 88%;
     letter-spacing: -0.04em;
   }
 
   .textSection > h4 > span:nth-child(2) {
-    font-size: 48px;
-    line-height: 42.24px;
+    font-size: 36px;
+    line-height: 88%;
     letter-spacing: -0.04em;
   }
 

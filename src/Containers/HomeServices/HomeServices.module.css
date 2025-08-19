@@ -2,12 +2,35 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  justify-content: center;
+  justify-content: flex-start;
   padding: 3em 4em 0 4em;
   background-color: #000;
   color: #f4f4f4;
   width: 100vw;
-  /* min-height: 80vh; */
+  position: relative;
+}
+
+.homeServices::-webkit-scrollbar {
+  display: none !important;
+  width: 0;
+  height: 0;
+  background: transparent;
+}
+
+.serviceSection {
+  width: 100%;
+  min-height: 100vh;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  flex-shrink: 0;
+  will-change: transform;
+}
+
+.serviceSection:not(.active) {
+  pointer-events: none;
 }
 
 .homeServicesDetails {
@@ -15,6 +38,8 @@
   grid-template-columns: 40% 60%;
   gap: 4em;
   width: 100%;
+  padding-bottom: 3em;
+  box-sizing: border-box;
 }
 
 .homeServicesLeftSection {
@@ -25,7 +50,6 @@
   margin-left: 3em;
   margin-right: 1em;
   height: 100%;
-  /* border: 1px solid red; */
 }
 
 .homeServicesRightSection {
@@ -102,6 +126,10 @@
   display: none;
 }
 
+.serviceSection.active {
+  z-index: 10;
+}
+
 @media screen and (max-width: 1300px) {
   .homeServicesLeftSection {
     margin-left: 1.5em;
@@ -113,6 +141,7 @@
     font-size: 120px;
   }
 }
+
 @media screen and (max-width: 1200px) {
   .homeServices {
     padding: 2.5em 3em 0 3em;
@@ -180,20 +209,40 @@
 }
 
 /* Tablet Portrait - 768px and below */
-@media screen and (max-width: 768px) {
+@media (min-width: 500px) and (max-width: 768px) {
   .homeServices {
-    padding: 2em 1.5em 0 1.5em;
+    padding: 1em 1.5em 0 1.5em;
+    overflow: hidden;
+    position: relative;
+    height: auto;
+    min-height: 100vh;
   }
+
   .homeServicesDetails {
     display: none;
   }
+
+  .serviceSection {
+    min-height: 100vh;
+    height: auto;
+    padding-bottom: 2em;
+    overflow: visible;
+  }
+
   .homeServicesDetailsMobile {
-    display: block;
     display: flex;
     flex-direction: column;
     gap: 2em;
+    padding: 0 0 4em 0;
+    min-height: calc(100vh - 6em);
+    justify-content: center;
     align-items: flex-start;
   }
+
+  .homeServicesDetailsMobile::-webkit-scrollbar {
+    display: none !important;
+  }
+
   .homeServicesHeading {
     font-size: 60px;
     text-align: left;
@@ -201,54 +250,76 @@
     line-height: 88%;
     letter-spacing: -4%;
   }
+
+  .homeServicesImage {
+    max-width: 80%;
+    width: 80%;
+  }
+
   .homeServicesImage img {
     width: 100%;
     object-fit: cover;
   }
+
   .numberHeading {
     font-size: 60px;
     margin-left: 0;
   }
+
   .investmentHeading {
     font-size: 40px;
   }
+
   .homeServicesDetailsMobile p {
     width: 80%;
     font-size: 16px;
     margin-top: 1em;
+    font-family: "Poppins";
+    font-weight: 300;
+    line-height: 140%;
   }
+
   button {
     margin-top: 1.5em;
   }
 }
 
 /* Mobile - 480px and below */
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 500px) {
   .homeServices {
     padding: 1.5em 1em 0 1em;
   }
+
   .homeServicesDetails {
     gap: 1.5em;
   }
+
   .homeServicesHeading {
     font-size: 48px;
     line-height: 85%;
   }
+
   .homeServicesImage {
-    height: 250px;
+    max-width: 100%;
+    width: 100%;
+    border: 1px solid #f4f4f4;
   }
+
   .numberHeading {
     font-size: 65px;
     margin-bottom: 0.1em;
   }
+
   .investmentHeading {
     font-size: 32px;
     margin-bottom: 0.3em;
   }
-  .homeServicesRightSection p {
+
+  .homeServicesDetailsMobile p {
     font-size: 15px;
     line-height: 135%;
   }
+
   button {
     margin-top: 1em;
   }
@@ -259,19 +330,24 @@
   .homeServices {
     padding: 1em 0.8em 0 0.8em;
   }
+
   .homeServicesHeading {
     font-size: 40px;
   }
+
   .homeServicesImage {
     height: 220px;
   }
+
   .numberHeading {
     font-size: 55px;
   }
+
   .investmentHeading {
     font-size: 28px;
   }
-  .homeServicesRightSection p {
+
+  .homeServicesDetailsMobile p {
     font-size: 14px;
     line-height: 130%;
   }

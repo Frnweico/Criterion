@@ -1,3 +1,4 @@
+import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
 import classes from "./PropertyPage.module.css";
 import line9 from "../../Assets/Images/Line 9.svg";
 import { useEffect } from "react";
@@ -8,6 +9,43 @@ const PropertyLocation = () => {
   useEffect(() => {
 		Aos.init({ duration: 1000 });
 	}, []);
+
+  // Coordinates for Plot 237 (you should geocode your address for accuracy)
+  const center = { lat: 9.1136, lng: 7.3946 }; // Example for Gwarinpa, Abuja
+
+  // Map styling: desaturated / grey look
+  const mapStyles = [
+    {
+      elementType: "geometry",
+      stylers: [{ color: "#f5f5f5" }],
+    },
+    {
+      elementType: "labels.icon",
+      stylers: [{ visibility: "off" }],
+    },
+    {
+      elementType: "labels.text.fill",
+      stylers: [{ color: "#616161" }],
+    },
+    {
+      elementType: "labels.text.stroke",
+      stylers: [{ color: "#f5f5f5" }],
+    },
+    {
+      featureType: "poi",
+      stylers: [{ visibility: "off" }],
+    },
+    {
+      featureType: "road",
+      elementType: "geometry",
+      stylers: [{ color: "#dcdcdc" }],
+    },
+    {
+      featureType: "water",
+      elementType: "geometry",
+      stylers: [{ color: "#c9c9c9" }],
+    },
+  ];
 
   return (
             <div className={classes.projectLocation}>
@@ -29,21 +67,21 @@ const PropertyLocation = () => {
             </div>
            </div>
            <div className={classes.projectLocationMapWrapper}>
-  <a
-    href="https://www.google.com/maps/place/Plot+237,+Gwarinpa+II+Estate,+Abuja/"
-    target="_blank"
-    rel="noopener noreferrer"
-    className={classes.mapOverlay}
-  >
-    <iframe
-      title="Midtown Terrace Location"
-      className={classes.mapPreview}
-      src="https://www.google.com/maps/embed/v1/place?key=AIzaSyDRpgfp7VddZqdlnBugzE4xDdNP9YHufHs&q=Plot+237,+Gwarinpa+II+Estate,+Abuja"
-      allowFullScreen
-      loading="lazy"
-      referrerPolicy="no-referrer-when-downgrade"
-    ></iframe>
-  </a>
+ <LoadScript googleMapsApiKey="AIzaSyDRpgfp7VddZqdlnBugzE4xDdNP9YHufHs">
+            <GoogleMap
+              mapContainerClassName={classes.mapPreview}
+              center={center}
+              zoom={15}
+              options={{
+                styles: mapStyles,
+                disableDefaultUI: true, // hides all default controls
+                zoomControl: true, // keep zoom if you want
+              }}
+            >
+              {/* Marker at location  */}
+              <Marker position={center} />
+            </GoogleMap>
+          </LoadScript>
 </div>
         </div>
         </div>

@@ -261,7 +261,7 @@
   position: absolute;
   top: 0;
   left: 0;
-  filter: saturate(0.8) brightness(1.1) contrast(0.9);
+  filter: saturate(0.5) brightness(1.1) contrast(0.9);
 }
 
 /* property showcase  */
