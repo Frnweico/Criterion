@@ -237,6 +237,7 @@
     min-height: calc(100vh - 6em);
     justify-content: center;
     align-items: flex-start;
+    border: 1px solid red;
   }
 
   .homeServicesDetailsMobile::-webkit-scrollbar {
@@ -285,29 +286,41 @@
 }
 
 /* Mobile - 480px and below */
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 499px) {
   .homeServices {
-    padding: 1.5em 1em 0 1em;
+    padding: 1.5em 2em 0 2em;
   }
 
   .homeServicesDetails {
-    gap: 1.5em;
+    display: none !important;
+  }
+
+  .homeServicesDetailsMobile {
+    display: flex !important;
+    flex-direction: column;
+    gap: 2em;
+    padding: 0 0 4em 0;
+    min-height: calc(100vh - 6em);
+    justify-content: center;
+    align-items: flex-start;
   }
 
   .homeServicesHeading {
     font-size: 48px;
     line-height: 85%;
+    text-align: left;
   }
 
   .homeServicesImage {
     max-width: 100%;
     width: 100%;
-    border: 1px solid #f4f4f4;
   }
 
   .numberHeading {
     font-size: 65px;
     margin-bottom: 0.1em;
+    text-align: left;
+    width: 100%;
   }
 
   .investmentHeading {
@@ -322,33 +335,5 @@
 
   button {
     margin-top: 1em;
-  }
-}
-
-/* Very small mobile - 360px and below */
-@media screen and (max-width: 360px) {
-  .homeServices {
-    padding: 1em 0.8em 0 0.8em;
-  }
-
-  .homeServicesHeading {
-    font-size: 40px;
-  }
-
-  .homeServicesImage {
-    height: 220px;
-  }
-
-  .numberHeading {
-    font-size: 55px;
-  }
-
-  .investmentHeading {
-    font-size: 28px;
-  }
-
-  .homeServicesDetailsMobile p {
-    font-size: 14px;
-    line-height: 130%;
   }
 }
