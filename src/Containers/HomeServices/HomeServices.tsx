@@ -67,7 +67,7 @@ const HomeServices = () => {
         {
           opacity: 1,
           yPercent: 0,
-          ease: 'none',            // keep it tied to scroll
+          ease: 'power2.out',      
           scrollTrigger: {
             trigger: section,
             start: i === 0 ? 'top top+=1' : ENTER_START,
