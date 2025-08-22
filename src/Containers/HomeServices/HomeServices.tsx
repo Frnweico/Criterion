@@ -4,20 +4,18 @@ import serviceImg1 from "../../Assets/Images/Services 1 - Image.png"
 import serviceImg2 from "../../Assets/Images/Services 2 - Image.png"
 import serviceImg3 from "../../Assets/Images/Services 3 - Image.png"
 import serviceImg4 from "../../Assets/Images/Services 4 - Image.png"
-import {useEffect, useRef, useContext } from 'react';
-import { AppContext } from '../../Context/AppContext';
+import {useEffect, useRef} from 'react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
 // Register plugins
-gsap.registerPlugin(useGSAP);
-gsap.registerPlugin(ScrollTrigger)
+gsap.registerPlugin(useGSAP, ScrollTrigger);
 
 const HomeServices = () => {
-  const { scrollToRef } = useContext(AppContext);
     const containerRef = useRef<HTMLDivElement>(null);
-    // const sectionsRef = useRef<(HTMLDivElement | null)[]>([]);
-
+    const sectionsRef = useRef<(HTMLDivElement | null)[]>([]);
+    const servicesHeadingRef = useRef<HTMLHeadingElement>(null);
 
     const homeServicesData = [
         {
@@ -41,171 +39,170 @@ const HomeServices = () => {
         {
             num: "04",
             title: "ADVISORY",
-            description: "Choose more than a building, choose a home that reflects your personal standard.Live in a space that values distinction, where every detail is held to a high measure.Prioritise lasting worth, quiet elegance, and a seamless fit with the way you live.",
+            description: "Choose more than a building, choose a home that reflects your personal standard. Live in a space that values distinction, where every detail is held to a high measure. Prioritise lasting worth, quiet elegance, and a seamless fit with the way you live.",
             img: serviceImg4
         },
-    ]
+    ];
 
- useGSAP(() => {
-    const sections = gsap.utils.toArray<HTMLElement>(`.${classes.serviceSection}`);
-    if (!sections.length) return;
-
-    const isMobile = window.matchMedia('(max-width: 768px)').matches;
-    const ENTER_START = isMobile ? 'top 92%' : 'top 85%'; // when next starts appearing
-    const ENTER_END   = isMobile ? 'top 58%' : 'top 40%'; // when it fully takes over
-
-    // base states: nothing overlaps visibly at load
-    gsap.set(sections, { opacity: 0, yPercent: 6, zIndex: 1 });
-    gsap.set(sections[0], { opacity: 1, yPercent: 0, zIndex: 2 });
-    sections[0].classList.add(classes.active);
-
-    sections.forEach((section, i) => {
-      // bring current section IN (scroll-scrubbed)
-      gsap.fromTo(
-        section,
-        { opacity: i === 0 ? 1 : 0, yPercent: i === 0 ? 0 : 6 },
-        {
-          opacity: 1,
-          yPercent: 0,
-          ease: 'power2.out',      
-          scrollTrigger: {
-            trigger: section,
-            start: i === 0 ? 'top top+=1' : ENTER_START,
-            end: ENTER_END,
-            scrub: true,
-            onEnter: () => {
-              sections.forEach(s => s.classList.remove(classes.active));
-              section.classList.add(classes.active);
-              gsap.set(sections, { zIndex: 1 });
-              gsap.set(section, { zIndex: 2 }); // keep current above the rest
-            },
-            onEnterBack: () => {
-              sections.forEach(s => s.classList.remove(classes.active));
-              section.classList.add(classes.active);
-              gsap.set(sections, { zIndex: 1 });
-              gsap.set(section, { zIndex: 2 });
-            }
-          }
-        }
-      );
-
-      // push the PREVIOUS section OUT as this one comes in
-      if (i > 0) {
-        const prev = sections[i - 1];
-        gsap.to(prev, {
-          opacity: 0,
-          yPercent: -6,
-          ease: 'none',
-          scrollTrigger: {
-            trigger: section,
-            start: ENTER_START,
-            end: ENTER_END,
-            scrub: true
-          }
-        });
-      }
-
-      // optional: content bits pop a touch as the section becomes active
-      const bits = [
-        section.querySelector(`.${classes.homeServicesHeading}`),
-        section.querySelector(`.${classes.numberHeading}`),
-        section.querySelector(`.${classes.investmentHeading}`),
-        section.querySelector('p'),
-        section.querySelector('button'),
-        section.querySelector(`.${classes.homeServicesImage}`)
-      ].filter(Boolean) as HTMLElement[];
-
-      if (bits.length) {
-        gsap.from(bits, {
-          opacity: 0,
-          y: 24,
-          duration: 0.6,
-          stagger: 0.06,
-          ease: 'power2.out',
-          scrollTrigger: {
-            trigger: section,
-            start: ENTER_START,
-            toggleActions: 'play none none reverse'
-          }
-        });
-      }
-    });
-
-    // refresh once images are loaded (prevents mobile jump/overlap)
-    const imgs = Array.from(containerRef.current!.querySelectorAll('img'));
-    let pending = imgs.length;
-    if (pending === 0) ScrollTrigger.refresh();
-    imgs.forEach(img => {
-      if (img.complete) {
-        if (--pending === 0) ScrollTrigger.refresh();
-      } else {
-        img.addEventListener('load', () => { if (--pending === 0) ScrollTrigger.refresh(); }, { once: true });
-      }
-    });
-
-    return () => ScrollTrigger.getAll().forEach(t => t.kill());
-  }, { scope: containerRef });
-
-    // Handle window resize
     useEffect(() => {
+        if (!containerRef.current) return;
+        
+        const sections = sectionsRef.current.filter(Boolean) as HTMLDivElement[];
+        if (sections.length === 0) return;
+        
+        // Check if we're on mobile
+        const isMobile = window.innerWidth <= 768;
+        
+        // Clear any existing ScrollTriggers
+        ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+        
+        // Don't apply GSAP animations on mobile
+        if (isMobile) {
+            gsap.set(sections, { clearProps: "all" });
+            return;
+        }
+        
+        // Set initial state - all sections start at proper positions
+        gsap.set(sections, { 
+            y: 0,
+            zIndex: (i) => sections.length - i
+        });
+        
+        // Position all sections except the first one below the viewport initially
+        sections.forEach((section, i) => {
+            if (i > 0) {
+                gsap.set(section, { 
+                    y: "100vh"
+                });
+            }
+        });
+        
+        // Calculate total scroll height properly
+        const totalScrollHeight = (sections.length - 1) * 100; // 100vh per transition
+        
+        // Create individual ScrollTriggers for each section transition
+        sections.forEach((section, i) => {
+            if (i === 0) return; // Skip first section
+            
+            const startProgress = (i - 1) / (sections.length - 1);
+            const endProgress = i / (sections.length - 1);
+            
+            gsap.to(section, {
+                y: 0,
+                ease: "power2.inOut", // Smoother easing
+                scrollTrigger: {
+                    trigger: containerRef.current,
+                    start: `${startProgress * totalScrollHeight}vh top`,
+                    end: `${endProgress * totalScrollHeight}vh top`,
+                    scrub: 1.5, // Smooth scrub
+                    pin: false,
+                    onUpdate: (self) => {
+                        const prevSection = sections[i - 1];
+                        const progress = self.progress;
+                        gsap.set(prevSection, {
+                            y: -progress * 100 + "vh"
+                        });
+                    }
+                }
+            });
+        });
+        
+        // Pin the container with exact calculations
+        ScrollTrigger.create({
+            trigger: containerRef.current,
+            start: "top top",
+            end: `+=${totalScrollHeight}vh`,
+            pin: true,
+            pinSpacing: true,
+            anticipatePin: 1,
+            onRefresh: () => {
+                // Ensure no white space
+                ScrollTrigger.refresh(true);
+            }
+        });
+        
+        // Handle window resize
         const handleResize = () => {
+            const isNowMobile = window.innerWidth <= 768;
+            if (isNowMobile) {
+                gsap.set(sections, { clearProps: "all" });
+            }
             ScrollTrigger.refresh();
         };
-
+        
         window.addEventListener('resize', handleResize);
-        return () => window.removeEventListener('resize', handleResize);
+        
+        // Cleanup
+        return () => {
+            window.removeEventListener('resize', handleResize);
+            ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+        };
     }, []);
 
+    // Add sections to ref array
+    const addToRefs = (el: HTMLDivElement | null, index: number) => {
+        sectionsRef.current[index] = el;
+    };
+
     return (
-        <div className={classes.homeServices} ref={containerRef}>
-            {homeServicesData.map((service, index) => (
-                <div 
-                    key={index}
-          className={`${classes.serviceSection}`}
-                >
-                    {/* Desktop Layout */}
-                     <div className={classes.serviceContent}>
-                    <div className={classes.homeServicesDetails}>
-                        <div className={classes.homeServicesLeftSection}>
-                            <h2 className={classes.homeServicesHeading}>SERVICES</h2>
-                            <div className={classes.homeServicesImage}>
-                                <img src={service.img} alt={`${service.title} service`} />
+        <div className={classes.homeServicesWrapper}>
+            {/* Fixed Services Heading - Outside scroll container */}
+            <div className={classes.servicesFixedHeading}>
+                <h2 className={classes.homeServicesHeading}>SERVICES</h2>
+            </div>
+            
+            {/* Scrolling container */}
+            <div className={classes.homeServices} ref={containerRef}>
+                {homeServicesData.map((service, index) => (
+                    <div 
+                        key={index}
+                        className={`${classes.serviceSection}`} 
+                        ref={el => addToRefs(el, index)}
+                    >
+                        {/* Desktop Layout */}
+                        <div className={classes.serviceContent}>
+                            <div className={classes.homeServicesDetails}>
+                                <div className={classes.homeServicesLeftSection}>
+                                    {/* Image only - heading is now fixed outside */}
+                                    <div className={classes.homeServicesImage}>
+                                        <img src={service.img} alt={`${service.title} service`} />
+                                    </div>
+                                </div>
+                                <div className={classes.homeServicesRightSection}>
+                                    <h2 className={classes.numberHeading}>{service.num}</h2>
+                                    <h2 className={classes.investmentHeading}>{service.title}</h2>
+                                    <p>{service.description}</p>
+                                    <Button type='black'>
+                                        <span>TALK TO US</span>
+                                        <svg width='16' height='14' viewBox='0 0 16 14' fill='#000000'>
+                                            <path d='M8.86307 0.119629L7.58108 1.3905L12.4858 6.1107H0V7.89481H12.4798L7.58108 12.6092L8.86307 13.8801L16 7L8.86307 0.119629Z' />
+                                        </svg>
+                                    </Button>
+                                </div>
+                            </div>
+
+                            {/* Mobile Layout - FLEX COLUMN */}
+                            <div className={classes.homeServicesDetailsMobile}>
+                                <h2 className={classes.homeServicesHeading}>SERVICES</h2>
+                                <h2 className={classes.numberHeading}>{service.num}</h2>
+                                <h2 className={classes.investmentHeading}>{service.title}</h2>
+                                <p>{service.description}</p>
+                                <Button type='black'>
+                                    <span>TALK TO US</span>
+                                    <svg width='16' height='14' viewBox='0 0 16 14' fill='#000000'>
+                                        <path d='M8.86307 0.119629L7.58108 1.3905L12.4858 6.1107H0V7.89481H12.4798L7.58108 12.6092L8.86307 13.8801L16 7L8.86307 0.119629Z' />
+                                    </svg>
+                                </Button>
+                                <div className={classes.homeServicesImage}>
+                                    <img src={service.img} alt={`${service.title} service`} />
+                                </div>
                             </div>
                         </div>
-                        <div className={classes.homeServicesRightSection}>
-                            <h2 className={classes.numberHeading}>{service.num}</h2>
-                            <h2 className={classes.investmentHeading}>{service.title}</h2>
-                            <p>{service.description}</p>
-                            <Button type='black'>
-                                <span>TALK TO US</span>
-                                <svg width='16' height='14' viewBox='0 0 16 14' fill='#000000'>
-                                    <path d='M8.86307 0.119629L7.58108 1.3905L12.4858 6.1107H0V7.89481H12.4798L7.58108 12.6092L8.86307 13.8801L16 7L8.86307 0.119629Z' />
-                                </svg>
-                            </Button>
-                        </div>
                     </div>
-
-                    {/* Mobile Layout */}
-                    <div className={classes.homeServicesDetailsMobile}>
-                        <h2 className={classes.homeServicesHeading}>SERVICES</h2>
-                        <h2 className={classes.numberHeading}>{service.num}</h2>
-                        <h2 className={classes.investmentHeading}>{service.title}</h2>
-                        <p>{service.description}</p>
-                        <Button type='black'>
-                            <span>TALK TO US</span>
-                            <svg width='16' height='14' viewBox='0 0 16 14' fill='#000000'>
-                                <path d='M8.86307 0.119629L7.58108 1.3905L12.4858 6.1107H0V7.89481H12.4798L7.58108 12.6092L8.86307 13.8801L16 7L8.86307 0.119629Z' />
-                            </svg>
-                        </Button>
-                        <div className={classes.homeServicesImage}>
-                            <img src={service.img} alt={`${service.title} service`} />
-                        </div>
-                    </div>
-                </div>
-                </div>
-            ))}
+                ))}
+            </div>
         </div>
     );
 }
 
-export default HomeServices
+export default HomeServices;

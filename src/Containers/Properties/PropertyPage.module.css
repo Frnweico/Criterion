@@ -350,7 +350,6 @@
   margin-left: auto;
   flex: 1;
   font-weight: 300;
-  /* border: 1px solid red; */
 }
 
 .propertyDetailsImages {
@@ -1330,7 +1329,7 @@
     display: block;
     text-transform: uppercase;
     font-family: "Space Grotesk";
-    font-size: 30px;
+    font-size: 28px;
     line-height: 89%;
     font-weight: 300;
   }
@@ -1443,8 +1442,9 @@
   }
 
   .floorPlanHeader {
+    flex-direction: column;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
   }
   .floorPlanHeader h2 {
     font-size: 40px;
@@ -1458,6 +1458,7 @@
     margin-top: 1em;
     align-items: stretch;
     flex-wrap: wrap;
+    width: 100%;
   }
   .floorPlanHeaderItems p {
     height: 100%;
@@ -1510,8 +1511,9 @@
     flex-direction: column;
   }
   .propertyPricingContactText div {
-    width: 70%;
+    width: 60%;
     margin: 0 auto;
+    margin-bottom: 0.5em;
   }
   .propertyPricingContactText h3 {
     font-size: 30px;
@@ -1522,6 +1524,6 @@
     padding: 8px 30px;
   }
   .propertyPricingContactText div span {
-    font-size: 14px;
+    font-size: 10px;
   }
 }
