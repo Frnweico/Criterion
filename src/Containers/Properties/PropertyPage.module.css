@@ -1208,6 +1208,7 @@
   .propertyImageContainer img {
     width: 100%;
     object-fit: cover;
+    min-height: 30vh;
   }
   .propertyPageContainer header {
     gap: 1em;

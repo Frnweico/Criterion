@@ -25,7 +25,7 @@ const HomeServices = () => {
 
   const homeServicesData: Service[] = [
     { num: "01", title: "REAL ESTATE", description: "Choose more than a building, choose a home that reflects your personal standard.Live in a space that values distinction, where every detail is held to a high measure.Prioritise lasting worth, quiet elegance, and a seamless fit with the way you live.", img: serviceImg1 },
-    { num: "02", title: "INVESTMENT", description: "Criterion Homes offers private, high-yield real estate investment opportunities reserved for a select clientele. Our projects are built on verified legal compliance, future-proof designs, and strategic locations that deliver both financial returns and long-term value preservation.", img: serviceImg2 },
+    { num: "02", title: "INVESTMENT", description: "Criterion Homes offers private, high-yield real estate investment opportunities reserved for a select clientele. \n Our projects are built on verified legal compliance, future-proof designs, and strategic locations that deliver both financial returns and long-term value preservation.", img: serviceImg2 },
     { num: "03", title: "INFRASTRUCTURE", description: "Choose more than a building, choose a home that reflects your personal standard.Live in a space that values distinction, where every detail is held to a high measure.Prioritise lasting worth, quiet elegance, and a seamless fit with the way you live.", img: serviceImg3 },
     { num: "04", title: "ADVISORY", description: "Choose more than a building, choose a home that reflects your personal standard. Live in a space that values distinction, where every detail is held to a high measure. Prioritise lasting worth, quiet elegance, and a seamless fit with the way you live.", img: serviceImg4 },
   ];
@@ -39,35 +39,34 @@ useLayoutEffect(() => {
     const container = containerRef.current;
     const sections = sectionsRef.current.filter(Boolean) as HTMLDivElement[];
     if (!container || sections.length === 0) return;
-
+    
     // ---- REAL visible viewport for mobile (fixes cut-off) ----
     const setVh = () => {
       const h = window.visualViewport ? window.visualViewport.height : window.innerHeight;
       document.documentElement.style.setProperty('--vh', `${h * 0.01}px`);
     };
     setVh();
-    window.visualViewport?.addEventListener('resize', setVh);
-    window.addEventListener('orientationchange', setVh);
-
+    
     // Clean reset
     ScrollTrigger.getAll().forEach(t => t.kill());
     gsap.killTweensOf(sections);
-
+    
     // Shared cover→push TL (mirrors on reverse; no early reveal)
     const buildTimeline = () => {
       const EPS = 0.0001;
-      const ZTOP = 2147483647;   // huge while pinned
-      const COVER_AT = 0.00;     // incoming starts immediately (you SEE cover)
-      const PUSH_AT  = 0.22;     // outgoing starts later (cover first)
-      const COVER_DUR = 0.68;    // incoming ends before step end
-      const PUSH_DUR  = 1 - PUSH_AT; // outgoing ends exactly at step end
-
+      const ZTOP = 2147483647;   
+      const COVER_AT = 0.00;
+      const PUSH_AT  = 0.22;
+      const COVER_DUR = 0.68;
+      const PUSH_DUR  = 1 - PUSH_AT;
+      
+      // ✅ Initial placement: first section visible, others below
       sections.forEach((sec, i) => {
         gsap.set(sec, {
           position: 'absolute',
           inset: 0,
           yPercent: i === 0 ? 0 : 100,
-          zIndex: i + 1,
+          zIndex: i === 0 ? ZTOP : 0,  // ensure first section is on top initially
           willChange: 'transform',
           force3D: true,
           boxSizing: 'border-box'
@@ -84,14 +83,13 @@ useLayoutEffect(() => {
         // Forward: incoming on top
         tl.set(incoming, { zIndex: ZTOP }, t0 - EPS);
 
-        // COVER (incoming 100% -> 0%)
+        // COVER
         tl.to(incoming, { yPercent: 0, duration: COVER_DUR }, t0 + COVER_AT);
 
-        // PUSH (outgoing 0% -> -100%)
+        // PUSH
         tl.to(outgoing, { yPercent: -100, duration: PUSH_DUR }, t0 + PUSH_AT);
 
-        // Reverse: only at the very end of the step, let outgoing get on top
-        // so reverse looks identical without "early" reveal.
+        // Reverse: outgoing regains top at the very end of its step
         tl.set(outgoing, { zIndex: ZTOP }, t0 + 1 - EPS);
       }
 
@@ -100,57 +98,55 @@ useLayoutEffect(() => {
 
     const steps = sections.length - 1;
 
-    // Decouple desktop/mobile with independent distances
-    ScrollTrigger.matchMedia({
-      "(min-width: 769px)": () => {
-        const STEP_VH_DESKTOP = 360; // bigger = slower
-        const tl = buildTimeline();
-        const st = ScrollTrigger.create({
-          trigger: container,
-          start: "top top",
-          end: `+=${steps * STEP_VH_DESKTOP}vh`,
-          pin: true,
-          pinReparent: true,    // pinned above everything (fixes overlay bleed)
-          pinSpacing: true,     // keep spacer so following content stays put
-          scrub: true,          // stops when you stop
-          anticipatePin: 1,
-          invalidateOnRefresh: true,
-          animation: tl,
-          onToggle: (s) => gsap.set(container, { zIndex: s.isActive ? 2147483647 : 1 })
-        });
-        return () => st.kill();
-      },
+    // ✅ Use gsap.matchMedia instead of ScrollTrigger.matchMedia
+    const mm = gsap.matchMedia();
 
-      "(max-width: 768px)": () => {
-        const MOBILE_STEP_MULT = 3.5; // “viewport heights per handoff” (bigger = slower)
-        const tl = buildTimeline();
-        const st = ScrollTrigger.create({
-          trigger: container,
-          start: "top top",
-          end: `+=${Math.round(steps * (window.visualViewport ? window.visualViewport.height : window.innerHeight) * MOBILE_STEP_MULT)}px`,
-          pin: true,
-          pinReparent: true,    // above everything on mobile too
-          pinSpacing: true,
-          scrub: true,
-          anticipatePin: 1,
-          invalidateOnRefresh: true,
-          animation: tl,
-          onToggle: (s) => gsap.set(container, { zIndex: s.isActive ? 2147483647 : 1 })
-        });
-        return () => st.kill();
-      }
+    mm.add("(min-width: 769px)", () => {
+      const STEP_VH_DESKTOP = 500; // bigger = slower scroll
+      const tl = buildTimeline();
+      const st = ScrollTrigger.create({
+        trigger: container,
+        start: "top top",
+        end: `+=${steps * STEP_VH_DESKTOP}vh`,
+        pin: true,
+        pinReparent: true,
+        pinSpacing: true,
+        scrub: true,
+        anticipatePin: 1,
+        invalidateOnRefresh: true,
+        animation: tl,
+      });
+      return () => st.kill();
     });
 
-    // Keep --vh accurate & refresh ST on changes that affect visual height
+    mm.add("(max-width: 768px)", () => {
+      const MOBILE_STEP_MULT = 3.5;
+      const tl = buildTimeline();
+      const st = ScrollTrigger.create({
+        trigger: container,
+        start: "top top",
+        end: `+=${Math.round(steps * (window.visualViewport ? window.visualViewport.height : window.innerHeight) * MOBILE_STEP_MULT)}px`,
+        pin: true,
+        pinReparent: true,
+        pinSpacing: true,
+        scrub: true,
+        anticipatePin: 1,
+        invalidateOnRefresh: true,
+        animation: tl,
+      });
+      return () => st.kill();
+    });
+
+    // Keep --vh accurate
     const refreshAll = () => { setVh(); ScrollTrigger.refresh(); };
     requestAnimationFrame(refreshAll);
+
     window.addEventListener('resize', refreshAll);
     window.addEventListener('orientationchange', refreshAll);
     if (window.visualViewport) window.visualViewport.addEventListener('resize', refreshAll);
-    const imgs = Array.from(container.querySelectorAll('img')) as HTMLImageElement[];
-    imgs.forEach(img => { if (!img.complete) img.addEventListener('load', refreshAll, { once: true }); });
 
     return () => {
+      mm.revert();
       window.removeEventListener('resize', refreshAll);
       window.removeEventListener('orientationchange', refreshAll);
       if (window.visualViewport) window.visualViewport.removeEventListener('resize', refreshAll);
@@ -159,6 +155,7 @@ useLayoutEffect(() => {
 
   return () => ctx.revert();
 }, []);
+
 
   return (
     <div className={classes.homeServicesWrapper}>
