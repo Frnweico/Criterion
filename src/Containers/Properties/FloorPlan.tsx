@@ -8,18 +8,24 @@ import firstFloorSingleImg from "../../Assets/Images/firstFloorSingleImg.jpg";
 import secondFloorSingleImg from "../../Assets/Images/secondFloorSingleImg.jpg";
 import leftArrow from "../../Assets/Images/leftArrow.svg";
 import rightArrow from "../../Assets/Images/rightArrow.svg";
-import Aos from 'aos';
-import 'aos/dist/aos.css';
+import Aos from "aos";
+import "aos/dist/aos.css";
 
 // Component to show room labels
-const FloorPlanHeader = ({ title, description }: { title: string; description: string }) => {
+const FloorPlanHeader = ({
+  title,
+  description,
+}: {
+  title: string;
+  description: string;
+}) => {
   const items = description.split(",").map((item) => item.trim());
   return (
     <div data-aos="fade-up" className={classes.floorPlanHeader}>
       <h2>{title}</h2>
       <div className={classes.floorPlanHeaderItems}>
         {items.map((item, idx) => (
-          <div key={idx} >
+          <div key={idx}>
             <p>{item}</p>
           </div>
         ))}
@@ -28,15 +34,29 @@ const FloorPlanHeader = ({ title, description }: { title: string; description: s
   );
 };
 
+type LightboxState = {
+  open: boolean;
+  unitIdx: number; // 0 = double, 1 = single
+  idx: number; // slide index
+};
+
 const FloorPlan = () => {
   const [doubleFloorIndex, setDoubleFloorIndex] = useState(0);
-const [singleFloorIndex, setSingleFloorIndex] = useState(0);
-const [transitioningUnit, setTransitioningUnit] = useState<string | null>(null);
- const [swipeDirection, setSwipeDirection] = useState<'next' | 'prev' | null>(null);
+  const [singleFloorIndex, setSingleFloorIndex] = useState(0);
+  const [transitioningUnit, setTransitioningUnit] = useState<string | null>(
+    null
+  );
+  const [swipeDirection, setSwipeDirection] = useState<"next" | "prev" | null>(
+    null
+  );
 
-useEffect(() => {
-		Aos.init({ duration: 1000 });
-	}, []);
+  // Lightbox (popup)
+  const [lb, setLb] = useState<LightboxState | null>(null);
+  const [touchStartX, setTouchStartX] = useState<number | null>(null);
+
+  useEffect(() => {
+    Aos.init({ duration: 1000 });
+  }, []);
 
   const floorPlanData = [
     {
@@ -50,12 +70,14 @@ useEffect(() => {
         {
           title: "FIRST FLOOR",
           img: firstFloorImg,
-          description: "2 BEDROOMS, ATRIUM, ALL ROOMS ENSUITE, BALCONIES & DRESSING AREAS",
+          description:
+            "2 BEDROOMS, ATRIUM, ALL ROOMS ENSUITE, BALCONIES & DRESSING AREAS",
         },
         {
           title: "SECOND FLOOR",
           img: secondFloorImg,
-          description: "2 ADDITIONAL BEDROOMS, ATRIUM, ALL ROOMS ENSUITE, BALCONIES & DRESSING AREAS",
+          description:
+            "2 ADDITIONAL BEDROOMS, ATRIUM, ALL ROOMS ENSUITE, BALCONIES & DRESSING AREAS",
         },
       ],
     },
@@ -70,90 +92,76 @@ useEffect(() => {
         {
           title: "FIRST FLOOR",
           img: firstFloorSingleImg,
-          description: "2 BEDROOMS, ATRIUM, ALL ROOMS ENSUITE, BALCONIES & DRESSING AREAS",
+          description:
+            "2 BEDROOMS, ATRIUM, ALL ROOMS ENSUITE, BALCONIES & DRESSING AREAS",
         },
         {
           title: "SECOND FLOOR",
           img: secondFloorSingleImg,
-          description: "2 ADDITIONAL BEDROOMS, ATRIUM, ALL ROOMS ENSUITE, BALCONIES & DRESSING AREAS",
+          description:
+            "2 ADDITIONAL BEDROOMS, ATRIUM, ALL ROOMS ENSUITE, BALCONIES & DRESSING AREAS",
         },
       ],
     },
   ];
 
-
-  const navigateFloor = (unit: string, direction: "next" | "prev") => {
-    setTransitioningUnit(unit);
-    setSwipeDirection(direction);
-    
-    setTimeout(() => {
-      if (unit === "SINGLE") {
-        setSingleFloorIndex((prev) =>
-          direction === "next" ? Math.min(prev + 1, 2) : Math.max(prev - 1, 0)
-        );
-      } else {
-        setDoubleFloorIndex((prev) =>
-          direction === "next" ? Math.min(prev + 1, 2) : Math.max(prev - 1, 0)
-        );
-      }
-      
-      // Reset transition states after content changes
-      setTimeout(() => {
-        setTransitioningUnit(null);
-        setSwipeDirection(null);
-      }, 50);
-    }, 500); // Wait for slide out animation
-  };
-
-  const getTransitionClass = (unit: { unit: string }) => {
-    const isTransitioning = transitioningUnit === unit.unit;
-    
-    if (!isTransitioning) return "";
-    
-    if (swipeDirection === "next") {
-      return classes.slideOutLeft;
-    } else if (swipeDirection === "prev") {
-      return classes.slideOutRight;
+  const move = (unit: string, dir: "next" | "prev") => {
+    const delta = dir === "next" ? 1 : -1;
+    if (unit === "SINGLE") {
+      setSingleFloorIndex((i) => Math.min(2, Math.max(0, i + delta)));
+    } else {
+      setDoubleFloorIndex((i) => Math.min(2, Math.max(0, i + delta)));
     }
-    
-    return "";
   };
 
-  const getSlideInClass = (unit: { unit: string }) => {
-    const wasTransitioning = transitioningUnit === unit.unit;
-    
-    if (wasTransitioning && swipeDirection === "next") {
-      return classes.slideInRight;
-    } else if (wasTransitioning && swipeDirection === "prev") {
-      return classes.slideInLeft;
-    }
-    
-    return "";
+  const openLb = (unitIdx: number, idx: number) =>
+    setLb({ open: true, unitIdx, idx });
+  const closeLb = () => setLb(null);
+
+  const lbNext = () =>
+    setLb((s) =>
+      !s
+        ? s
+        : {
+            ...s,
+            idx: Math.min(
+              floorPlanData[s.unitIdx].floors.length - 1,
+              s.idx + 1
+            ),
+          }
+    );
+  const lbPrev = () =>
+    setLb((s) => (!s ? s : { ...s, idx: Math.max(0, s.idx - 1) }));
+
+  const onLbTouchStart = (e: React.TouchEvent) =>
+    setTouchStartX(e.changedTouches[0].clientX);
+  const onLbTouchEnd = (e: React.TouchEvent) => {
+    if (touchStartX === null) return;
+    const dx = e.changedTouches[0].clientX - touchStartX;
+    const THRESH = 40;
+    if (dx > THRESH) lbPrev();
+    if (dx < -THRESH) lbNext();
+    setTouchStartX(null);
   };
 
-   return (
+  return (
     <div className={classes.floorPlanWrapper}>
-      {floorPlanData.map((unit, index) => {
+      {floorPlanData.map((unit, unitIdx) => {
         const isSingle = unit.unit === "SINGLE";
         const currentIndex = isSingle ? singleFloorIndex : doubleFloorIndex;
-        const floor = unit.floors[currentIndex];
-        const isTransitioning = transitioningUnit === unit.unit;
+        const len = unit.floors.length;
 
         return (
-          <div key={index} className={classes.floorPlan}>
+          <div key={unitIdx} className={classes.floorPlan}>
             <h3 className={classes.floorPlanTitle}>
               FLOOR PLAN {unit.unit && <span>({unit.unit} UNIT)</span>}
             </h3>
 
-            <div
-              className={`${classes.transitionWrapper} ${
-                isTransitioning ? getTransitionClass(unit) : getSlideInClass(unit)
-              }`}
-            >
+            <div className={classes.transitionWrapper}>
               <div className={classes.floorPlanWithNavigation}>
                 {/* Left Arrow */}
                 <button
-                  onClick={() => navigateFloor(unit.unit, "prev")}
+                  onClick={() => move(unit.unit, "prev")}
                   disabled={currentIndex === 0}
                   className={classes.arrowButton}
                 >
@@ -162,33 +170,67 @@ useEffect(() => {
 
                 {/* Content Container - Header and Image */}
                 <div className={classes.floorPlanContent}>
-                  <FloorPlanHeader title={floor.title} description={floor.description} />
-                  
-                 <div className={classes.floorPlanImageWrapper}>
-  <button
-    onClick={() => navigateFloor(unit.unit, "prev")}
-    disabled={currentIndex === 0}
-    className={` ${classes.overlayArrow} ${classes.overlayArrowLeft}`}
-    aria-label="Previous Floor (mobile)"
-  >
-    <img src={leftArrow} alt="" />
-  </button>
-  
-  <img src={floor.img} alt={`${floor.title} for ${unit.unit || 'DOUBLE'}`} />
+                  <div className={classes.floorPlanHeaderRow}>
+                    <button
+                      onClick={() => move(unit.unit, "prev")}
+                      disabled={currentIndex === 0}
+                      className={`${classes.overlayArrow} ${classes.overlayArrowLeft}`}
+                      aria-label="Previous (mobile)"
+                    >
+                      <img src={leftArrow} alt="" />
+                    </button>
+                    <FloorPlanHeader
+                      title={unit.floors[currentIndex].title}
+                      description={unit.floors[currentIndex].description}
+                    />
+                    <button
+                      onClick={() => move(unit.unit, "next")}
+                      disabled={currentIndex === len - 1}
+                      className={`${classes.overlayArrow} ${classes.overlayArrowRight}`}
+                      aria-label="Next (mobile)"
+                    >
+                      <img src={rightArrow} alt="" />
+                    </button>
+                  </div>
 
-  <button
-    onClick={() => navigateFloor(unit.unit, "next")}
-    disabled={currentIndex === 2}
-    className={` ${classes.overlayArrow} ${classes.overlayArrowRight}`}
-    aria-label="Next Floor (mobile)">
-    <img src={rightArrow} alt="" />
-  </button>
-</div>
+                  {/* carousel */}
+                  <div className={classes.carouselViewport}>
+                    <div
+                      className={classes.carouselTrack}
+                      style={{
+                        transform: `translateX(-${currentIndex * 100}%)`,
+                      }}
+                    >
+                      {unit.floors.map((floor, idx) => (
+                        <div className={classes.carouselSlide} key={idx}>
+                          <div
+                            className={classes.floorPlanImageWrapper}
+                            role="button"
+                            onClick={() => openLb(unitIdx, idx)}
+                            aria-label="Open large view"
+                            tabIndex={0}
+                            onKeyDown={(e) => {
+                              if (e.key === "Enter" || e.key === " ") {
+                                openLb(unitIdx, idx);
+                              }
+                            }}
+                          >
+                            <img
+                              src={floor.img}
+                              alt={`${floor.title} for ${
+                                unit.unit || "DOUBLE"
+                              }`}
+                            />
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
                 </div>
 
                 {/* Right Arrow */}
                 <button
-                  onClick={() => navigateFloor(unit.unit, "next")}
+                  onClick={() => move(unit.unit, "next")}
                   disabled={currentIndex === 2}
                   className={classes.arrowButton}
                 >

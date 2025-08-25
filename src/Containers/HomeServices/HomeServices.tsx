@@ -40,7 +40,6 @@ useLayoutEffect(() => {
     const sections = sectionsRef.current.filter(Boolean) as HTMLDivElement[];
     if (!container || sections.length === 0) return;
     
-    // ---- REAL visible viewport for mobile (fixes cut-off) ----
     const setVh = () => {
       const h = window.visualViewport ? window.visualViewport.height : window.innerHeight;
       document.documentElement.style.setProperty('--vh', `${h * 0.01}px`);
@@ -60,13 +59,12 @@ useLayoutEffect(() => {
       const COVER_DUR = 0.68;
       const PUSH_DUR  = 1 - PUSH_AT;
       
-      // ✅ Initial placement: first section visible, others below
       sections.forEach((sec, i) => {
         gsap.set(sec, {
           position: 'absolute',
           inset: 0,
           yPercent: i === 0 ? 0 : 100,
-          zIndex: i === 0 ? ZTOP : 0,  // ensure first section is on top initially
+          zIndex: i === 0 ? ZTOP : 0,  
           willChange: 'transform',
           force3D: true,
           boxSizing: 'border-box'
@@ -80,28 +78,29 @@ useLayoutEffect(() => {
   const outgoing = sections[i - 1];
   const t0 = i - 1;
 
+
   // --- Forward ---
-  tl.set(outgoing, { zIndex: ZTOP }, t0 - EPS); // outgoing on top initially
+  tl.set(outgoing, { zIndex: ZTOP }, t0 - EPS);
+
   tl.to(incoming, { yPercent: 0, duration: COVER_DUR, ease: "none" }, t0 + COVER_AT);
   tl.set(incoming, { zIndex: ZTOP }, t0 + COVER_AT + EPS);
+
   tl.to(outgoing, { yPercent: -100, duration: PUSH_DUR, ease: "none" }, t0 + PUSH_AT);
-  tl.set(incoming, { zIndex: ZTOP }, t0 + 1 - EPS);
+
+  tl.set(outgoing, { zIndex: 0 }, t0 + 1 - EPS);
 
   // --- Reverse safeguard ---
-  // When going backward, restore outgoing to top before it slides back in
-  tl.set(outgoing, { zIndex: ZTOP }, t0 + PUSH_AT - EPS);
-      }
+  tl.set(outgoing, { zIndex: ZTOP }, t0 + PUSH_AT - EPS);}
 
-      return tl;
+  return tl;
     };
 
     const steps = sections.length - 1;
 
-    // ✅ Use gsap.matchMedia instead of ScrollTrigger.matchMedia
     const mm = gsap.matchMedia();
 
     mm.add("(min-width: 769px)", () => {
-      const STEP_VH_DESKTOP = 500; // bigger = slower scroll
+      const STEP_VH_DESKTOP = 400; 
       const tl = buildTimeline();
       const st = ScrollTrigger.create({
         trigger: container,

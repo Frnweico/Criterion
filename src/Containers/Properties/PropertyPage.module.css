@@ -271,12 +271,10 @@
   width: 85%;
   margin: 0 auto;
   position: relative;
-  /* border: 1px solid #fff; */
 }
 
 .propertyDetailsInfo {
   margin-left: 7em;
-  /* border: 1px solid red; */
   position: relative;
   height: 200px;
 }
@@ -290,7 +288,6 @@
   display: flex;
   flex-direction: column;
   width: 60%;
-  /* border: 1px solid red; */
 }
 .propertyDetailsLinee {
   position: absolute;
@@ -394,71 +391,120 @@
 }
 
 /* floor plan  */
-.transitionWrapper {
-  position: relative;
-  width: 100%;
-  max-width: 100vw;
-  margin: 2em 0;
-}
-.slideInRight {
-  animation: slideInFromRight 0.75s ease-out forwards;
-}
-
-.slideOutLeft {
-  animation: slideOutToLeft 0.75s ease-out forwards;
-}
-
-.slideInLeft {
-  animation: slideInFromLeft 0.75s ease-out forwards;
-}
-
-.slideOutRight {
-  animation: slideOutToRight 0.75s ease-out forwards;
-}
-
-@keyframes slideInFromRight {
-  from {
-    transform: translateX(100%);
-    opacity: 0;
-  }
-  to {
-    transform: translateX(0);
-    opacity: 1;
-  }
-}
-
-@keyframes slideOutToLeft {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-100%);
-  }
-}
-
-@keyframes slideInFromLeft {
-  from {
-    transform: translateX(-100%);
-  }
-  to {
-    transform: translateX(0);
-  }
-}
-
-@keyframes slideOutToRight {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(100%);
-  }
-}
 
 .floorPlanWithNavigation {
   display: flex;
   align-items: center;
   justify-content: center;
   width: 100%;
+}
+.carouselViewport {
+  width: 100%;
+  overflow: hidden;
+  padding: 0 2em;
+  box-sizing: border-box;
+}
+.carouselTrack {
+  display: flex;
+  width: 100%;
+  transition: transform 450ms ease;
+  will-change: transform;
+}
+.carouselSlide {
+  min-width: 100%;
+  flex: 0 0 100%;
+}
+.floorPlanHeaderRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1em;
+  width: 90%;
+  margin: 0 auto;
+}
+.carouselViewport {
+  width: 100%;
+  overflow: hidden;
+  padding: 0 2em;
+  box-sizing: border-box;
+}
+.carouselTrack {
+  display: flex;
+  width: 100%;
+  transition: transform 450ms ease;
+  will-change: transform;
+}
+.carouselSlide {
+  min-width: 100%;
+  flex: 0 0 100%;
+}
+.floorPlanHeaderRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1em;
+  width: 100%;
+}
+.lightboxBackdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75);
+  display: grid;
+  place-items: center;
+  z-index: 99999;
+  padding: 2rem;
+}
+.lightboxInner {
+  position: relative;
+  width: min(1200px, 95vw);
+  height: min(85vh, 95vh);
+  display: grid;
+  place-items: center;
+}
+.lightboxImage {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  display: block;
+  object-fit: contain;
+  border-radius: 2px;
+}
+.lightboxArrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  padding: 0.5rem;
+  cursor: pointer;
+  opacity: 0.9;
+}
+.lightboxArrowLeft {
+  left: 0.25rem;
+}
+.lightboxArrowRight {
+  right: 0.25rem;
+}
+.lightboxArrow:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+.lightboxArrow img {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+}
+.lightboxClose {
+  position: absolute;
+  top: 0.25rem;
+  right: 0.5rem;
+  font-size: 32px;
+  line-height: 1;
+  background: none;
+  border: none;
+  color: #fff;
+  cursor: pointer;
 }
 
 .floorPlanContent {
@@ -1414,11 +1460,6 @@
   }
 
   /* floor-plan header centre & shrink */
-  .transitionWrapper {
-    margin: 0 auto;
-    overflow: visible;
-    max-width: 100vw;
-  }
   .floorPlanWithNavigation {
     display: flex;
     align-items: center;
@@ -1443,12 +1484,17 @@
     justify-content: center;
     align-items: flex-start;
     text-align: center;
-    /* border: 1px solid red; */
   }
   .floorPlanHeader h2 {
     font-size: 40px;
     text-align: center;
     width: 100%;
+  }
+  .carouselViewport {
+    padding: 0;
+  }
+  .mobileHeaderArrows {
+    display: flex;
   }
   .floorPlanHeaderItems {
     flex-direction: row;
@@ -1484,7 +1530,6 @@
     width: 80%;
     height: auto;
     display: block;
-    /* max-width: none; */
   }
   .floorPlanWithNavigation > .arrowButton {
     display: none;
@@ -1498,7 +1543,7 @@
     border: none;
     flex-shrink: 0;
     width: 10%;
-    margin: 0 -5em;
+    margin: 0 -4em;
     cursor: pointer;
     transition: transform 0.3s ease;
   }
@@ -1570,14 +1615,14 @@
   }
   .propertyReason p {
     text-align: center;
-    width: 80%;
+    width: 95%;
     margin: 0 auto;
   }
 }
 
 @media (min-width: 450px) and (max-width: 580px) {
   .overlayArrow {
-    margin: 0 -4em;
+    margin: 0 -3em;
   }
 }
 
@@ -1589,6 +1634,6 @@
 
 @media (max-width: 449px) {
   .overlayArrow {
-    margin: 0 -3em;
+    margin: 0 -2em;
   }
 }

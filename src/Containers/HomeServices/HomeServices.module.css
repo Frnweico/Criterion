@@ -311,6 +311,10 @@
     inset: 0;
   }
 
+  .serviceSection:first-child {
+    z-index: 1;
+  }
+
   .serviceContent {
     height: 100%;
     display: flex;

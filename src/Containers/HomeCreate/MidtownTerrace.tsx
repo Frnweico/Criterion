@@ -1,6 +1,5 @@
 import classes from './HomeCreate.module.css';
-import midtownTerrace1 from "../../Assets/Images/midtownTerrace1.svg"
-// import midtownTerrace2 from "../../Assets/Images/Project Section - Main Image.png"
+import midtownTerrace1 from "../../Assets/Images/xV1.jpg"
 import midtownTerrace2 from "../../Assets/Images/midtownTerrace2.svg"
 import Button from '../../Components/Button/Button';
 import line from "../../Assets/Images/Line 2.svg"
