@@ -362,8 +362,7 @@
     flex: 0 1 auto;
     max-width: 80%;
     width: 80%;
-    height: 250px; /* Fixed height instead of vh-based */
-    min-height: 250px; /* Ensure minimum height */
+    height: 100%;
     overflow: hidden;
     margin-top: auto;
   }
@@ -403,14 +402,14 @@
 /* Mobile - 480px and below */
 @media screen and (max-width: 499px) {
   .homeServices {
-    padding: 1.5em 2em 0 2em;
+    margin-top: 0;
   }
 
   .homeServicesDetails {
     display: none !important;
   }
 
-  .homeServicesDetailsMobile {
+  /* .homeServicesDetailsMobile {
     display: flex !important;
     flex-direction: column;
     gap: 2em;
@@ -418,7 +417,7 @@
     min-height: calc(100vh - 6em);
     justify-content: center;
     align-items: flex-start;
-  }
+  } */
 
   .homeServicesHeading {
     font-size: 48px;
@@ -426,10 +425,10 @@
     text-align: left;
   }
 
-  .homeServicesImage {
+  /* .homeServicesImage {
     max-width: 100%;
     width: 100%;
-  }
+  } */
 
   .numberHeading {
     font-size: 65px;

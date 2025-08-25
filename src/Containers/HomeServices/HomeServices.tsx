@@ -122,7 +122,7 @@ useLayoutEffect(() => {
       },
 
       "(max-width: 768px)": () => {
-        const MOBILE_STEP_MULT = 7.5; // “viewport heights per handoff” (bigger = slower)
+        const MOBILE_STEP_MULT = 4; // “viewport heights per handoff” (bigger = slower)
         const tl = buildTimeline();
         const st = ScrollTrigger.create({
           trigger: container,
