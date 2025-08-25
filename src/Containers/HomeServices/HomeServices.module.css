@@ -1,21 +1,19 @@
-/* Main wrapper - contains both fixed heading and scrolling container */
 .homeServicesWrapper {
   position: relative;
   width: 100vw;
   background-color: #000;
   color: #f4f4f4;
+  overscroll-behavior: contain;
+  isolation: isolate;
+  overflow: hidden;
 }
 
-/* Fixed heading outside scroll container - stays visible during scroll */
 .servicesFixedHeading {
-  position: sticky;
-  top: 0;
-  left: 0;
-  right: 0;
-  /* background-color: #000; */
-  padding: 3em 1em 1em 1em;
-  z-index: 1000;
-  pointer-events: none; /* Allow scroll through */
+  pointer-events: none;
+  padding: 3em 1em 1em 2.5em;
+  pointer-events: none;
+  width: 90%;
+  margin: 0 auto;
 }
 
 .servicesFixedHeading .homeServicesHeading {
@@ -26,24 +24,25 @@
   font-size: 100px;
   margin-bottom: 0;
   text-align: left;
-  margin-left: 3em;
   color: #f4f4f4;
 }
 
-/* Scrolling container - add top margin to account for fixed heading */
 .homeServices {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-start;
-  padding: 0;
-  background-color: #000;
-  color: #f4f4f4;
+  position: relative;
   width: 100vw;
   min-height: 100vh;
-  position: relative;
+  background: #000;
+  color: #f4f4f4;
   overflow: hidden;
-  margin-top: 8em; /* Space for fixed heading */
+  isolation: isolate;
+  /* width: 90%; */
+  /* margin: 0 auto; */
+}
+
+.homeServices.isPinned {
+  /* width: 90%; */
+  z-index: 20000;
+  /* margin: 0 auto; */
 }
 
 .homeServices::-webkit-scrollbar {
@@ -54,28 +53,21 @@
 }
 
 .serviceSection {
-  width: 100%;
-  height: 100vh;
   position: absolute;
-  top: 0;
-  left: 0;
+  inset: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-sizing: border-box;
-  flex-shrink: 0;
   will-change: transform;
-  padding: 2em 1em;
-  background-color: #000;
+  background: #000;
+  padding: 0 5%;
 }
 
 .serviceContent {
   width: 100%;
   height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
+  max-width: 90%; /* Constrain content width */
+  margin: 0 auto;
 }
 
 .homeServicesHeading {
@@ -135,6 +127,9 @@
   height: 100%;
   object-fit: cover;
   object-position: center;
+  display: block;
+  transform: translateZ(0);
+  will-change: transform;
 }
 
 .numberHeading {
@@ -296,12 +291,16 @@
   }
 
   .homeServices {
-    padding: 0;
-    overflow-x: hidden;
-    overflow-y: visible;
-    position: relative;
-    height: auto;
-    margin-top: 0; /* Reset margin on mobile */
+    margin-top: 0;
+    /* width: 85%; */
+    /* margin: 0 auto; */
+  }
+
+  .homeServices,
+  .serviceSection {
+    height: calc(var(--vh, 1vh) * 100);
+    overflow: hidden;
+    box-sizing: border-box;
   }
 
   .homeServicesDetails {
@@ -309,25 +308,35 @@
   }
 
   .serviceSection {
-    padding: 2em 1.5em;
+    padding: 2em 7.5%;
     display: flex;
     align-items: center;
     justify-content: center;
-    position: relative !important;
-    height: auto;
-    min-height: 100vh;
-    transform: none !important;
+    position: absolute;
+    inset: 0;
+  }
+
+  .serviceContent {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    max-width: 100%;
+    margin: 0;
   }
 
   .homeServicesDetailsMobile {
     display: flex;
+    flex: 1 1 auto;
     flex-direction: column;
     gap: 2em;
     padding: 0 0 4em 0;
-    min-height: auto;
-    justify-content: center;
+    min-height: 0;
+    justify-content: space-between;
     align-items: flex-start;
     width: 100%;
+    height: 100%;
+    padding-bottom: env(safe-area-inset-bottom);
     box-sizing: border-box;
   }
 
@@ -335,22 +344,37 @@
     display: none !important;
   }
 
-  .homeServicesHeading {
+  .homeServicesDetailsMobile .homeServicesHeading {
     font-size: 60px;
     text-align: left;
-    margin-bottom: 1em;
+    margin-bottom: 0.5em;
     line-height: 88%;
     letter-spacing: -4%;
+    display: none; /* Hide by default */
+  }
+
+  /* Show SERVICES heading only on first service */
+  .serviceSection:first-child .homeServicesDetailsMobile .homeServicesHeading {
+    display: block;
   }
 
   .homeServicesImage {
+    flex: 0 1 auto;
     max-width: 80%;
     width: 80%;
+    height: 250px; /* Fixed height instead of vh-based */
+    min-height: 250px; /* Ensure minimum height */
+    overflow: hidden;
+    margin-top: auto;
   }
 
   .homeServicesImage img {
     width: 100%;
+    height: 100%;
     object-fit: cover;
+    display: block;
+    transform: translateZ(0);
+    will-change: transform;
   }
 
   .numberHeading {

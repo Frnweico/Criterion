@@ -164,9 +164,26 @@ useEffect(() => {
                 <div className={classes.floorPlanContent}>
                   <FloorPlanHeader title={floor.title} description={floor.description} />
                   
-                  <div className={classes.floorPlanImageWrapper}>
-                    <img src={floor.img} alt={`${floor.title} for ${unit.unit}`} />
-                  </div>
+                 <div className={classes.floorPlanImageWrapper}>
+  <button
+    onClick={() => navigateFloor(unit.unit, "prev")}
+    disabled={currentIndex === 0}
+    className={` ${classes.overlayArrow} ${classes.overlayArrowLeft}`}
+    aria-label="Previous Floor (mobile)"
+  >
+    <img src={leftArrow} alt="" />
+  </button>
+  
+  <img src={floor.img} alt={`${floor.title} for ${unit.unit || 'DOUBLE'}`} />
+
+  <button
+    onClick={() => navigateFloor(unit.unit, "next")}
+    disabled={currentIndex === 2}
+    className={` ${classes.overlayArrow} ${classes.overlayArrowRight}`}
+    aria-label="Next Floor (mobile)">
+    <img src={rightArrow} alt="" />
+  </button>
+</div>
                 </div>
 
                 {/* Right Arrow */}

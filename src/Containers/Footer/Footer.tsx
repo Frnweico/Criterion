@@ -37,8 +37,7 @@ const Footer = () => {
 			<div className={classes.topSection}>
 				<div className={classes.topSectionMain}>
 				<h4>STAY ONE STEP AHEAD</h4>
-				<p>Get exclusive property listings, smart tips and market updates delivered straight to your inbox.
-<span>Sign up for our newsletter today.</span></p>
+				<p>Get exclusive property listings, smart tips and market updates delivered straight to your inbox. <br /><span>Sign up for our newsletter today.</span></p>
 				</div>
 				<div>
 					<input
