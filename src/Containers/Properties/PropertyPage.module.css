@@ -11,8 +11,9 @@
 }
 .propertyImageContainer img {
   width: 100%;
-  height: auto;
+  height: 500px;
   object-fit: cover;
+  object-position: top;
 }
 .propertyPageContainer header {
   background-color: #30352f;
@@ -429,33 +430,27 @@
 @keyframes slideOutToLeft {
   from {
     transform: translateX(0);
-    opacity: 1;
   }
   to {
     transform: translateX(-100%);
-    opacity: 0;
   }
 }
 
 @keyframes slideInFromLeft {
   from {
     transform: translateX(-100%);
-    opacity: 0;
   }
   to {
     transform: translateX(0);
-    opacity: 1;
   }
 }
 
 @keyframes slideOutToRight {
   from {
     transform: translateX(0);
-    opacity: 1;
   }
   to {
     transform: translateX(100%);
-    opacity: 0;
   }
 }
 
@@ -792,25 +787,29 @@
 }
 
 @media (min-width: 1180px) and (max-width: 1310px) {
+  .propertyImageContainer img {
+    height: 450px;
+  }
   .projectLocationText {
     padding: 0.5em 4em 1.5em 0;
     width: 100%;
     margin-left: auto;
   }
   .projectLocationTextLine {
-    /* border: 1px solid red; */
     width: 100%;
     gap: 0;
   }
   .projectLocationTextLine p {
     width: 40%;
-    /* border: 1px solid red; */
   }
   .projectLocationTextDescription {
     width: 90%;
   }
 }
 @media (min-width: 1024px) and (max-width: 1180px) {
+  .propertyImageContainer img {
+    height: 350px;
+  }
   .projectLocationGrid {
     width: 96%;
   }
@@ -951,6 +950,9 @@
   .propertyPageContainer {
     padding-top: 4em;
   }
+  .propertyImageContainer img {
+    height: 300px;
+  }
   .propertyHeaderText h2 {
     font-size: 48px;
   }
@@ -980,7 +982,6 @@
 
   /* midtown details spacing */
   .midtownDetails h3 {
-    /* font-size: 16px; */
     text-align: left;
     padding: 0;
   }
@@ -1188,17 +1189,6 @@
     margin: 0 auto;
   }
 }
-@media (max-width: 550px) {
-  .propertyReasons h2 {
-    width: 70%;
-    margin: 0 auto;
-  }
-  .propertyReason p {
-    text-align: center;
-    width: 80%;
-    margin: 0 auto;
-  }
-}
 
 /* ───────────────────────── PHONE ≤ 768 px ───────────────────────── */
 @media (max-width: 768px) {
@@ -1208,8 +1198,7 @@
   .propertyImageContainer img {
     width: 100%;
     object-fit: cover;
-    height: auto;
-    min-height: 30vh;
+    height: 200px;
   }
   .propertyPageContainer header {
     gap: 1em;
@@ -1405,6 +1394,7 @@
   .projectLocationTextDescription {
     width: 100%;
     font-size: 14px;
+    margin-bottom: 3em;
   }
 
   .projectLocationMapWrapper {
@@ -1452,10 +1442,12 @@
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
+    text-align: center;
+    /* border: 1px solid red; */
   }
   .floorPlanHeader h2 {
     font-size: 40px;
-    text-align: left;
+    text-align: center;
     width: 100%;
   }
   .floorPlanHeaderItems {
@@ -1464,6 +1456,7 @@
     margin-right: auto;
     margin-top: 1em;
     align-items: stretch;
+    justify-content: center;
     flex-wrap: wrap;
     width: 100%;
   }
@@ -1567,6 +1560,18 @@
   }
   .propertyPricingContactText div span {
     font-size: 10px;
+  }
+}
+
+@media (max-width: 550px) {
+  .propertyReasons h2 {
+    width: 70%;
+    margin: 0 auto;
+  }
+  .propertyReason p {
+    text-align: center;
+    width: 80%;
+    margin: 0 auto;
   }
 }
 

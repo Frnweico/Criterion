@@ -1,5 +1,5 @@
 import { useEffect } from "react"
-import property1 from "../../Assets/Images/property1.png"
+import property1 from "../../Assets/Images/xV1.jpg"
 import terraceIcon from "../../Assets/Images/terrace icon.svg"
 import bedIcon from "../../Assets/Images/bed icon.svg"
 import floorsIcon from "../../Assets/Images/floors icon.svg"

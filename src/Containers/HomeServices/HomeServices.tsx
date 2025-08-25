@@ -76,21 +76,20 @@ useLayoutEffect(() => {
       const tl = gsap.timeline({ defaults: { ease: 'none' } });
 
       for (let i = 1; i < sections.length; i++) {
-        const incoming = sections[i];
-        const outgoing = sections[i - 1];
-        const t0 = i - 1;
+  const incoming = sections[i];
+  const outgoing = sections[i - 1];
+  const t0 = i - 1;
 
-        // Forward: incoming on top
-        tl.set(incoming, { zIndex: ZTOP }, t0 - EPS);
+  // --- Forward ---
+  tl.set(outgoing, { zIndex: ZTOP }, t0 - EPS); // outgoing on top initially
+  tl.to(incoming, { yPercent: 0, duration: COVER_DUR, ease: "none" }, t0 + COVER_AT);
+  tl.set(incoming, { zIndex: ZTOP }, t0 + COVER_AT + EPS);
+  tl.to(outgoing, { yPercent: -100, duration: PUSH_DUR, ease: "none" }, t0 + PUSH_AT);
+  tl.set(incoming, { zIndex: ZTOP }, t0 + 1 - EPS);
 
-        // COVER
-        tl.to(incoming, { yPercent: 0, duration: COVER_DUR }, t0 + COVER_AT);
-
-        // PUSH
-        tl.to(outgoing, { yPercent: -100, duration: PUSH_DUR }, t0 + PUSH_AT);
-
-        // Reverse: outgoing regains top at the very end of its step
-        tl.set(outgoing, { zIndex: ZTOP }, t0 + 1 - EPS);
+  // --- Reverse safeguard ---
+  // When going backward, restore outgoing to top before it slides back in
+  tl.set(outgoing, { zIndex: ZTOP }, t0 + PUSH_AT - EPS);
       }
 
       return tl;
