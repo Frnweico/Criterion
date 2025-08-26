@@ -6,7 +6,6 @@
   overscroll-behavior: contain;
   isolation: isolate;
   overflow: hidden;
-  /* Remove any default margins/padding that could cause spacing issues */
   margin: 0;
   padding: 0;
 }
@@ -34,12 +33,11 @@
 .homeServices {
   position: relative;
   width: 100vw;
-  height: 100vh; /* Ensure exact viewport height */
+  height: 100vh;
   background: #000;
   color: #f4f4f4;
   overflow: hidden;
   isolation: isolate;
-  /* Remove any margins that could cause spacing */
   margin: 0;
   padding: 0;
 }
@@ -65,11 +63,9 @@
   background: #000;
   height: 100vh;
   width: 100vw;
-  /* Ensure sections fill completely with no gaps */
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  /* Improve rendering performance */
   backface-visibility: hidden;
   transform: translateZ(0);
 }
@@ -105,7 +101,7 @@
   grid-template-columns: 40% 60%;
   gap: 4em;
   width: 100%;
-  height: 90vh; /* Ensure proper height without gaps */
+  height: 90vh;
   box-sizing: border-box;
   align-items: center;
 }
@@ -117,7 +113,7 @@
   justify-content: center;
   margin-left: 3em;
   margin-right: 1em;
-  height: 85vh; /* Controlled height to prevent spacing issues */
+  height: 85vh;
 }
 
 .homeServicesRightSection {

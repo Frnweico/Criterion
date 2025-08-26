@@ -112,6 +112,10 @@ const HomeServices = () => {
           anticipatePin: 1,
           invalidateOnRefresh: true,
           animation: tl,
+    onToggle: (self) => {
+      const wrapper = container.parentElement as HTMLElement;
+      if (wrapper) wrapper.classList.toggle(classes.wrapperIsPinned, self.isActive);
+    },
         });
         return () => st.kill();
       });
@@ -130,6 +134,10 @@ const HomeServices = () => {
           anticipatePin: 1,
           invalidateOnRefresh: true,
           animation: tl,
+    onToggle: (self) => {
+      const wrapper = container.parentElement as HTMLElement;
+      if (wrapper) wrapper.classList.toggle(classes.wrapperIsPinned, self.isActive);
+    },
         });
         return () => st.kill();
       });
