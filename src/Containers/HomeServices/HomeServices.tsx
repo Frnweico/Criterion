@@ -13,7 +13,8 @@ gsap.registerPlugin(ScrollTrigger);
 type Service = {
   num: string;
   title: string;
-  description: string;
+  description1: string;
+  description2: string;
   img: string;
 };
 
@@ -22,10 +23,10 @@ const HomeServices = () => {
   const sectionsRef = useRef<(HTMLDivElement | null)[]>([]);
 
   const homeServicesData: Service[] = [
-    { num: "01", title: "REAL ESTATE", description: "Choose more than a building, choose a home that reflects your personal standard.Live in a space that values distinction, where every detail is held to a high measure.Prioritise lasting worth, quiet elegance, and a seamless fit with the way you live.", img: serviceImg1 },
-    { num: "02", title: "INVESTMENT", description: "Criterion Homes offers private, high-yield real estate investment opportunities reserved for a select clientele. \n Our projects are built on verified legal compliance, future-proof designs, and strategic locations that deliver both financial returns and long-term value preservation.", img: serviceImg2 },
-    { num: "03", title: "INFRASTRUCTURE", description: "Choose more than a building, choose a home that reflects your personal standard.Live in a space that values distinction, where every detail is held to a high measure.Prioritise lasting worth, quiet elegance, and a seamless fit with the way you live.", img: serviceImg3 },
-    { num: "04", title: "ADVISORY", description: "Choose more than a building, choose a home that reflects your personal standard. Live in a space that values distinction, where every detail is held to a high measure. Prioritise lasting worth, quiet elegance, and a seamless fit with the way you live.", img: serviceImg4 },
+    { num: "01", title: "REAL ESTATE", description1: "Choose more than a building, choose a home that reflects your personal standard.", description2: "Live in a space that values distinction, where every detail is held to a high measure.Prioritise lasting worth, quiet elegance, and a seamless fit with the way you live.", img: serviceImg1 },
+    { num: "02", title: "INVESTMENT", description1: "Your investments should reflect the same standards you apply to the rest of your life.",description2: "Choose investment opportunities guided by a principle of value that goes beyond profit; delivering returns that are financially sound, future-proof, and worthy of your portfolio.", img: serviceImg2 },
+    { num: "03", title: "INFRASTRUCTURE", description1: "Great living isn’t just about where you are. It’s about how everything around you supports it.", description2: "Let every detail work in harmony with the life you lead. Choose infrastructure that quietly shapes environments to elevate everyday living.", img: serviceImg3 },
+    { num: "04", title: "ADVISORY", description1: "When your choices carry weight, your counsel should too.Get private, tailored advisory services that help you navigate property, investments, and landmark projects with clarity and confidence. ", description2: "Every recommendation reflects an understanding of your priorities, guided by a measure that doesn’t entertain anything but the standard.", img: serviceImg4 },
   ];
 
   const addToRefs = (el: HTMLDivElement | null, index: number) => {
@@ -48,14 +49,9 @@ const HomeServices = () => {
       ScrollTrigger.getAll().forEach(t => t.kill());
       gsap.killTweensOf(sections);
       
-      // build animation
+      // build animation - ensure no black screens
       const buildTimeline = () => {
-        const EPS = 0.0001;
         const ZTOP = 2147483647;   
-        const COVER_AT = 0.00;
-        const PUSH_AT  = 0.22;
-        const COVER_DUR = 0.68;
-        const PUSH_DUR  = 1 - PUSH_AT;
         
         // Initialize all sections properly
         sections.forEach((sec, i) => {
@@ -63,7 +59,7 @@ const HomeServices = () => {
             position: 'absolute',
             inset: 0,
             yPercent: i === 0 ? 0 : 100,
-            zIndex: i === 0 ? ZTOP : 0,  
+            zIndex: i === 0 ? ZTOP : 1,  
             willChange: 'transform',
             force3D: true,
             boxSizing: 'border-box',
@@ -78,18 +74,18 @@ const HomeServices = () => {
           const outgoing = sections[i - 1];
           const t0 = i - 1;
 
-          // --- Forward ---
-          tl.set(outgoing, { zIndex: ZTOP }, t0 - EPS);
-
-          tl.to(incoming, { yPercent: 0, duration: COVER_DUR, ease: "none" }, t0 + COVER_AT);
-          tl.set(incoming, { zIndex: ZTOP }, t0 + COVER_AT + EPS);
-
-          tl.to(outgoing, { yPercent: -100, duration: PUSH_DUR, ease: "none" }, t0 + PUSH_AT);
-
-          tl.set(outgoing, { zIndex: 0 }, t0 + 1 - EPS);
-
-          // --- Reverse safeguard ---
-          tl.set(outgoing, { zIndex: ZTOP }, t0 + PUSH_AT - EPS);
+          // Keep outgoing visible throughout
+          tl.set(outgoing, { zIndex: ZTOP - 1, yPercent: 0 }, t0);
+          tl.set(incoming, { zIndex: ZTOP, yPercent: 100 }, t0);
+          
+          // Incoming slides up covering outgoing
+          tl.to(incoming, { yPercent: 0, duration: 0.6 }, t0 + 0.2);
+          
+          // Then push outgoing up
+          tl.to(outgoing, { yPercent: -100, duration: 0.4 }, t0 + 0.6);
+          
+          // Clean up z-index
+          tl.set(outgoing, { zIndex: 1 }, t0 + 1);
         }
 
         return tl;
@@ -105,20 +101,29 @@ const HomeServices = () => {
           trigger: container,
           start: "top top",
           end: `+=${steps * STEP_VH_DESKTOP}vh`,
-          pin: true,
-          pinReparent: true,
-          pinSpacing: true,
-          scrub: true,
-          anticipatePin: 1,
-          invalidateOnRefresh: true,
-          animation: tl,
-    onToggle: (self) => {
-      const wrapper = container.parentElement as HTMLElement;
-      if (wrapper) wrapper.classList.toggle(classes.wrapperIsPinned, self.isActive);
-    },
+           pin: container,                 // explicitly pin the container element
+    pinSpacing: true,               // keep space so the next section doesn't scroll up
+    pinReparent: false,             // <--- important: avoid reparenting to body
+    scrub: true,
+    anticipatePin: 1,
+    invalidateOnRefresh: true,
+    animation: tl,
+    onRefresh: () => {
+      // Defensive reset of sections each refresh / remount so no stale states remain
+      sections.forEach((sec, i) => {
+        gsap.set(sec, {
+          yPercent: i === 0 ? 0 : 100,
+          zIndex: i === 0 ? 2147483647 : 1,
+          backfaceVisibility: 'hidden'
         });
-        return () => st.kill();
       });
+    }
+      });
+      // Give the browser one frame and then force a refresh so everything lines up
+  requestAnimationFrame(() => ScrollTrigger.refresh());
+
+  return () => st.kill();
+});
 
       mm.add("(max-width: 768px)", () => {
         const MOBILE_STEP_MULT = 2.5;
@@ -134,10 +139,6 @@ const HomeServices = () => {
           anticipatePin: 1,
           invalidateOnRefresh: true,
           animation: tl,
-    onToggle: (self) => {
-      const wrapper = container.parentElement as HTMLElement;
-      if (wrapper) wrapper.classList.toggle(classes.wrapperIsPinned, self.isActive);
-    },
         });
         return () => st.kill();
       });
@@ -187,7 +188,8 @@ const HomeServices = () => {
                 <div className={classes.homeServicesRightSection}>
                   <h2 className={classes.numberHeading}>{service.num}</h2>
                   <h2 className={classes.investmentHeading}>{service.title}</h2>
-                  <p>{service.description}</p>
+                  <p>{service.description1}</p>
+                  <p>{service.description2}</p>
                   <Button type='black'>
                     <span>TALK TO US</span>
                     <svg width='16' height='14' viewBox='0 0 16 14' fill='#000000'>
@@ -202,7 +204,8 @@ const HomeServices = () => {
                 <h2 className={classes.homeServicesHeading}>SERVICES</h2>
                 <h2 className={classes.numberHeading}>{service.num}</h2>
                 <h2 className={classes.investmentHeading}>{service.title}</h2>
-                <p>{service.description}</p>
+                <p>{service.description1}</p>
+                <p>{service.description2}</p>
                 <Button type='black'>
                   <span>TALK TO US</span>
                   <svg width='16' height='14' viewBox='0 0 16 14' fill='#000000'>
