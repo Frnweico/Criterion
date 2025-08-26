@@ -15,14 +15,40 @@ import "aos/dist/aos.css";
 const FloorPlanHeader = ({
   title,
   description,
+  onPrev,
+  onNext,
+  currentIndex,
+  maxIndex,
 }: {
   title: string;
   description: string;
+  onPrev: () => void;
+  onNext: () => void;
+  currentIndex: number;
+  maxIndex: number;
 }) => {
   const items = description.split(",").map((item) => item.trim());
   return (
     <div data-aos="fade-up" className={classes.floorPlanHeader}>
-      <h2>{title}</h2>
+      <div className={classes.floorPlanTitleRow}>
+        <button
+          onClick={onPrev}
+          disabled={currentIndex === 0}
+          className={`${classes.overlayArrow} ${classes.overlayArrowLeft}`}
+          aria-label="Previous (mobile)"
+        >
+          <img src={leftArrow} alt="" />
+        </button>
+        <h2>{title}</h2>
+        <button
+          onClick={onNext}
+          disabled={currentIndex === maxIndex}
+          className={`${classes.overlayArrow} ${classes.overlayArrowRight}`}
+          aria-label="Next (mobile)"
+        >
+          <img src={rightArrow} alt="" />
+        </button>
+      </div>
       <div className={classes.floorPlanHeaderItems}>
         {items.map((item, idx) => (
           <div key={idx}>
@@ -34,25 +60,113 @@ const FloorPlanHeader = ({
   );
 };
 
-type LightboxState = {
-  open: boolean;
-  unitIdx: number; // 0 = double, 1 = single
-  idx: number; // slide index
+// Lightbox Component
+interface LightboxProps {
+  isOpen: boolean;
+  images: string[];
+  currentIndex: number;
+  onClose: () => void;
+  onNext: () => void;
+  onPrev: () => void;
+  titles: string[];
+}
+
+const Lightbox: React.FC<LightboxProps> = ({
+  isOpen,
+  images,
+  currentIndex,
+  onClose,
+  onNext,
+  onPrev,
+  titles,
+}) => {
+  const [touchStartX, setTouchStartX] = useState<number | null>(null);
+
+  // Handle touch events for mobile swipe
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setTouchStartX(e.touches[0].clientX);
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    if (!touchStartX) return;
+    
+    const touchEndX = e.changedTouches[0].clientX;
+    const diff = touchStartX - touchEndX;
+    const threshold = 50;
+
+    if (Math.abs(diff) > threshold) {
+      if (diff > 0) {
+        onNext();
+      } else {
+        onPrev();
+      }
+    }
+    setTouchStartX(null);
+  };
+
+  // Close lightbox on escape key
+  useEffect(() => {
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        onClose();
+      }
+    };
+
+    if (isOpen) {
+      document.addEventListener('keydown', handleEscape);
+      document.body.style.overflow = 'hidden';
+    }
+
+    return () => {
+      document.removeEventListener('keydown', handleEscape);
+      document.body.style.overflow = 'unset';
+    };
+  }, [isOpen, onClose]);
+
+  if (!isOpen) return null;
+
+  return (
+    <div 
+      className={classes.lightboxBackdrop} 
+      onClick={onClose}
+      onTouchStart={handleTouchStart}
+      onTouchEnd={handleTouchEnd}
+    >
+      <div className={classes.lightboxInner} onClick={(e) => e.stopPropagation()}>
+        <button className={classes.lightboxClose} onClick={onClose}>
+          ×
+        </button>
+        
+        <button
+          className={`${classes.lightboxArrow} ${classes.lightboxArrowLeft}`}
+          onClick={onPrev}
+          disabled={currentIndex === 0}
+        >
+          <img src={leftArrow} alt="Previous" />
+        </button>
+
+        <img
+          src={images[currentIndex]}
+          alt={titles[currentIndex]}
+          className={classes.lightboxImage}
+        />
+
+        <button
+          className={`${classes.lightboxArrow} ${classes.lightboxArrowRight}`}
+          onClick={onNext}
+          disabled={currentIndex === images.length - 1}
+        >
+          <img src={rightArrow} alt="Next" />
+        </button>
+      </div>
+    </div>
+  );
 };
 
 const FloorPlan = () => {
-  const [doubleFloorIndex, setDoubleFloorIndex] = useState(0);
-  const [singleFloorIndex, setSingleFloorIndex] = useState(0);
-  const [transitioningUnit, setTransitioningUnit] = useState<string | null>(
-    null
-  );
-  const [swipeDirection, setSwipeDirection] = useState<"next" | "prev" | null>(
-    null
-  );
-
-  // Lightbox (popup)
-  const [lb, setLb] = useState<LightboxState | null>(null);
-  const [touchStartX, setTouchStartX] = useState<number | null>(null);
+  // Each unit has its own independent floor index
+  const [floorIndices, setFloorIndices] = useState([0, 0]); // [doubleUnit, singleUnit]
+  const [lightbox, setLightbox] = useState({ isOpen: false, unitIdx: 0, currentIndex: 0 });
 
   useEffect(() => {
     Aos.init({ duration: 1000 });
@@ -105,50 +219,66 @@ const FloorPlan = () => {
     },
   ];
 
-  const move = (unit: string, dir: "next" | "prev") => {
+  const move = (unitIdx: number, dir: "next" | "prev") => {
     const delta = dir === "next" ? 1 : -1;
-    if (unit === "SINGLE") {
-      setSingleFloorIndex((i) => Math.min(2, Math.max(0, i + delta)));
-    } else {
-      setDoubleFloorIndex((i) => Math.min(2, Math.max(0, i + delta)));
+    setFloorIndices(prev => {
+      const newIndices = [...prev];
+      newIndices[unitIdx] = Math.min(2, Math.max(0, newIndices[unitIdx] + delta));
+      return newIndices;
+    });
+  };
+
+  // Lightbox functions
+  const openLightbox = (unitIdx: number, imageIdx: number) => {
+    setLightbox({
+      isOpen: true,
+      unitIdx,
+      currentIndex: imageIdx
+    });
+  };
+
+  const closeLightbox = () => {
+    setLightbox({
+      isOpen: false,
+      unitIdx: 0,
+      currentIndex: 0
+    });
+  };
+
+  const lightboxNext = () => {
+    const maxIndex = floorPlanData[lightbox.unitIdx].floors.length - 1;
+    if (lightbox.currentIndex < maxIndex) {
+      setLightbox(prev => ({
+        ...prev,
+        currentIndex: prev.currentIndex + 1
+      }));
     }
   };
 
-  const openLb = (unitIdx: number, idx: number) =>
-    setLb({ open: true, unitIdx, idx });
-  const closeLb = () => setLb(null);
-
-  const lbNext = () =>
-    setLb((s) =>
-      !s
-        ? s
-        : {
-            ...s,
-            idx: Math.min(
-              floorPlanData[s.unitIdx].floors.length - 1,
-              s.idx + 1
-            ),
-          }
-    );
-  const lbPrev = () =>
-    setLb((s) => (!s ? s : { ...s, idx: Math.max(0, s.idx - 1) }));
-
-  const onLbTouchStart = (e: React.TouchEvent) =>
-    setTouchStartX(e.changedTouches[0].clientX);
-  const onLbTouchEnd = (e: React.TouchEvent) => {
-    if (touchStartX === null) return;
-    const dx = e.changedTouches[0].clientX - touchStartX;
-    const THRESH = 40;
-    if (dx > THRESH) lbPrev();
-    if (dx < -THRESH) lbNext();
-    setTouchStartX(null);
+  const lightboxPrev = () => {
+    if (lightbox.currentIndex > 0) {
+      setLightbox(prev => ({
+        ...prev,
+        currentIndex: prev.currentIndex - 1
+      }));
+    }
   };
+
+  // Get current lightbox images and titles
+  const currentLightboxImages = lightbox.isOpen 
+    ? floorPlanData[lightbox.unitIdx].floors.map(floor => floor.img)
+    : [];
+  
+  const currentLightboxTitles = lightbox.isOpen 
+    ? floorPlanData[lightbox.unitIdx].floors.map(floor => 
+        `${floor.title} for ${floorPlanData[lightbox.unitIdx].unit || "DOUBLE"} UNIT`
+      )
+    : [];
 
   return (
     <div className={classes.floorPlanWrapper}>
       {floorPlanData.map((unit, unitIdx) => {
-        const isSingle = unit.unit === "SINGLE";
-        const currentIndex = isSingle ? singleFloorIndex : doubleFloorIndex;
+        const currentIndex = floorIndices[unitIdx];
         const len = unit.floors.length;
 
         return (
@@ -161,7 +291,7 @@ const FloorPlan = () => {
               <div className={classes.floorPlanWithNavigation}>
                 {/* Left Arrow */}
                 <button
-                  onClick={() => move(unit.unit, "prev")}
+                  onClick={() => move(unitIdx, "prev")}
                   disabled={currentIndex === 0}
                   className={classes.arrowButton}
                 >
@@ -171,34 +301,22 @@ const FloorPlan = () => {
                 {/* Content Container - Header and Image */}
                 <div className={classes.floorPlanContent}>
                   <div className={classes.floorPlanHeaderRow}>
-                    <button
-                      onClick={() => move(unit.unit, "prev")}
-                      disabled={currentIndex === 0}
-                      className={`${classes.overlayArrow} ${classes.overlayArrowLeft}`}
-                      aria-label="Previous (mobile)"
-                    >
-                      <img src={leftArrow} alt="" />
-                    </button>
                     <FloorPlanHeader
                       title={unit.floors[currentIndex].title}
                       description={unit.floors[currentIndex].description}
+                      onPrev={() => move(unitIdx, "prev")}
+                      onNext={() => move(unitIdx, "next")}
+                      currentIndex={currentIndex}
+                      maxIndex={len - 1}
                     />
-                    <button
-                      onClick={() => move(unit.unit, "next")}
-                      disabled={currentIndex === len - 1}
-                      className={`${classes.overlayArrow} ${classes.overlayArrowRight}`}
-                      aria-label="Next (mobile)"
-                    >
-                      <img src={rightArrow} alt="" />
-                    </button>
                   </div>
 
-                  {/* carousel */}
+                  {/* Carousel with sliding animation */}
                   <div className={classes.carouselViewport}>
                     <div
                       className={classes.carouselTrack}
                       style={{
-                        transform: `translateX(-${currentIndex * 100}%)`,
+                        transform: `translateX(-${currentIndex * 33.333}%)`,
                       }}
                     >
                       {unit.floors.map((floor, idx) => (
@@ -206,12 +324,12 @@ const FloorPlan = () => {
                           <div
                             className={classes.floorPlanImageWrapper}
                             role="button"
-                            onClick={() => openLb(unitIdx, idx)}
+                            onClick={() => openLightbox(unitIdx, idx)}
                             aria-label="Open large view"
                             tabIndex={0}
                             onKeyDown={(e) => {
                               if (e.key === "Enter" || e.key === " ") {
-                                openLb(unitIdx, idx);
+                                openLightbox(unitIdx, idx);
                               }
                             }}
                           >
@@ -230,8 +348,8 @@ const FloorPlan = () => {
 
                 {/* Right Arrow */}
                 <button
-                  onClick={() => move(unit.unit, "next")}
-                  disabled={currentIndex === 2}
+                  onClick={() => move(unitIdx, "next")}
+                  disabled={currentIndex === len - 1}
                   className={classes.arrowButton}
                 >
                   <img src={rightArrow} alt="Next Floor" />
@@ -241,6 +359,17 @@ const FloorPlan = () => {
           </div>
         );
       })}
+
+      {/* Lightbox */}
+      <Lightbox
+        isOpen={lightbox.isOpen}
+        images={currentLightboxImages}
+        currentIndex={lightbox.currentIndex}
+        onClose={closeLightbox}
+        onNext={lightboxNext}
+        onPrev={lightboxPrev}
+        titles={currentLightboxTitles}
+      />
     </div>
   );
 };

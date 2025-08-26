@@ -392,28 +392,52 @@
 
 /* floor plan  */
 
+/* Main Container */
+.floorPlanWrapper {
+  width: 100%;
+  margin: 0 auto;
+  padding: 2em 0;
+}
+
+.floorPlan {
+  margin-bottom: 4em;
+}
+
+.floorPlanTitle {
+  text-align: center;
+  font-family: "Space Grotesk";
+  font-size: 2.5rem;
+  font-weight: 300;
+  margin-bottom: 2em;
+  color: #fff;
+}
+
+.floorPlanTitle span {
+  color: #a49031;
+}
+
+.transitionWrapper {
+  width: 100%;
+}
+
+/* Navigation Layout */
 .floorPlanWithNavigation {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 100%;
+  width: 80%;
+  margin: 0 auto;
+  gap: 1em;
 }
-.carouselViewport {
-  width: 100%;
-  overflow: hidden;
-  padding: 0 2em;
-  box-sizing: border-box;
-}
-.carouselTrack {
+
+.floorPlanContent {
   display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   width: 100%;
-  transition: transform 450ms ease;
-  will-change: transform;
 }
-.carouselSlide {
-  min-width: 100%;
-  flex: 0 0 100%;
-}
+
 .floorPlanHeaderRow {
   display: flex;
   align-items: center;
@@ -421,106 +445,25 @@
   gap: 1em;
   width: 90%;
   margin: 0 auto;
-}
-.carouselViewport {
-  width: 100%;
-  overflow: hidden;
-  padding: 0 2em;
-  box-sizing: border-box;
-}
-.carouselTrack {
-  display: flex;
-  width: 100%;
-  transition: transform 450ms ease;
-  will-change: transform;
-}
-.carouselSlide {
-  min-width: 100%;
-  flex: 0 0 100%;
-}
-.floorPlanHeaderRow {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1em;
-  width: 100%;
-}
-.lightboxBackdrop {
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.75);
-  display: grid;
-  place-items: center;
-  z-index: 99999;
-  padding: 2rem;
-}
-.lightboxInner {
-  position: relative;
-  width: min(1200px, 95vw);
-  height: min(85vh, 95vh);
-  display: grid;
-  place-items: center;
-}
-.lightboxImage {
-  max-width: 100%;
-  max-height: 100%;
-  width: auto;
-  height: auto;
-  display: block;
-  object-fit: contain;
-  border-radius: 2px;
-}
-.lightboxArrow {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: none;
-  border: none;
-  padding: 0.5rem;
-  cursor: pointer;
-  opacity: 0.9;
-}
-.lightboxArrowLeft {
-  left: 0.25rem;
-}
-.lightboxArrowRight {
-  right: 0.25rem;
-}
-.lightboxArrow:disabled {
-  opacity: 0.35;
-  cursor: not-allowed;
-}
-.lightboxArrow img {
-  width: 40px;
-  height: 40px;
-  object-fit: contain;
-}
-.lightboxClose {
-  position: absolute;
-  top: 0.25rem;
-  right: 0.5rem;
-  font-size: 32px;
-  line-height: 1;
-  background: none;
-  border: none;
-  color: #fff;
-  cursor: pointer;
+  margin-bottom: 2em;
 }
 
-.floorPlanContent {
-  display: grid;
-  grid-template-columns: 1fr;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-}
-
+/* Header Styles */
 .floorPlanHeader {
   display: flex;
   align-items: center;
   justify-content: center;
   width: 100%;
-  margin-bottom: 2em;
+  gap: 2em;
+}
+
+.floorPlanTitleRow {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: space-between;
+  gap: 2em;
+  position: relative;
 }
 
 .floorPlanHeader h2 {
@@ -530,16 +473,17 @@
   letter-spacing: -4%;
   color: #fff;
   font-weight: 300;
+  margin: 0;
 }
+
 .floorPlanHeaderItems {
   display: flex;
   flex-direction: column;
   gap: 0.5em;
   font-family: "Poppins";
   color: #fff;
-  margin-left: auto;
-  margin-top: 2em;
 }
+
 .floorPlanHeaderItems p {
   font-size: 18px;
   line-height: 104%;
@@ -549,37 +493,63 @@
   padding-bottom: 0.25em;
   width: 100%;
   font-weight: 300;
+  margin: 0;
 }
+
 .floorPlanHeaderItems p:hover {
   cursor: pointer;
   border-bottom: none;
 }
-.floorPlanTitle span {
-  color: #a49031;
-}
-.floorPlanImageWrapper {
+
+/* Carousel Styles */
+.carouselViewport {
   width: 100%;
-  margin: 0 auto;
-  padding: 0 2em;
-  flex-shrink: 0;
+  overflow: hidden;
+  position: relative;
 }
+
+.carouselTrack {
+  display: flex;
+  width: 300%; /* 100% * 3 slides */
+  transition: transform 450ms ease;
+  will-change: transform;
+  height: 100%;
+}
+
+.carouselSlide {
+  min-width: 33.333%; /* 100% / 3 slides */
+  flex: 0 0 33.333%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.floorPlanImageWrapper {
+  width: 90%;
+  margin: 0 auto;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.floorPlanImageWrapper:hover {
+  transform: scale(1.02);
+}
+
 .floorPlanImageWrapper img {
   width: 100%;
-  height: auto;
   object-fit: cover;
   display: block;
-  margin: 0 auto;
+  border-radius: 4px;
 }
-.overlayArrow {
-  display: none;
-}
+
+/* Arrow Button Styles */
 .arrowButton {
   background: none;
   border: none;
-  padding: 0.5em;
-  transition: transform 0.3s ease;
+  padding: 1em;
+  transition: transform 0.3s ease, opacity 0.3s ease;
   cursor: pointer;
-  margin: 0 2em;
 }
 
 .arrowButton:disabled {
@@ -587,10 +557,136 @@
   cursor: not-allowed;
 }
 
-.arrowButton:hover {
+.arrowButton:hover:not(:disabled) {
   transform: scale(1.1);
 }
 
+.arrowButton img {
+  object-fit: contain;
+}
+
+/* Overlay arrows for mobile */
+.overlayArrow {
+  display: none;
+  background: none;
+  border: none;
+  padding: 0.5rem;
+  cursor: pointer;
+  opacity: 0.8;
+}
+
+.overlayArrowLeft {
+  order: -1;
+}
+
+.overlayArrowRight {
+  order: 1;
+}
+
+.overlayArrow:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.overlayArrow img {
+  width: 35px;
+  height: 35px;
+  object-fit: contain;
+}
+
+/* Lightbox Styles */
+.lightboxBackdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 99999;
+  padding: 2rem;
+  backdrop-filter: blur(5px);
+}
+
+.lightboxInner {
+  position: relative;
+  width: min(1200px, 95vw);
+  height: min(85vh, 95vh);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lightboxImage {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  display: block;
+  object-fit: contain;
+  border-radius: 8px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.lightboxArrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  padding: 1rem;
+  cursor: pointer;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.lightboxArrowLeft {
+  left: 1rem;
+}
+
+.lightboxArrowRight {
+  right: 1rem;
+}
+
+.lightboxArrow:hover:not(:disabled) {
+  /* background: rgba(255, 255, 255, 1); */
+  transform: translateY(-50%) scale(1.1);
+}
+
+.lightboxArrow:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.lightboxArrow img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+
+.lightboxClose {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-size: 32px;
+  line-height: 1;
+  background: rgba(255, 255, 255, 0.9);
+  border: none;
+  color: #000;
+  cursor: pointer;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.lightboxClose:hover {
+  transform: scale(1.1);
+}
 /* reasons  */
 .propertReasonsWrappper {
   width: 100%;
@@ -604,6 +700,7 @@
   grid-template-columns: 55% 45%;
   align-items: flex-start;
   justify-content: center;
+  gap: 2em;
 }
 .propertyReasons h2 {
   text-transform: uppercase;
@@ -662,7 +759,6 @@
 }
 .propertyReason:hover {
   transform: scale(1.1);
-  /* box-shadow: 0 10px 20px #191919; */
   cursor: pointer;
 }
 
@@ -1547,23 +1643,46 @@
     cursor: pointer;
     transition: transform 0.3s ease;
   }
-  .overlayArrowLeft {
-    order: -1; /* Put left arrow first */
+  .lightboxImage {
+    max-width: 85%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    display: block;
+    object-fit: contain;
+    border-radius: 8px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  }
+  .lightboxArrow {
+    padding: 0.75rem;
   }
 
-  .overlayArrowRight {
-    order: 1; /* Put right arrow last */
+  .lightboxArrowLeft {
+    left: 0rem;
   }
-  .overlayArrow:disabled {
-    opacity: 0.35;
-    cursor: not-allowed;
+
+  .lightboxArrowRight {
+    right: 0rem;
   }
-  .overlayArrow img {
+
+  .lightboxArrow img {
+    width: 25px;
+    height: 25px;
+  }
+
+  .lightboxClose {
+    top: 0rem;
+    right: 0.5rem;
     width: 40px;
     height: 40px;
-    object-fit: contain;
+    font-size: 24px;
   }
 
+  .lightboxBackdrop {
+    padding: 1rem;
+  }
+
+  /* pricing  */
   .propertyPricingContent {
     margin-top: 0;
   }
@@ -1629,6 +1748,21 @@
 @media (max-width: 571px) {
   .projectLocationTextLine p {
     width: 40%;
+  }
+  .lightboxImage {
+    max-width: 90%;
+    max-height: 100%;
+  }
+  .lightboxArrow {
+    padding: 0.75rem;
+  }
+
+  .lightboxArrowLeft {
+    left: -1rem;
+  }
+
+  .lightboxArrowRight {
+    right: -1rem;
   }
 }
 

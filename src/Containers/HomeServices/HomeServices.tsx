@@ -50,7 +50,7 @@ useLayoutEffect(() => {
     ScrollTrigger.getAll().forEach(t => t.kill());
     gsap.killTweensOf(sections);
     
-    // Shared cover→push TL (mirrors on reverse; no early reveal)
+    // build animation
     const buildTimeline = () => {
       const EPS = 0.0001;
       const ZTOP = 2147483647;   
@@ -100,7 +100,7 @@ useLayoutEffect(() => {
     const mm = gsap.matchMedia();
 
     mm.add("(min-width: 769px)", () => {
-      const STEP_VH_DESKTOP = 400; 
+      const STEP_VH_DESKTOP = 100; 
       const tl = buildTimeline();
       const st = ScrollTrigger.create({
         trigger: container,
