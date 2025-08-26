@@ -15,8 +15,6 @@ type Service = {
   title: string;
   description: string;
   img: string;
-  // optional: per-section background if you ever want different colors
-  // bg?: string;
 };
 
 const HomeServices = () => {
@@ -34,144 +32,143 @@ const HomeServices = () => {
     sectionsRef.current[index] = el;
   };
 
-useLayoutEffect(() => {
-  const ctx = gsap.context(() => {
-    const container = containerRef.current;
-    const sections = sectionsRef.current.filter(Boolean) as HTMLDivElement[];
-    if (!container || sections.length === 0) return;
-    
-    const setVh = () => {
-      const h = window.visualViewport ? window.visualViewport.height : window.innerHeight;
-      document.documentElement.style.setProperty('--vh', `${h * 0.01}px`);
-    };
-    setVh();
-    
-    // Clean reset
-    ScrollTrigger.getAll().forEach(t => t.kill());
-    gsap.killTweensOf(sections);
-    
-    // build animation
-    const buildTimeline = () => {
-      const EPS = 0.0001;
-      const ZTOP = 2147483647;   
-      const COVER_AT = 0.00;
-      const PUSH_AT  = 0.22;
-      const COVER_DUR = 0.68;
-      const PUSH_DUR  = 1 - PUSH_AT;
+  useLayoutEffect(() => {
+    const ctx = gsap.context(() => {
+      const container = containerRef.current;
+      const sections = sectionsRef.current.filter(Boolean) as HTMLDivElement[];
+      if (!container || sections.length === 0) return;
       
-      sections.forEach((sec, i) => {
-        gsap.set(sec, {
-          position: 'absolute',
-          inset: 0,
-          yPercent: i === 0 ? 0 : 100,
-          zIndex: i === 0 ? ZTOP : 0,  
-          willChange: 'transform',
-          force3D: true,
-          boxSizing: 'border-box'
+      const setVh = () => {
+        const h = window.visualViewport ? window.visualViewport.height : window.innerHeight;
+        document.documentElement.style.setProperty('--vh', `${h * 0.01}px`);
+      };
+      setVh();
+      
+      // Clean reset
+      ScrollTrigger.getAll().forEach(t => t.kill());
+      gsap.killTweensOf(sections);
+      
+      // build animation
+      const buildTimeline = () => {
+        const EPS = 0.0001;
+        const ZTOP = 2147483647;   
+        const COVER_AT = 0.00;
+        const PUSH_AT  = 0.22;
+        const COVER_DUR = 0.68;
+        const PUSH_DUR  = 1 - PUSH_AT;
+        
+        // Initialize all sections properly
+        sections.forEach((sec, i) => {
+          gsap.set(sec, {
+            position: 'absolute',
+            inset: 0,
+            yPercent: i === 0 ? 0 : 100,
+            zIndex: i === 0 ? ZTOP : 0,  
+            willChange: 'transform',
+            force3D: true,
+            boxSizing: 'border-box',
+            backfaceVisibility: 'hidden'
+          });
         });
+
+        const tl = gsap.timeline({ defaults: { ease: 'none' } });
+
+        for (let i = 1; i < sections.length; i++) {
+          const incoming = sections[i];
+          const outgoing = sections[i - 1];
+          const t0 = i - 1;
+
+          // --- Forward ---
+          tl.set(outgoing, { zIndex: ZTOP }, t0 - EPS);
+
+          tl.to(incoming, { yPercent: 0, duration: COVER_DUR, ease: "none" }, t0 + COVER_AT);
+          tl.set(incoming, { zIndex: ZTOP }, t0 + COVER_AT + EPS);
+
+          tl.to(outgoing, { yPercent: -100, duration: PUSH_DUR, ease: "none" }, t0 + PUSH_AT);
+
+          tl.set(outgoing, { zIndex: 0 }, t0 + 1 - EPS);
+
+          // --- Reverse safeguard ---
+          tl.set(outgoing, { zIndex: ZTOP }, t0 + PUSH_AT - EPS);
+        }
+
+        return tl;
+      };
+
+      const steps = sections.length - 1;
+      const mm = gsap.matchMedia();
+
+      mm.add("(min-width: 769px)", () => {
+        const STEP_VH_DESKTOP = 120; // Slower scroll on desktop
+        const tl = buildTimeline();
+        const st = ScrollTrigger.create({
+          trigger: container,
+          start: "top top",
+          end: `+=${steps * STEP_VH_DESKTOP}vh`,
+          pin: true,
+          pinReparent: true,
+          pinSpacing: true,
+          scrub: true,
+          anticipatePin: 1,
+          invalidateOnRefresh: true,
+          animation: tl,
+        });
+        return () => st.kill();
       });
 
-      const tl = gsap.timeline({ defaults: { ease: 'none' } });
-
-      for (let i = 1; i < sections.length; i++) {
-  const incoming = sections[i];
-  const outgoing = sections[i - 1];
-  const t0 = i - 1;
-
-
-  // --- Forward ---
-  tl.set(outgoing, { zIndex: ZTOP }, t0 - EPS);
-
-  tl.to(incoming, { yPercent: 0, duration: COVER_DUR, ease: "none" }, t0 + COVER_AT);
-  tl.set(incoming, { zIndex: ZTOP }, t0 + COVER_AT + EPS);
-
-  tl.to(outgoing, { yPercent: -100, duration: PUSH_DUR, ease: "none" }, t0 + PUSH_AT);
-
-  tl.set(outgoing, { zIndex: 0 }, t0 + 1 - EPS);
-
-  // --- Reverse safeguard ---
-  tl.set(outgoing, { zIndex: ZTOP }, t0 + PUSH_AT - EPS);}
-
-  return tl;
-    };
-
-    const steps = sections.length - 1;
-
-    const mm = gsap.matchMedia();
-
-    mm.add("(min-width: 769px)", () => {
-      const STEP_VH_DESKTOP = 100; 
-      const tl = buildTimeline();
-      const st = ScrollTrigger.create({
-        trigger: container,
-        start: "top top",
-        end: `+=${steps * STEP_VH_DESKTOP}vh`,
-        pin: true,
-        pinReparent: true,
-        pinSpacing: true,
-        scrub: true,
-        anticipatePin: 1,
-        invalidateOnRefresh: true,
-        animation: tl,
+      mm.add("(max-width: 768px)", () => {
+        const MOBILE_STEP_MULT = 2.5;
+        const tl = buildTimeline();
+        const st = ScrollTrigger.create({
+          trigger: container,
+          start: "top top",
+          end: `+=${Math.round(steps * (window.visualViewport ? window.visualViewport.height : window.innerHeight) * MOBILE_STEP_MULT)}px`,
+          pin: true,
+          pinReparent: true,
+          pinSpacing: true,
+          scrub: true,
+          anticipatePin: 1,
+          invalidateOnRefresh: true,
+          animation: tl,
+        });
+        return () => st.kill();
       });
-      return () => st.kill();
-    });
 
-    mm.add("(max-width: 768px)", () => {
-      const MOBILE_STEP_MULT = 3.5;
-      const tl = buildTimeline();
-      const st = ScrollTrigger.create({
-        trigger: container,
-        start: "top top",
-        end: `+=${Math.round(steps * (window.visualViewport ? window.visualViewport.height : window.innerHeight) * MOBILE_STEP_MULT)}px`,
-        pin: true,
-        pinReparent: true,
-        pinSpacing: true,
-        scrub: true,
-        anticipatePin: 1,
-        invalidateOnRefresh: true,
-        animation: tl,
-      });
-      return () => st.kill();
-    });
+      // Keep --vh accurate
+      const refreshAll = () => { setVh(); ScrollTrigger.refresh(); };
+      requestAnimationFrame(refreshAll);
 
-    // Keep --vh accurate
-    const refreshAll = () => { setVh(); ScrollTrigger.refresh(); };
-    requestAnimationFrame(refreshAll);
+      window.addEventListener('resize', refreshAll);
+      window.addEventListener('orientationchange', refreshAll);
+      if (window.visualViewport) window.visualViewport.addEventListener('resize', refreshAll);
 
-    window.addEventListener('resize', refreshAll);
-    window.addEventListener('orientationchange', refreshAll);
-    if (window.visualViewport) window.visualViewport.addEventListener('resize', refreshAll);
+      return () => {
+        mm.revert();
+        window.removeEventListener('resize', refreshAll);
+        window.removeEventListener('orientationchange', refreshAll);
+        if (window.visualViewport) window.visualViewport.removeEventListener('resize', refreshAll);
+      };
+    }, containerRef);
 
-    return () => {
-      mm.revert();
-      window.removeEventListener('resize', refreshAll);
-      window.removeEventListener('orientationchange', refreshAll);
-      if (window.visualViewport) window.visualViewport.removeEventListener('resize', refreshAll);
-    };
-  }, containerRef);
-
-  return () => ctx.revert();
-}, []);
-
+    return () => ctx.revert();
+  }, []);
 
   return (
     <div className={classes.homeServicesWrapper}>
-      {/* sticky title that stays visible the whole time */}
+      {/* Fixed title that stays visible */}
       <div className={classes.servicesFixedHeading}>
         <h2 className={classes.homeServicesHeading}>SERVICES</h2>
       </div>
 
-      {/* overlay stack */}
+      {/* Overlay stack */}
       <div className={classes.homeServices} ref={containerRef}>
         {homeServicesData.map((service, index) => (
           <div
             key={service.title}
             className={classes.serviceSection}
             ref={(el) => addToRefs(el, index)}
-            // style={{ background: service.bg ?? '#000' }}
           >
-            {/* desktop layout */}
+            {/* Desktop layout */}
             <div className={classes.serviceContent}>
               <div className={classes.homeServicesDetails}>
                 <div className={classes.homeServicesLeftSection}>
@@ -192,7 +189,7 @@ useLayoutEffect(() => {
                 </div>
               </div>
 
-              {/* mobile layout (no animation) */}
+              {/* Mobile layout */}
               <div className={classes.homeServicesDetailsMobile}>
                 <h2 className={classes.homeServicesHeading}>SERVICES</h2>
                 <h2 className={classes.numberHeading}>{service.num}</h2>
