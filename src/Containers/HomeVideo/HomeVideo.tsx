@@ -2,34 +2,30 @@ import classes from "./HomeVideo.module.css";
 import { useEffect, useRef } from "react";
 
 const HomeVideo = () => {
-  // refs
   const videoRef = useRef<HTMLVideoElement | null>(null);
 
-  // Effects
   useEffect(() => {
     const video = videoRef.current;
 
-    const playVideoOnFocus = () => {
-      if (document.activeElement === video) {
-        video?.play();
+    const tryPlay = async () => {
+      if (video) {
+        try {
+          await video.play();
+        } catch (err) {
+          console.warn("Autoplay prevented:", err);
+        }
       }
     };
 
     const handleWindowBlur = () => video?.pause();
-    const handleWindowFocus = () => {
-      if (document.activeElement === video) {
-        video?.play();
-      }
-    };
+    const handleWindowFocus = () => tryPlay();
 
-    video?.addEventListener("focus", playVideoOnFocus);
     window.addEventListener("blur", handleWindowBlur);
     window.addEventListener("focus", handleWindowFocus);
 
-    video?.play();
+    tryPlay(); // try on mount
 
     return () => {
-      video?.removeEventListener("focus", playVideoOnFocus);
       window.removeEventListener("blur", handleWindowBlur);
       window.removeEventListener("focus", handleWindowFocus);
     };
@@ -37,7 +33,14 @@ const HomeVideo = () => {
 
   return (
     <div className={classes.container}>
-      <video controls={false} autoPlay loop={true} muted ref={videoRef}>
+      <video
+        ref={videoRef}
+        playsInline
+        autoPlay
+        loop
+        muted
+        controls={false}
+      >
         <source
           src="https://res.cloudinary.com/dmpdhnjqs/video/upload/v1722662831/IMG_3859_blulhd.mp4"
           type="video/mp4"
