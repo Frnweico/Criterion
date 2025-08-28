@@ -101,15 +101,15 @@ const HomeServices = () => {
           trigger: container,
           start: "top top",
           end: `+=${steps * STEP_VH_DESKTOP}vh`,
-           pin: container,                 // explicitly pin the container element
-    pinSpacing: true,               // keep space so the next section doesn't scroll up
-    pinReparent: false,             // <--- important: avoid reparenting to body
+           pin: container,                
+    pinSpacing: true,              
+    pinReparent: false,           
     scrub: true,
     anticipatePin: 1,
     invalidateOnRefresh: true,
     animation: tl,
     onRefresh: () => {
-      // Defensive reset of sections each refresh / remount so no stale states remain
+
       sections.forEach((sec, i) => {
         gsap.set(sec, {
           yPercent: i === 0 ? 0 : 100,
@@ -119,14 +119,14 @@ const HomeServices = () => {
       });
     }
       });
-      // Give the browser one frame and then force a refresh so everything lines up
+      
   requestAnimationFrame(() => ScrollTrigger.refresh());
 
   return () => st.kill();
 });
 
       mm.add("(max-width: 768px)", () => {
-        const MOBILE_STEP_MULT = 2.5;
+        const MOBILE_STEP_MULT = 1.2;
         const tl = buildTimeline();
         const st = ScrollTrigger.create({
           trigger: container,
@@ -143,7 +143,6 @@ const HomeServices = () => {
         return () => st.kill();
       });
 
-      // Keep --vh accurate
       const refreshAll = () => { setVh(); ScrollTrigger.refresh(); };
       requestAnimationFrame(refreshAll);
 

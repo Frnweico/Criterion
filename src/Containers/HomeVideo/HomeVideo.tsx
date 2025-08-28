@@ -23,7 +23,7 @@ const HomeVideo = () => {
     window.addEventListener("blur", handleWindowBlur);
     window.addEventListener("focus", handleWindowFocus);
 
-    tryPlay(); // try on mount
+    tryPlay(); 
 
     return () => {
       window.removeEventListener("blur", handleWindowBlur);

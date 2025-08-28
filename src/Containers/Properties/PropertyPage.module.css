@@ -1086,6 +1086,12 @@
   }
 }
 
+@media (min-width: 1024px) and (max-width: 1190px) {
+  .propertyPricing h2 {
+    font-size: 80px;
+  }
+}
+
 /* ───────────────────────── TABLET ≤ 1024 px ───────────────────────── */
 @media (max-width: 1024px) {
   /* hero header */
@@ -1283,10 +1289,9 @@
     text-align: center;
   }
   .propertyPricingContent {
-    margin-top: 2em;
+    margin-top: 0em;
   }
   .pricingTable {
-    /* width: 700px; */
     margin: 0 auto;
   }
   .pricingMobileTables {
@@ -1685,6 +1690,12 @@
   /* pricing  */
   .propertyPricingContent {
     margin-top: 0;
+  }
+  .propertyPricing h2 {
+    font-size: 40px;
+    text-align: center;
+    width: 80%;
+    margin: 0 auto;
   }
   .propertyPricingContent img {
     display: none;
