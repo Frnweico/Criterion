@@ -162,19 +162,19 @@ const HomeServices = () => {
         const st = ScrollTrigger.create({
           trigger: container,
           start: "top top",
-          end: `+=${steps * 75}vh`, // Controlled mobile scroll distance
+          end: `+=${steps * 250}vh`, // Controlled mobile scroll distance
           pin: container,
           pinSpacing: true,
-          scrub: 1.8, // Smooth but controlled
+          scrub: 4, // Smooth but controlled
           anticipatePin: 1,
           invalidateOnRefresh: true,
           animation: timeline,
-          snap: {
-            snapTo: 1 / steps, // Snap to exact positions
-            duration: { min: 0.4, max: 0.7 },
-            delay: 0.2,
-            ease: "power2.out"
-          },
+          // snap: {
+          //   snapTo: 1 / steps, // Snap to exact positions
+          //   duration: { min: 0.6, max: 1.2 },
+          //   delay: 0.3,
+          //   ease: "power1.out"
+          // },
           onRefresh: () => {
             // Critical: Ensure no black screens on mobile
             sections.forEach((section, i) => {
