@@ -133,7 +133,7 @@
 
 @media screen and (max-width: 767px) {
   .container {
-    padding: 53px 32px 0px 32px;
+    padding: 53px 0px 0px 0px;
     min-height: 80vh;
     align-items: flex-start;
     justify-content: space-between;
@@ -141,6 +141,7 @@
 
   .textSection {
     flex: 0 0 auto;
+    padding: 0 32px;
   }
   .text {
     line-height: 100%;
