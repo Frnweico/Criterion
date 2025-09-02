@@ -148,7 +148,7 @@ const HomeServices = () => {
         const timeline = buildAnimation();
         
         // --- TUNABLES (mobile only) ---
-  const MOBILE_STEP_MULT = 3; 
+  const MOBILE_STEP_MULT = 2.5; 
   const SMOOTH = 0.35;         
 
   const steps = sections.length - 1;
