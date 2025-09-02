@@ -124,16 +124,10 @@ const HomeServices = () => {
           end: `+=${steps * 200}vh`, // Increased for more precise control
           pin: container,
           pinSpacing: true,
-          scrub: 2, // Increased scrub for more control
+          scrub: 2, 
           anticipatePin: 1,
           invalidateOnRefresh: true,
           animation: timeline,
-          // snap: {
-          //   snapTo: "labels", // Snap to clean positions
-          //   duration: { min: 0.3, max: 0.6 },
-          //   delay: 0.1,
-          //   ease: "power2.inOut"
-          // },
           onRefresh: () => {
             // Ensure clean state on refresh
             sections.forEach((section, i) => {
@@ -146,12 +140,6 @@ const HomeServices = () => {
           }
         });
 
-        // Add snap points for each section
-        // timeline.addLabel(`section0`, 0);
-        // for (let i = 1; i < sections.length; i++) {
-        //   timeline.addLabel(`section${i}`, i - 1 + 0.5);
-        // }
-
         return () => st.kill();
       });
 
@@ -159,48 +147,37 @@ const HomeServices = () => {
       mm.add("(max-width: 768px)", () => {
         const timeline = buildAnimation();
         
+        // --- TUNABLES (mobile only) ---
+  const MOBILE_STEP_MULT = 2; 
+  const SMOOTH = 0.35;         
+
+  const steps = sections.length - 1;
+  const vh = (window.visualViewport?.height ?? window.innerHeight);
+  const distancePx = Math.round(steps * vh * MOBILE_STEP_MULT);
+
         const st = ScrollTrigger.create({
           trigger: container,
           start: "top top",
-          end: `+=${steps * 250}vh`, // Controlled mobile scroll distance
+          end: `+=${distancePx}`, 
           pin: container,
           pinSpacing: true,
-          scrub: 4, // Smooth but controlled
+          scrub: SMOOTH, 
           anticipatePin: 1,
           invalidateOnRefresh: true,
           animation: timeline,
-          // snap: {
-          //   snapTo: 1 / steps, // Snap to exact positions
-          //   duration: { min: 0.6, max: 1.2 },
-          //   delay: 0.3,
-          //   ease: "power1.out"
-          // },
+           snap: {
+      snapTo: (value) => {
+        const n = steps;                
+        return Math.round(value * n) / n;
+        },  
+        duration: 0.25,
+      delay: 0.05,
+      ease: "power1.inOut"
+    },
           onRefresh: () => {
-            // Critical: Ensure no black screens on mobile
-            sections.forEach((section, i) => {
-              gsap.set(section, {
-                yPercent: i === 0 ? 0 : 100,
-                zIndex: i === 0 ? 100 : 10,
-                backgroundColor: '#000', // Explicit background
-                backfaceVisibility: 'hidden'
-              });
-            });
+          const h = window.visualViewport ? window.visualViewport.height : window.innerHeight;
+      document.documentElement.style.setProperty('--vh', `${h * 0.01}px`);
           },
-          onUpdate: (self) => {
-            // Prevent reverse scroll issues by maintaining proper z-index
-            const progress = self.progress;
-            const currentIndex = Math.round(progress * steps);
-            
-            sections.forEach((section, i) => {
-              if (i === currentIndex) {
-                gsap.set(section, { zIndex: 100 });
-              } else if (i === currentIndex - 1 || i === currentIndex + 1) {
-                gsap.set(section, { zIndex: 99 });
-              } else {
-                gsap.set(section, { zIndex: 10 });
-              }
-            });
-          }
         });
 
         return () => st.kill();
