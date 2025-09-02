@@ -21,6 +21,7 @@ type Service = {
 const HomeServices = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const sectionsRef = useRef<(HTMLDivElement | null)[]>([]);
+  const headingRef = useRef<HTMLDivElement>(null);
 
   const homeServicesData: Service[] = [
     { num: "01", title: "REAL ESTATE", description1: "Choose more than a building, choose a home that reflects your personal standard.", description2: "Live in a space that values distinction, where every detail is held to a high measure.Prioritise lasting worth, quiet elegance, and a seamless fit with the way you live.", img: serviceImg1 },
@@ -33,10 +34,12 @@ const HomeServices = () => {
     sectionsRef.current[index] = el;
   };
 
-  useLayoutEffect(() => {
+ useLayoutEffect(() => {
     const ctx = gsap.context(() => {
       const container = containerRef.current;
       const sections = sectionsRef.current.filter(Boolean) as HTMLDivElement[];
+      const heading = headingRef.current;
+      
       if (!container || sections.length === 0) return;
       
       const setVh = () => {
@@ -45,48 +48,60 @@ const HomeServices = () => {
       };
       setVh();
       
-      // Clean reset
+      // Clean up previous animations
       ScrollTrigger.getAll().forEach(t => t.kill());
-      gsap.killTweensOf(sections);
+      gsap.killTweensOf([sections, heading]);
       
-      // build animation - ensure no black screens
-      const buildTimeline = () => {
-        const ZTOP = 2147483647;   
-        
-        // Initialize all sections properly
-        sections.forEach((sec, i) => {
-          gsap.set(sec, {
+      const buildAnimation = () => {
+        // Initialize sections with proper stacking - prevent black screens
+        sections.forEach((section, i) => {
+          gsap.set(section, {
             position: 'absolute',
             inset: 0,
             yPercent: i === 0 ? 0 : 100,
-            zIndex: i === 0 ? ZTOP : 1,  
+            zIndex: i === 0 ? 100 : 10,
             willChange: 'transform',
             force3D: true,
-            boxSizing: 'border-box',
             backfaceVisibility: 'hidden'
           });
         });
 
-        const tl = gsap.timeline({ defaults: { ease: 'none' } });
+        // Create smooth, snappy animation timeline
+        const tl = gsap.timeline({ 
+          defaults: { 
+            ease: 'power2.inOut' // Smoother easing for better control
+          } 
+        });
 
-        for (let i = 1; i < sections.length; i++) {
-          const incoming = sections[i];
-          const outgoing = sections[i - 1];
-          const t0 = i - 1;
-
-          // Keep outgoing visible throughout
-          tl.set(outgoing, { zIndex: ZTOP - 1, yPercent: 0 }, t0);
-          tl.set(incoming, { zIndex: ZTOP, yPercent: 100 }, t0);
+        sections.forEach((section, i) => {
+          if (i === 0) return; 
           
-          // Incoming slides up covering outgoing
-          tl.to(incoming, { yPercent: 0, duration: 0.6 }, t0 + 0.2);
+          const prevSection = sections[i - 1];
+          const timeStart = i - 1;
           
-          // Then push outgoing up
-          tl.to(outgoing, { yPercent: -100, duration: 0.4 }, t0 + 0.6);
-          
-          // Clean up z-index
-          tl.set(outgoing, { zIndex: 1 }, t0 + 1);
-        }
+          // Ensure proper layering throughout animation
+          tl.set(section, { 
+            zIndex: 100, 
+            yPercent: 100 
+          }, timeStart)
+          .set(prevSection, { 
+            zIndex: 99, 
+            yPercent: 0 
+          }, timeStart)
+          .to(section, { 
+            yPercent: 0, 
+            duration: 0.8,
+            ease: 'power2.inOut'
+          }, timeStart + 0.1)
+          .to(prevSection, { 
+            yPercent: -100, 
+            duration: 0.6,
+            ease: 'power2.in'
+          }, timeStart + 0.3)
+          .set(prevSection, { 
+            zIndex: 10 
+          }, timeStart + 0.9);
+        });
 
         return tl;
       };
@@ -94,67 +109,133 @@ const HomeServices = () => {
       const steps = sections.length - 1;
       const mm = gsap.matchMedia();
 
+      // Desktop: More controlled scrolling with snapping
       mm.add("(min-width: 769px)", () => {
-        const STEP_VH_DESKTOP = 120; // Slower scroll on desktop
-        const tl = buildTimeline();
+        const timeline = buildAnimation();
+        
+        // Make "Services" heading scroll normally (not fixed)
+        if (heading) {
+          gsap.set(heading, { position: 'relative' });
+        }
+        
         const st = ScrollTrigger.create({
           trigger: container,
           start: "top top",
-          end: `+=${steps * STEP_VH_DESKTOP}vh`,
-           pin: container,                
-    pinSpacing: true,              
-    pinReparent: false,           
-    scrub: true,
-    anticipatePin: 1,
-    invalidateOnRefresh: true,
-    animation: tl,
-    onRefresh: () => {
-
-      sections.forEach((sec, i) => {
-        gsap.set(sec, {
-          yPercent: i === 0 ? 0 : 100,
-          zIndex: i === 0 ? 2147483647 : 1,
-          backfaceVisibility: 'hidden'
-        });
-      });
-    }
-      });
-      
-  requestAnimationFrame(() => ScrollTrigger.refresh());
-
-  return () => st.kill();
-});
-
-      mm.add("(max-width: 768px)", () => {
-        const MOBILE_STEP_MULT = 1.2;
-        const tl = buildTimeline();
-        const st = ScrollTrigger.create({
-          trigger: container,
-          start: "top top",
-          end: `+=${Math.round(steps * (window.visualViewport ? window.visualViewport.height : window.innerHeight) * MOBILE_STEP_MULT)}px`,
-          pin: true,
-          pinReparent: true,
+          end: `+=${steps * 200}vh`, // Increased for more precise control
+          pin: container,
           pinSpacing: true,
-          scrub: true,
+          scrub: 2, // Increased scrub for more control
           anticipatePin: 1,
           invalidateOnRefresh: true,
-          animation: tl,
+          animation: timeline,
+          // snap: {
+          //   snapTo: "labels", // Snap to clean positions
+          //   duration: { min: 0.3, max: 0.6 },
+          //   delay: 0.1,
+          //   ease: "power2.inOut"
+          // },
+          onRefresh: () => {
+            // Ensure clean state on refresh
+            sections.forEach((section, i) => {
+              gsap.set(section, {
+                yPercent: i === 0 ? 0 : 100,
+                zIndex: i === 0 ? 100 : 10,
+                backfaceVisibility: 'hidden'
+              });
+            });
+          }
         });
+
+        // Add snap points for each section
+        // timeline.addLabel(`section0`, 0);
+        // for (let i = 1; i < sections.length; i++) {
+        //   timeline.addLabel(`section${i}`, i - 1 + 0.5);
+        // }
+
         return () => st.kill();
       });
 
-      const refreshAll = () => { setVh(); ScrollTrigger.refresh(); };
-      requestAnimationFrame(refreshAll);
+      // Mobile: Fixed animation with no black screens
+      mm.add("(max-width: 768px)", () => {
+        const timeline = buildAnimation();
+        
+        const st = ScrollTrigger.create({
+          trigger: container,
+          start: "top top",
+          end: `+=${steps * 75}vh`, // Controlled mobile scroll distance
+          pin: container,
+          pinSpacing: true,
+          scrub: 1.8, // Smooth but controlled
+          anticipatePin: 1,
+          invalidateOnRefresh: true,
+          animation: timeline,
+          snap: {
+            snapTo: 1 / steps, // Snap to exact positions
+            duration: { min: 0.4, max: 0.7 },
+            delay: 0.2,
+            ease: "power2.out"
+          },
+          onRefresh: () => {
+            // Critical: Ensure no black screens on mobile
+            sections.forEach((section, i) => {
+              gsap.set(section, {
+                yPercent: i === 0 ? 0 : 100,
+                zIndex: i === 0 ? 100 : 10,
+                backgroundColor: '#000', // Explicit background
+                backfaceVisibility: 'hidden'
+              });
+            });
+          },
+          onUpdate: (self) => {
+            // Prevent reverse scroll issues by maintaining proper z-index
+            const progress = self.progress;
+            const currentIndex = Math.round(progress * steps);
+            
+            sections.forEach((section, i) => {
+              if (i === currentIndex) {
+                gsap.set(section, { zIndex: 100 });
+              } else if (i === currentIndex - 1 || i === currentIndex + 1) {
+                gsap.set(section, { zIndex: 99 });
+              } else {
+                gsap.set(section, { zIndex: 10 });
+              }
+            });
+          }
+        });
 
-      window.addEventListener('resize', refreshAll);
-      window.addEventListener('orientationchange', refreshAll);
-      if (window.visualViewport) window.visualViewport.addEventListener('resize', refreshAll);
+        return () => st.kill();
+      });
+
+      // Improved refresh handling
+      const refreshHandler = () => {
+        setVh();
+        ScrollTrigger.refresh();
+      };
+
+      // Debounce resize events
+      let resizeTimeout: NodeJS.Timeout;
+      const debouncedRefresh = () => {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(refreshHandler, 100);
+      };
+
+      window.addEventListener('resize', debouncedRefresh);
+      window.addEventListener('orientationchange', refreshHandler);
+      if (window.visualViewport) {
+        window.visualViewport.addEventListener('resize', debouncedRefresh);
+      }
+
+      // Initial refresh
+      requestAnimationFrame(refreshHandler);
 
       return () => {
         mm.revert();
-        window.removeEventListener('resize', refreshAll);
-        window.removeEventListener('orientationchange', refreshAll);
-        if (window.visualViewport) window.visualViewport.removeEventListener('resize', refreshAll);
+        clearTimeout(resizeTimeout);
+        window.removeEventListener('resize', debouncedRefresh);
+        window.removeEventListener('orientationchange', refreshHandler);
+        if (window.visualViewport) {
+          window.visualViewport.removeEventListener('resize', debouncedRefresh);
+        }
       };
     }, containerRef);
 
@@ -164,7 +245,7 @@ const HomeServices = () => {
   return (
     <div className={classes.homeServicesWrapper}>
       {/* Fixed title that stays visible */}
-      <div className={classes.servicesFixedHeading}>
+      <div className={classes.servicesFixedHeading} ref={headingRef}>
         <h2 className={classes.homeServicesHeading}>SERVICES</h2>
       </div>
 
