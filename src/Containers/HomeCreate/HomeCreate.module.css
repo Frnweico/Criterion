@@ -488,15 +488,13 @@ button span {
   }
   .createContainerMobile {
     display: block;
-    width: 90%;
+    width: 100%;
     margin: 0 auto;
     margin-bottom: 2em;
   }
   .homeCreateMobile {
     display: flex;
     flex-direction: column;
-    /* align-items: center; */
-    /* justify-content: center; */
   }
   .headingMobile {
     font-family: "Space Grotesk";
@@ -505,16 +503,20 @@ button span {
     line-height: 92%;
     letter-spacing: -2%;
     color: #191919;
+    width: 90%;
+    margin: 0 auto;
   }
   .mobileImage {
-    width: 100%;
+    width: 100vw;
     margin: 0 auto;
   }
   .mobileImage img {
     max-width: 100%;
+    object-fit: cover;
   }
   .mobileTextWrapper {
     width: 90%;
+    margin: 0 auto;
   }
   .mainTextMobile {
     display: flex;
