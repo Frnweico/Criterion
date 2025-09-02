@@ -197,33 +197,14 @@
   z-index: 10;
 }
 
-@media screen and (max-width: 1300px) {
-  .servicesFixedHeading .homeServicesHeading {
-    font-size: 90px;
-    margin-left: 1.5em;
-  }
-  .homeServicesLeftSection {
-    margin-left: 1.5em;
-    height: 80vh;
-  }
-  .homeServicesImage {
-    max-height: 80vh;
-  }
-  .homeServicesHeading {
-    font-size: 90px;
-  }
-  .numberHeading {
-    font-size: 120px;
-  }
-}
-
 @media screen and (max-width: 1200px) {
   .servicesFixedHeading {
-    padding: 2.5em 3em 1em 3em;
+    padding: 2.5em 3em 0 0;
+    width: 85%;
   }
   .servicesFixedHeading .homeServicesHeading {
     font-size: 85px;
-    margin-left: 3em;
+    margin-left: 0;
   }
   .homeServicesLeftSection {
     margin-left: 3em;
@@ -250,7 +231,7 @@
 @media screen and (max-width: 1100px) {
   .servicesFixedHeading .homeServicesHeading {
     font-size: 80px;
-    margin-left: 2em;
+    margin-left: 0;
   }
   .homeServicesLeftSection {
     margin-left: 2em;
@@ -269,11 +250,11 @@
 
 @media screen and (max-width: 1024px) {
   .servicesFixedHeading {
-    padding: 2em 2em 1em 2em;
+    padding: 2em 0 0 0;
   }
   .servicesFixedHeading .homeServicesHeading {
     font-size: 72px;
-    margin-left: 1em;
+    margin-left: 0;
   }
   .homeServicesDetails {
     gap: 3em;

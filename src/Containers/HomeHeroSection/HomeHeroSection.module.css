@@ -5,7 +5,6 @@
   padding: 75px 0px 0px 0px;
   justify-content: space-between;
   min-height: calc(800px - 125px);
-  /* max-height: calc(800px - 125px); */
   overflow: hidden;
 }
 
@@ -16,7 +15,6 @@
   flex-direction: column;
   align-items: center;
   margin-top: 2em;
-  /* margin-bottom: 2rem; */
 }
 
 .textSection > h4 {
@@ -48,7 +46,7 @@
   color: #191919;
   margin-top: 0.5em;
   font-size: 16px;
-  line-height: 89%;
+  line-height: 17.9px;
 }
 
 .imageContainer {
@@ -143,6 +141,9 @@
 
   .textSection {
     flex: 0 0 auto;
+  }
+  .text {
+    line-height: 100%;
   }
 
   .textSection > h4:not(.textSection > h4 > span:nth-child(1)) {

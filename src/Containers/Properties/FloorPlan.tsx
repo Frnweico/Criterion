@@ -52,7 +52,7 @@ const FloorPlanHeader = ({
       <div className={classes.floorPlanHeaderItems}>
         {items.map((item, idx) => (
           <div key={idx}>
-            <p>{item}</p>
+            <p className={idx === items.length - 1 ? classes.lastItem : ''}>{item}</p>
           </div>
         ))}
       </div>
@@ -95,9 +95,9 @@ const Lightbox: React.FC<LightboxProps> = ({
     const threshold = 50;
 
     if (Math.abs(diff) > threshold) {
-      if (diff > 0) {
+      if (diff > 0 && currentIndex < images.length - 1) {
         onNext();
-      } else {
+      } else if (diff < 0 && currentIndex > 0) {
         onPrev();
       }
     }
@@ -167,6 +167,8 @@ const FloorPlan = () => {
   // Each unit has its own independent floor index
   const [floorIndices, setFloorIndices] = useState([0, 0]); // [doubleUnit, singleUnit]
   const [lightbox, setLightbox] = useState({ isOpen: false, unitIdx: 0, currentIndex: 0 });
+   const [isTransitioning, setIsTransitioning] = useState(false);
+
 
   useEffect(() => {
     Aos.init({ duration: 1000 });
@@ -220,16 +222,30 @@ const FloorPlan = () => {
   ];
 
   const move = (unitIdx: number, dir: "next" | "prev") => {
+    if (isTransitioning) return; 
+
     const delta = dir === "next" ? 1 : -1;
     setFloorIndices(prev => {
       const newIndices = [...prev];
-      newIndices[unitIdx] = Math.min(2, Math.max(0, newIndices[unitIdx] + delta));
+      const newIndex = prev[unitIdx] + delta;
+
+       // Boundary check
+      if (newIndex >= 0 && newIndex < floorPlanData[unitIdx].floors.length) {
+        setIsTransitioning(true);
+        newIndices[unitIdx] = newIndex;
+        
+        // Reset transition flag after animation completes
+        setTimeout(() => setIsTransitioning(false), 600); // Match CSS transition duration
+      }
+
       return newIndices;
     });
   };
 
   // Lightbox functions
   const openLightbox = (unitIdx: number, imageIdx: number) => {
+     if (isTransitioning) return;
+
     setLightbox({
       isOpen: true,
       unitIdx,
@@ -292,7 +308,7 @@ const FloorPlan = () => {
                 {/* Left Arrow */}
                 <button
                   onClick={() => move(unitIdx, "prev")}
-                  disabled={currentIndex === 0}
+                  disabled={currentIndex === 0 || isTransitioning}
                   className={classes.arrowButton}
                 >
                   <img src={leftArrow} alt="Previous Floor" />
@@ -311,7 +327,7 @@ const FloorPlan = () => {
                     />
                   </div>
 
-                  {/* Carousel with sliding animation */}
+                  {/* Carousel with smoother sliding animation */}
                   <div className={classes.carouselViewport}>
                     <div
                       className={classes.carouselTrack}
@@ -349,7 +365,7 @@ const FloorPlan = () => {
                 {/* Right Arrow */}
                 <button
                   onClick={() => move(unitIdx, "next")}
-                  disabled={currentIndex === len - 1}
+                  disabled={currentIndex === len - 1 || isTransitioning}
                   className={classes.arrowButton}
                 >
                   <img src={rightArrow} alt="Next Floor" />

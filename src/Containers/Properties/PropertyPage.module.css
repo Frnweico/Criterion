@@ -511,7 +511,7 @@
 .carouselTrack {
   display: flex;
   width: 300%; /* 100% * 3 slides */
-  transition: transform 450ms ease;
+  transition: transform 800ms cubic-bezier(0.25, 0.1, 0.25, 1);
   will-change: transform;
   height: 100%;
 }
@@ -649,7 +649,6 @@
 }
 
 .lightboxArrow:hover:not(:disabled) {
-  /* background: rgba(255, 255, 255, 1); */
   transform: translateY(-50%) scale(1.1);
 }
 
@@ -1337,6 +1336,12 @@
   }
 }
 
+@media (min-width: 768px) and (max-width: 1200px) {
+  .lightboxImage {
+    max-width: 80%;
+  }
+}
+
 /* ───────────────────────── PHONE ≤ 768 px ───────────────────────── */
 @media (max-width: 768px) {
   .propertyPageContainer {
@@ -1616,6 +1621,9 @@
     display: flex;
     align-items: center;
     box-sizing: border-box;
+  }
+  .floorPlanHeaderItems p.lastItem {
+    border-right: none !important;
   }
   .floorPlanImageWrapper {
     padding: 0;
