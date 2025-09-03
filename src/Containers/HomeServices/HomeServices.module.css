@@ -12,8 +12,8 @@
 
 .servicesFixedHeading {
   position: relative;
-  z-index: 1;
-  pointer-events: auto;
+  z-index: 0;
+  pointer-events: none;
   padding: 3em 1em 1em 2.5em;
   width: 90%;
   margin: 0 auto;
@@ -63,11 +63,9 @@
   background: #000;
   height: 100vh;
   width: 100vw;
-  /* Ensure sections fill completely with no gaps */
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  /* Improve rendering performance */
   backface-visibility: hidden;
   transform: translateZ(0);
   z-index: 1;
@@ -83,8 +81,8 @@
   max-width: 90%;
   margin: 0 auto;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  align-items: stretch;
+  justify-content: stretch;
   box-sizing: border-box;
 }
 
@@ -108,7 +106,7 @@
   grid-template-columns: 40% 60%;
   gap: 4em;
   width: 100%;
-  height: 90vh; /* Ensure proper height without gaps */
+  height: 100%;
   box-sizing: border-box;
   align-items: center;
 }
@@ -120,7 +118,7 @@
   justify-content: center;
   margin-left: 3em;
   margin-right: 1em;
-  height: 85vh; /* Controlled height to prevent spacing issues */
+  height: 100%;
 }
 
 .homeServicesRightSection {
@@ -138,7 +136,7 @@
   height: 100%;
   display: flex;
   align-items: stretch;
-  max-height: 85vh; /* Prevent overflow that causes spacing */
+  max-height: none;
 }
 
 .homeServicesImage img {

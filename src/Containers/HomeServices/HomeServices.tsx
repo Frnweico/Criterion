@@ -75,7 +75,7 @@ const HomeServices = () => {
 
       // Clean up previous animations
       ScrollTrigger.getAll().forEach((t) => t.kill());
-      gsap.killTweensOf([sections, heading]);
+      gsap.killTweensOf([sections]);
 
       const buildAnimation = () => {
         sections.forEach((section, i) => {
@@ -156,29 +156,29 @@ const HomeServices = () => {
       // Desktop: More controlled scrolling with snapping
       mm.add("(min-width: 769px)", () => {
         const timeline = buildAnimation();
+        const steps = sections.length - 1;
+  const vh = window.visualViewport?.height ?? window.innerHeight;
+  const totalPx = Math.round(steps * vh); 
 
-        // Make "Services" heading scroll normally (not fixed)
-        if (heading) {
-          gsap.set(heading, { position: "relative", clearProps: "all" });
-        }
+  if (container) {
+    container.style.overflow = "hidden";
+  }
 
         const st = ScrollTrigger.create({
           trigger: container,
-          start: "top top",
-          end: `+=${steps * 150}vh`, 
+          start:  `top top`,
+          end:  `+=${totalPx}`, 
           pin: container,
           pinSpacing: true,
-          scrub: 1.2,
+          scrub: true,
           anticipatePin: 1,
           invalidateOnRefresh: true,
           animation: timeline,
           onRefresh: () => {
-            // Ensure clean state on refresh
             sections.forEach((section, i) => {
               gsap.set(section, {
                 yPercent: i === 0 ? 0 : 100,
                 zIndex: i === 0 ? 100 : 10,
-                backfaceVisibility: "hidden",
               });
             });
           },
