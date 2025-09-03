@@ -371,8 +371,22 @@ button span {
 }
 
 @media (min-width: 1024px) and (max-width: 1100px) {
+  .midtownTextSection {
+    padding: 6em 2em 0 2em;
+  }
+
   .midtownHeading {
     font-size: 60px;
+  }
+  .midtownText {
+    padding: 0;
+    margin-left: 2em;
+  }
+  .midtownDetails p {
+    font-weight: 300;
+    line-height: 150%;
+    width: 100%;
+    text-align: left;
   }
 }
 
