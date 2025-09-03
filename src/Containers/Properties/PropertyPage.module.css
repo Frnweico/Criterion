@@ -212,7 +212,6 @@
   padding: 0.5em 0;
   width: 95%;
   margin-left: auto;
-  /* border: 1px solid red; */
 }
 
 .projectLocationTextLine {
@@ -333,6 +332,7 @@
   text-align: right;
   flex-shrink: 0;
   position: relative;
+  line-height: 104%;
 }
 
 .propertyDetailsFeatureItem img {
@@ -475,7 +475,10 @@
   font-weight: 300;
   margin: 0;
 }
-
+.floorPlanTitleGroundFloor,
+.floorPlanTitleFirstFloor {
+  width: 80%;
+}
 .floorPlanHeaderItems {
   display: flex;
   flex-direction: column;
@@ -1235,13 +1238,19 @@
     align-items: center;
   }
   .floorPlanHeader h2 {
-    font-size: 42px;
+    font-size: 60px;
+  }
+  .floorPlanTitleGroundFloor {
+    width: 100%;
+  }
+  .floorPlanTitleFirstFloor {
+    width: 100%;
   }
   .floorPlanHeaderItems {
     margin-left: auto;
   }
   .floorPlanImageWrapper {
-    width: 100%;
+    width: 90%;
     display: flex;
     justify-content: center;
   }
@@ -1306,6 +1315,13 @@
   .propertyPricingContact button {
     height: 100%;
     padding: 25px 50px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 920px) {
+  .floorPlanTitleGroundFloor,
+  .floorPlanTitleFirstFloor {
+    width: 80%;
   }
 }
 
@@ -1595,6 +1611,9 @@
     font-size: 40px;
     text-align: center;
     width: 100%;
+  }
+  .floorPlanTitleFirstFloor {
+    width: 80% !important;
   }
   .carouselViewport {
     padding: 0;

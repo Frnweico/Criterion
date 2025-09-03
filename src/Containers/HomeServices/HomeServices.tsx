@@ -27,7 +27,7 @@ const HomeServices = () => {
       num: "01",
       title: "REAL ESTATE",
       description:
-        "Choose more than a building, choose a home that reflects your personal standard. Live in a space that values distinction, where every detail is held to a high measure.Prioritise lasting worth, quiet elegance, and a seamless fit with the way you live.",
+        "Choose more than a building, choose a home that reflects your personal standard. Live in a space that values distinction, where every detail is held to a high measure. Prioritise lasting worth, quiet elegance, and a seamless fit with the way you live.",
       img: serviceImg1,
     },
     {
@@ -41,14 +41,14 @@ const HomeServices = () => {
       num: "03",
       title: "INFRASTRUCTURE",
       description:
-        "Great living isn’t just about where you are. It’s about how everything around you supports it.Let every detail work in harmony with the life you lead. Choose infrastructure that quietly shapes environments to elevate everyday living.",
+        "Great living isn’t just about where you are. It’s about how everything around you supports it. Let every detail work in harmony with the life you lead. Choose infrastructure that quietly shapes environments to elevate everyday living.",
       img: serviceImg3,
     },
     {
       num: "04",
       title: "ADVISORY",
       description:
-        "When your choices carry weight, your counsel should too.Get private, tailored advisory services that help you navigate property, investments, and landmark projects with clarity and confidence. Every recommendation reflects an understanding of your priorities, guided by a measure that doesn’t entertain anything but the standard.",
+        "When your choices carry weight, your counsel should too. Get private, tailored advisory services that help you navigate property, investments, and landmark projects with clarity and confidence. Every recommendation reflects an understanding of your priorities, guided by a measure that doesn’t entertain anything but the standard.",
       img: serviceImg4,
     },
   ];

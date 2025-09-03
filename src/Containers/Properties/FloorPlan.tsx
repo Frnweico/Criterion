@@ -39,7 +39,7 @@ const FloorPlanHeader = ({
         >
           <img src={leftArrow} alt="" />
         </button>
-        <h2>{title}</h2>
+        <h2 className={`${title === "FIRST FLOOR" ? `${classes.floorPlanTitleFirstFloor}` : title === "GROUND FLOOR" ? `${classes.floorPlanTitleGroundFloor}` : title === "SECOND FLOOR" ? `${classes.floorPlanTitleSecondFloor}` : ""}`} >{title}</h2>
         <button
           onClick={onNext}
           disabled={currentIndex === maxIndex}
