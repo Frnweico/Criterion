@@ -215,8 +215,7 @@ const HomeServices = () => {
               const n = steps;
               return Math.round(value * n) / n;
             },
-            duration: 0.25,
-            // delay: 0.05,
+            duration: 0.01,
             ease: "power1.inOut",
           },
           onRefresh: () => {
