@@ -149,7 +149,7 @@ const HomeServices = () => {
         
         // --- TUNABLES (mobile only) ---
   const MOBILE_STEP_MULT = 2; 
-  const SMOOTH = 0.35;         
+  const SMOOTH = 0.02;         
 
   const steps = sections.length - 1;
   const vh = (window.visualViewport?.height ?? window.innerHeight);
@@ -171,7 +171,7 @@ const HomeServices = () => {
         return Math.round(value * n) / n;
         },  
         duration: 0.25,
-      delay: 0.05,
+      // delay: 0.05,
       ease: "power1.inOut"
     },
           onRefresh: () => {
