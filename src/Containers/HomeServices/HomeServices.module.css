@@ -6,7 +6,6 @@
   overscroll-behavior: contain;
   isolation: isolate;
   overflow: hidden;
-  /* Remove any default margins/padding that could cause spacing issues */
   margin: 0;
   padding: 0;
 }
@@ -322,7 +321,6 @@
     justify-content: center;
     position: absolute;
     inset: 0;
-    /* Ensure proper mobile stacking */
     transform: translateZ(0);
     backface-visibility: hidden;
   }
@@ -381,11 +379,11 @@
     max-width: 85%;
     width: 85%;
     height: auto;
-    max-height: 40vh;
-    overflow: hidden;
+    max-height: 50vh;
+    overflow: visible;
     margin-top: auto;
-    /* Improve mobile image rendering */
     transform: translateZ(0);
+    border: 1px solid red;
   }
 
   .homeServicesImage img {
