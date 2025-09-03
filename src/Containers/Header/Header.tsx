@@ -1,5 +1,5 @@
 import classes from "./Header.module.css";
-import logo from "../../Assets/Images/logo.svg";
+import logo from "../../Assets/Images/logoNew.svg";
 import logoLight from "../../Assets/Images/logoLight.svg";
 import { routes } from "../../Utilities/routes";
 import { Link, useLocation, useNavigate } from "react-router-dom";

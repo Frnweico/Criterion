@@ -33,12 +33,11 @@
 .homeServices {
   position: relative;
   width: 100vw;
-  height: 100vh; /* Ensure exact viewport height */
+  height: 100vh;
   background: #000;
   color: #f4f4f4;
   overflow: hidden;
   isolation: isolate;
-  /* Remove any margins that could cause spacing */
   margin: 0;
   padding: 0;
 }

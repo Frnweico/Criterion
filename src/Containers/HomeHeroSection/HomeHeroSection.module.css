@@ -24,6 +24,7 @@
   letter-spacing: -2%;
   text-align: center;
   color: #191919;
+  font-family: "Space Grotesk";
 }
 
 .textSection > h4 > span {
@@ -38,7 +39,18 @@
 
 .textSection > button {
   margin-top: 1.5rem;
-  min-width: 220px;
+  min-width: 176px;
+  padding: 4px 30px;
+}
+
+.textSection > button > span,
+.textSection > button > svg {
+  display: flex;
+  align-items: center;
+}
+
+.textSection > button > svg {
+  transform: translateY(-1px);
 }
 
 .text {
@@ -138,7 +150,7 @@
 @media screen and (max-width: 767px) {
   .container {
     padding: 53px 0px 0px 0px;
-    min-height: calc(550px - 50px);
+    min-height: calc(550px);
     align-items: flex-start;
     justify-content: space-between;
   }
@@ -149,10 +161,16 @@
   }
   .text {
     line-height: 100%;
+    font-size: 14px;
+    margin-top: 0.25em;
+  }
+  .textSection > button {
+    margin-top: 1.5rem;
+    min-width: 130px;
   }
 
   .textSection > h4:not(.textSection > h4 > span:nth-child(1)) {
-    font-size: 39px;
+    font-size: 41px;
     line-height: 42.24px;
     letter-spacing: -2%;
     margin-top: 1em;
@@ -163,13 +181,13 @@
   }
 
   .textSection > h4 > span:nth-child(1) {
-    font-size: 39px;
+    font-size: 41px;
     line-height: 88%;
     letter-spacing: -0.04em;
   }
 
   .textSection > h4 > span:nth-child(2) {
-    font-size: 39px;
+    font-size: 41px;
     line-height: 88%;
     letter-spacing: -0.04em;
   }

@@ -113,6 +113,12 @@ button {
     padding: 28px 32px;
   }
 
+  .container > img {
+    width: 89px;
+    height: 25.5px;
+    cursor: pointer;
+  }
+
   .container > a,
   .container > button,
   .container > p {

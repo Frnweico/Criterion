@@ -78,7 +78,6 @@ const HomeServices = () => {
       gsap.killTweensOf([sections, heading]);
 
       const buildAnimation = () => {
-        // Initialize sections with proper stacking - prevent black screens
         sections.forEach((section, i) => {
           gsap.set(section, {
             position: "absolute",
@@ -94,7 +93,7 @@ const HomeServices = () => {
         // Create smooth, snappy animation timeline
         const tl = gsap.timeline({
           defaults: {
-            ease: "power2.inOut", // Smoother easing for better control
+            ease: "power2.inOut", 
           },
         });
 
@@ -160,16 +159,16 @@ const HomeServices = () => {
 
         // Make "Services" heading scroll normally (not fixed)
         if (heading) {
-          gsap.set(heading, { position: "relative" });
+          gsap.set(heading, { position: "relative", clearProps: "all" });
         }
 
         const st = ScrollTrigger.create({
           trigger: container,
           start: "top top",
-          end: `+=${steps * 200}vh`, // Increased for more precise control
+          end: `+=${steps * 150}vh`, 
           pin: container,
           pinSpacing: true,
-          scrub: 2,
+          scrub: 1.2,
           anticipatePin: 1,
           invalidateOnRefresh: true,
           animation: timeline,
@@ -192,7 +191,6 @@ const HomeServices = () => {
       mm.add("(max-width: 768px)", () => {
         const timeline = buildAnimation();
 
-        // --- TUNABLES (mobile only) ---
         const MOBILE_STEP_MULT = 1.5;
         const SMOOTH = 0.05;
 

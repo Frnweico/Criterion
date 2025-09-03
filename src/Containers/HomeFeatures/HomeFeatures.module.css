@@ -1,56 +1,56 @@
 .container {
-	background: #625834;
-	padding: 8px 0;
-	white-space: nowrap;
-	box-sizing: border-box;
+  background: #625834;
+  padding: 3px 0;
+  white-space: nowrap;
+  box-sizing: border-box;
 }
 
 .container > div,
 .container > div > div {
-	display: flex;
-	align-items: center;
-	gap: 50px;
+  display: flex;
+  align-items: center;
+  gap: 50px;
 }
 
 .container > div {
-	transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
 }
 
 .slideRight {
-	animation: 10s slideRight infinite linear;
-	justify-content: flex-end;
+  animation: 10s slideRight infinite linear;
+  justify-content: flex-end;
 }
 
 .slide {
-	animation: 10s slide infinite linear;
+  animation: 10s slide infinite linear;
 }
 
 .container > div > div {
-	font-family: 'Poppins';
-	font-size: 18.96px;
-	font-weight: 500;
-	line-height: 24.19px;
-	text-align: center;
-	color: #f4f4f4;
-	white-space: nowrap;
-	flex-grow: 0;
-	flex-shrink: 0;
+  font-family: "Space Grotesk";
+  font-size: 14.03px;
+  font-weight: 500;
+  line-height: 24.19px;
+  text-align: center;
+  color: #f4f4f4;
+  white-space: nowrap;
+  flex-grow: 0;
+  flex-shrink: 0;
 }
 
 @keyframes slide {
-	to {
-		transform: translateX(0%);
-	}
-	to {
-		transform: translateX(-100%);
-	}
+  to {
+    transform: translateX(0%);
+  }
+  to {
+    transform: translateX(-100%);
+  }
 }
 
 @keyframes slideRight {
-	to {
-		transform: translateX(0%);
-	}
-	to {
-		transform: translateX(100%);
-	}
+  to {
+    transform: translateX(0%);
+  }
+  to {
+    transform: translateX(100%);
+  }
 }
