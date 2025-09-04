@@ -204,10 +204,6 @@
   }
   .homeServicesLeftSection {
     margin-left: 3em;
-    height: 80vh;
-  }
-  .homeServicesImage {
-    max-height: 80vh;
   }
   .homeServicesHeading {
     font-size: 85px;
@@ -231,10 +227,6 @@
   }
   .homeServicesLeftSection {
     margin-left: 2em;
-    height: 78vh;
-  }
-  .homeServicesImage {
-    max-height: 78vh;
   }
   .homeServicesHeading {
     font-size: 80px;
@@ -254,14 +246,13 @@
   }
   .homeServicesDetails {
     gap: 3em;
-    height: 85vh;
   }
   .homeServicesLeftSection {
     margin-left: 1em;
-    height: 75vh;
+    height: 85vh;
   }
   .homeServicesImage {
-    max-height: 75vh;
+    max-height: 85vh;
   }
   .homeServicesRightSection {
     width: 80%;

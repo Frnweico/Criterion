@@ -112,14 +112,6 @@ const HomeServices = () => {
             },
             timeStart
           )
-            .set(
-              prevSection,
-              {
-                zIndex: 99,
-                yPercent: 0,
-              },
-              timeStart
-            )
             .to(
               section,
               {
@@ -150,24 +142,17 @@ const HomeServices = () => {
         return tl;
       };
 
-      const steps = sections.length - 1;
       const mm = gsap.matchMedia();
 
       // Desktop: More controlled scrolling with snapping
       mm.add("(min-width: 769px)", () => {
         const timeline = buildAnimation();
         const steps = sections.length - 1;
-  const vh = window.visualViewport?.height ?? window.innerHeight;
-  const totalPx = Math.round(steps * vh); 
-
-  if (container) {
-    container.style.overflow = "hidden";
-  }
 
         const st = ScrollTrigger.create({
           trigger: container,
           start:  `top top`,
-          end:  `+=${totalPx}`, 
+          end:  `+=${steps * 150}vh`, 
           pin: container,
           pinSpacing: true,
           scrub: true,
