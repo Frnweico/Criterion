@@ -165,6 +165,8 @@
   .text {
     line-height: 100%;
     font-size: 14px;
+    width: 98%;
+    margin: 0 auto;
     margin-top: 0.25em;
   }
   .textSection > button {
