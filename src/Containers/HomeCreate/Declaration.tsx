@@ -4,6 +4,7 @@ import classes from './HomeCreate.module.css';
 const Declaration = () => {
   return (
     <div className={classes.declarationContainer}>
+      <div className={classes.declaration}>
       <h2><sup className={classes.declarationSup}>THE</sup> <span >CRITERION</span> <br />DECLARATION</h2>
 
 <div className={classes.declarationText}>
@@ -21,7 +22,7 @@ A philosophy that defines how we build, why we build, and who we build for. It r
 					</svg>
                     </Button>
     </div>
-
+</div>
 
     </div>
 
