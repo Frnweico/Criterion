@@ -178,6 +178,12 @@ const PropertyShowcase: React.FC<PropertyShowcaseProps> = ({ data }) => {
   // Find current active image index
   const activeImageIndex = data.images.findIndex((img) => img === activeImage);
 
+  const lineClass = data.headerText.includes("Urban Nest") 
+    ? classes.lineShiftUrban 
+    : data.headerText.includes("Midtown Terraces") 
+      ? classes.lineShiftMidtown 
+      : '';
+
   return (
     <div className={classes.propertyDetailsWrapper}>
       <div className={classes.propertyDetailsInfo}>
@@ -186,7 +192,7 @@ const PropertyShowcase: React.FC<PropertyShowcaseProps> = ({ data }) => {
           are: */}
           <span>{data.headerText}</span>
         </h2>
-        <div className={`${classes.propertyDetailsLinee} ${data.headerText.includes("Urban Nest") ? classes.lineShift : ''}`} >
+        <div className={`${classes.propertyDetailsLinee} ${lineClass}`} >
           <img src={line} alt="line" />
         </div>
         <h2 className={classes.propertyHeaderTextMobile}>

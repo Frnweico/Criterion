@@ -295,8 +295,8 @@
   overflow: hidden;
   clip-path: polygon(35% 0%, 35% 100%, 100% 100%, 100% 0%);
 }
-.lineShift {
-  top: 40%;
+.lineShiftUrban {
+  clip-path: polygon(60% 0%, 60% 100%, 100% 100%, 100% 0%);
 }
 .propertyDetailsLinee img {
   height: auto;
@@ -1074,8 +1074,9 @@
   .propertyShowcaseHeaderText {
     width: 55%;
   }
-  .lineShift {
-    left: 27%;
+  .lineShiftUrban {
+    clip-path: polygon(60% 0%, 60% 100%, 100% 100%, 100% 0%);
+    left: 17%;
   }
   .propertyDetailsLinee {
     left: 12%;
@@ -1106,6 +1107,13 @@
   .propertyDetailsFeatureItem h4 {
     width: 25%;
   }
+  .propertyShowcaseHeaderText {
+    width: 55%;
+  }
+  .lineShiftUrban {
+    clip-path: polygon(60% 0%, 60% 100%, 100% 100%, 100% 0%);
+    left: 13%;
+  }
 }
 @media (min-width: 1024px) and (max-width: 1050px) {
   .propertyDetailsLinee {
@@ -1114,6 +1122,13 @@
   }
   .propertyDetailsFeatureItem h4 {
     width: 25%;
+  }
+  .propertyShowcaseHeaderText {
+    width: 55%;
+  }
+  .lineShiftUrban {
+    clip-path: polygon(60% 0%, 60% 100%, 100% 100%, 100% 0%);
+    left: 13%;
   }
 }
 
