@@ -1,0 +1,341 @@
+.propertiesHome {
+  min-height: 100vh;
+  overflow: visible;
+}
+
+.propertiesHome h1 {
+  font-size: 128px;
+  line-height: 88%;
+  letter-spacing: -5%;
+  font-family: "Space Grotesk", sans-serif;
+  padding: 24px 120px 12px 120px;
+  margin-bottom: 16px;
+  font-weight: 400;
+}
+
+.propertiesHomeContainer {
+  display: grid;
+  grid-template-columns: 60% 40%;
+  justify-content: center;
+  align-items: center;
+}
+
+.mainImageSection {
+  height: 100%;
+  background-repeat: no-repeat;
+  background-position: top right;
+  display: flex;
+  align-items: flex-end;
+  padding-top: 60px;
+}
+
+.mainImageText {
+  background-color: #f4f4f4;
+  padding: 30px 20px 30px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 70%;
+}
+
+.mainImage {
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  overflow: hidden;
+}
+
+.mainImage img {
+  height: 351px;
+  width: 100%;
+  max-width: 608px;
+}
+
+.mainImageTextHeader {
+  width: 100%;
+  padding-left: 115px;
+}
+
+.mainImageTextHeader p {
+  font-family: "Poppins", sans-serif;
+  font-weight: 300;
+  font-size: 22px;
+  line-height: 140%;
+  color: #000;
+  margin-bottom: 1em;
+}
+
+.mainImageTextHeader h2 {
+  font-family: "Mazius Display", sans-serif;
+  font-weight: 400;
+  font-size: 68px;
+  line-height: 61.5px;
+  letter-spacing: -4%;
+}
+
+.mainImageTextDescription {
+  width: 90%;
+  padding-left: 115px;
+}
+
+.mainImageTextDescription p {
+  font-family: "Poppins", sans-serif;
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 150%;
+  margin-top: 1em;
+}
+
+.nextProjectSection {
+  height: 90%;
+  background-repeat: no-repeat;
+  background-position: top right;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-family: "Poppins", sans-serif;
+  color: #fff;
+  width: 100%;
+  max-width: 100%;
+  align-self: flex-end;
+  position: relative;
+  overflow: hidden;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  max-height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.nextProjectContent {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1em;
+}
+
+.nextProjectContent div {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
+.nextProjectContent p:first-of-type {
+  font-weight: 400;
+  font-size: 12px;
+  letter-spacing: -4%;
+}
+
+.nextProjectContent p:nth-of-type(2) {
+  font-weight: 300;
+  font-size: 22px;
+  line-height: 140%;
+  letter-spacing: 0%;
+}
+
+.nextProjectContent h2 {
+  font-family: "Mazius Display", sans-serif;
+  font-weight: 400;
+  font-size: 48px;
+  line-height: 94%;
+  letter-spacing: -2%;
+  margin-bottom: 0.5em;
+  width: 70%;
+  margin: 0 auto;
+}
+
+.nextProjectContent button {
+  align-self: center;
+}
+
+/* Tablet Styles */
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  .propertiesHome h1 {
+    font-size: 80px;
+    padding: 24px 60px 12px 60px;
+  }
+
+  .propertiesHomeContainer {
+    grid-template-columns: 55% 45%;
+  }
+
+  .mainImageText {
+    width: 80%;
+    padding: 20px 15px 20px 0;
+    gap: 15px;
+  }
+
+  .mainImageTextHeader {
+    padding-left: 60px;
+  }
+
+  .mainImageTextHeader p {
+    font-size: 18px;
+  }
+
+  .mainImageTextHeader h2 {
+    font-size: 52px;
+    line-height: 50px;
+  }
+
+  .mainImage img {
+    height: 280px;
+    max-width: 100%;
+  }
+
+  .mainImageTextDescription {
+    padding-left: 60px;
+    width: 95%;
+  }
+
+  .mainImageTextDescription p {
+    font-size: 14px;
+  }
+
+  .nextProjectContent h2 {
+    font-size: 40px;
+    width: 80%;
+  }
+
+  .nextProjectContent p:nth-of-type(2) {
+    font-size: 18px;
+  }
+}
+
+/* Mobile Styles */
+@media screen and (max-width: 768px) {
+  .propertiesHome {
+    min-height: auto;
+    width: 90%;
+    margin: 0 auto;
+  }
+
+  .propertiesHome h1 {
+    font-size: 60px;
+    padding: 24px 0 0 0;
+    margin-bottom: 0;
+    line-height: 88px;
+  }
+
+  .propertiesHomeContainer {
+    grid-template-columns: 1fr;
+  }
+
+  .mainImageSection {
+    height: auto;
+    min-height: 600px;
+    background-size: cover;
+    background-position: center;
+    padding-top: 0;
+  }
+
+  .mainImageText {
+    width: 100%;
+    padding: 24px 0 24px 0;
+    gap: 16px;
+  }
+
+  .mainImage {
+    width: 100%;
+  }
+
+  .mainImage img {
+    height: auto;
+    width: 100%;
+    max-width: 100%;
+    min-height: 250px;
+    object-fit: cover;
+  }
+
+  .mainImageTextHeader {
+    padding: 0;
+  }
+
+  .mainImageTextHeader p {
+    font-size: 22px;
+    margin-bottom: 0.5em;
+  }
+
+  .mainImageTextHeader h2 {
+    font-size: 48px;
+    line-height: 94%;
+    letter-spacing: -2%;
+    width: 50%;
+  }
+
+  .mainImageTextDescription {
+    width: 100%;
+    padding: 0;
+  }
+
+  .mainImageTextDescription p {
+    font-size: 16px;
+    line-height: 150%;
+    margin-top: 0.75em;
+  }
+
+  .nextProjectSection {
+    height: auto;
+    min-height: 210px;
+    background-size: cover;
+    padding: 60px 0;
+  }
+
+  .nextProjectContent {
+    gap: 0.25em;
+    padding: 0;
+  }
+
+  .nextProjectContent p:first-of-type {
+    display: none;
+  }
+
+  .nextProjectContent p:nth-of-type(2) {
+    font-size: 16px;
+    margin-bottom: 0.5em;
+    line-height: 150%;
+  }
+
+  .nextProjectContent h2 {
+    font-size: 41px;
+    line-height: 92%;
+    width: 90%;
+  }
+
+  .nextProjectContent button {
+    order: 1;
+    margin-bottom: 1em;
+  }
+
+  .nextProjectContent div {
+    order: 2;
+    gap: 0.1em;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .mainImageTextHeader h2 {
+    width: 90%;
+  }
+
+  .nextProjectSection {
+    height: auto;
+    min-height: 210px;
+    background-size: cover;
+    padding: 30px 0;
+  }
+}

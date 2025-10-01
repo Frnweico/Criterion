@@ -1,143 +1,147 @@
-import { useEffect } from "react"
-import property1 from "../../Assets/Images/xV1.jpg"
-import terraceIcon from "../../Assets/Images/terrace icon.svg"
-import bedIcon from "../../Assets/Images/bed icon.svg"
-import floorsIcon from "../../Assets/Images/floors icon.svg"
-import approxIcon from "../../Assets/Images/approx icon.svg"
-import line5 from "../../Assets/Images/Line 5.svg"
+import { useEffect } from "react";
+import line5 from "../../Assets/Images/Line 5.svg";
 import Layout from "../../Components/Layout/Layout";
 import classes from "./PropertyPage.module.css";
 import Button from "../../Components/Button/Button";
-import { WhatsApp} from '@mui/icons-material';
-import phone from "../../Assets/Images/Phone Call Streamline Feather.svg"
-import PropertyShocwcase from "./PropertyShocwcase";
+import { WhatsApp } from "@mui/icons-material";
+import phone from "../../Assets/Images/Phone Call Streamline Feather.svg";
 import FloorPlan from "./FloorPlan";
 import PropertyReasons from "./PropertyReasons";
 import PropertyPricing from "./PropertyPricing";
 import PropertyLocation from "./PropertyLocation";
-import Aos from 'aos';
-import 'aos/dist/aos.css';
+import Aos from "aos";
+import "aos/dist/aos.css";
+import { Navigate, useParams } from "react-router-dom";
+import { getProperty } from "./property.types";
+import PropertyShowcase from "./PropertyShowcase";
 
 const PropertyPage = () => {
-    useEffect(() => {
-		Aos.init({ duration: 1000 });
-	}, []);
+  const { propertyId } = useParams<{ propertyId: string }>();
 
-    const propertyData = [
-        {id:1, 
-        icon: terraceIcon,
-        name: "Terrace Duplexes"
-        },
-        {
-            id: 2,
-            icon: bedIcon,
-            name: "4 Bedroom",
-        },
-        {
-            id: 3,
-            icon: floorsIcon,
-            name: "3 Floors",
-        },
-        {
-            id: 4,
-            icon: approxIcon,
-            name: "Approx. 1014 m²",
-        }
-    ]
+  useEffect(() => {
+    Aos.init({ duration: 1000 });
+  }, []);
 
-     const midtownData = [
-        {
-            id: 1,
-            title: "LOCATION",
-            description: "Plot 237, along 69 21A road Gwarimpa II Estate. Abuja"
-        },
-        {
-            id: 2,
-            title: "UNITS",
-            description: "4 exclusively built 4-bedroom terrace duplexes \+ atrium for light and ventilation.",
-        },
-        {
-            id: 3,
-            title: "EXTRA FEATURE",
-            description: "All units' bedrooms come with spacious balconies.",
-        },
-        // {
-        //     id: 4,
-        //     title: "#250,000,000",
-        //     description: "Installment Plan - 20% initial deposit (₦55M), flexible balance within 10 months."
-        // },
-    ]
+  // Get property data
+  const propertyData = getProperty(propertyId || "");
+  console.log(propertyId);
+
+  // If property doesn't exist, redirect to 404 or home
+  if (!propertyData) {
+    return <Navigate to="/404" replace />;
+  }
 
   return (
     <Layout isDark>
-    <div className={classes.propertyPageContainer}>
-      <div className={classes.propertyImageContainer}>
-        <img data-aos= "fade-up" src={property1} alt="midtown terrace image" />
-      </div>
+      <div className={classes.propertyPageContainer}>
+        <div className={classes.propertyImageContainer}>
+          <img
+            data-aos="fade-up"
+            src={propertyData.heroImage}
+            alt={`${propertyData.name} img`}
+          />
+        </div>
         <header>
-            <div className={classes.propertyHeaderText}>
-            <h2 data-aos= "fade-up">THE MIDTOWN TERRACES</h2>
+          <div className={classes.propertyHeaderText}>
+            <h2 data-aos="fade-up">{propertyData.name}</h2>
             <img src={line5} alt="line" />
-            <p data-aos= "fade-up">Gwarinpa, Abuja.</p>
-            </div>
-            <div data-aos= "fade-up" className={classes.propertyHeaderDetails}>
-             {Array.from({ length: Math.ceil(propertyData.length / 2) }, (_, groupIndex) => (
-    <div key={groupIndex} className={classes.propertyGroup}>
-      {propertyData
-        .slice(groupIndex * 2, groupIndex * 2 + 2)
-        .map((item) => (
-          <div key={item.id} className={classes.propertyHeaderDetail}>
-            <img src={item.icon} alt={item.name} />
-            <span>{item.name}</span>
+            <p data-aos="fade-up">{propertyData.location}</p>
           </div>
-        ))}
-    </div>
-  ))}</div>
+          <div data-aos="fade-up" className={classes.propertyHeaderDetails}>
+            {Array.from(
+              { length: Math.ceil(propertyData.headerDetails.length / 2) },
+              (_, groupIndex) => (
+                <div key={groupIndex} className={classes.propertyGroup}>
+                  {propertyData.headerDetails
+                    .slice(groupIndex * 2, groupIndex * 2 + 2)
+                    .map((item) => (
+                      <div
+                        key={item.id}
+                        className={classes.propertyHeaderDetail}
+                      >
+                        <img src={item.icon} alt={item.name} />
+                        <span>{item.name}</span>
+                      </div>
+                    ))}
+                </div>
+              )
+            )}
+          </div>
         </header>
         <div className={classes.propertyPageContact}>
-            <div className={classes.propertyPageContactText}>
-                <p className={classes.propertyPageContactText1} data-aos= "fade-up">DESCRIPTION</p>
-                <h4 data-aos= "fade-up">Welcome to The Midtown Terraces</h4>
-                <div data-aos= "fade-up" className={classes.propertyPageContactTextInfo}>
-                <p>An exclusive collection of just 4 custom-built, 4-bedroom terrace duplexes with maid’s quarters, nestled in the heart of Gwarinpa, Abuja. This premium development is a celebration of modern architecture fused with nature, crafted for discerning families who crave serenity, function, and timeless elegance in one space.
-</p>
-<p>Each home is designed with purposeful flow, generous natural lighting, and a signature private patch adorned with lush greenery, transforming daily living into an experience of peace, wellness, and connection.</p>
-</div>
+          <div className={classes.propertyPageContactText}>
+            <p className={classes.propertyPageContactText1} data-aos="fade-up">
+              {propertyData.description.subtitle}
+            </p>
+            <h4 data-aos="fade-up">{propertyData.description.title}</h4>
+            <div
+              data-aos="fade-up"
+              className={classes.propertyPageContactTextInfo}
+            >
+              {propertyData.description.paragraphs.map((paragraph, idx) => (
+                <p key={idx}>{paragraph}</p>
+              ))}
             </div>
-            <div data-aos= "fade-up" className={classes.propertyPageContactDetails}>
-                <h3>CRITERION HOMES' CONTACT</h3>
-                <div> <WhatsApp style={{fontSize: '16px'}} /> <img src={phone} alt="phone icon" /><span>+234 805 857 3915</span></div>
-                <a href="https://wa.me/2348058573915" target='_blank' rel="noopener noreferrer" style={{ textDecoration: 'none' }}>
-                <Button type="gray"> <span>TALK TO US</span>
+          </div>
+          <div
+            data-aos="fade-up"
+            className={classes.propertyPageContactDetails}
+          >
+            <h3>CRITERION HOMES' CONTACT</h3>
+            <div>
+              {" "}
+              <WhatsApp style={{ fontSize: "16px" }} />{" "}
+              <img src={phone} alt="phone icon" />
+              <span>{propertyData.contact.phone}</span>
+            </div>
+            <a
+              href={propertyData.contact.whatsapp}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ textDecoration: "none" }}
+            >
+              <Button type="gray">
+                {" "}
+                <span>TALK TO US</span>
                 <svg
-            width='16'
-            height='14'
-            viewBox='0 0 16 14'
-            fill='#000'
-            xmlns='http://www.w3.org/2000/svg'>
-            <path d='M8.86307 0.119629L7.58108 1.3905L12.4858 6.1107H0V7.89481H12.4798L7.58108 12.6092L8.86307 13.8801L16 7L8.86307 0.119629Z' />
-          </svg></Button></a>
-            </div>
+                  width="16"
+                  height="14"
+                  viewBox="0 0 16 14"
+                  fill="#000"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path d="M8.86307 0.119629L7.58108 1.3905L12.4858 6.1107H0V7.89481H12.4798L7.58108 12.6092L8.86307 13.8801L16 7L8.86307 0.119629Z" />
+                </svg>
+              </Button>
+            </a>
+          </div>
         </div>
         <div className={classes.projectDetails}>
-            <h3>PROJECT DETAILS</h3>
-             <div className={classes.midtownDetailsWrapper}>
-                {midtownData.map((item) => (
-                    <div data-aos= "fade-up" key={item.id} className={classes.midtownDetails}>
-                        <h3>{item.title}</h3>
-                        <p>{item.description}</p>
-                    </div>
-                ))}
-            </div>
-           <PropertyShocwcase />
+          <h3>PROJECT DETAILS</h3>
+          <div className={classes.midtownDetailsWrapper}>
+            {propertyData.projectDetails.map((item) => (
+              <div
+                data-aos="fade-up"
+                key={item.id}
+                className={classes.midtownDetails}
+              >
+                <h3>{item.title}</h3>
+                <p>{item.description}</p>
+              </div>
+            ))}
+          </div>
+          <PropertyShowcase data={propertyData.showcase} />
         </div>
-        <PropertyLocation />
-        <FloorPlan />
-        <PropertyReasons />
-        <PropertyPricing />
+        <PropertyLocation data={propertyData.locationData} />
+        <FloorPlan data={propertyData.floorPlans} />
+        <PropertyReasons data={propertyData.reasons} />
+        <PropertyPricing
+          data={propertyData.pricing}
+          contact={propertyData.contact}
+        />
       </div>
     </Layout>
-  )
-}
+  );
+};
 
-export default PropertyPage
+export default PropertyPage;

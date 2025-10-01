@@ -1,14 +1,16 @@
 import { useState, useEffect } from "react";
 import classes from "./PropertyPage.module.css";
-import mainProperyImg from "../../Assets/Images/xV1.png";
-import propertyImg1 from "../../Assets/Images/xV2.png";
-import propertyImg2 from "../../Assets/Images/xV3.png";
 import line from "../../Assets/Images/Line 6.svg";
-import Aos from 'aos';
-import 'aos/dist/aos.css';
+import Aos from "aos";
+import "aos/dist/aos.css";
 import horizontalLine from "../../Assets/Images/Frame 417.svg";
 import leftArrow from "../../Assets/Images/leftArrow.svg";
 import rightArrow from "../../Assets/Images/rightArrow.svg";
+import type { ShowcaseData } from "./property.types";
+
+interface PropertyShowcaseProps {
+  data: ShowcaseData;
+}
 
 // Property Lightbox Component - Now using unified classes
 interface PropertyLightboxProps {
@@ -37,7 +39,7 @@ const PropertyLightbox: React.FC<PropertyLightboxProps> = ({
 
   const handleTouchEnd = (e: React.TouchEvent) => {
     if (!touchStartX) return;
-    
+
     const touchEndX = e.changedTouches[0].clientX;
     const diff = touchStartX - touchEndX;
     const threshold = 50;
@@ -55,36 +57,39 @@ const PropertyLightbox: React.FC<PropertyLightboxProps> = ({
   // Close lightbox on escape key
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') {
+      if (e.key === "Escape") {
         onClose();
       }
     };
 
     if (isOpen) {
-      document.addEventListener('keydown', handleEscape);
-      document.body.style.overflow = 'hidden';
+      document.addEventListener("keydown", handleEscape);
+      document.body.style.overflow = "hidden";
     }
 
     return () => {
-      document.removeEventListener('keydown', handleEscape);
-      document.body.style.overflow = 'unset';
+      document.removeEventListener("keydown", handleEscape);
+      document.body.style.overflow = "unset";
     };
   }, [isOpen, onClose]);
 
   if (!isOpen) return null;
 
   return (
-    <div 
-      className={classes.lightboxBackdrop} 
+    <div
+      className={classes.lightboxBackdrop}
       onClick={onClose}
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
     >
-      <div className={classes.lightboxInner} onClick={(e) => e.stopPropagation()}>
+      <div
+        className={classes.lightboxInner}
+        onClick={(e) => e.stopPropagation()}
+      >
         <button className={classes.lightboxClose} onClick={onClose}>
           ×
         </button>
-        
+
         <button
           className={`${classes.lightboxArrow} ${classes.lightboxArrowLeft}`}
           onClick={onPrev}
@@ -111,109 +116,104 @@ const PropertyLightbox: React.FC<PropertyLightboxProps> = ({
   );
 };
 
-const PropertyShowcase = () => {
+const PropertyShowcase: React.FC<PropertyShowcaseProps> = ({ data }) => {
   useEffect(() => {
     Aos.init({ duration: 1000 });
   }, []);
 
-  const features = [
-    {
-      title: "MODERN",
-      description:
-        "Clean lines, minimalist facades, large glass openings, and a balanced palette that blends beautifully with the surrounding nature.",
-    },
-    {
-      title: "WELL BUILT",
-      description:
-        "Constructed with premium materials and supervised by seasoned engineers and project managers.",
-    },
-    {
-      title: "FUNCTIONAL",
-      description:
-        "Open-plan layouts, en-suite bedrooms, ample storage, intuitive kitchen and utility spaces, and integrated home automation options.",
-    },
-    {
-      title: "NATURALLY ILLUMINATED",
-      description:
-        "Maximized natural light through skylights, large windows, and atriums.",
-    },
-    {
-      title: "GREEN INSPIRED",
-      description:
-        "Each home is built around lushly landscaped compound spaces to enhance mental well-being, air quality, and aesthetics.",
-    },
-  ];
-
-  const images = [mainProperyImg, propertyImg1, propertyImg2];
-  const [activeImage, setActiveImage] = useState(mainProperyImg);
+  const [activeImage, setActiveImage] = useState(data.images[0]);
   const [propertyLightbox, setPropertyLightbox] = useState({
     isOpen: false,
-    currentIndex: 0
+    currentIndex: 0,
   });
+
+  const [thumbnailOffset, setThumbnailOffset] = useState(0);
+  const THUMBNAIL_COUNT = 5;
 
   // Property lightbox functions
   const openPropertyLightbox = (imageIndex: number) => {
     setPropertyLightbox({
       isOpen: true,
-      currentIndex: imageIndex
+      currentIndex: imageIndex,
     });
   };
 
   const closePropertyLightbox = () => {
     setPropertyLightbox({
       isOpen: false,
-      currentIndex: 0
+      currentIndex: 0,
     });
   };
 
   const propertyLightboxNext = () => {
-    if (propertyLightbox.currentIndex < images.length - 1) {
-      setPropertyLightbox(prev => ({
+    if (propertyLightbox.currentIndex < data.images.length - 1) {
+      setPropertyLightbox((prev) => ({
         ...prev,
-        currentIndex: prev.currentIndex + 1
+        currentIndex: prev.currentIndex + 1,
       }));
     }
   };
 
   const propertyLightboxPrev = () => {
     if (propertyLightbox.currentIndex > 0) {
-      setPropertyLightbox(prev => ({
+      setPropertyLightbox((prev) => ({
         ...prev,
-        currentIndex: prev.currentIndex - 1
+        currentIndex: prev.currentIndex - 1,
       }));
     }
   };
 
+  const handleNextThumbnails = () => {
+    if (thumbnailOffset + THUMBNAIL_COUNT < data.images.length) {
+      setThumbnailOffset(thumbnailOffset + 1);
+    }
+  };
+
+  const handlePrevThumbnails = () => {
+    if (thumbnailOffset > 0) {
+      setThumbnailOffset(thumbnailOffset - 1);
+    }
+  };
+
   // Find current active image index
-  const activeImageIndex = images.findIndex(img => img === activeImage);
+  const activeImageIndex = data.images.findIndex((img) => img === activeImage);
 
   return (
     <div className={classes.propertyDetailsWrapper}>
       <div className={classes.propertyDetailsInfo}>
         <h2 className={classes.propertyShowcaseHeaderText}>
-          At The Midtown Terraces, <br /> we've gone beyond structure. <br /> Our homes
-          are:
+          {/* At The Midtown Terraces, <br /> we've gone beyond structure. <br /> Our homes
+          are: */}
+          <span>{data.headerText}</span>
         </h2>
-        <div className={classes.propertyDetailsLinee}>
+        <div className={`${classes.propertyDetailsLinee} ${data.headerText.includes("Urban Nest") ? classes.lineShift : ''}`} >
           <img src={line} alt="line" />
         </div>
         <h2 className={classes.propertyHeaderTextMobile}>
-          At The Midtown<br /> Terraces, we've gone <br /> beyond structure. <br /> Our homes
-          are:
+          {/* At The Midtown<br /> Terraces, we've gone <br /> beyond structure. <br /> Our homes
+          are: */}
+    <span>{data.headerTextMobile}</span>
         </h2>
       </div>
 
       <div className={classes.propertyShowcaseContent}>
         <div className={classes.propertyDetailsImages}>
-          <div 
+          <div
             className={classes.propertyDetailsMainImage}
             onClick={() => openPropertyLightbox(activeImageIndex)}
-            style={{ cursor: 'pointer' }}
+            style={{ cursor: "pointer" }}
           >
             <img src={activeImage} alt="Property" />
           </div>
+
+          <div className={classes.thumbnailContainer}>
+            {thumbnailOffset > 0 && (
+              <button className={classes.thumbnailArrow} onClick={handlePrevThumbnails}>
+                <img src={leftArrow} alt="Previous" />
+              </button>
+            )}
           <div className={classes.propertyDetailsThumbnails}>
-            {images.map((img, idx) => (
+            {data.images.slice(thumbnailOffset, thumbnailOffset + THUMBNAIL_COUNT).map((img, idx) => (
               <img
                 key={idx}
                 src={img}
@@ -227,9 +227,15 @@ const PropertyShowcase = () => {
               />
             ))}
           </div>
+          {thumbnailOffset + THUMBNAIL_COUNT < data.images.length && (
+              <button className={classes.thumbnailArrow} onClick={handleNextThumbnails}>
+                <img src={rightArrow} alt="Next" />
+              </button>
+            )}
+          </div>
         </div>
         <div className={classes.propertyDetailsFeatures}>
-          {features.map((item, index) => (
+          {data.features.map((item, index) => (
             <div
               key={index}
               className={`${classes.propertyDetailsFeatureItem} ${classes.propertyDetailsFeatureVisible}`}
@@ -245,7 +251,7 @@ const PropertyShowcase = () => {
       {/* Property Lightbox - Now using unified classes */}
       <PropertyLightbox
         isOpen={propertyLightbox.isOpen}
-        images={images}
+        images={data.images}
         currentIndex={propertyLightbox.currentIndex}
         onClose={closePropertyLightbox}
         onNext={propertyLightboxNext}

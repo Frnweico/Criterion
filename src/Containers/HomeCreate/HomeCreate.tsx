@@ -85,8 +85,6 @@ const HomeCreate = () => {
           </div>
         </div>
       </div>
-
-
     <Declaration />
     </div>
   )

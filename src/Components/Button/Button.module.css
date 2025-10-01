@@ -12,7 +12,7 @@
   transition: all 0.2s ease-in-out;
   padding: 8px 30px;
   gap: 8px;
-  border-radius: 1px;
+  border-radius: 8px;
   white-space: nowrap;
   margin: 0;
   border: none;
@@ -25,8 +25,8 @@
   transition: all 0.2s ease-in-out;
 }
 
-.button:hover {
-  gap: 14px;
+.button:hover svg {
+  transform: translateX(10px);
 }
 
 .primary:not(.normal),
@@ -42,7 +42,7 @@
 }
 
 .secondary:not(.normal) {
-  border: 1.5px solid #a49031;
+  border: 2px solid #a49031;
   color: #a49031;
   background: transparent;
 }
@@ -69,7 +69,7 @@
 
 .secondary:not(.gold),
 .primary:not(.gold):hover {
-  border: 1.5px solid #dc7322;
+  border: 2px solid #dc7322;
   color: #dc7322;
   background: transparent;
 }
@@ -87,7 +87,7 @@
 
 .footerBtn:hover {
   background: transparent;
-  border: 1px solid #f4f4f4;
+  border: 2px solid #f4f4f4;
   color: #f4f4f4;
 }
 
@@ -149,7 +149,7 @@
 .orange:hover {
   background: transparent;
   color: #b45f1e;
-  border: 1px solid #b45f1e;
+  border: 2px solid #b45f1e;
 }
 
 .orange:hover > svg {
@@ -181,7 +181,7 @@
 
 .enriched {
   background: transparent;
-  border: 1px solid #f4f4f4;
+  border: 2px solid #f4f4f4;
   color: #f4f4f4;
 }
 
@@ -192,6 +192,38 @@
 
 .enriched > svg {
   fill: #f4f4f4;
+}
+
+.lemon {
+  background: #d1bd5b;
+  color: #625834;
+}
+
+.lemon:hover {
+  border: 2px solid #625834;
+  background: transparent;
+}
+
+.lemon > svg {
+  fill: #625834;
+}
+
+.yellow {
+  background: #fac964;
+  color: #30352f;
+}
+
+.yellow:hover {
+  background: #30352f;
+  color: #fac964;
+}
+
+.yellow > svg {
+  fill: #30352f;
+}
+
+.yellow:hover > svg {
+  fill: #fac964;
 }
 
 @media screen and (min-width: 767px) and (max-width: 1023px) {

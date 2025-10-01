@@ -16,8 +16,8 @@ function App() {
           <Route element={<Home />} path="/" />
           <Route element={<About />} path="/about-us" />
           <Route element={<Careers />} path="/careers" />
-          <Route path="/properties" element={<PropertyPage />} />
-          <Route path="/properties" element={<PropertyPage />} />
+          {/* <Route path="/properties" element={<PropertyPage />} /> */}
+          <Route path="/properties/:propertyId" element={<PropertyPage />} />
         </Route>
       </Routes>
     </AnimatePresence>

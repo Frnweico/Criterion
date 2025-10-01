@@ -10,6 +10,11 @@ import leftArrow from "../../Assets/Images/leftArrow.svg";
 import rightArrow from "../../Assets/Images/rightArrow.svg";
 import Aos from "aos";
 import "aos/dist/aos.css";
+import type { FloorPlanUnit } from "./property.types";
+
+interface FloorPlanProps {
+  data: FloorPlanUnit[];
+}
 
 // Component to show room labels
 const FloorPlanHeader = ({
@@ -39,7 +44,19 @@ const FloorPlanHeader = ({
         >
           <img src={leftArrow} alt="" />
         </button>
-        <h2 className={`${title === "FIRST FLOOR" ? `${classes.floorPlanTitleFirstFloor}` : title === "GROUND FLOOR" ? `${classes.floorPlanTitleGroundFloor}` : title === "SECOND FLOOR" ? `${classes.floorPlanTitleSecondFloor}` : ""}`} >{title}</h2>
+        <h2
+          className={`${
+            title === "FIRST FLOOR"
+              ? `${classes.floorPlanTitleFirstFloor}`
+              : title === "GROUND FLOOR"
+              ? `${classes.floorPlanTitleGroundFloor}`
+              : title === "SECOND FLOOR"
+              ? `${classes.floorPlanTitleSecondFloor}`
+              : ""
+          }`}
+        >
+          {title}
+        </h2>
         <button
           onClick={onNext}
           disabled={currentIndex === maxIndex}
@@ -52,7 +69,9 @@ const FloorPlanHeader = ({
       <div className={classes.floorPlanHeaderItems}>
         {items.map((item, idx) => (
           <div key={idx}>
-            <p className={idx === items.length - 1 ? classes.lastItem : ''}>{item}</p>
+            <p className={idx === items.length - 1 ? classes.lastItem : ""}>
+              {item}
+            </p>
           </div>
         ))}
       </div>
@@ -82,14 +101,13 @@ const Lightbox: React.FC<LightboxProps> = ({
 }) => {
   const [touchStartX, setTouchStartX] = useState<number | null>(null);
 
-  // Handle touch events for mobile swipe
   const handleTouchStart = (e: React.TouchEvent) => {
     setTouchStartX(e.touches[0].clientX);
   };
 
   const handleTouchEnd = (e: React.TouchEvent) => {
     if (!touchStartX) return;
-    
+
     const touchEndX = e.changedTouches[0].clientX;
     const diff = touchStartX - touchEndX;
     const threshold = 50;
@@ -107,36 +125,39 @@ const Lightbox: React.FC<LightboxProps> = ({
   // Close lightbox on escape key
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') {
+      if (e.key === "Escape") {
         onClose();
       }
     };
 
     if (isOpen) {
-      document.addEventListener('keydown', handleEscape);
-      document.body.style.overflow = 'hidden';
+      document.addEventListener("keydown", handleEscape);
+      document.body.style.overflow = "hidden";
     }
 
     return () => {
-      document.removeEventListener('keydown', handleEscape);
-      document.body.style.overflow = 'unset';
+      document.removeEventListener("keydown", handleEscape);
+      document.body.style.overflow = "unset";
     };
   }, [isOpen, onClose]);
 
   if (!isOpen) return null;
 
   return (
-    <div 
-      className={classes.lightboxBackdrop} 
+    <div
+      className={classes.lightboxBackdrop}
       onClick={onClose}
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
     >
-      <div className={classes.lightboxInner} onClick={(e) => e.stopPropagation()}>
+      <div
+        className={classes.lightboxInner}
+        onClick={(e) => e.stopPropagation()}
+      >
         <button className={classes.lightboxClose} onClick={onClose}>
           ×
         </button>
-        
+
         <button
           className={`${classes.lightboxArrow} ${classes.lightboxArrowLeft}`}
           onClick={onPrev}
@@ -163,79 +184,35 @@ const Lightbox: React.FC<LightboxProps> = ({
   );
 };
 
-const FloorPlan = () => {
-  // Each unit has its own independent floor index
-  const [floorIndices, setFloorIndices] = useState([0, 0]); // [doubleUnit, singleUnit]
-  const [lightbox, setLightbox] = useState({ isOpen: false, unitIdx: 0, currentIndex: 0 });
-   const [isTransitioning, setIsTransitioning] = useState(false);
+const FloorPlan: React.FC<FloorPlanProps> = ({ data }) => {
+  const [floorIndices, setFloorIndices] = useState(data.map(() => 0));
+  const [lightbox, setLightbox] = useState({
+    isOpen: false,
+    unitIdx: 0,
+    currentIndex: 0,
+  });
 
+  const [isTransitioning, setIsTransitioning] = useState(false);
 
   useEffect(() => {
     Aos.init({ duration: 1000 });
   }, []);
 
-  const floorPlanData = [
-    {
-      unit: "",
-      floors: [
-        {
-          title: "GROUND FLOOR",
-          img: groundFloorImg,
-          description: "Lounge, Dining, Laundry, Store",
-        },
-        {
-          title: "FIRST FLOOR",
-          img: firstFloorImg,
-          description:
-            "2 BEDROOMS, ATRIUM, ALL ROOMS ENSUITE, BALCONIES & DRESSING AREAS",
-        },
-        {
-          title: "SECOND FLOOR",
-          img: secondFloorImg,
-          description:
-            "2 ADDITIONAL BEDROOMS, ATRIUM, ALL ROOMS ENSUITE, BALCONIES & DRESSING AREAS",
-        },
-      ],
-    },
-    {
-      unit: "SINGLE",
-      floors: [
-        {
-          title: "GROUND FLOOR",
-          img: groundFloorSingleImg,
-          description: "Lounge, Dining, Laundry, Store",
-        },
-        {
-          title: "FIRST FLOOR",
-          img: firstFloorSingleImg,
-          description:
-            "2 BEDROOMS, ATRIUM, ALL ROOMS ENSUITE, BALCONIES & DRESSING AREAS",
-        },
-        {
-          title: "SECOND FLOOR",
-          img: secondFloorSingleImg,
-          description:
-            "2 ADDITIONAL BEDROOMS, ATRIUM, ALL ROOMS ENSUITE, BALCONIES & DRESSING AREAS",
-        },
-      ],
-    },
-  ];
-
   const move = (unitIdx: number, dir: "next" | "prev") => {
-    if (isTransitioning) return; 
+    if (isTransitioning) return;
 
     const delta = dir === "next" ? 1 : -1;
-    setFloorIndices(prev => {
+    setFloorIndices((prev) => {
       const newIndices = [...prev];
       const newIndex = prev[unitIdx] + delta;
 
-       // Boundary check
-      if (newIndex >= 0 && newIndex < floorPlanData[unitIdx].floors.length) {
+      // Boundary check
+      if (newIndex >= 0 && newIndex < data[unitIdx].floors.length) {
         setIsTransitioning(true);
         newIndices[unitIdx] = newIndex;
-        
+
         // Reset transition flag after animation completes
-        setTimeout(() => setIsTransitioning(false), 600); // Match CSS transition duration
+        setTimeout(() => setIsTransitioning(false), 600);
       }
 
       return newIndices;
@@ -244,12 +221,12 @@ const FloorPlan = () => {
 
   // Lightbox functions
   const openLightbox = (unitIdx: number, imageIdx: number) => {
-     if (isTransitioning) return;
+    if (isTransitioning) return;
 
     setLightbox({
       isOpen: true,
       unitIdx,
-      currentIndex: imageIdx
+      currentIndex: imageIdx,
     });
   };
 
@@ -257,43 +234,44 @@ const FloorPlan = () => {
     setLightbox({
       isOpen: false,
       unitIdx: 0,
-      currentIndex: 0
+      currentIndex: 0,
     });
   };
 
   const lightboxNext = () => {
-    const maxIndex = floorPlanData[lightbox.unitIdx].floors.length - 1;
+    const maxIndex = data[lightbox.unitIdx].floors.length - 1;
     if (lightbox.currentIndex < maxIndex) {
-      setLightbox(prev => ({
+      setLightbox((prev) => ({
         ...prev,
-        currentIndex: prev.currentIndex + 1
+        currentIndex: prev.currentIndex + 1,
       }));
     }
   };
 
   const lightboxPrev = () => {
     if (lightbox.currentIndex > 0) {
-      setLightbox(prev => ({
+      setLightbox((prev) => ({
         ...prev,
-        currentIndex: prev.currentIndex - 1
+        currentIndex: prev.currentIndex - 1,
       }));
     }
   };
 
   // Get current lightbox images and titles
-  const currentLightboxImages = lightbox.isOpen 
-    ? floorPlanData[lightbox.unitIdx].floors.map(floor => floor.img)
+  const currentLightboxImages = lightbox.isOpen
+    ? data[lightbox.unitIdx].floors.map((floor) => floor.img)
     : [];
-  
-  const currentLightboxTitles = lightbox.isOpen 
-    ? floorPlanData[lightbox.unitIdx].floors.map(floor => 
-        `${floor.title} for ${floorPlanData[lightbox.unitIdx].unit || "DOUBLE"} UNIT`
+
+  const currentLightboxTitles = lightbox.isOpen
+    ? data[lightbox.unitIdx].floors.map(
+        (floor) =>
+          `${floor.title} for ${data[lightbox.unitIdx].unit || "DOUBLE"} UNIT`
       )
     : [];
 
   return (
     <div className={classes.floorPlanWrapper}>
-      {floorPlanData.map((unit, unitIdx) => {
+      {data.map((unit, unitIdx) => {
         const currentIndex = floorIndices[unitIdx];
         const len = unit.floors.length;
 

@@ -74,7 +74,6 @@
 .propertyPageContact {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  /* gap: 2em; */
   width: 85%;
   margin: 0 auto;
   padding: 7em 0;
@@ -286,7 +285,7 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  width: 60%;
+  width: 40%;
 }
 .propertyDetailsLinee {
   position: absolute;
@@ -295,6 +294,9 @@
   top: 30%;
   overflow: hidden;
   clip-path: polygon(35% 0%, 35% 100%, 100% 100%, 100% 0%);
+}
+.lineShift {
+  top: 40%;
 }
 .propertyDetailsLinee img {
   height: auto;
@@ -366,6 +368,27 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+.thumbnailContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.thumbnailArrow {
+  border: none;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 0;
+}
+
+.thumbnailArrow img {
+  width: 30px;
+  height: 30px;
 }
 
 .propertyDetailsThumbnails {
@@ -1048,6 +1071,12 @@
 
 /* 1150px - 1199px */
 @media (min-width: 1150px) and (max-width: 1199px) {
+  .propertyShowcaseHeaderText {
+    width: 55%;
+  }
+  .lineShift {
+    left: 27%;
+  }
   .propertyDetailsLinee {
     left: 12%;
     top: 39%;
@@ -1192,6 +1221,9 @@
   }
   .propertyDetailsWrapper {
     padding: 4em 2.5em;
+  }
+  .propertyShowcaseHeaderText {
+    width: 70%;
   }
   .propertyDetailsInfo {
     margin-left: 0;

@@ -3,15 +3,64 @@ import classes from './HomeHeroSection.module.css';
 import heroImage from '../../Assets/Images/CHOme 2 1_cutout 2.png';
 import { motion } from 'framer-motion';
 import { AppContext } from '../../Context/AppContext';
-import { useContext } from 'react';
-// import heroMobile from '../../Assets/Images/heroMobile.jpg';
+import { useContext, useEffect, useRef } from 'react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 const HomeHeroSection = () => {
-	// COntext
+	// Context
 	const { scrollToRef } = useContext(AppContext);
+
+		// Refs for GSAP
+	const containerRef = useRef(null);
+	// const textSectionRef = useRef(null);
+	const imageContainerRef = useRef(null);
+
+	// useEffect(() => {
+	// 	const container = containerRef.current;
+	// 	// const textSection = textSectionRef.current;
+	// 	const imageContainer = imageContainerRef.current;
+
+	// 	if (!container || !imageContainer) return;
+
+	// 	// Set initial state - image starts lower
+	// 	gsap.set(imageContainer, { y: "50px" });
+
+	// 	// Create timeline for the pin effect
+	// 	const tl = gsap.timeline({
+	// 		scrollTrigger: {
+	// 			trigger: container,
+	// 			start: "top top",
+	// 			end: "+=50%", 
+	// 			pin: true,
+	// 			scrub: 1,
+	// 			pinSpacing: true,
+	// 			anticipatePin: 1,
+	// 			markers: true, 
+	// 		}
+	// 	});
+
+	// 	// Animate image moving up
+	// 	tl.to(imageContainer, {
+	// 		y: "0px",
+	// 		duration: 1,
+	// 		ease: "none",
+	// 		onComplete: () => {
+	// 			gsap.set(imageContainer, { y: "0px" });
+	// 		}
+	// 	});
+
+	// 	// Cleanup function
+	// 	return () => {
+	// 		ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+	// 	};
+	// }, []);
+
 	return (
 		<section className={classes.container}>
-			<motion.div className={`${classes.textSection}`}>
+			<motion.div  className={`${classes.textSection}`}>
 				<h4 data-aos="fade-up"><span>THE<span className={classes.mazius}> MEASURE</span></span> 
 				<motion.span>
 					OF HOW HOMES <br />
@@ -22,7 +71,7 @@ const HomeHeroSection = () => {
 				</h4>
 
 				<p className = {classes.text}>A PHILOSPHY OF CRAFT, RESTRAINT, SUSTAINABILITY AND TIMELESS VALUE.</p>
-				<Button onClick={scrollToRef} type='secondary' subType='normal'>
+				<Button onClick={scrollToRef} type='lemon' subType='normal'>
 					<span>TALK TO US</span>
 					<svg
 						width='17'
