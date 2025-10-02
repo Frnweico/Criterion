@@ -104,7 +104,7 @@ const PropertyPricing: React.FC<PropertyPricingProps> = ({ data, contact }) => {
           rel="noopener noreferrer"
           style={{ textDecoration: "none" }}
         >
-          <Button type="footerBtn">
+          <Button type="enriched">
             {" "}
             <span>TALK TO US</span>
             <svg

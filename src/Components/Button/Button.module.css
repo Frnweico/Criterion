@@ -32,7 +32,7 @@
 .primary:not(.normal),
 .secondary:not(.normal):hover {
   background: #a49031;
-  border: none;
+  /* border: none; */
   color: #f4f4f4;
 }
 
@@ -58,7 +58,7 @@
 .primary:not(.gold),
 .secondary:not(.gold):hover {
   background: #dc7322;
-  border: none;
+  /* border: none; */
   color: #f4f4f4;
 }
 
@@ -87,7 +87,7 @@
 
 .footerBtn:hover {
   background: transparent;
-  border: 2px solid #f4f4f4;
+  /* border: 2px solid #f4f4f4; */
   color: #f4f4f4;
 }
 
@@ -104,11 +104,11 @@
   color: #f4f4f4;
   background: #000;
   border: none;
-  padding: 8px 0px;
+  padding: 8px 30px;
 }
 
 .black:hover {
-  padding: 8px 30px;
+  transform: scale(1.05);
 }
 
 .black > svg,
@@ -149,7 +149,7 @@
 .orange:hover {
   background: transparent;
   color: #b45f1e;
-  border: 2px solid #b45f1e;
+  /* border: 2px solid #b45f1e; */
 }
 
 .orange:hover > svg {
@@ -160,13 +160,13 @@
   color: #191919;
   background: transparent;
   border: none;
-  padding: 8px 0px;
+  padding: 8px 30px;
 }
 
 .plain:hover {
   background: #191919;
   color: #f4f4f4;
-  padding: 8px 30px;
+  transform: scale(1.05);
 }
 
 .plain > svg,
@@ -180,18 +180,23 @@
 }
 
 .enriched {
-  background: transparent;
-  border: 2px solid #f4f4f4;
+  background: #dc7322;
   color: #f4f4f4;
+  border: none;
 }
 
 .enriched:hover {
-  background: transparent;
   border: none;
+  background: transparent;
+  color: #f4f4f4;
 }
 
 .enriched > svg {
   fill: #f4f4f4;
+}
+
+.enriched:hover > svg {
+  fill: #000;
 }
 
 .lemon {
@@ -200,8 +205,9 @@
 }
 
 .lemon:hover {
-  border: 2px solid #625834;
-  background: transparent;
+  /* border: 2px solid #625834; */
+  background: #d1bd5b;
+  transform: scale(1.05);
 }
 
 .lemon > svg {
@@ -216,6 +222,7 @@
 .yellow:hover {
   background: #30352f;
   color: #fac964;
+  transform: scale(1.05);
 }
 
 .yellow > svg {

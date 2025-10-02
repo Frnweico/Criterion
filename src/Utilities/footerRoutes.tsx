@@ -11,7 +11,7 @@ export const footerRoutes = [
   },
   {
     title: "PROPERTIES",
-    route: "/properties",
+    route: "#properties",
     isExternal: false,
   },
   // {

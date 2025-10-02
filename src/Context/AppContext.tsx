@@ -23,6 +23,8 @@ type AppContextValues = {
   requestState: requestType;
   emailSignUp: (email: string) => void;
   submitApplication: (data: FormData) => void;
+  propertiesRef: RefObject<HTMLDivElement>;
+  scrollToProperties: () => void;
 };
 
 type AppContextProviderProps = {
@@ -45,6 +47,7 @@ const AppContextProvider = ({ children }: AppContextProviderProps) => {
   // Refs
   const contactRef = useRef<HTMLDivElement>(null);
   const openingsRef = useRef<HTMLDivElement>(null);
+   const propertiesRef = useRef<HTMLDivElement>(null);
 
   // State
   const [loading, setLoading] = useState(true);
@@ -101,6 +104,32 @@ const AppContextProvider = ({ children }: AppContextProviderProps) => {
         block: "center",
         inline: "start",
       });
+    }
+  };
+
+    const scrollToProperties = () => {
+    if (propertiesRef.current) {
+      if (location.pathname !== "/") {
+        navigate("/");
+      }
+
+      (propertiesRef.current as HTMLDivElement).scrollIntoView({
+        behavior: "smooth",
+        block: window.innerWidth >= 768 ? "center" : "start",
+        inline: "start",
+      });
+    } else {
+      navigate("/");
+
+      setTimeout(() => {
+        if (propertiesRef.current) {
+          (propertiesRef.current as HTMLDivElement).scrollIntoView({
+            behavior: "smooth",
+            block: window.innerWidth >= 768 ? "center" : "start",
+            inline: "start",
+          });
+        }
+      }, 2000);
     }
   };
 
@@ -161,6 +190,8 @@ const AppContextProvider = ({ children }: AppContextProviderProps) => {
         requestState,
         emailSignUp,
         submitApplication,
+        propertiesRef,
+        scrollToProperties,
       }}
     >
       {children}

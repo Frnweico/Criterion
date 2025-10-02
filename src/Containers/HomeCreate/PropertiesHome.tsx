@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { scrollToTheTop } from '../../HelperFunctions/scrollToTop';
 import classes from './PropertiesHome.module.css';
@@ -9,6 +9,7 @@ import midtownTerrace1 from "../../Assets/Images/xV1.jpg"
 import Button from '../../Components/Button/Button';
 import Aos from "aos";
 import "aos/dist/aos.css";
+import { AppContext } from '../../Context/AppContext';
 
 interface Property {
   location: string;
@@ -25,6 +26,11 @@ const PropertiesHome = () => {
     const navigate = useNavigate();
     const [spotlightProperty, setSpotlightProperty] = useState<string>('urbanNest');
     const [isMobile, setIsMobile] = useState<boolean>(window.innerWidth <= 768);
+    const {propertiesRef} =useContext(AppContext);
+
+    useEffect(() => {
+        Aos.init({ duration: 2000 });
+    }, []);
 
     useEffect(() => {
         const handleResize = () => {
@@ -66,12 +72,10 @@ const PropertiesHome = () => {
         return propertyKey === 'urbanNest' ? urbanNestMain : midtownTerraceMain;
     };
 
-    const currentProperty = properties[spotlightProperty];
-    const nextProperty = properties[spotlightProperty === 'urbanNest' ? 'midtownTerraces' : 'urbanNest'];
     const nextPropertyKey = spotlightProperty === 'urbanNest' ? 'midtownTerraces' : 'urbanNest';
 
     return (
-        <section className={classes.propertiesHome}>
+        <section ref={propertiesRef} className={classes.propertiesHome} id='properties' data-aos="fade-up">
             <h1>PROPERTIES</h1>
             <div className={classes.propertiesHomeContainer}>
                 <div style={{ backgroundImage: `url(${spotlightProperty === 'urbanNest' ? urbanNestMain : midtownTerraceMain})` }} 

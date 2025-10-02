@@ -21,7 +21,7 @@ const Header = ({ isDark }: HeaderProps) => {
 
 
   // Context
-  const { scrollToRef } = useContext(AppContext);
+  const { scrollToRef, scrollToProperties } = useContext(AppContext);
 
   // Router
   const location = useLocation();
@@ -134,8 +134,14 @@ const Header = ({ isDark }: HeaderProps) => {
         );
       })}
       <p
+        onClick={scrollToProperties}
+        className={`${isDark ? classes.darkColor : classes.lightColor}`} style={{ cursor: 'pointer' }}
+      >
+        PROPERTIES
+      </p>
+      <p
         onClick={scrollToRef}
-        className={`${isDark ? classes.darkColor : classes.lightColor}`}
+        className={`${isDark ? classes.darkColor : classes.lightColor}`} style={{ cursor: 'pointer' }}
       >
         CONTACT US
       </p>

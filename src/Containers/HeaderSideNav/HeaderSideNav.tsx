@@ -17,7 +17,7 @@ type HeaderSideNavProps = {
 
 const HeaderSideNav = ({ closeSideNav }: HeaderSideNavProps) => {
   // Context
-  const { scrollToRef } = useContext(AppContext);
+  const { scrollToRef, scrollToProperties } = useContext(AppContext);
 
   // Router
   const location = useLocation();
@@ -31,6 +31,13 @@ const HeaderSideNav = ({ closeSideNav }: HeaderSideNavProps) => {
     scrollToRef();
     closeSideNav();
   }
+
+  function closePropertiesButton(){
+    scrollToProperties();
+    closeSideNav();
+  }
+
+
 
   return (
     <section className={classes.container}>
@@ -69,6 +76,10 @@ const HeaderSideNav = ({ closeSideNav }: HeaderSideNavProps) => {
             </Link>
           );
         })}
+         <p
+        onClick={closePropertiesButton} >
+        PROPERTIES
+      </p>
         <p onClick={closeContactButton}>CONTACT US</p>
 
         <Button

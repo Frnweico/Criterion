@@ -11,10 +11,10 @@ export const routes = [
     relatedRoutes: ["/about-us"],
   },
 
-  {
-    title: "PROPERTIES",
-    route: "/properties",
-    relatedRoutes: ["/properties"],
-  },
+  // {
+  //   title: "PROPERTIES",
+  //   route: "#properties",
+  //   relatedRoutes: ["#properties"],
+  // },
   
 ];
