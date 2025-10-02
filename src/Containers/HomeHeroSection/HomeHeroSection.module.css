@@ -56,6 +56,11 @@
   transform: translateY(-1px);
 }
 
+.textSection > button:hover > svg {
+  transform: translateX(5px);
+  transform: translateY(-1px);
+}
+
 .text {
   font-family: "Poppins";
   color: #191919;
