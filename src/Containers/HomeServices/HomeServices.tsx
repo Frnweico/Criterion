@@ -61,7 +61,7 @@ const HomeServices = () => {
     const ctx = gsap.context(() => {
       const container = containerRef.current;
       const sections = sectionsRef.current.filter(Boolean) as HTMLDivElement[];
-      const heading = headingRef.current;
+      // const heading = headingRef.current;
 
       if (!container || sections.length === 0) return;
 

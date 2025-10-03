@@ -6,7 +6,6 @@ import floorsIcon from "../../Assets/Images/floors icon.svg";
 import approxIcon from "../../Assets/Images/approx icon.svg";
 import line5 from "../../Assets/Images/Line 5.svg";
 import line8 from "../../Assets/Images/Line 8.svg";
-import line9 from "../../Assets/Images/Line 9.svg";
 import mainProperyImg from "../../Assets/Images/xV1.png";
 import propertyImg1 from "../../Assets/Images/xV2.png";
 import propertyImg2 from "../../Assets/Images/xV3.png";

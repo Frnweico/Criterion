@@ -18,34 +18,6 @@ const PropertyPricing: React.FC<PropertyPricingProps> = ({ data, contact }) => {
     Aos.init({ duration: 1000 });
   }, []);
 
-  const rows = [
-    {
-      milestone: "Foundation",
-      payment: "20% – 1st Instalment\n₦55,000,000",
-      timeline: "After 8 Weeks of starting",
-    },
-    {
-      milestone: "1st Floor Slab",
-      payment: "20% – 2nd Instalment\n₦55,000,000",
-      timeline: "After 8 Weeks",
-    },
-    {
-      milestone: "2nd Floor Slab",
-      payment: "20% – 3rd Instalment\n₦55,000,000",
-      timeline: "After 8 Weeks",
-    },
-    {
-      milestone: "Roofing and Plastering",
-      payment: "20% – 4th Instalment\n₦55,000,000",
-      timeline: "After 8 Weeks",
-    },
-    {
-      milestone: "Finishes and Painting",
-      payment: "20% – 5th Instalment\n₦55,000,000",
-      timeline: "After 8 Weeks",
-    },
-  ];
-
   return (
     <div>
       <div data-aos="fade-up" className={classes.propertyPricing}>

@@ -1,5 +1,4 @@
 import classes from "./HomeEnriched.module.css";
-import Button from "../../Components/Button/Button";
 import enrichedImg from "../../Assets/Images/homeEnrichedImg.png";
 
 const HomeEnriched = () => {

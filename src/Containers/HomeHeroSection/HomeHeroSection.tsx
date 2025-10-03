@@ -3,7 +3,7 @@ import classes from './HomeHeroSection.module.css';
 import heroImage from '../../Assets/Images/CHOme 2 1_cutout 2.png';
 import { motion } from 'framer-motion';
 import { AppContext } from '../../Context/AppContext';
-import { useContext, useEffect, useRef } from 'react';
+import { useContext, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -14,9 +14,9 @@ const HomeHeroSection = () => {
 	const { scrollToRef } = useContext(AppContext);
 
 		// Refs for GSAP
-	const containerRef = useRef(null);
+	// const containerRef = useRef(null);
 	// const textSectionRef = useRef(null);
-	const imageContainerRef = useRef(null);
+	// const imageContainerRef = useRef(null);
 
 	// useEffect(() => {
 	// 	const container = containerRef.current;

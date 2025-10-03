@@ -1,11 +1,5 @@
 import { useState, useEffect } from "react";
 import classes from "./PropertyPage.module.css";
-import groundFloorImg from "../../Assets/Images/groundFloorImg.jpg";
-import firstFloorImg from "../../Assets/Images/firstFloorImg.jpg";
-import secondFloorImg from "../../Assets/Images/secondFloorImg.jpg";
-import groundFloorSingleImg from "../../Assets/Images/groundFloorSingleImg.jpg";
-import firstFloorSingleImg from "../../Assets/Images/firstFloorSingleImg.jpg";
-import secondFloorSingleImg from "../../Assets/Images/secondFloorSingleImg.jpg";
 import leftArrow from "../../Assets/Images/leftArrow.svg";
 import rightArrow from "../../Assets/Images/rightArrow.svg";
 import Aos from "aos";
