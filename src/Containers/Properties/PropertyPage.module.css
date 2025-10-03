@@ -945,6 +945,7 @@
 .propertyPricingContact button {
   height: 100%;
   padding: 30px 60px;
+  border-radius: 0;
 }
 .propertyPricingContact button:hover {
   color: #000;

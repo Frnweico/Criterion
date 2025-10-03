@@ -4,7 +4,7 @@ import { scrollToTheTop } from '../../HelperFunctions/scrollToTop';
 import classes from './PropertiesHome.module.css';
 import urbanNestMain from "../../Assets/Images/propertiesHomeMainImg.png";
 import propertiesHomeImg1 from "../../Assets/Images/propertiesHomeImg1.png";
-import midtownTerraceMain from "../../Assets/Images/midtownMainImg.png";
+import midtownTerraceMain from "../../Assets/Images/ProjectSection.png";
 import midtownTerrace1 from "../../Assets/Images/xV1.jpg"
 import Button from '../../Components/Button/Button';
 import Aos from "aos";

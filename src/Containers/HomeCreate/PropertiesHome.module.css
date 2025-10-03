@@ -23,10 +23,11 @@
 .mainImageSection {
   height: 100%;
   background-repeat: no-repeat;
-  background-position: top right;
   display: flex;
   align-items: flex-end;
   padding-top: 60px;
+  background-position: left;
+  background-size: cover;
 }
 
 .mainImageText {
@@ -89,7 +90,8 @@
 .nextProjectSection {
   height: 90%;
   background-repeat: no-repeat;
-  background-position: top right;
+  background-position: center;
+  background-size: cover;
   display: flex;
   flex-direction: column;
   justify-content: center;

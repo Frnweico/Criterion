@@ -26,7 +26,7 @@
 }
 
 .button:hover svg {
-  transform: translateX(5px);
+  transform: translateX(2.5px);
 }
 
 .primary:not(.normal),
@@ -205,13 +205,17 @@
 }
 
 .lemon:hover {
-  /* border: 2px solid #625834; */
   background: #d1bd5b;
   transform: scale(1.05);
+  color: #fff;
 }
 
 .lemon > svg {
   fill: #625834;
+}
+
+.lemon:hover > svg {
+  fill: #fff;
 }
 
 .yellow {
@@ -220,8 +224,7 @@
 }
 
 .yellow:hover {
-  background: #30352f;
-  color: #fac964;
+  color: #b45f1e;
   transform: scale(1.05);
 }
 
@@ -230,7 +233,7 @@
 }
 
 .yellow:hover > svg {
-  fill: #fac964;
+  fill: #b45f1e;
 }
 
 @media screen and (min-width: 767px) and (max-width: 1023px) {
