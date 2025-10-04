@@ -22,8 +22,8 @@ const HomeContact = () => {
         <p>We'd love to hear from you</p>
         </div>
         <div>
-          <a href="https://wa.me/+2348058573915" target="_blank">Send us a Whatsapp Message</a>
-          <a href="mailto:info@criterionhomesltd.com" target="_blank">Send us an email</a>
+          <a href="https://wa.me/+2348058573915" rel="noopener noreferrer" target="_blank">Send us a Whatsapp Message</a>
+          <a href="mailto:info@criterionhomesltd.com" rel="noopener noreferrer" target="_blank">Send us an email</a>
         </div>
       </div>
     </section>

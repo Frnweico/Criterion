@@ -3,7 +3,7 @@ import classes from './HomeHeroSection.module.css';
 import heroImage from '../../Assets/Images/CHOme 2 1_cutout 2.png';
 import { motion } from 'framer-motion';
 import { AppContext } from '../../Context/AppContext';
-import { useContext, useRef } from 'react';
+import { useContext } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
