@@ -5,7 +5,7 @@ import { AppContext } from "../../Context/AppContext";
 const HomeContact = () => {
       const { contactRef } = useContext(AppContext);
   return (
-    <section className={classes.homeContact} ref={contactRef}>
+    <section id="contact" className={classes.homeContact} ref={contactRef}>
       <h2  data-aos="zoom-in-up" data-aos-duration="1200">TALK TO US</h2>
       <div className={classes.homeContactDetails}
       data-aos="fade-right"

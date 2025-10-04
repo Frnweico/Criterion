@@ -183,6 +183,7 @@
 
 .homeServicesRightSection button {
   margin-top: 2em;
+  pointer-events: all;
 }
 
 .homeServicesDetailsMobile {

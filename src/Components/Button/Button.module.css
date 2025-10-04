@@ -107,10 +107,6 @@
   padding: 8px 30px;
 }
 
-.black:hover {
-  transform: scale(1.05);
-}
-
 .black > svg,
 .black:hover > svg {
   fill: #f4f4f4;
@@ -166,7 +162,6 @@
 .plain:hover {
   background: #191919;
   color: #f4f4f4;
-  transform: scale(1.05);
 }
 
 .plain > svg,
@@ -206,7 +201,6 @@
 
 .lemon:hover {
   background: #d1bd5b;
-  transform: scale(1.05);
   color: #fff;
 }
 
@@ -225,7 +219,6 @@
 
 .yellow:hover {
   color: #b45f1e;
-  transform: scale(1.05);
 }
 
 .yellow > svg {

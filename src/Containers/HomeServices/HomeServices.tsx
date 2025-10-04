@@ -7,8 +7,9 @@ import serviceImg4 from "../../Assets/Images/Services 4 - Image.png";
 import { useRef, useLayoutEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 
-gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
 type Service = {
   num: string;
@@ -248,6 +249,11 @@ const HomeServices = () => {
     return () => ctx.revert();
   }, []);
 
+  const scrollToContact = () => {
+  document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
+};
+
+
   return (
     <div className={classes.homeServicesWrapper}>
       {/* Fixed title that stays visible */}
@@ -275,7 +281,7 @@ const HomeServices = () => {
                   <h2 className={classes.numberHeading}>{service.num}</h2>
                   <h2 className={classes.investmentHeading}>{service.title}</h2>
                   <p>{service.description}</p>
-                  <Button type="black">
+                  <Button type="black" onClick={() => gsap.to(window, { duration: 1, scrollTo: "#contact" })}>
                     <span>TALK TO US</span>
                     <svg
                       width="16"
@@ -295,7 +301,7 @@ const HomeServices = () => {
                 <h2 className={classes.numberHeading}>{service.num}</h2>
                 <h2 className={classes.investmentHeading}>{service.title}</h2>
                 <p>{service.description}</p>
-                <Button type="black">
+           <Button type="black" onClick={scrollToContact}>
                   <span>TALK TO US</span>
                   <svg
                     width="16"
