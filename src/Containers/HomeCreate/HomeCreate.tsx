@@ -1,14 +1,11 @@
 import Button from '../../Components/Button/Button';
 import { motion } from 'framer-motion';
-import { AppContext } from '../../Context/AppContext';
-import { useContext } from 'react';
 import classes from './HomeCreate.module.css';
 import Declaration from './Declaration';
 import createImg from "../../Assets/Images/Group 304 1.png";
 import { useNavigate } from 'react-router-dom';
 
 const HomeCreate = () => {
-    // const { scrollToRef } = useContext(AppContext);
     const navigate = useNavigate();
   return (
     <div className={classes.container}>
