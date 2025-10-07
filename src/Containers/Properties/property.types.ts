@@ -95,12 +95,14 @@ export interface ReasonsData {
   span1: string;
   span2: string;
   location: string;
+  place?: string;
   items: ReasonItem[];
 }
 
 export interface PricingRow {
   milestone: string;
   payment: string;
+  price?: string;
   timeline: string;
 }
 
@@ -380,7 +382,7 @@ export const properties: Record<string, PropertyData> = {
       whatsapp: "https://wa.me/2348058573915",
     },
     headerDetails: [
-      { id: 1, icon: terraceIcon, name: "Terrace Duplexes" },
+      { id: 1, icon: terraceIcon, name: "3 Terrace Duplexes" },
       { id: 2, icon: bedIcon, name: "4 Bedroom" },
       { id: 3, icon: floorsIcon, name: "3 Floors" },
     ],
@@ -389,7 +391,7 @@ export const properties: Record<string, PropertyData> = {
         id: 1,
         title: "LOCATION",
         description:
-          "Wuse, Zone 7,  Abuja(central, connected, and prestigious neighborhood)",
+          "Wuse, Zone 7,  Abuja (central, connected, and prestigious neighborhood)",
       },
       {
         id: 2,
@@ -446,7 +448,7 @@ export const properties: Record<string, PropertyData> = {
             "Multiple balconies and family lounges allow for both intimacy and shared living.",
         },
         {
-          title: "MODERN AESTHETIC",
+          title: "MODERN CHARACTER",
           description:
             "Clean lines, geometric clarity, and well-proportioned interiors give each residence a timeless quality.",
         },
@@ -473,7 +475,7 @@ export const properties: Record<string, PropertyData> = {
             title: "SECOND FLOOR",
             img: urbanNestSecondFloor,
             description:
-              "Two Additional Bedrooms (Including a large Master Suite), En-suite Baths, Private Balcony Access in each room",
+              "Two Additional Bedrooms, En-suite Baths, Private Balcony Access in each room",
           },
         ],
       },
@@ -482,7 +484,8 @@ export const properties: Record<string, PropertyData> = {
       mainTitle: "Why Buy Into The Urban Nest, Zone 7, Wuse, Abuja?",
       span1: "Why Buy Into",
       span2: "The Urban Nest,",
-      location: "Zone 7, Wuse, Abuja",
+      location: "Zone 7, Wuse,",
+      place: "Abuja",
       items: [
         {
           image: locationIcon,
@@ -539,27 +542,32 @@ export const properties: Record<string, PropertyData> = {
       rows: [
         {
           milestone: "Foundation",
-          payment: "20% - 1st Instalment ₦79,999,999",
+          payment: "20% - 1st Instalment",
+          price: "#80M",
           timeline: "After 8 Weeks of starting",
         },
         {
           milestone: "1st Floor Slab",
-          payment: "20% - 2nd Instalment ₦79,999,999",
+          payment: "20% - 2nd Instalment",
+          price: "#80M",
           timeline: "After 8 Weeks",
         },
         {
           milestone: "2nd Floor Slab",
-          payment: "20% - 3rd Instalment ₦79,999,999",
+          payment: "20% - 3rd Instalment",
+          price: "#80M",
           timeline: "After 8 Weeks",
         },
         {
           milestone: "Roofing and Plastering",
-          payment: "20% - 4th Instalment ₦79,999,999",
+          payment: "20% - 4th Instalment",
+          price: "#80M",
           timeline: "After 8 Weeks",
         },
         {
           milestone: "Finishes and Painting",
-          payment: "20% - 5th Instalment ₦79,999,999",
+          payment: "20% - 5th Instalment",
+          price: "#80M",
           timeline: "After 8 Weeks",
         },
       ],

@@ -128,7 +128,7 @@ const PropertyShowcase: React.FC<PropertyShowcaseProps> = ({ data }) => {
   });
 
   const [thumbnailOffset, setThumbnailOffset] = useState(0);
-  const THUMBNAIL_COUNT = 5;
+  const THUMBNAIL_COUNT = window.innerWidth <= 768 ? 4 : 5;
 
   // Property lightbox functions
   const openPropertyLightbox = (imageIndex: number) => {
@@ -203,7 +203,7 @@ const PropertyShowcase: React.FC<PropertyShowcaseProps> = ({ data }) => {
       </div>
 
       <div className={classes.propertyShowcaseContent}>
-        <div className={classes.propertyDetailsImages}>
+        <div className={`${classes.propertyDetailsImages} ${data.headerText.includes("Urban Nest") ? classes.urbanNestImages : ""}`}>
           <div
             className={classes.propertyDetailsMainImage}
             onClick={() => openPropertyLightbox(activeImageIndex)}

@@ -1,5 +1,5 @@
 import classes from "./AboutTheTeam.module.css";
-import hakeemBakare from "../../Assets/Images/hakeemBakare.jpg";
+import hakeemBakare from "../../Assets/Images/hakeemBakare.png";
 import letamWiwa from "../../Assets/Images/letamWiwa.png";
 import babatunde from "../../Assets/Images/babatunde.png";
 import { useLocation, useSearchParams } from "react-router-dom";
@@ -92,6 +92,7 @@ const AboutTheTeam = () => {
           exit={{ opacity: 0 }}
           transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
         >
+          <div className={classes.memberWrapper} >
           {team.map((data, i) => {
             return (
               <div className={classes.member} key={i} data-aos="fade-up">
@@ -116,6 +117,7 @@ const AboutTheTeam = () => {
               </div>
             );
           })}
+          </div>
         </motion.div>
       ) : (
         <div className={classes.details} ref={infoRef} data-aos="fade-up">

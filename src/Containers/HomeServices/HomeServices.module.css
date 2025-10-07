@@ -184,6 +184,7 @@
 .homeServicesRightSection button {
   margin-top: 2em;
   pointer-events: all;
+  cursor: pointer;
 }
 
 .homeServicesDetailsMobile {
@@ -407,6 +408,9 @@
   .homeServicesDetailsMobile button {
     margin-top: 1em;
     flex-shrink: 0;
+    cursor: pointer;
+    pointer-events: all;
+    padding-left: 0;
   }
 }
 

@@ -59,7 +59,7 @@ const PropertyLocation: React.FC<PropertyLocationProps> = ({ data }) => {
             <div className={classes.projectLocationTextLine}>
               <h2 data-aos="fade-up">{data.subtitle}</h2>
               <img src={line9} alt="line" />
-              <p data-aos="fade-up">{data.tagline}</p>
+              <p data-aos="fade-up" className={data.title === "ZONE 7," ? classes.urbanLocation : ""}>{data.tagline}</p>
             </div>
           </div>
 

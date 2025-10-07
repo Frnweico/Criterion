@@ -20,7 +20,8 @@ const PropertyReasons: React.FC<PropertyReasonsProps> = ({ data }) => {
           <span className={classes.propertyReasonsSpan1}>{data.span1}</span>{" "}
           <br />{" "}
           <span className={classes.propertyReasonsSpan2}>{data.span2}</span>{" "}
-          <br /> {data.location}?
+          <span className={classes.propertyReasonsSpan3}>{data.location}</span> {""}
+          <span className={classes.propertyReasonsSpan4}>{data.place}?</span>
         </h2>
         <div className={classes.propertyReasonsWrapper}>
           {data.items.map((item, idx) => (

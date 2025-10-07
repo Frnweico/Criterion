@@ -27,6 +27,8 @@ const FloorPlanHeader = ({
   maxIndex: number;
 }) => {
   const items = description.split(",").map((item) => item.trim());
+   const isUrbanNest = description.includes("Family Lounge");
+   console.log(isUrbanNest);
   return (
     <div data-aos="fade-up" className={classes.floorPlanHeader}>
       <div className={classes.floorPlanTitleRow}>
@@ -60,10 +62,12 @@ const FloorPlanHeader = ({
           <img src={rightArrow} alt="" />
         </button>
       </div>
-      <div className={classes.floorPlanHeaderItems}>
+      <div className={`${classes.floorPlanHeaderItems} ${isUrbanNest ? classes.urbanNestItems : ""}`}>
         {items.map((item, idx) => (
           <div key={idx}>
-            <p className={idx === items.length - 1 ? classes.lastItem : ""}>
+            <p className={`${isUrbanNest && idx === 0 ? classes.centered : ""} ${
+                idx === items.length - 1 ? classes.lastItem : ""
+              }`}>
               {item}
             </p>
           </div>

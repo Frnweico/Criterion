@@ -11,17 +11,22 @@
   cursor: pointer;
 }
 
+.container > p {
+  cursor: pointer;
+}
+
 .routesSection {
   height: 100%;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  position: absolute;
+  /* position: absolute;
   left: 0;
   right: 0;
   top: 0;
-  bottom: 0;
+  bottom: 0; */
   z-index: 2;
   white-space: nowrap;
 }

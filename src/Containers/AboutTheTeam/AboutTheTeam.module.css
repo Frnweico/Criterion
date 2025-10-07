@@ -1,231 +1,288 @@
 @keyframes appear {
-	0% {
-		opacity: 0;
-	}
-	100% {
-		opacity: 1;
-	}
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 .container {
-	padding: 100px 292px;
+  padding: 100px 292px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .container > h2 {
-	font-family: 'Mazius Display';
-	font-size: 96px;
-	font-style: italic;
-	font-weight: 400;
-	line-height: 88px;
-	letter-spacing: -0.04em;
-	text-align: left;
-	margin-bottom: 68px;
-	text-align: center;
+  font-family: "Mazius Display";
+  font-size: 96px;
+  font-style: italic;
+  font-weight: 400;
+  line-height: 88px;
+  letter-spacing: -0.04em;
+  text-align: left;
+  margin-bottom: 68px;
+  text-align: center;
 }
 
 .container > div:nth-child(2) {
-	display: flex;
-	align-items: stretch;
-	justify-content: center;
-	animation: appear 0.3s ease-in-out;
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  animation: appear 0.3s ease-in-out;
 }
 
+.memberWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin: 0 auto;
+}
+.member {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.25em;
+}
+.member img {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+}
+.member p {
+  font-size: 18px;
+  font-family: "Poppins";
+  line-height: 104%;
+}
+.member p:nth-of-type(2) {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 109.8%;
+  letter-spacing: -2%;
+}
+.member p:last-of-type {
+  font-weight: 600;
+  cursor: pointer;
+  padding-bottom: 0.1em;
+  border-bottom: 1px solid black;
+  font-size: 12px;
+  width: fit-content;
+}
+.member p:last-of-type:hover {
+  border-bottom: none;
+}
 .container > div > div > img {
-	width: 248.16px;
-	height: 410.8px;
-	object-fit: cover;
+  width: 248.16px;
+  height: 410.8px;
+  object-fit: cover;
+  max-width: 100%;
 }
 
 .container > div > div > p:nth-child(2) {
-	font-family: 'Poppins';
-	font-size: 18px;
-	font-weight: 600;
-	line-height: 22.97px;
-	text-align: left;
-	color: var(--Criterion-Black, #191919);
+  font-family: "Poppins";
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 22.97px;
+  text-align: left;
+  color: var(--Criterion-Black, #191919);
 }
 
 .container > div > div > p:nth-child(3) {
-	font-family: 'Poppins';
-	font-size: 12.02px;
-	font-weight: 400;
-	line-height: 13.2px;
-	letter-spacing: -0.02em;
-	text-align: left;
-	margin: 0.25rem 0;
+  font-family: "Poppins";
+  font-size: 12.02px;
+  font-weight: 400;
+  line-height: 13.2px;
+  letter-spacing: -0.02em;
+  text-align: left;
+  margin: 0.25rem 0;
 }
 
 .container > div > div > p:nth-child(4) {
-	font-family: 'Poppins';
-	font-size: 12px;
-	font-weight: 600;
-	line-height: 15.31px;
-	text-align: left;
-	color: #191919;
-	cursor: pointer;
-	text-decoration: underline;
+  font-family: "Poppins";
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 15.31px;
+  text-align: left;
+  color: #191919;
+  cursor: pointer;
+  text-decoration: underline;
 }
 
 .details {
-	display: flex;
-	align-items: stretch;
-	gap: 14px;
-	animation: appear 2s ease-in-out;
+  display: flex;
+  align-items: stretch;
+  gap: 14px;
+  animation: appear 2s ease-in-out;
+  /* border: 1px solid red; */
 }
 
 .details > div {
-	color: #f4f4f4;
-	background: #191919;
-	border: 1px solid #f8f8f8;
-	padding: 10px 14px;
-	min-height: 463.1px;
+  color: #f4f4f4;
+  background: #191919;
+  border: 1px solid #f8f8f8;
+  padding: 10px 14px;
+  min-height: 463.1px;
 }
 
 .details > img {
-	object-fit: cover;
-	width: 247.39px;
+  object-fit: cover;
+  width: 247.39px;
 }
 
 .details > div > h4 {
-	font-family: 'Poppins';
-	font-size: 18px;
-	font-weight: 600;
-	line-height: 18.72px;
-	text-align: left;
+  font-family: "Poppins";
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 18.72px;
+  text-align: left;
 }
 
 .details > div > h5 {
-	font-family: 'Poppins';
-	font-size: 14px;
-	font-weight: 500;
-	line-height: 15.37px;
-	letter-spacing: -0.02em;
-	text-align: left;
+  font-family: "Poppins";
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 15.37px;
+  letter-spacing: -0.02em;
+  text-align: left;
 }
 
 .details > div > div > p {
-	font-family: 'Poppins';
-	font-size: 16px;
-	font-weight: 300;
-	line-height: 24px;
-	text-align: left;
-	margin-top: 1rem;
+  font-family: "Poppins";
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 24px;
+  text-align: left;
+  margin-top: 1rem;
 }
 
 @media screen and (min-width: 767px) and (max-width: 1023px) {
-	.container {
-		padding: 66px 28px;
-	}
+  .container {
+    padding: 66px 28px;
+  }
 
-	.container > h2 {
-		font-size: 40px;
-		font-weight: 400;
-		line-height: 35.2px;
-		letter-spacing: -0.04em;
-		margin-bottom: 2px;
-		text-align: center;
-	}
+  .container > h2 {
+    font-size: 40px;
+    font-weight: 400;
+    line-height: 35.2px;
+    letter-spacing: -0.04em;
+    margin-bottom: 2px;
+    text-align: center;
+  }
 
-	.container > div {
-		display: flex;
-		align-items: stretch;
-		justify-content: center;
-		flex-direction: column;
-		margin-top: 2rem;
-	}
+  .container > div {
+    display: flex;
+    align-items: stretch;
+    justify-content: center;
+    flex-direction: column;
+    margin-top: 2rem;
+  }
 
-	.container > div:not(.details) {
-		gap: 0.5rem;
-	}
+  .container > div:not(.details) {
+    gap: 0.5rem;
+  }
 
-	.container > div > div > div > img {
-		width: 100%;
-		height: 473.8px;
-		object-fit: cover;
-	}
+  .container > div > div > div > img {
+    width: 100%;
+    height: 473.8px;
+    object-fit: cover;
+  }
 
-	.container > div > div > p:nth-child(2) {
-		text-align: left;
-	}
+  .container > div > div > p:nth-child(2) {
+    text-align: left;
+  }
 
-	.container > div > div > p:nth-child(3) {
-		text-align: left;
-		margin: 0.25rem 0;
-	}
+  .container > div > div > p:nth-child(3) {
+    text-align: left;
+    margin: 0.25rem 0;
+  }
 
-	.container > div > div > p:nth-child(4) {
-		text-align: left;
-	}
+  .container > div > div > p:nth-child(4) {
+    text-align: left;
+  }
 
-	.details {
-		gap: 0px;
-	}
+  .details {
+    gap: 0px;
+  }
 
-	.details > img {
-		width: 100%;
-		height: 100%;
-	}
+  .details > img {
+    width: 100%;
+    height: 100%;
+  }
 
-	.details > div > div > p {
-		margin-top: 1.5rem;
-	}
+  .details > div > div > p {
+    margin-top: 1.5rem;
+  }
 }
 
 @media screen and (max-width: 767px) {
-	.container {
-		padding: 66px 28px;
-	}
+  .container {
+    padding: 66px 28px;
+  }
 
-	.container > h2 {
-		font-size: 40px;
-		font-weight: 400;
-		line-height: 35.2px;
-		letter-spacing: -0.04em;
-		margin-bottom: 2px;
-		text-align: center;
-	}
+  .container > h2 {
+    font-size: 40px;
+    font-weight: 400;
+    line-height: 35.2px;
+    letter-spacing: -0.04em;
+    margin-bottom: 2px;
+    text-align: center;
+  }
 
-	.container > div {
-		display: flex;
-		align-items: stretch;
-		justify-content: center;
-		flex-direction: column;
-		margin-top: 2rem;
-	}
+  .container > div {
+    display: flex;
+    align-items: stretch;
+    justify-content: center;
+    flex-direction: column;
+    margin-top: 2rem;
+  }
 
-	.container > div:not(.details) {
-		gap: 0.5rem;
-	}
+  .memberWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin: 0 auto;
+  }
+  .member {
+    margin-bottom: 1em;
+  }
 
-	.container > div > div > div > img {
-		width: 100%;
-		height: 473.8px;
-		object-fit: cover;
-	}
+  .container > div:not(.details) {
+    gap: 0.5rem;
+  }
 
-	.container > div > div > p:nth-child(2) {
-		text-align: left;
-	}
+  .container > div > div > div > img {
+    width: 100%;
+    height: 473.8px;
+    object-fit: cover;
+  }
 
-	.container > div > div > p:nth-child(3) {
-		text-align: left;
-		margin: 0.25rem 0;
-	}
+  .container > div > div > p:nth-child(2) {
+    text-align: left;
+  }
 
-	.container > div > div > p:nth-child(4) {
-		text-align: left;
-	}
+  .container > div > div > p:nth-child(3) {
+    text-align: left;
+    margin: 0.25rem 0;
+  }
 
-	.details {
-		gap: 0px;
-	}
+  .container > div > div > p:nth-child(4) {
+    text-align: left;
+  }
 
-	.details > img {
-		width: 100%;
-		height: 100%;
-	}
+  .details {
+    gap: 0px;
+  }
 
-	.details > div > div > p {
-		margin-top: 1.5rem;
-	}
+  .details > img {
+    width: 100%;
+    height: 100%;
+  }
+
+  .details > div > div > p {
+    margin-top: 1.5rem;
+  }
 }

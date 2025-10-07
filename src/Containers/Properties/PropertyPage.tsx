@@ -47,7 +47,7 @@ const PropertyPage = () => {
             <img src={line5} alt="line" />
             <p data-aos="fade-up">{propertyData.location}</p>
           </div>
-          <div data-aos="fade-up" className={classes.propertyHeaderDetails}>
+          <div data-aos="fade-up" className={`${classes.propertyHeaderDetails} ${propertyData.name === "THE URBAN NEST" ? classes.centerLastDetail : ""}`}>
             {Array.from(
               { length: Math.ceil(propertyData.headerDetails.length / 2) },
               (_, groupIndex) => (

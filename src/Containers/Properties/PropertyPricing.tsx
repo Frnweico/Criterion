@@ -41,7 +41,10 @@ const PropertyPricing: React.FC<PropertyPricingProps> = ({ data, contact }) => {
                         <div key={i}>{line}</div>
                       ))}
                     </td>
-                    <td>{row.payment}</td>
+                    <td> <div className={classes.paymentWrapper}>
+                      {row.payment}
+                      {row.price && <span className={classes.price}> {row.price}</span>}
+                      </div></td>
                     <td>{row.timeline}</td>
                   </tr>
                 ))}

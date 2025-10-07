@@ -125,7 +125,7 @@ const AppContextProvider = ({ children }: AppContextProviderProps) => {
         if (propertiesRef.current) {
           (propertiesRef.current as HTMLDivElement).scrollIntoView({
             behavior: "smooth",
-            block: window.innerWidth >= 768 ? "center" : "start",
+            block: "center",
             inline: "start",
           });
         }

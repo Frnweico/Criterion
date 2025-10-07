@@ -32,7 +32,7 @@
 @media screen and (min-width: 768px) and (max-width: 1024px) {
   .container {
     margin-top: 3em;
-    border: 1px solid #f4f4f4;
+    /* border: 1px solid #f4f4f4; */
   }
 }
 

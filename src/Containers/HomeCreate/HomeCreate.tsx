@@ -5,9 +5,11 @@ import { useContext } from 'react';
 import classes from './HomeCreate.module.css';
 import Declaration from './Declaration';
 import createImg from "../../Assets/Images/Group 304 1.png";
+import { useNavigate } from 'react-router-dom';
 
 const HomeCreate = () => {
-    const { scrollToRef } = useContext(AppContext);
+    // const { scrollToRef } = useContext(AppContext);
+    const navigate = useNavigate();
   return (
     <div className={classes.container}>
         <div className={classes.createContainer}>    
@@ -34,7 +36,7 @@ const HomeCreate = () => {
             <p>Through restraint, detail, and clarity of thought, we aim to set a benchmark for spaces that endure, serve, and mean something over time.</p>
 </div>
             <div className={classes.checkFutureWrapper}>
-                <Button onClick={scrollToRef} type='plain'>
+                <Button onClick={() => navigate('/about')} type='plain'>
                 <span>READ ABOUT US</span>
                 <svg
 						width='16'
@@ -75,7 +77,7 @@ const HomeCreate = () => {
             </div>
 
             <div className={classes.checkFutureWrapperMobile}>
-              <Button onClick={scrollToRef} type='plain'>
+              <Button onClick={() => navigate('/about-us')} type='plain'>
                 <span>READ ABOUT US</span>
                 <svg width='16' height='14' viewBox='0 0 16 14' fill='#000000' xmlns='http://www.w3.org/2000/svg'>
                   <path d='M8.86307 0.119629L7.58108 1.3905L12.4858 6.1107H0V7.89481H12.4798L7.58108 12.6092L8.86307 13.8801L16 7L8.86307 0.119629Z' />
