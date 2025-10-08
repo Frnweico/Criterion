@@ -29,14 +29,14 @@ import inspiredIcon from "../../Assets/Images/inspiredIcon.svg";
 //urban nest
 import mainImg from "../../Assets/Images/urbanNestMainImg.png";
 import urbanNestShowcaseMain from "../../Assets/Images/urbanNestShowcaseMain.png";
-import urbanShowcase1 from "../../Assets/Images/urbanShowcase1.jpg"
-import urbanShowcase2 from "../../Assets/Images/urbanShowcase2.jpg"
-import urbanShowcase3 from "../../Assets/Images/urbanShowcase3.jpg"
-import urbanShowcase4 from "../../Assets/Images/urbanShowcase4.jpg"
-import urbanShowcase5 from "../../Assets/Images/urbanShowcase5.png"
-import urbanShowcase6 from "../../Assets/Images/urbanShowcase6.png"
-import urbanShowcase7 from "../../Assets/Images/urbanShowcase7.png"
-import urbanShowcase8 from "../../Assets/Images/urbanShowcase8.png"
+import urbanShowcase1 from "../../Assets/Images/urbanShowcase1.png"
+import urbanShowcase2 from "../../Assets/Images/urbanShowcase2.png"
+import urbanShowcase3 from "../../Assets/Images/urbanShowcase3.png"
+import urbanShowcase4 from "../../Assets/Images/urbanShowcase4.png"
+// import urbanShowcase5 from "../../Assets/Images/urbanShowcase5.png"
+// import urbanShowcase6 from "../../Assets/Images/urbanShowcase6.png"
+// import urbanShowcase7 from "../../Assets/Images/urbanShowcase7.png"
+// import urbanShowcase8 from "../../Assets/Images/urbanShowcase8.png"
 import urbanNestGroundFloor from "../../Assets/Images/urbanNestGroundFloor.png";
 import urbanNestFirstFloor from "../../Assets/Images/urbanNestFirstFloor.png";
 import urbanNestSecondFloor from "../../Assets/Images/urbanNestSecondFloor.png";
@@ -453,7 +453,7 @@ export const properties: Record<string, PropertyData> = {
             "Clean lines, geometric clarity, and well-proportioned interiors give each residence a timeless quality.",
         },
       ],
-      images: [urbanNestShowcaseMain, urbanShowcase1, urbanShowcase2, urbanShowcase3, urbanShowcase4, urbanShowcase5, urbanShowcase6, urbanShowcase7, urbanShowcase8],
+      images: [urbanNestShowcaseMain, urbanShowcase1, urbanShowcase2, urbanShowcase3, urbanShowcase4],
     },
     floorPlans: [
       {

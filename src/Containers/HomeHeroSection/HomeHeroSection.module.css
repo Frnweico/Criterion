@@ -57,8 +57,8 @@
 }
 
 .textSection > button:hover > svg {
-  transform: translateX(5px);
   transform: translateY(-1px);
+  transform: translateX(5px);
 }
 
 .text {

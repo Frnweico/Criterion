@@ -19,6 +19,27 @@
   font-weight: 500;
 }
 
+@font-face {
+  font-family: "Mazius Review";
+  src: url("./Assets/Fonts/MaziusReview/MAZIUSREVIEW20.09-Regular.otf");
+  font-style: normal;
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "Mazius Review";
+  src: url("./Assets/Fonts/MaziusReview/MAZIUSREVIEW20.09-Italic.otf");
+  font-style: italic;
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "Mazius Review";
+  src: url("./Assets/Fonts/MaziusReview/MAZIUSREVIEW20.09-Extraitalic.otf");
+  font-style: italic;
+  font-weight: 500;
+}
+
 /* @font-face {
   font-family: "Poppins";
   src: url("./Assets/Fonts/Poppins/Poppins-Regular.woff") format('woff');

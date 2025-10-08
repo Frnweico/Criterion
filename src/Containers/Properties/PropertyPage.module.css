@@ -493,6 +493,7 @@
 
 .floorPlanTitleRow {
   display: flex;
+  flex-direction: row;
   align-items: center;
   width: 100%;
   justify-content: space-between;
@@ -536,6 +537,21 @@
 .floorPlanHeaderItems p:hover {
   cursor: pointer;
   border-bottom: none;
+}
+
+.urbanNestContent {
+  flex-direction: row !important;
+}
+
+.urbanNestP p {
+  text-align: left !important;
+  width: fit-content !important;
+}
+
+.urbanNestTitleRow {
+  flex-direction: column !important;
+  align-items: flex-start !important;
+  /* gap: 1em; */
 }
 
 /* Carousel Styles */
@@ -740,12 +756,12 @@
 }
 .propertyReasons h2 {
   text-transform: uppercase;
-  font-family: "Mazius Display";
+  font-family: "Mazius Review";
   font-size: 92px;
   line-height: 92%;
   letter-spacing: -4%;
   text-align: left;
-  font-weight: 300;
+  font-weight: 500;
   width: 100%;
   margin-top: -0.4em;
 }
@@ -761,6 +777,8 @@
 .propertyReasonsSpan3,
 .propertyReasonsSpan4 {
   color: #9e9e9e;
+  font-family: "Mazius Review";
+  font-weight: 500;
 }
 .propertyReasonsWrapper {
   display: flex;

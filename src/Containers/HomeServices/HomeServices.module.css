@@ -185,6 +185,7 @@
   margin-top: 2em;
   pointer-events: all;
   cursor: pointer;
+  padding-left: 0;
 }
 
 .homeServicesDetailsMobile {

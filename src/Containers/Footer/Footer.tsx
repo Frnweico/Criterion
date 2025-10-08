@@ -92,31 +92,33 @@ const Footer = () => {
 					<p>Machima Plaza, Mambolo Junction, Wuse Zone 2, FCT Abuja</p>
 				</div>
 
-        <div>
-          <InstagramIcon
-            onClick={() => {
-              openExternalLink("https://www.instagram.com/criterionhomesltd/");
-            }}
-          />
-          <Facebook
-            onClick={() => {
-              openExternalLink(
-                "https://www.facebook.com/share/cMp5ZRTE8eYBNGH4/?mibextid=LQQJ4d"
-              );
-            }}
-          />
+        <div className={classes.socials}>
+		  <InstagramIcon
+			onClick={() => {
+			  openExternalLink("https://www.instagram.com/criterionhomesltd/");
+			}}
+			style={{ cursor: 'pointer' }}
+		  />
+		  <Facebook
+			onClick={() => {
+			  openExternalLink(
+				"https://www.facebook.com/share/cMp5ZRTE8eYBNGH4/?mibextid=LQQJ4d"
+			  );
+			}}
+			style={{ cursor: 'pointer' }}
+		  />
 
 					<XIcon
 						onClick={() => {
 							openExternalLink('https://x.com/CriterionHomes_');
-						}}
+						}} style={{ cursor: 'pointer' }}
 					/>
 					<LinkedInIcon
 						onClick={() => {
 							openExternalLink(
 								'https://www.linkedin.com/company/criterion-homes-ltd/'
 							);
-						}}
+						}} style={{ cursor: 'pointer' }}
 					/>
 				</div>
 			</div>

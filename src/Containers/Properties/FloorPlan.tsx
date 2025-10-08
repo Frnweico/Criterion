@@ -18,6 +18,7 @@ const FloorPlanHeader = ({
   onNext,
   currentIndex,
   maxIndex,
+  isUrbanNestUnit
 }: {
   title: string;
   description: string;
@@ -25,13 +26,15 @@ const FloorPlanHeader = ({
   onNext: () => void;
   currentIndex: number;
   maxIndex: number;
+   isUrbanNestUnit?: boolean;
 }) => {
   const items = description.split(",").map((item) => item.trim());
-   const isUrbanNest = description.includes("Family Lounge");
-   console.log(isUrbanNest);
-  return (
-    <div data-aos="fade-up" className={classes.floorPlanHeader}>
-      <div className={classes.floorPlanTitleRow}>
+  const isUrbanNest = description.includes("Family Lounge");
+  const urbanNest = description.includes("Family Lounge") || description.includes("Kitchen") || description.includes("Private Balcony");
+
+   return (
+    <div data-aos="fade-up" className={`${classes.floorPlanHeader} ${urbanNest ? classes.urbanNestTitleRow : ""}`}>
+      <div className={`${classes.floorPlanTitleRow}`}>
         <button
           onClick={onPrev}
           disabled={currentIndex === 0}
@@ -62,7 +65,7 @@ const FloorPlanHeader = ({
           <img src={rightArrow} alt="" />
         </button>
       </div>
-      <div className={`${classes.floorPlanHeaderItems} ${isUrbanNest ? classes.urbanNestItems : ""}`}>
+      <div className={`${classes.floorPlanHeaderItems}  ${urbanNest ? classes.urbanNestP : ""} ${isUrbanNest ? classes.urbanNestItems : ""}`}>
         {items.map((item, idx) => (
           <div key={idx}>
             <p className={`${isUrbanNest && idx === 0 ? classes.centered : ""} ${
@@ -192,6 +195,15 @@ const FloorPlan: React.FC<FloorPlanProps> = ({ data }) => {
 
   const [isTransitioning, setIsTransitioning] = useState(false);
 
+
+const isUrbanNest = (unitIdx: number) => {
+    const floors = data[unitIdx]?.floors;
+    return floors.some(floor => 
+      floor.description.includes("Family Lounge") ||
+      floor.description.includes("Urban Nest")
+    );
+  };
+
   useEffect(() => {
     Aos.init({ duration: 1000 });
   }, []);
@@ -291,7 +303,7 @@ const FloorPlan: React.FC<FloorPlanProps> = ({ data }) => {
                 </button>
 
                 {/* Content Container - Header and Image */}
-                <div className={classes.floorPlanContent}>
+                <div className={`${classes.floorPlanContent} ${isUrbanNest(unitIdx) ? classes.urbanNestContent : ""}`}>
                   <div className={classes.floorPlanHeaderRow}>
                     <FloorPlanHeader
                       title={unit.floors[currentIndex].title}

@@ -130,6 +130,17 @@ const PropertyShowcase: React.FC<PropertyShowcaseProps> = ({ data }) => {
   const [thumbnailOffset, setThumbnailOffset] = useState(0);
   const THUMBNAIL_COUNT = window.innerWidth <= 768 ? 4 : 5;
 
+   useEffect(() => {
+    const handleResize = () => {
+      setThumbnailOffset(window.innerWidth <= 768 ? 4 : 5);
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
   // Property lightbox functions
   const openPropertyLightbox = (imageIndex: number) => {
     setPropertyLightbox({
@@ -213,7 +224,7 @@ const PropertyShowcase: React.FC<PropertyShowcaseProps> = ({ data }) => {
           </div>
 
           <div className={classes.thumbnailContainer}>
-            {thumbnailOffset > 0 && (
+            {window.innerWidth <= 768 &&thumbnailOffset > 0 && (
               <button className={classes.thumbnailArrow} onClick={handlePrevThumbnails}>
                 <img src={leftArrow} alt="Previous" />
               </button>
@@ -233,7 +244,7 @@ const PropertyShowcase: React.FC<PropertyShowcaseProps> = ({ data }) => {
               />
             ))}
           </div>
-          {thumbnailOffset + THUMBNAIL_COUNT < data.images.length && (
+          {window.innerWidth <= 768 &&thumbnailOffset + THUMBNAIL_COUNT < data.images.length && (
               <button className={classes.thumbnailArrow} onClick={handleNextThumbnails}>
                 <img src={rightArrow} alt="Next" />
               </button>
