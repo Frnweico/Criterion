@@ -1339,6 +1339,14 @@
   .floorPlanHeader h2 {
     font-size: 60px;
   }
+  .urbanNestTitleRow {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+  }
+  .urbanNestP {
+    align-self: flex-start !important;
+    width: 100% !important;
+  }
   .floorPlanTitleGroundFloor {
     width: 100%;
   }
