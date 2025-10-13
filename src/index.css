@@ -21,23 +21,29 @@
 
 @font-face {
   font-family: "Mazius Review";
-  src: url("./Assets/Fonts/MaziusReview/MAZIUSREVIEW20.09-Regular.otf");
+  src: url("./Assets/Fonts/MaziusReview/MaziusDisplay-Regular.otf");
   font-style: normal;
   font-weight: 400;
 }
 
 @font-face {
   font-family: "Mazius Review";
-  src: url("./Assets/Fonts/MaziusReview/MAZIUSREVIEW20.09-Italic.otf");
+  src: url("./Assets/Fonts/MaziusReview/MaziusDisplay-Bold.otf");
   font-style: italic;
-  font-weight: 400;
+  font-weight: 700;
 }
 
 @font-face {
   font-family: "Mazius Review";
-  src: url("./Assets/Fonts/MaziusReview/MAZIUSREVIEW20.09-Extraitalic.otf");
+  src: url("./Assets/Fonts/MaziusReview/MaziusDisplay-Extraitalic.otf");
   font-style: italic;
-  font-weight: 500;
+  font-weight: 400;
+}
+@font-face {
+  font-family: "Mazius Review";
+  src: url("./Assets/Fonts/MaziusReview/MaziusDisplay-ExtraItalicBold.otf");
+  font-style: italic;
+  font-weight: 700;
 }
 
 /* @font-face {
