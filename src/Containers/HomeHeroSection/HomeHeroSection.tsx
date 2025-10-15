@@ -14,9 +14,6 @@ const HomeHeroSection = () => {
 	const { scrollToRef } = useContext(AppContext);
 
 		// Refs for GSAP
-	const containerRef = useRef(null);
-	const textSectionRef = useRef(null);
-	const imageContainerRef = useRef(null);
 
 // useEffect(() => {
 // 		const container = containerRef.current;

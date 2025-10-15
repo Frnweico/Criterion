@@ -18,12 +18,11 @@ const WhatsAppWidget = ({
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsVisible(true);
-    }, 2000); // Increased to 2s to ensure page is fully loaded
+    }, 2000); 
 
     return () => clearTimeout(timer);
   }, []);
 
-  // Hide widget during route changes, then show after animation
   useEffect(() => {
     setIsVisible(false);
     const timer = setTimeout(() => {
