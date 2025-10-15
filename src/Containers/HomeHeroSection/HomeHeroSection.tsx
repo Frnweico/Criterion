@@ -3,7 +3,7 @@ import classes from './HomeHeroSection.module.css';
 import heroImage from '../../Assets/Images/CHOme 2 1_cutout 2.png';
 import { motion } from 'framer-motion';
 import { AppContext } from '../../Context/AppContext';
-import { useContext, useRef } from 'react';
+import { useContext} from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -12,35 +12,6 @@ gsap.registerPlugin(ScrollTrigger);
 const HomeHeroSection = () => {
 	// Context
 	const { scrollToRef } = useContext(AppContext);
-
-		// Refs for GSAP
-
-// useEffect(() => {
-// 		const container = containerRef.current;
-// 		const textSection = textSectionRef.current;
-// 		const imageContainer = imageContainerRef.current;
-
-// 		if (!container || !imageContainer) return;
-		
-// 		gsap.set(imageContainer, { yPercent: 0 });
-
-// 		// Simple parallax effect - image moves up faster than scroll
-// 		gsap.to(imageContainer, {
-// 			yPercent: -40,
-// 			ease: "none",
-// 			scrollTrigger: {
-// 				trigger: container,
-// 				start: "top bottom",
-// 				end: "bottom top",
-// 				scrub: 1.5,
-// 			}
-// 		});
-
-// 		// Cleanup function
-// 		return () => {
-// 			ScrollTrigger.getAll().forEach(trigger => trigger.kill());
-// 		};
-// 	}, []);
 
 	return (
 		<section className={classes.container}>
