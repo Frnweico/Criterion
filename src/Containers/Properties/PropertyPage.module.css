@@ -1730,6 +1730,20 @@
   .floorPlanTitleFirstFloor {
     width: 80% !important;
   }
+  .urbanNestContent {
+    flex-direction: column !important;
+  }
+
+  .urbanNestP p {
+    text-align: left !important;
+    width: fit-content !important;
+  }
+
+  .urbanNestTitleRow {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    /* gap: 1em; */
+  }
   .carouselViewport {
     padding: 0;
   }

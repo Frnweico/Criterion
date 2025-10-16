@@ -18,7 +18,7 @@ const WhatsAppWidget = ({
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsVisible(true);
-    }, 2000); 
+    }, 8000); 
 
     return () => clearTimeout(timer);
   }, []);
@@ -27,7 +27,7 @@ const WhatsAppWidget = ({
     setIsVisible(false);
     const timer = setTimeout(() => {
       setIsVisible(true);
-    }, 2000);
+    }, 8000);
 
     return () => clearTimeout(timer);
   }, [location.pathname]);
