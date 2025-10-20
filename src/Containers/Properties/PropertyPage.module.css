@@ -1742,7 +1742,6 @@
   .urbanNestTitleRow {
     flex-direction: column !important;
     align-items: flex-start !important;
-    /* gap: 1em; */
   }
   .carouselViewport {
     padding: 0;

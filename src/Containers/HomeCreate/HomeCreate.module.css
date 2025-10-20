@@ -577,6 +577,10 @@ button span {
     font-weight: 600;
   }
 
+  .checkFutureWrapperMobile button {
+    padding-left: 0;
+  }
+
   /* Declaration */
   .declarationContainer {
     min-height: 300px;

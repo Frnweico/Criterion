@@ -372,7 +372,7 @@ export const properties: Record<string, PropertyData> = {
       subtitle: "OVERVIEW",
       title: "Welcome to The Urban Nest",
       paragraphs: [
-        "Welcome to The Urban Nest, a development in Wuse, Abuja. In this development, every detail has been considered with the homeowner in mind: layouts that flow with ease, spaces that invite light, and a standard of finish designed to stand the test of time.",
+        "A development in Wuse, Abuja. In this development, every detail has been considered with the homeowner in mind: layouts that flow with ease, spaces that invite light, and a standard of finish designed to stand the test of time.",
         "Set within one of Abuja’s most established districts, The Urban Nest stands in the very heart of the city. Here, privacy meets connection. Close to schools, businesses, and the city’s social life, yet positioned for a quieter way of living.",
         "Perfect for individuals and families with a refined eye and a preference for homes that speak through detail rather than display, this development offers a residence where comfort is intentional, design is enduring, and ownership reflects a standard few can claim.",
       ],
@@ -430,27 +430,27 @@ export const properties: Record<string, PropertyData> = {
         {
           title: "WELL BUILT",
           description:
-            "High-standard finishes including glazed ceramic tiles and black galaxy granite options in principal spaces.",
+            "Every decision is guided by precision and every detail is handled with care to create a home that holds its own well beyond the façade.",
         },
         {
           title: "Functional Layouts",
           description:
-            "Expansive lounges, dining areas, en-suite bedrooms, and family spaces distributed across multiple floors.",
+            "Designed to flow seamlessly into daily life, with light and air moving freely and every area serving a clear purpose of living well.",
         },
         {
           title: "NATURALLY ILLUMINATED",
           description:
-            "Generous glass openings and spaces shaped to glow with the rhythm of the day.",
+            "Generous openings and spaces shaped to glow with the rhythm of the day.",
         },
         {
           title: "PRIVATE COMFORT",
           description:
-            "Multiple balconies and family lounges allow for both intimacy and shared living.",
+            "Private Comfort: Thoughtfully planned to create calm, personal spaces that support individuality and offers a retreat from the rhythm of daily life.",
         },
         {
           title: "MODERN CHARACTER",
           description:
-            "Clean lines, geometric clarity, and well-proportioned interiors give each residence a timeless quality.",
+            "A rejection of ornamentation in favor of functionality. Through simplicity of form and clarity of design, each detail caters to the modern homeowner and is crafted to endure through time.",
         },
       ],
       images: [urbanNestShowcaseMain, urbanShowcase1, urbanShowcase2, urbanShowcase3, urbanShowcase4],
