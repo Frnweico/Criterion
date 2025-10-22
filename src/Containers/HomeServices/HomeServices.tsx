@@ -153,13 +153,19 @@ const HomeServices = () => {
         const st = ScrollTrigger.create({
           trigger: container,
           start:  `top top`,
-          end:  `+=${steps * 150}vh`, 
+          end:  `+=${steps * 120}vh`, 
           pin: container,
           pinSpacing: true,
-          scrub: true,
+          scrub: 0.5,
           anticipatePin: 1,
           invalidateOnRefresh: true,
           animation: timeline,
+           snap: {
+            snapTo: 1 / steps,
+            duration: { min: 0.2, max: 0.5 },
+            delay: 0.1,
+            ease: "power1.inOut"
+          },
           onRefresh: () => {
             sections.forEach((section, i) => {
               gsap.set(section, {

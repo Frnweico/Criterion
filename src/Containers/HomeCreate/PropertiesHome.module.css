@@ -2,6 +2,7 @@
   min-height: 100vh;
   overflow: visible;
   overflow-x: hidden;
+  scroll-margin-top: 500px;
 }
 
 .propertiesHome h1 {
@@ -232,6 +233,7 @@
     min-height: auto;
     padding: 0 5%;
     overflow-x: hidden;
+    scroll-margin-top: 100px;
   }
 
   .propertiesHome h1 {
