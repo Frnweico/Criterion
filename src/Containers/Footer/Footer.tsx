@@ -31,14 +31,7 @@ const Footer = () => {
 			setEmailAddress('');
 		}
 	}, [requestState?.data]);
-
-	const handleFooterLinkClick = (route: string, isExternal: boolean) => {
-		if (isExternal) {
-			window.open(route, '_blank');
-		} else {
-			scrollToTheTop();
-		}
-	};
+	// uguih
 
 	return (
 		<div className={classes.container}>
