@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import Button from '../../Components/Button/Button';
 
 import classes from './HomeCreate.module.css';
@@ -11,7 +12,7 @@ const Declaration = () => {
       <p>The Criterion Declaration is our statement of intent.<br />
 A philosophy that defines how we build, why we build, and who we build for. It reflects our commitment to thoughtful design, disciplined delivery, sustainability and homes created to hold their worth over time. <br /> It's not a campaign. Not a slogan. A standard.</p>
 <Button type='white'>
-                <span>WATCH THE DECLARATION</span>
+                <Link to={"https://youtu.be/eLqRvw1euGY"} target='_blank'>WATCH THE DECLARATION</Link>
                 <svg
 						width='16'
 						height='14'

@@ -32,6 +32,14 @@ const Footer = () => {
 		}
 	}, [requestState?.data]);
 
+	const handleFooterLinkClick = (route: string, isExternal: boolean) => {
+		if (isExternal) {
+			window.open(route, '_blank');
+		} else {
+			scrollToTheTop();
+		}
+	};
+
 	return (
 		<div className={classes.container}>
 			<div className={classes.topSection}>
@@ -71,6 +79,18 @@ const Footer = () => {
 			<div className={classes.middleSection}>
 				<div>
 					{footerRoutes.map((data, i) => {
+						if (data.isExternal) {
+							return (
+								<a
+									key={i}
+									href={data.route}
+									target='_blank'
+									rel='noopener noreferrer'
+									style={{ cursor: 'pointer' }}>
+									{data.title}
+								</a>
+							);
+						}
 						return (
 							<Link to={data.route} key={i} onClick={scrollToTheTop}>
 								{data.title}

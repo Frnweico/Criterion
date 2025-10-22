@@ -26,7 +26,7 @@ export const footerRoutes = [
   },
   {
     title: "VIEW PROFILE",
-    route: "https://drive.google.com/file/d/1KtJxkCViVfCnSWYAcuvd82-CGjaNISaC/view?pli=1",
+    route: "/documents/Criterion Homes Profile.pdf",
     isExternal: true,
   },
 ];

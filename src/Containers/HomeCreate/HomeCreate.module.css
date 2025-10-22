@@ -172,6 +172,15 @@ button span {
   padding: 10px 12px;
 }
 
+.declarationText a {
+  font-family: "Poppins";
+  /* font-size: 9px; */
+  margin: 0;
+  flex: 1;
+  text-decoration: none;
+  color: #000;
+}
+
 /* midtown terrace  */
 .midtownTerraceContainer {
   display: grid;
@@ -632,6 +641,17 @@ button span {
     padding: 2px 8px;
     font-size: 7px;
     flex-shrink: 0;
+    display: flex;
+    align-items: center;
+  }
+
+  .declarationText a {
+    font-family: "Poppins";
+    font-size: 9px;
+    margin: 0;
+    flex: 1;
+    text-decoration: none;
+    color: #000;
   }
 
   /* MidtownTerrace */
