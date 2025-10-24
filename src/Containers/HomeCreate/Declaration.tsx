@@ -1,10 +1,11 @@
-import { Link } from 'react-router-dom';
-import Button from '../../Components/Button/Button';
+// import { Link } from 'react-router-dom';
+// import Button from '../../Components/Button/Button';
 import classes from './HomeCreate.module.css';
 const Declaration = () => {
   return (
     <div className={classes.declarationContainer}>
       <div className={classes.declaration}>
+        {/* ghghcghg  */}
     {/*  <h2><sup className={classes.declarationSup}>THE</sup> <span >CRITERION</span> <br />DECLARATION</h2>
 
  <div className={classes.declarationText}>
