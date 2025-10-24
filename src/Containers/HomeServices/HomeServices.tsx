@@ -94,7 +94,7 @@ const HomeServices = () => {
         // Create smooth, snappy animation timeline
         const tl = gsap.timeline({
           defaults: {
-            ease: "power2.inOut", 
+            ease: "none", 
           },
         });
 
@@ -126,8 +126,8 @@ const HomeServices = () => {
               prevSection,
               {
                 yPercent: -100,
-                duration: 0.6,
-                ease: "power2.in",
+                duration: 0.8,
+                ease: "power2.inOut",
               },
               timeStart + 0.3
             )

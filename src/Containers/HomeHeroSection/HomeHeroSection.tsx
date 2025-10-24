@@ -12,6 +12,10 @@ gsap.registerPlugin(ScrollTrigger);
 const HomeHeroSection = () => {
 	// Context
 	const { scrollToRef } = useContext(AppContext);
+// 	 const sectionRef  = useRef(null);  
+//   const textRef     = useRef(null);   
+//   const imageRef    = useRef(null);  
+  
 
 	return (
 		<section className={classes.container}>
