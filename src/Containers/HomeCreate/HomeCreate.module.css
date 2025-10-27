@@ -777,21 +777,31 @@ button span {
     flex: 1;
     min-height: 0;
   }
-
-  /* .declarationVideo {
-    width: 80%;
-  } */
 }
 
 @media (max-width: 480px) {
   .declaration {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     gap: 1em;
     height: 100%;
     padding: 0;
+  }
+
+  .declarationVideo {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+  }
+
+  .declarationVideo iframe {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 
   .declarationText {

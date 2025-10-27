@@ -153,18 +153,20 @@ const HomeServices = () => {
         const st = ScrollTrigger.create({
           trigger: container,
           start:  `top top`,
-          end:  `+=${steps * 120}vh`, 
+          end:  `+=${steps * 100}%`, 
           pin: container,
           pinSpacing: true,
-          scrub: 0.5,
+          scrub: 1,
           anticipatePin: 1,
           invalidateOnRefresh: true,
           animation: timeline,
            snap: {
-            snapTo: 1 / steps,
-            duration: { min: 0.2, max: 0.5 },
-            delay: 0.1,
-            ease: "power1.inOut"
+           snapTo: (value) => {
+              return Math.round(value * steps) / steps;
+            },
+            duration: { min: 0.3, max: 0.6 },
+            delay: 0,
+            ease: "power2.inOut"
           },
           onRefresh: () => {
             sections.forEach((section, i) => {
@@ -174,6 +176,10 @@ const HomeServices = () => {
               });
             });
           },
+           onLeave: () => {
+            // Ensure last section is visible when leaving
+            gsap.set(sections[sections.length - 1], { yPercent: 0, zIndex: 100 });
+          }
         });
 
         return () => st.kill();
