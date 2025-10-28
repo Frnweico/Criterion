@@ -59,10 +59,12 @@ const HomeServices = () => {
   };
 
   useLayoutEffect(() => {
+       ScrollTrigger.getAll().forEach((t) => t.kill());
+
     const ctx = gsap.context(() => {
       const container = containerRef.current;
       const sections = sectionsRef.current.filter(Boolean) as HTMLDivElement[];
-      // const heading = headingRef.current;
+     
 
       if (!container || sections.length === 0) return;
 
@@ -74,9 +76,11 @@ const HomeServices = () => {
       };
       setVh();
 
-      // Clean up previous animations
-      ScrollTrigger.getAll().forEach((t) => t.kill());
-      gsap.killTweensOf([sections]);
+ sections.forEach((section) => {
+        gsap.set(section, { clearProps: "all" });
+      });
+
+      gsap.killTweensOf(sections);
 
       const buildAnimation = () => {
         sections.forEach((section, i) => {
@@ -88,6 +92,7 @@ const HomeServices = () => {
             willChange: "transform",
             force3D: true,
             backfaceVisibility: "hidden",
+            visibility: "visible",
           });
         });
 
@@ -109,7 +114,7 @@ const HomeServices = () => {
             section,
             {
               zIndex: 100,
-              yPercent: 100,
+              // yPercent: 100,
             },
             timeStart
           )
@@ -153,37 +158,22 @@ const HomeServices = () => {
         const st = ScrollTrigger.create({
           trigger: container,
           start:  `top top`,
-          end:  `+=${steps * 100}%`, 
-          pin: container,
+          end:  `+=${steps * 100}vh`, 
+          pin: true,
           pinSpacing: true,
           scrub: 1,
           anticipatePin: 1,
           invalidateOnRefresh: true,
+          fastScrollEnd: true,
           animation: timeline,
            snap: {
-           snapTo: (value) => {
-              return Math.round(value * steps) / steps;
-            },
-            duration: { min: 0.3, max: 0.6 },
-            delay: 0,
-            ease: "power2.inOut"
+           snapTo: 1 / steps,
+            duration: { min: 0.2, max: 0.5 },
+            ease: "power1.inOut",
           },
-          onRefresh: () => {
-            sections.forEach((section, i) => {
-              gsap.set(section, {
-                yPercent: i === 0 ? 0 : 100,
-                zIndex: i === 0 ? 100 : 10,
-              });
+           })
+           return () => st.kill();
             });
-          },
-           onLeave: () => {
-            // Ensure last section is visible when leaving
-            gsap.set(sections[sections.length - 1], { yPercent: 0, zIndex: 100 });
-          }
-        });
-
-        return () => st.kill();
-      });
 
       // Mobile: Fixed animation with no black screens
       mm.add("(max-width: 768px)", () => {
@@ -245,7 +235,11 @@ const HomeServices = () => {
       }
 
       // Initial refresh
-      requestAnimationFrame(refreshHandler);
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          ScrollTrigger.refresh();
+        });
+      });
 
       return () => {
         mm.revert();
