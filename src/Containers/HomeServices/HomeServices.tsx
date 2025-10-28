@@ -158,8 +158,8 @@ const HomeServices = () => {
         const st = ScrollTrigger.create({
           trigger: container,
           start:  `top top`,
-          end:  `+=${steps * 100}vh`, 
-          pin: true,
+          end:  `+=${steps * 130}vh`, 
+          pin: container,
           pinSpacing: true,
           scrub: 1,
           anticipatePin: 1,
