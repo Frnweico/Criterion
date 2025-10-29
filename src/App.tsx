@@ -1,11 +1,12 @@
+import { lazy, Suspense } from "react";
 import { AnimatePresence } from "framer-motion";
 import { Route, Routes, useLocation } from "react-router-dom";
 import MountLoader from "./Components/MountLoader/MountLoader";
-import About from "./Containers/About/About";
-import Careers from "./Containers/Careers/Careers";
-import Home from "./Containers/Home/Home";
-import PropertyPage from "./Containers/Properties/PropertyPage";
 import WhatsAppWidget from "./WhatsappWidget";
+const Home = lazy(() => import("./Containers/Home/Home"));
+const About = lazy(() => import("./Containers/About/About"));
+const Careers = lazy(() => import("./Containers/Careers/Careers"));
+const PropertyPage = lazy(() => import("./Containers/Properties/PropertyPage"));
 
 function App() {
   // Router
@@ -13,6 +14,7 @@ function App() {
   return (
     <>
     <AnimatePresence mode="wait">
+      <Suspense>
       <Routes location={location} key={location.pathname}>
         <Route element={<MountLoader />}>
           <Route element={<Home />} path="/" />
@@ -21,6 +23,7 @@ function App() {
           <Route path="/properties/:propertyId" element={<PropertyPage />} />
         </Route>
       </Routes>
+      </Suspense>
     </AnimatePresence>
     <WhatsAppWidget 
         phoneNumber="+2348058573915"
