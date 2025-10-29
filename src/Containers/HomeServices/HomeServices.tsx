@@ -76,13 +76,13 @@ const HomeServices = () => {
       };
       setVh();
 
- sections.forEach((section) => {
+      sections.forEach((section) => {
         gsap.set(section, { clearProps: "all" });
       });
 
       gsap.killTweensOf(sections);
 
-      const buildAnimation = () => {
+       const buildAnimation = () => {
         sections.forEach((section, i) => {
           gsap.set(section, {
             position: "absolute",
@@ -96,7 +96,6 @@ const HomeServices = () => {
           });
         });
 
-        // Create smooth, snappy animation timeline
         const tl = gsap.timeline({
           defaults: {
             ease: "none", 
@@ -109,12 +108,10 @@ const HomeServices = () => {
           const prevSection = sections[i - 1];
           const timeStart = i - 1;
 
-          // Ensure proper layering throughout animation
           tl.set(
             section,
             {
               zIndex: 100,
-              // yPercent: 100,
             },
             timeStart
           )
@@ -150,34 +147,89 @@ const HomeServices = () => {
 
       const mm = gsap.matchMedia();
 
-      // Desktop: More controlled scrolling with snapping
-      mm.add("(min-width: 769px)", () => {
+            mm.add("(min-width: 769px)", () => {
         const timeline = buildAnimation();
         const steps = sections.length - 1;
 
         const st = ScrollTrigger.create({
           trigger: container,
           start:  `top top`,
-          end:  `+=${steps * 120}vh`, 
+          end:  `+=${steps * 150}vh`, 
           pin: container,
           pinSpacing: true,
-          scrub: 1,
+          scrub: 0.8,
           anticipatePin: 1,
           invalidateOnRefresh: true,
-          // fastScrollEnd: true,
           animation: timeline,
            snap: {
            snapTo: 1 / steps,
-            duration: { min: 0.2, max: 0.5 },
+            duration: 0.4,
             ease: "power1.inOut",
           },
            })
            return () => st.kill();
             });
 
-      // Mobile: Fixed animation with no black screens
+      // Mobile: Keep existing working implementation
       mm.add("(max-width: 768px)", () => {
-        const timeline = buildAnimation();
+        sections.forEach((section, i) => {
+          gsap.set(section, {
+            position: "absolute",
+            inset: 0,
+            yPercent: i === 0 ? 0 : 100,
+            zIndex: i === 0 ? 100 : 10,
+            willChange: "transform",
+            force3D: true,
+            backfaceVisibility: "hidden",
+            visibility: "visible",
+          });
+        });
+
+        const tl = gsap.timeline({
+          defaults: {
+            ease: "none", 
+          },
+        });
+
+        sections.forEach((section, i) => {
+          if (i === 0) return;
+
+          const prevSection = sections[i - 1];
+          const timeStart = i - 1;
+
+          tl.set(
+            section,
+            {
+              zIndex: 100,
+            },
+            timeStart
+          )
+            .to(
+              section,
+              {
+                yPercent: 0,
+                duration: 0.8,
+                ease: "power2.inOut",
+              },
+              timeStart + 0.1
+            )
+            .to(
+              prevSection,
+              {
+                yPercent: -100,
+                duration: 0.8,
+                ease: "power2.inOut",
+              },
+              timeStart + 0.3
+            )
+            .set(
+              prevSection,
+              {
+                zIndex: 10,
+              },
+              timeStart + 0.9
+            );
+        });
 
         const MOBILE_STEP_MULT = 1.5;
         const SMOOTH = 0.05;
@@ -195,7 +247,7 @@ const HomeServices = () => {
           scrub: SMOOTH,
           anticipatePin: 1,
           invalidateOnRefresh: true,
-          animation: timeline,
+          animation: tl,
           snap: {
             snapTo: (value) => {
               const n = steps;
