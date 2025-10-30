@@ -20,14 +20,14 @@ const HomeHeroSection = () => {
 	return (
 		<section className={classes.container}>
 			<motion.div className={`${classes.textSection}`}>
-				<h4 data-aos="fade-up"><span>THE<span className={classes.mazius}> MEASURE</span></span> 
+				<h1 data-aos="fade-up"><span>THE<span className={classes.mazius}> MEASURE</span></span> 
 				<motion.span>
 					OF HOW HOMES <br />
 					</motion.span>
 					<motion.span className={classes.mazius}>
 					SHOULD BE BUILT
 					</motion.span>
-				</h4>
+				</h1>
 
 				<p className = {classes.text}>A PHILOSPHY OF CRAFT, RESTRAINT, SUSTAINABILITY AND TIMELESS VALUE.</p>
 				<Button onClick={scrollToRef} type='lemon' subType='normal'>

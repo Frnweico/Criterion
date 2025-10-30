@@ -19,7 +19,7 @@
   z-index: 1;
 }
 
-.textSection > h4 {
+.textSection > h1 {
   font-weight: 300;
   font-size: 70.67px;
   line-height: 88%;
@@ -29,7 +29,7 @@
   font-family: "Space Grotesk";
 }
 
-.textSection > h4 > span {
+.textSection > h1 > span {
   display: block;
 }
 
@@ -121,23 +121,23 @@
     display: flex;
   }
 
-  .textSection > h4:not(.textSection > h4 > span:nth-child(1)) {
+  .textSection > h1:not(.textSection > h1 > span:nth-child(1)) {
     font-size: 48px;
     line-height: 88%;
     letter-spacing: -0.04em;
   }
 
-  .textSection > h4 > span {
+  .textSection > h1 > span {
     display: block;
   }
 
-  .textSection > h4 > span:nth-child(1) {
+  .textSection > h1 > span:nth-child(1) {
     font-size: 48px;
     line-height: 88%;
     letter-spacing: -2%;
   }
 
-  .textSection > h4 > span:nth-child(2) {
+  .textSection > h1 > span:nth-child(2) {
     font-size: 48px;
     line-height: 88%;
     letter-spacing: -2%;
@@ -189,24 +189,24 @@
     min-width: 130px;
   }
 
-  .textSection > h4:not(.textSection > h4 > span:nth-child(1)) {
+  .textSection > h1:not(.textSection > h1 > span:nth-child(1)) {
     font-size: 41px;
     line-height: 88%;
     letter-spacing: -2%;
     margin-top: 1em;
   }
 
-  .textSection > h4 > span {
+  .textSection > h1 > span {
     display: block;
   }
 
-  .textSection > h4 > span:nth-child(1) {
+  .textSection > h1 > span:nth-child(1) {
     font-size: 41px;
     line-height: 88%;
     letter-spacing: -0.04em;
   }
 
-  .textSection > h4 > span:nth-child(2) {
+  .textSection > h1 > span:nth-child(2) {
     font-size: 41px;
     line-height: 88%;
     letter-spacing: -0.04em;
