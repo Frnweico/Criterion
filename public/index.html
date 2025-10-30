@@ -7,8 +7,19 @@
     <meta name="theme-color" content="#000000" />
     <meta
       name="description"
-      content="Criterion Homes | Creating tomorrow's spaces, inspired by today's needs"
+      content="Criterion Homes | A real estate and property development company in Nigeria, creating modern homes and sustainable living spaces inspired by today's needs."
     />
+
+    <!-- Open Graph Meta Tags  -->
+    <meta property="og:title" content="Criterion Homes Limited" />
+    <meta
+      property="og:description"
+      content="Criterion Homes | A real estate and property development company in Nigeria, creating modern homes and sustainable living spaces inspired by today's needs."
+    />
+    <meta property="og:image" content="%PUBLIC_URL%/favicon.ico" />
+    <meta property="og:url" content="https://www.criterionhomesltd.com" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Criterion Homes Limited" />
 
     <link
       rel="apple-touch-icon"
@@ -28,7 +39,7 @@
       href="./favicon-16x16.png"
     />
     <link rel="manifest" href="./site.webmanifest" />
-    <link rel="canonical" href="https://www.criterionhomesltd.com">
+    <link rel="canonical" href="https://www.criterionhomesltd.com" />
     <!--
       manifest.json provides metadata used when your web app is installed on a
       user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
@@ -43,9 +54,66 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
-    <title>
-      Criterion Homes Limited
-    </title>
+
+    <!-- Organization Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Criterion Homes",
+  "url": "https://www.criterionhomesltd.com/",
+  "logo": "https://www.criterionhomesltd.com/assets/logo.png",
+  "sameAs": [
+    "https://www.instagram.com/criterionhomesltd/",
+    "https://www.facebook.com/criterionhomesltd",
+    "https://www.linkedin.com/company/criterionhomesltd/"
+  ],
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": "+2348058573915",
+    "contactType": "Customer Service",
+    "areaServed": "NG",
+    "availableLanguage": "English"
+  }
+}
+</script>
+
+<!-- WebSite Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Criterion Homes",
+  "url": "https://www.criterionhomesltd.com/",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://www.criterionhomesltd.com/?s={search_term_string}",
+    "query-input": "required name=search_term_string"
+  }
+}
+</script>
+
+<!-- LocalBusiness Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "Criterion Homes",
+  "image": "https://www.criterionhomesltd.com/assets/logo.png",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Machima Plaza, Mambolo Junction, Wuse Zone 2",
+    "addressLocality": "FCT",
+    "addressRegion": "Abuja",
+    "postalCode": "100001",
+    "addressCountry": "NG"
+  },
+  "telephone": "+2348058573915",
+  "openingHours": "Mon-Fri 09:00-17:00"
+}
+</script>
+
+    <title>Criterion Homes Limited</title>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
