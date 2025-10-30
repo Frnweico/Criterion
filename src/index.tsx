@@ -7,22 +7,36 @@ import { BrowserRouter as Router } from "react-router-dom";
 import AppContextProvider from "./Context/AppContext";
 import Toast from "./Components/Toast/Toast";
 
-const root = ReactDOM.createRoot(
-  document.getElementById("root") as HTMLElement
-);
-root.render(
-  <React.StrictMode>
-    <Router>
-      <AppContextProvider>
-        <Toast>
-          <App />
-        </Toast>
-      </AppContextProvider>
-    </Router>
-  </React.StrictMode>
-);
+const isSnap = navigator.userAgent === "ReactSnap";
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+const rootElement = document.getElementById("root") as HTMLElement;
+
+if (rootElement.hasChildNodes() && !isSnap) {
+  ReactDOM.hydrateRoot(
+    rootElement,
+    <React.StrictMode>
+      <Router>
+        <AppContextProvider>
+          <Toast>
+            <App />
+          </Toast>
+        </AppContextProvider>
+      </Router>
+    </React.StrictMode>
+  );
+} else {
+  const root = ReactDOM.createRoot(rootElement);
+  root.render(
+    <React.StrictMode>
+      <Router>
+        <AppContextProvider>
+          <Toast>
+            <App />
+          </Toast>
+        </AppContextProvider>
+      </Router>
+    </React.StrictMode>
+  );
+}
+
 reportWebVitals();
