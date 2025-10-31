@@ -78,6 +78,7 @@
   "minifyHtml": {
     "collapseWhitespace": false,
     "removeComments": false
-  }
+  },
+  "crawl": false
 }
 }
