@@ -77,7 +77,7 @@ const PropertiesHome = () => {
 
     return (
         <section ref={propertiesRef} className={classes.propertiesHome} id='properties' data-aos="fade-up">
-            <h1>PROPERTIES</h1>
+            <h2>PROPERTIES</h2>
             <div className={classes.propertiesHomeContainer}>
                 <div style={{ backgroundImage: `url(${spotlightProperty === 'urbanNest' ? urbanNestMain : midtownTerraceMain})` }} 
                     className={classes.mainImageSection}

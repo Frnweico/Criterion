@@ -5,7 +5,7 @@
   scroll-margin-top: 500px;
 }
 
-.propertiesHome h1 {
+.propertiesHome h2 {
   font-size: 128px;
   line-height: 88%;
   letter-spacing: -5%;
@@ -168,14 +168,14 @@
 }
 
 @media screen and (min-width: 1024px) and (max-width: 1280px) {
-  .propertiesHome h1 {
+  .propertiesHome h2 {
     font-size: 90px;
   }
 }
 
 /* Tablet Styles */
 @media screen and (min-width: 769px) and (max-width: 1024px) {
-  .propertiesHome h1 {
+  .propertiesHome h2 {
     font-size: 80px;
     padding: 24px 60px 12px 60px;
   }
@@ -236,7 +236,7 @@
     scroll-margin-top: 100px;
   }
 
-  .propertiesHome h1 {
+  .propertiesHome h2 {
     font-size: 60px;
     padding: 24px 0 0 0;
     margin-bottom: 0;
