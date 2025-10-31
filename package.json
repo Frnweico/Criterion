@@ -37,7 +37,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "set NODE_OPTIONS=--max-old-space-size=8192 && react-scripts build && react-snap",
+    "build": "set NODE_OPTIONS=--max-old-space-size=8192&& react-scripts build && react-snap",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -64,6 +64,20 @@
   },
   "reactSnap": {
   "inlineCss": true,
-  "puppeteerArgs": ["--no-sandbox"]
+  "puppeteerArgs": ["--no-sandbox"],
+  "include": [
+    "/",
+    "/about-us",
+    "/careers",
+    "/properties",
+    "/properties/midtownTerraces",
+    "/properties/urbanNest"
+  ],
+  "skipThirdPartyRequests": true,
+  "cacheAjaxRequests": false,
+  "minifyHtml": {
+    "collapseWhitespace": false,
+    "removeComments": false
+  }
 }
 }
