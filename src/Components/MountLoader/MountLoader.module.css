@@ -1,14 +1,15 @@
 .container {
   background: var(--Criterion-Black, #191919);
-
   display: flex;
   align-items: center;
   justify-content: center;
   height: 100vh;
+  height: 100dvh; /* Better mobile support */
   width: 100vw;
   position: fixed;
   top: 0;
   left: 0;
+  z-index: 9999; /* Ensure it's on top */
 }
 
 .container > video {
@@ -16,5 +17,6 @@
   max-height: 100%;
   width: 100vw;
   height: 100vh;
+  height: 100dvh;
   object-fit: contain;
 }

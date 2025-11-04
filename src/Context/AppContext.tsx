@@ -52,7 +52,7 @@ const AppContextProvider = ({ children }: AppContextProviderProps) => {
    const isReactSnap = typeof navigator !== 'undefined' && navigator.userAgent === 'ReactSnap';
 
   // State
-  const [loading, setLoading] = useState(!isReactSnap);
+  const [loading, setLoading] = useState(true);
   const [notifications, setNotifications] = useState<notificationsType>(null);
   const [requestState, setRequestState] = useState<requestType>({
     isLoading: false,
@@ -61,25 +61,25 @@ const AppContextProvider = ({ children }: AppContextProviderProps) => {
   });
 
   //   Effects
-  useEffect(() => {
-     if (isReactSnap) {
+ useEffect(() => {
+    if (isReactSnap) {
       setLoading(false);
       
-      // Signal immediately that page is ready
-    if (typeof window !== 'undefined' && (window as any).snapSaveState) {
-      setTimeout(() => {
-        (window as any).snapSaveState();
-      }, 200);
-    }
-    return;
+      if (typeof window !== 'undefined' && (window as any).snapSaveState) {
+        setTimeout(() => {
+          (window as any).snapSaveState();
+        }, 200);
+      }
+      return;
     }
 
-    setLoading(true);
-
-    setTimeout(() => {
+    const timer = setTimeout(() => {
       setLoading(false);
     }, 6500);
+
+    return () => clearTimeout(timer);
   }, [isReactSnap]);
+
 
   //   Router
   const location = useLocation();
