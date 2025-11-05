@@ -59,12 +59,11 @@ const HomeServices = () => {
   };
 
   useLayoutEffect(() => {
-       ScrollTrigger.getAll().forEach((t) => t.kill());
+    ScrollTrigger.getAll().forEach((t) => t.kill());
 
     const ctx = gsap.context(() => {
       const container = containerRef.current;
       const sections = sectionsRef.current.filter(Boolean) as HTMLDivElement[];
-     
 
       if (!container || sections.length === 0) return;
 
@@ -82,14 +81,15 @@ const HomeServices = () => {
 
       gsap.killTweensOf(sections);
 
-       const buildAnimation = () => {
+      const buildAnimation = () => {
         sections.forEach((section, i) => {
           gsap.set(section, {
             position: "absolute",
             inset: 0,
             yPercent: i === 0 ? 0 : 100,
-            zIndex: i === 0 ? 100 : 10,
-            willChange: "transform",
+            zIndex: sections.length - i,
+            opacity: 1,
+            willChange: "transform, opacity",
             force3D: true,
             backfaceVisibility: "hidden",
             visibility: "visible",
@@ -98,7 +98,7 @@ const HomeServices = () => {
 
         const tl = gsap.timeline({
           defaults: {
-            ease: "none", 
+            ease: "none",
           },
         });
 
@@ -108,38 +108,24 @@ const HomeServices = () => {
           const prevSection = sections[i - 1];
           const timeStart = i - 1;
 
-          tl.set(
+          tl.to(
             section,
             {
-              zIndex: 100,
+              yPercent: 0,
+              duration: 1,
+              ease: "power2.inOut",
             },
             timeStart
-          )
-            .to(
-              section,
-              {
-                yPercent: 0,
-                duration: 0.8,
-                ease: "power2.inOut",
-              },
-              timeStart + 0.1
-            )
-            .to(
-              prevSection,
-              {
-                yPercent: -100,
-                duration: 0.8,
-                ease: "power2.inOut",
-              },
-              timeStart + 0.3
-            )
-            .set(
-              prevSection,
-              {
-                zIndex: 10,
-              },
-              timeStart + 0.9
-            );
+          ).to(
+            prevSection,
+            {
+              yPercent: -100,
+              opacity: 0.142,
+              duration: 0.8,
+              ease: "power2.out",
+            },
+            timeStart + 0.2
+          );
         });
 
         return tl;
@@ -147,28 +133,28 @@ const HomeServices = () => {
 
       const mm = gsap.matchMedia();
 
-            mm.add("(min-width: 769px)", () => {
+      mm.add("(min-width: 769px)", () => {
         const timeline = buildAnimation();
         const steps = sections.length - 1;
 
         const st = ScrollTrigger.create({
           trigger: container,
-          start:  `top top`,
-          end:  `+=${steps * 150}vh`, 
+          start: `top top`,
+          end: `+=${steps * 100}%`,
           pin: container,
           pinSpacing: true,
-          scrub: 0.8,
+          scrub: true,
           anticipatePin: 1,
           invalidateOnRefresh: true,
           animation: timeline,
-           snap: {
-           snapTo: 1 / steps,
-            duration: 0.4,
-            ease: "power1.inOut",
-          },
-           })
-           return () => st.kill();
-            });
+          //  snap: {
+          //  snapTo: 1 / steps,
+          //   duration: 0.5,
+          //   ease: "power1.inOut",
+          // },
+        });
+        return () => st.kill();
+      });
 
       // Mobile: Keep existing working implementation
       mm.add("(max-width: 768px)", () => {
@@ -177,8 +163,9 @@ const HomeServices = () => {
             position: "absolute",
             inset: 0,
             yPercent: i === 0 ? 0 : 100,
-            zIndex: i === 0 ? 100 : 10,
-            willChange: "transform",
+            zIndex: sections.length - i,
+            opacity: 1,
+            willChange: "transform, opacity",
             force3D: true,
             backfaceVisibility: "hidden",
             visibility: "visible",
@@ -187,7 +174,7 @@ const HomeServices = () => {
 
         const tl = gsap.timeline({
           defaults: {
-            ease: "none", 
+            ease: "none",
           },
         });
 
@@ -197,46 +184,29 @@ const HomeServices = () => {
           const prevSection = sections[i - 1];
           const timeStart = i - 1;
 
-          tl.set(
+          tl.to(
             section,
             {
-              zIndex: 100,
+              yPercent: 0,
+              duration: 1,
+              ease: "power2.inOut",
             },
             timeStart
-          )
-            .to(
-              section,
-              {
-                yPercent: 0,
-                duration: 0.8,
-                ease: "power2.inOut",
-              },
-              timeStart + 0.1
-            )
-            .to(
-              prevSection,
-              {
-                yPercent: -100,
-                duration: 0.8,
-                ease: "power2.inOut",
-              },
-              timeStart + 0.3
-            )
-            .set(
-              prevSection,
-              {
-                zIndex: 10,
-              },
-              timeStart + 0.9
-            );
+          ).to(
+            prevSection,
+            {
+              yPercent: -100,
+              opacity: 0.142,
+              duration: 0.6,
+              ease: "power2.out",
+            },
+            timeStart + 0.2
+          );
         });
-
-        const MOBILE_STEP_MULT = 1.5;
-        const SMOOTH = 0.05;
 
         const steps = sections.length - 1;
         const vh = window.visualViewport?.height ?? window.innerHeight;
-        const distancePx = Math.round(steps * vh * MOBILE_STEP_MULT);
+        const distancePx = Math.round(steps * vh * 1.8);
 
         const st = ScrollTrigger.create({
           trigger: container,
@@ -244,18 +214,18 @@ const HomeServices = () => {
           end: `+=${distancePx}`,
           pin: container,
           pinSpacing: true,
-          scrub: SMOOTH,
+          scrub: true,
           anticipatePin: 1,
           invalidateOnRefresh: true,
           animation: tl,
-          snap: {
-            snapTo: (value) => {
-              const n = steps;
-              return Math.round(value * n) / n;
-            },
-            duration: 0.01,
-            ease: "power1.inOut",
-          },
+          // snap: {
+          //   snapTo: (value) => {
+          //     const n = steps;
+          //     return Math.round(value * n) / n;
+          //   },
+          //   duration: 0.01,
+          //   ease: "power1.inOut",
+          // },
           onRefresh: () => {
             const h = window.visualViewport
               ? window.visualViewport.height
@@ -308,9 +278,8 @@ const HomeServices = () => {
   }, []);
 
   const scrollToContact = () => {
-  document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
-};
-
+    document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
+  };
 
   return (
     <div className={classes.homeServicesWrapper}>
@@ -339,7 +308,12 @@ const HomeServices = () => {
                   <h2 className={classes.numberHeading}>{service.num}</h2>
                   <h2 className={classes.investmentHeading}>{service.title}</h2>
                   <p>{service.description}</p>
-                  <Button type="black" onClick={() => gsap.to(window, { duration: 1, scrollTo: "#contact" })}>
+                  <Button
+                    type="black"
+                    onClick={() =>
+                      gsap.to(window, { duration: 1, scrollTo: "#contact" })
+                    }
+                  >
                     <span>TALK TO US</span>
                     <svg
                       width="16"
@@ -359,7 +333,7 @@ const HomeServices = () => {
                 <h2 className={classes.numberHeading}>{service.num}</h2>
                 <h2 className={classes.investmentHeading}>{service.title}</h2>
                 <p>{service.description}</p>
-           <Button type="black" onClick={scrollToContact}>
+                <Button type="black" onClick={scrollToContact}>
                   <span>TALK TO US</span>
                   <svg
                     width="16"

@@ -615,9 +615,8 @@ button span {
     border-radius: 20px;
     overflow: hidden;
     position: relative;
-    display: block; /* remove flex to prevent stretch */
+    display: block;
     min-height: 315px;
-    /* min-height: 300px; */
   }
   .declaration {
     display: flex;

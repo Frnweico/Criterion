@@ -57,6 +57,11 @@
 .mainImageTextHeader {
   width: 100%;
   padding-left: 115px;
+  /* border: 1px solid red; */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
 }
 
 .mainImageTextHeader p {
@@ -74,6 +79,8 @@
   font-size: 68px;
   line-height: 61.5px;
   letter-spacing: -4%;
+  /* border: 1px solid red; */
+  width: 10%;
 }
 
 .mainImageTextDescription {
