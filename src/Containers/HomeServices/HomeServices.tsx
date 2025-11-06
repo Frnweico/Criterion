@@ -113,7 +113,7 @@ const HomeServices = () => {
             {
               yPercent: 0,
               duration: 1,
-              ease: "power2.inOut",
+              ease: "power1.inOut",
             },
             timeStart
           ).to(
@@ -122,7 +122,7 @@ const HomeServices = () => {
               yPercent: -100,
               opacity: 0.142,
               duration: 0.8,
-              ease: "power2.out",
+              ease: "power1.out",
             },
             timeStart + 0.2
           );
@@ -189,7 +189,7 @@ const HomeServices = () => {
             {
               yPercent: 0,
               duration: 1,
-              ease: "power2.inOut",
+              ease: "power1.inOut",
             },
             timeStart
           ).to(
@@ -198,7 +198,7 @@ const HomeServices = () => {
               yPercent: -100,
               opacity: 0.142,
               duration: 0.6,
-              ease: "power2.out",
+              ease: "power1.out",
             },
             timeStart + 0.2
           );
