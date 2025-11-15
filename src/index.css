@@ -1,3 +1,8 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
 @font-face {
   font-family: "Mazius Display";
   src: url("./Assets/Fonts/MaziusDisplay/Mazius Display Regular.otf");
