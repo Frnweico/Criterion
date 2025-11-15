@@ -14,7 +14,7 @@ const Careers = () => {
   return (
     <Layout>
       <HeadManager
-  title="Careers at Criterion Homes | Join a Leading Real Estate Company in Nigeria"
+  title="Careers at Criterion Homes Limited"
   description="Explore career opportunities at Criterion Homes. Join a team committed to excellence, innovation, and delivering top-quality housing solutions across Nigeria."
   canonical="https://www.criterionhomesltd.com/careers"
 />

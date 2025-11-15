@@ -22,7 +22,7 @@ const Home = () => {
   return (
     <Layout>
       <HeadManager
-  title="Criterion Homes | Modern Real Estate & Premium Housing in Nigeria"
+  title="Criterion Homes Limited"
   description="Criterion Homes offers premium, modern housing solutions in Nigeria. Explore expertly designed homes built with quality, functionality, and long-term value."
   canonical="https://www.criterionhomesltd.com/"
 />

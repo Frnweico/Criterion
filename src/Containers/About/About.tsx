@@ -10,7 +10,7 @@ const About = () => {
   return (
     <Layout isDark>
        <HeadManager
-        title="About Criterion Homes | Building Modern Sustainable Homes in Nigeria"
+        title="About Criterion Homes Limited"
         description="Learn more about Criterion Homes — a real estate company in Nigeria creating modern, sustainable homes designed for today's living."
         canonical="https://www.criterionhomesltd.com/about-us"
       />

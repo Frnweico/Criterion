@@ -35,7 +35,7 @@ const PropertyPage = () => {
   return (
     <Layout isDark>
       <HeadManager
-        title={`${propertyData.name} — ${propertyData.location} | Criterion Homes`}
+        title={`${propertyData.name} — ${propertyData.location} | Criterion Homes Limited`}
         description={propertyData.description?.subtitle || "Explore this property by Criterion Homes."}
         canonical={`https://www.criterionhomesltd.com/properties/${propertyId}`}
       />
