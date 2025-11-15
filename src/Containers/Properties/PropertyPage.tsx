@@ -14,6 +14,7 @@ import "aos/dist/aos.css";
 import { Navigate, useParams } from "react-router-dom";
 import { getProperty } from "./property.types";
 import PropertyShowcase from "./PropertyShowcase";
+import HeadManager from "../../Components/HeadManager";
 
 const PropertyPage = () => {
   const { propertyId } = useParams<{ propertyId: string }>();
@@ -33,6 +34,12 @@ const PropertyPage = () => {
 
   return (
     <Layout isDark>
+      <HeadManager
+        title={`${propertyData.name} — ${propertyData.location} | Criterion Homes`}
+        description={propertyData.description?.subtitle || "Explore this property by Criterion Homes."}
+        canonical={`https://www.criterionhomesltd.com/properties/${propertyId}`}
+      />
+
       <div className={classes.propertyPageContainer}>
         <div className={classes.propertyImageContainer}>
           <img

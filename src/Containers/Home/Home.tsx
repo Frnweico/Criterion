@@ -1,3 +1,4 @@
+import HeadManager from "../../Components/HeadManager";
 import Layout from "../../Components/Layout/Layout";
 import Transition from "../../Utilities/Transition/Transition";
 import HomeContact from "../HomeContact/HomeContact";
@@ -20,6 +21,11 @@ const Home = () => {
 
   return (
     <Layout>
+      <HeadManager
+  title="Criterion Homes | Modern Real Estate & Premium Housing in Nigeria"
+  description="Criterion Homes offers premium, modern housing solutions in Nigeria. Explore expertly designed homes built with quality, functionality, and long-term value."
+  canonical="https://www.criterionhomesltd.com/"
+/>
       <HomeHeroSection />
       <HomeFeatures />
       <HomeVideo />
