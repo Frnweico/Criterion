@@ -1,7 +1,15 @@
-// import { Link } from 'react-router-dom';
-// import Button from '../../Components/Button/Button';
+import { useState } from "react";
+import thumbnail from "../../Assets/Images/CD Thumbnail 2.jpg"
 import classes from './HomeCreate.module.css';
+
+
 const Declaration = () => {
+  const [isPlaying, setIsPlaying] = useState(false);
+
+  const handlePlayClick = () => {
+    setIsPlaying(true);
+  };
+
   return (
     <div className={classes.declarationContainer}>
       <div className={classes.declaration}>
@@ -25,17 +33,45 @@ A philosophy that defines how we build, why we build, and who we build for. It r
     </div> */}
 </div>
 
-<div className={classes.declarationVideo}>
-          <iframe
-            width="100%"
-            height="100%"
-            src="https://www.youtube.com/embed/eLqRvw1euGY"
-            title="The Criterion Declaration"
-            frameBorder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
-          ></iframe>
-        </div>
+  <div className={classes.declarationVideo}>
+        {/* Thumbnail with Play Button */}
+        {!isPlaying && (
+          <div className={classes.thumbnailWrapper} onClick={handlePlayClick}>
+            <img 
+              src={thumbnail} 
+              alt="The Criterion Declaration" 
+              className={classes.thumbnailImage}
+            />
+            <div className={classes.playButton}>
+              <svg 
+                width="80" 
+                height="80" 
+                viewBox="0 0 80 80" 
+                fill="none" 
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <circle cx="40" cy="40" r="40" fill="rgba(255, 255, 255, 0.9)" />
+                <path 
+                  d="M32 25L55 40L32 55V25Z" 
+                  fill="#191919"
+                />
+              </svg>
+            </div>
+          </div>
+        )}
+
+        {/* YouTube Video */}
+        <iframe
+          width="100%"
+          height="100%"
+          src={`https://www.youtube.com/embed/eLqRvw1euGY${isPlaying ? '?autoplay=1' : ''}`}
+          title="The Criterion Declaration"
+          frameBorder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowFullScreen
+          style={{ display: isPlaying ? 'block' : 'none' }}
+        />
+      </div>
 
     </div>
 

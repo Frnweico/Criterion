@@ -185,6 +185,38 @@ button span {
   color: #000;
 }
 
+.thumbnailWrapper {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  max-width: 100%;
+  height: 100%;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.thumbnailImage {
+  width: 100%;
+  max-width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.playButton {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  opacity: 0.95;
+}
+
+.playButton:hover {
+  transform: translate(-50%, -50%) scale(1.1);
+  opacity: 1;
+}
+
 .declarationVideo {
   width: 100%;
   max-width: 100vw;
@@ -193,6 +225,7 @@ button span {
   aspect-ratio: 16 / 9;
   border-radius: 32px;
   overflow: hidden;
+  position: relative;
 }
 
 .declarationVideo iframe {
@@ -522,10 +555,6 @@ button span {
     width: 60%;
   }
 
-  /* .declarationVideo {
-    width: 60%;
-  } */
-
   /* MidtownTerrace */
   .midtownTextSection {
     padding: 3em 1em 0 1em;
@@ -618,12 +647,9 @@ button span {
     margin: 0 auto;
     border-radius: 20px;
     overflow: hidden;
-    /* position: relative; */
-    /* display: block; */
-    /* min-height: 315px; */
     min-height: unset;
-    aspect-ratio: 16 / 9;
-    /* max-height: 310px; */
+    /* aspect-ratio: 16 / 9; */
+    height: 400px;
   }
   .declaration {
     display: flex;
@@ -676,14 +702,17 @@ button span {
     color: #000;
   }
 
+  .playButton svg {
+    width: 60px;
+    height: 60px;
+  }
+
   .declarationVideo {
     position: relative;
     width: 100%;
     overflow: hidden;
-    /* height: 315px; */
-    /* padding-top: 56.25%; 16:9 ratio (9 / 16 = 0.5625) */
-    /* border-radius: 32px; */
-    /* background: #000;  */
+    height: 400px;
+    aspect-ratio: unset;
   }
 
   .declarationVideo iframe {
@@ -794,19 +823,10 @@ button span {
     padding: 0;
   }
 
-  /* .declarationVideo {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 0;
+  .playButton svg {
+    width: 50px;
+    height: 50px;
   }
-
-  .declarationVideo iframe {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  } */
 
   .declarationText {
     width: 95%;
