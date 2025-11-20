@@ -21,9 +21,9 @@ const HomeDevelop = () => {
       <p data-aos="fade-up">
         {"Craft your dream space brick by brick".toUpperCase()}
       </p>
-      <h2 data-aos="fade-up">
+      <h3 data-aos="fade-up">
         {"develop a cutting-edge sustainable property".toUpperCase()}
-      </h2>
+      </h3>
       <Image
         src={homePageDevelop}
         alt="Develop"
