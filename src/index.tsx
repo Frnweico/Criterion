@@ -6,29 +6,23 @@ import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter as Router } from "react-router-dom";
 import AppContextProvider from "./Context/AppContext";
 import Toast from "./Components/Toast/Toast";
-import {HelmetProvider} from 'react-helmet-async';
+import { HelmetProvider } from 'react-helmet-async'; 
 
 const rootElement = document.getElementById("root") as HTMLElement;
+const root = ReactDOM.createRoot(rootElement); 
 
-const AppWrapper = (
+root.render(
   <React.StrictMode>
     <HelmetProvider>
-    <Router>
-      <AppContextProvider>
-        <Toast>
-          <App />
-        </Toast>
-      </AppContextProvider>
-    </Router>
+      <Router>
+        <AppContextProvider>
+          <Toast>
+            <App />
+          </Toast>
+        </AppContextProvider>
+      </Router>
     </HelmetProvider>
   </React.StrictMode>
 );
-
-if (rootElement.hasChildNodes()) {
-  ReactDOM.hydrateRoot(rootElement, AppWrapper);
-} else {
-  const root = ReactDOM.createRoot(rootElement);
-  root.render(AppWrapper);
-}
 
 reportWebVitals();
