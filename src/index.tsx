@@ -6,11 +6,13 @@ import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter as Router } from "react-router-dom";
 import AppContextProvider from "./Context/AppContext";
 import Toast from "./Components/Toast/Toast";
+import {HelmetProvider} from 'react-helmet-async';
 
 const rootElement = document.getElementById("root") as HTMLElement;
 
 const AppWrapper = (
   <React.StrictMode>
+    <HelmetProvider>
     <Router>
       <AppContextProvider>
         <Toast>
@@ -18,6 +20,7 @@ const AppWrapper = (
         </Toast>
       </AppContextProvider>
     </Router>
+    </HelmetProvider>
   </React.StrictMode>
 );
 

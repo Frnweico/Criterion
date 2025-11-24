@@ -1,4 +1,5 @@
-import { useEffect } from "react";
+import React from 'react';
+import { Helmet } from 'react-helmet-async';
 
 interface HeadManagerProps {
   title: string;
@@ -7,34 +8,18 @@ interface HeadManagerProps {
 }
 
 const HeadManager: React.FC<HeadManagerProps> = ({ title, description, canonical }) => {
-  useEffect(() => {
-    // Update <title>
-    document.title = title;
+  return (
+    <Helmet>
+      <title>{title}</title>
 
-    // Update <meta name="description">
-    let descTag = document.querySelector<HTMLMetaElement>('meta[name="description"]');
-    if (descTag) {
-      descTag.content = description;
-    } else {
-      const meta = document.createElement("meta");
-      meta.name = "description";
-      meta.content = description;
-      document.head.appendChild(meta);
-    }
+      <meta name="description" content={description} />
 
-    // Update <link rel="canonical">
-    let canonicalTag = document.querySelector<HTMLLinkElement>("link[rel='canonical']");
-    if (canonicalTag) {
-      canonicalTag.href = canonical;
-    } else {
-      const link = document.createElement("link");
-      link.rel = "canonical";
-      link.href = canonical;
-      document.head.appendChild(link);
-    }
-  }, [title, description, canonical]);
-
-  return null;
+      <link rel="canonical" href={canonical} />
+      
+      <meta property="og:title" content={title} />
+      <meta property="og:description" content={description} />
+    </Helmet>
+  );
 };
 
 export default HeadManager;

@@ -28,9 +28,9 @@
     "react": "^18.3.1",
     "react-blurhash": "^0.3.0",
     "react-dom": "^18.3.1",
+    "react-helmet-async": "^2.0.5",
     "react-router-dom": "^6.23.1",
     "react-scripts": "5.0.1",
-    "react-snap": "^1.23.0",
     "styled-components": "^6.1.11",
     "typescript": "^4.9.5",
     "uuidv4": "^6.2.13",
@@ -64,22 +64,24 @@
     "@types/aos": "^3.0.7"
   },
   "reactSnap": {
-  "inlineCss": true,
-  "puppeteerArgs": ["--no-sandbox"],
-  "include": [
-    "/",
-    "/about-us",
-    "/careers",
-    "/properties",
-    "/properties/midtownTerraces",
-    "/properties/urbanNest"
-  ],
-  "skipThirdPartyRequests": true,
-  "cacheAjaxRequests": false,
-  "minifyHtml": {
-    "collapseWhitespace": false,
-    "removeComments": false
-  },
-  "crawl": false
-}
+    "inlineCss": true,
+    "puppeteerArgs": [
+      "--no-sandbox"
+    ],
+    "include": [
+      "/",
+      "/about-us",
+      "/careers",
+      "/properties",
+      "/properties/midtownTerraces",
+      "/properties/urbanNest"
+    ],
+    "skipThirdPartyRequests": true,
+    "cacheAjaxRequests": false,
+    "minifyHtml": {
+      "collapseWhitespace": false,
+      "removeComments": false
+    },
+    "crawl": false
+  }
 }
