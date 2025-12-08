@@ -140,18 +140,14 @@ const HomeServices = () => {
         const st = ScrollTrigger.create({
           trigger: container,
           start: `top top`,
-          end: `+=${steps * 100}%`,
+          end: `+=${steps * 180}vh`,
           pin: container,
           pinSpacing: true,
-          scrub: true,
-          anticipatePin: 1,
+          scrub: 1.5,
+          // anticipatePin: 1,
           invalidateOnRefresh: true,
           animation: timeline,
-          //  snap: {
-          //  snapTo: 1 / steps,
-          //   duration: 0.5,
-          //   ease: "power1.inOut",
-          // },
+          
         });
         return () => st.kill();
       });

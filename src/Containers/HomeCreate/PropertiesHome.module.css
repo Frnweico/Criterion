@@ -80,7 +80,8 @@
   line-height: 61.5px;
   letter-spacing: -4%;
   /* border: 1px solid red; */
-  width: 10%;
+  /* width: 10%; */
+  padding: 0;
 }
 
 .mainImageTextDescription {
@@ -168,6 +169,8 @@
   margin-bottom: 0.5em;
   width: 70%;
   margin: 0 auto;
+  /* border: 1px solid red; */
+  padding: 0;
 }
 
 .nextProjectContent button {
@@ -208,6 +211,7 @@
   .mainImageTextHeader h2 {
     font-size: 52px;
     line-height: 50px;
+    padding: 0;
   }
 
   .mainImage img {
@@ -227,6 +231,7 @@
   .nextProjectContent h2 {
     font-size: 40px;
     width: 80%;
+    padding: 0;
   }
 
   .nextProjectContent p:nth-of-type(2) {
@@ -294,6 +299,7 @@
     line-height: 94%;
     letter-spacing: -2%;
     width: 50%;
+    padding: 0;
   }
 
   .mainImageTextDescription {
@@ -333,6 +339,7 @@
     font-size: 41px;
     line-height: 92%;
     width: 90%;
+    padding: 0;
   }
 
   .nextProjectContent button {
@@ -349,6 +356,7 @@
 @media screen and (max-width: 520px) {
   .mainImageTextHeader h2 {
     width: 90%;
+    padding: 0;
   }
 
   .nextProjectSection {
