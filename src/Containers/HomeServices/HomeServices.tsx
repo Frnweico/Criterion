@@ -4,7 +4,7 @@ import serviceImg1 from "../../Assets/Images/Services 1 - Image.png";
 import serviceImg2 from "../../Assets/Images/Services 2 - Image.png";
 import serviceImg3 from "../../Assets/Images/Services 3 - Image.png";
 import serviceImg4 from "../../Assets/Images/Services 4 - Image.png";
-import { useRef, useLayoutEffect } from "react";
+import { useRef, useLayoutEffect, useState, useEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
@@ -22,6 +22,7 @@ const HomeServices = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const sectionsRef = useRef<(HTMLDivElement | null)[]>([]);
   const headingRef = useRef<HTMLDivElement>(null);
+  const [imagesLoaded, setImagesLoaded] = useState(false);
 
   const homeServicesData: Service[] = [
     {
@@ -42,14 +43,14 @@ const HomeServices = () => {
       num: "03",
       title: "INFRASTRUCTURE",
       description:
-        "Great living isn’t just about where you are. It’s about how everything around you supports it. Let every detail work in harmony with the life you lead. Choose infrastructure that quietly shapes environments to elevate everyday living.",
+        "Great living isn't just about where you are. It's about how everything around you supports it. Let every detail work in harmony with the life you lead. Choose infrastructure that quietly shapes environments to elevate everyday living.",
       img: serviceImg3,
     },
     {
       num: "04",
       title: "ADVISORY",
       description:
-        "When your choices carry weight, your counsel should too. Get private, tailored advisory services that help you navigate property, investments, and landmark projects with clarity and confidence. Every recommendation reflects an understanding of your priorities, guided by a measure that doesn’t entertain anything but the standard.",
+        "When your choices carry weight, your counsel should too. Get private, tailored advisory services that help you navigate property, investments, and landmark projects with clarity and confidence. Every recommendation reflects an understanding of your priorities, guided by a measure that doesn't entertain anything but the standard.",
       img: serviceImg4,
     },
   ];
@@ -58,8 +59,23 @@ const HomeServices = () => {
     sectionsRef.current[index] = el;
   };
 
+  useEffect(() => {
+    const imageUrls = [serviceImg1, serviceImg2, serviceImg3, serviceImg4];
+    let loadedCount = 0;
+    const checkLoad = () => {
+      loadedCount++;
+      if (loadedCount === imageUrls.length) setImagesLoaded(true);
+    };
+    imageUrls.forEach((url) => {
+      const img = new Image();
+      img.src = url;
+      img.onload = checkLoad;
+      img.onerror = checkLoad;
+    });
+  }, []);
+
   useLayoutEffect(() => {
-    ScrollTrigger.getAll().forEach((t) => t.kill());
+    if (!imagesLoaded || !containerRef.current) return;
 
     const ctx = gsap.context(() => {
       const container = containerRef.current;
@@ -67,211 +83,93 @@ const HomeServices = () => {
 
       if (!container || sections.length === 0) return;
 
-      const setVh = () => {
-        const h = window.visualViewport
-          ? window.visualViewport.height
-          : window.innerHeight;
-        document.documentElement.style.setProperty("--vh", `${h * 0.01}px`);
-      };
-      setVh();
-
-      sections.forEach((section) => {
-        gsap.set(section, { clearProps: "all" });
-      });
-
-      gsap.killTweensOf(sections);
-
-      const buildAnimation = () => {
-        sections.forEach((section, i) => {
-          gsap.set(section, {
-            position: "absolute",
-            inset: 0,
-            yPercent: i === 0 ? 0 : 100,
-            zIndex: sections.length - i,
-            opacity: 1,
-            willChange: "transform, opacity",
-            force3D: true,
-            backfaceVisibility: "hidden",
-            visibility: "visible",
-          });
-        });
-
-        const tl = gsap.timeline({
-          defaults: {
-            ease: "none",
-          },
-        });
-
-        sections.forEach((section, i) => {
-          if (i === 0) return;
-
-          const prevSection = sections[i - 1];
-          const timeStart = i - 1;
-
-          tl.to(
-            section,
-            {
-              yPercent: 0,
-              duration: 1,
-              ease: "power1.inOut",
-            },
-            timeStart
-          ).to(
-            prevSection,
-            {
-              yPercent: -100,
-              opacity: 0.142,
-              duration: 0.8,
-              ease: "power1.out",
-            },
-            timeStart + 0.2
-          );
-        });
-
-        return tl;
-      };
+      ScrollTrigger.getAll().forEach((t) => t.kill());
 
       const mm = gsap.matchMedia();
 
-      mm.add("(min-width: 769px)", () => {
-        const timeline = buildAnimation();
-        const steps = sections.length - 1;
-
-        const st = ScrollTrigger.create({
-          trigger: container,
-          start: `top top`,
-          end: `+=${steps * 180}vh`,
-          pin: container,
-          pinSpacing: true,
-          scrub: 1.5,
-          // anticipatePin: 1,
-          invalidateOnRefresh: true,
-          animation: timeline,
-          
-        });
-        return () => st.kill();
-      });
-
-      // Mobile: Keep existing working implementation
-      mm.add("(max-width: 768px)", () => {
+      const createAnimation = (isMobile: boolean) => {
+        // 1. SETUP: 
+        // Service 1 (index 0) is visible immediately (yPercent: 0).
+        // Services 2, 3, 4 are hidden below (yPercent: 100).
         sections.forEach((section, i) => {
           gsap.set(section, {
             position: "absolute",
-            inset: 0,
-            yPercent: i === 0 ? 0 : 100,
-            zIndex: sections.length - i,
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "100%",
+            zIndex: i + 1,
+            yPercent: i === 0 ? 0 : 100, // <--- CRITICAL: Index 0 starts visible
             opacity: 1,
-            willChange: "transform, opacity",
-            force3D: true,
-            backfaceVisibility: "hidden",
             visibility: "visible",
+            willChange: "transform, opacity",
           });
         });
 
         const tl = gsap.timeline({
-          defaults: {
-            ease: "none",
-          },
+          defaults: { ease: "none" },
         });
 
+        // 2. ANIMATION LOOP
+        // Start from index 1 (Service 2). We do NOT animate Service 1 IN.
+        // We only animate it OUT as Service 2 covers it.
         sections.forEach((section, i) => {
-          if (i === 0) return;
-
+          if (i === 0) return; // Skip the first card loop
+          
           const prevSection = sections[i - 1];
-          const timeStart = i - 1;
 
+          // Move New Card UP
+          tl.to(section, {
+            yPercent: 0,
+            duration: 1,
+          });
+
+          // Fade Previous Card OUT (Parallax effect)
           tl.to(
-            section,
-            {
-              yPercent: 0,
-              duration: 1,
-              ease: "power1.inOut",
-            },
-            timeStart
-          ).to(
             prevSection,
             {
-              yPercent: -100,
-              opacity: 0.142,
-              duration: 0.6,
-              ease: "power1.out",
+              yPercent: -20, // Small drift up
+              opacity: 0,    // Fade out
+              duration: 1,
             },
-            timeStart + 0.2
+            "<" // Sync exactly
           );
         });
 
-        const steps = sections.length - 1;
-        const vh = window.visualViewport?.height ?? window.innerHeight;
-        const distancePx = Math.round(steps * vh * 1.8);
+        // 3. SCROLL CONFIG
+        // Since Service 1 is static, we have 1 less transition to scroll through.
+        // We reduce the multiplier slightly to keep it responsive.
+        const transitionCount = sections.length - 1; // 3 transitions
+        const multiplier = isMobile ? 4 : 3;
+        const totalHeight = window.innerHeight * (transitionCount * multiplier);
 
-        const st = ScrollTrigger.create({
+        ScrollTrigger.create({
           trigger: container,
           start: "top top",
-          end: `+=${distancePx}`,
-          pin: container,
+          end: `+=${totalHeight}`,
+          pin: true,
           pinSpacing: true,
-          scrub: true,
-          anticipatePin: 1,
+          
+          // FIX FOR SNAP & GAP:
+          // 'true' binds animation 1:1 to scrollbar. 
+          // No lag = No gap at the bottom. No momentum fight = No snap at the top.
+          scrub: true, 
+          
+          fastScrollEnd: true,
+          anticipatePin: 0, // Disabled to prevent jump
           invalidateOnRefresh: true,
           animation: tl,
-          // snap: {
-          //   snapTo: (value) => {
-          //     const n = steps;
-          //     return Math.round(value * n) / n;
-          //   },
-          //   duration: 0.01,
-          //   ease: "power1.inOut",
-          // },
-          onRefresh: () => {
-            const h = window.visualViewport
-              ? window.visualViewport.height
-              : window.innerHeight;
-            document.documentElement.style.setProperty("--vh", `${h * 0.01}px`);
-          },
         });
-
-        return () => st.kill();
-      });
-
-      // Improved refresh handling
-      const refreshHandler = () => {
-        setVh();
-        ScrollTrigger.refresh();
       };
 
-      // Debounce resize events
-      let resizeTimeout: NodeJS.Timeout;
-      const debouncedRefresh = () => {
-        clearTimeout(resizeTimeout);
-        resizeTimeout = setTimeout(refreshHandler, 100);
-      };
+      mm.add("(min-width: 769px)", () => createAnimation(false));
+      mm.add("(max-width: 768px)", () => createAnimation(true));
 
-      window.addEventListener("resize", debouncedRefresh);
-      window.addEventListener("orientationchange", refreshHandler);
-      if (window.visualViewport) {
-        window.visualViewport.addEventListener("resize", debouncedRefresh);
-      }
-
-      // Initial refresh
-      requestAnimationFrame(() => {
-        requestAnimationFrame(() => {
-          ScrollTrigger.refresh();
-        });
-      });
-
-      return () => {
-        mm.revert();
-        clearTimeout(resizeTimeout);
-        window.removeEventListener("resize", debouncedRefresh);
-        window.removeEventListener("orientationchange", refreshHandler);
-        if (window.visualViewport) {
-          window.visualViewport.removeEventListener("resize", debouncedRefresh);
-        }
-      };
+      ScrollTrigger.refresh();
     }, containerRef);
 
     return () => ctx.revert();
-  }, []);
+  }, [imagesLoaded]);
 
   const scrollToContact = () => {
     document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
@@ -279,25 +177,30 @@ const HomeServices = () => {
 
   return (
     <div className={classes.homeServicesWrapper}>
-      {/* Fixed title that stays visible */}
       <div className={classes.servicesFixedHeading} ref={headingRef}>
         <h2 className={classes.homeServicesHeading}>SERVICES</h2>
       </div>
 
-      {/* Overlay stack */}
-      <div className={classes.homeServices} ref={containerRef}>
+      <div
+        className={classes.homeServices}
+        ref={containerRef}
+        style={{ height: "100dvh", position: "relative", overflow: "hidden" }}
+      >
         {homeServicesData.map((service, index) => (
           <div
             key={service.title}
             className={classes.serviceSection}
             ref={(el) => addToRefs(el, index)}
           >
-            {/* Desktop layout */}
             <div className={classes.serviceContent}>
               <div className={classes.homeServicesDetails}>
                 <div className={classes.homeServicesLeftSection}>
                   <div className={classes.homeServicesImage}>
-                    <img src={service.img} alt={`${service.title} service`} />
+                    <img
+                      src={service.img}
+                      alt={`${service.title} service`}
+                      loading="eager"
+                    />
                   </div>
                 </div>
                 <div className={classes.homeServicesRightSection}>
@@ -311,19 +214,13 @@ const HomeServices = () => {
                     }
                   >
                     <span>TALK TO US</span>
-                    <svg
-                      width="16"
-                      height="14"
-                      viewBox="0 0 16 14"
-                      fill="#000000"
-                    >
+                    <svg width="16" height="14" viewBox="0 0 16 14" fill="#000000">
                       <path d="M8.86307 0.119629L7.58108 1.3905L12.4858 6.1107H0V7.89481H12.4798L7.58108 12.6092L8.86307 13.8801L16 7L8.86307 0.119629Z" />
                     </svg>
                   </Button>
                 </div>
               </div>
 
-              {/* Mobile layout */}
               <div className={classes.homeServicesDetailsMobile}>
                 <h2 className={classes.homeServicesHeading}>SERVICES</h2>
                 <h2 className={classes.numberHeading}>{service.num}</h2>
@@ -331,12 +228,7 @@ const HomeServices = () => {
                 <p>{service.description}</p>
                 <Button type="black" onClick={scrollToContact}>
                   <span>TALK TO US</span>
-                  <svg
-                    width="16"
-                    height="14"
-                    viewBox="0 0 16 14"
-                    fill="#000000"
-                  >
+                  <svg width="16" height="14" viewBox="0 0 16 14" fill="#000000">
                     <path d="M8.86307 0.119629L7.58108 1.3905L12.4858 6.1107H0V7.89481H12.4798L7.58108 12.6092L8.86307 13.8801L16 7L8.86307 0.119629Z" />
                   </svg>
                 </Button>
