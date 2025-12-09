@@ -28,29 +28,25 @@ const HomeServices = () => {
     {
       num: "01",
       title: "REAL ESTATE",
-      description:
-        "Choose more than a building, choose a home that reflects your personal standard. Live in a space that values distinction, where every detail is held to a high measure. Prioritise lasting worth, quiet elegance, and a seamless fit with the way you live.",
+      description: "Choose more than a building, choose a home that reflects your personal standard. Live in a space that values distinction, where every detail is held to a high measure. Prioritise lasting worth, quiet elegance, and a seamless fit with the way you live.",
       img: serviceImg1,
     },
     {
       num: "02",
       title: "INVESTMENT",
-      description:
-        "Your investments should reflect the same standards you apply to the rest of your life. Choose investment opportunities guided by a principle of value that goes beyond profit; delivering returns that are financially sound, future-proof, and worthy of your portfolio.",
+      description: "Your investments should reflect the same standards you apply to the rest of your life. Choose investment opportunities guided by a principle of value that goes beyond profit; delivering returns that are financially sound, future-proof, and worthy of your portfolio.",
       img: serviceImg2,
     },
     {
       num: "03",
       title: "INFRASTRUCTURE",
-      description:
-        "Great living isn't just about where you are. It's about how everything around you supports it. Let every detail work in harmony with the life you lead. Choose infrastructure that quietly shapes environments to elevate everyday living.",
+      description: "Great living isn't just about where you are. It's about how everything around you supports it. Let every detail work in harmony with the life you lead. Choose infrastructure that quietly shapes environments to elevate everyday living.",
       img: serviceImg3,
     },
     {
       num: "04",
       title: "ADVISORY",
-      description:
-        "When your choices carry weight, your counsel should too. Get private, tailored advisory services that help you navigate property, investments, and landmark projects with clarity and confidence. Every recommendation reflects an understanding of your priorities, guided by a measure that doesn't entertain anything but the standard.",
+      description: "When your choices carry weight, your counsel should too. Get private, tailored advisory services that help you navigate property, investments, and landmark projects with clarity and confidence. Every recommendation reflects an understanding of your priorities, guided by a measure that doesn't entertain anything but the standard.",
       img: serviceImg4,
     },
   ];
@@ -88,9 +84,7 @@ const HomeServices = () => {
       const mm = gsap.matchMedia();
 
       const createAnimation = (isMobile: boolean) => {
-        // 1. SETUP: 
-        // Service 1 (index 0) is visible immediately (yPercent: 0).
-        // Services 2, 3, 4 are hidden below (yPercent: 100).
+        // 1. SETUP:
         sections.forEach((section, i) => {
           gsap.set(section, {
             position: "absolute",
@@ -99,10 +93,10 @@ const HomeServices = () => {
             width: "100%",
             height: "100%",
             zIndex: i + 1,
-            yPercent: i === 0 ? 0 : 100, // <--- CRITICAL: Index 0 starts visible
+            yPercent: i === 0 ? 0 : 100, 
             opacity: 1,
             visibility: "visible",
-            willChange: "transform, opacity",
+            willChange: "transform",
           });
         });
 
@@ -110,53 +104,36 @@ const HomeServices = () => {
           defaults: { ease: "none" },
         });
 
-        // 2. ANIMATION LOOP
-        // Start from index 1 (Service 2). We do NOT animate Service 1 IN.
-        // We only animate it OUT as Service 2 covers it.
+        // 2. ANIMATION:
         sections.forEach((section, i) => {
-          if (i === 0) return; // Skip the first card loop
-          
-          const prevSection = sections[i - 1];
-
-          // Move New Card UP
-          tl.to(section, {
-            yPercent: 0,
-            duration: 1,
-          });
-
-          // Fade Previous Card OUT (Parallax effect)
-          tl.to(
-            prevSection,
-            {
-              yPercent: -20, // Small drift up
-              opacity: 0,    // Fade out
+          if (i > 0) {
+            tl.to(section, {
+              yPercent: 0,
               duration: 1,
-            },
-            "<" // Sync exactly
-          );
+            });
+
+            tl.to(
+              sections[i - 1],
+              {
+                yPercent: -20,
+                opacity: 0,
+                duration: 1,
+              },
+              "<"
+            );
+          }
         });
 
-        // 3. SCROLL CONFIG
-        // Since Service 1 is static, we have 1 less transition to scroll through.
-        // We reduce the multiplier slightly to keep it responsive.
-        const transitionCount = sections.length - 1; // 3 transitions
-        const multiplier = isMobile ? 4 : 3;
-        const totalHeight = window.innerHeight * (transitionCount * multiplier);
+        const getScrollDistance = () => window.innerHeight * 3; 
 
         ScrollTrigger.create({
           trigger: container,
-          start: "top top",
-          end: `+=${totalHeight}`,
+          start: "top top", 
+          end: () => `+=${getScrollDistance()}`, 
           pin: true,
           pinSpacing: true,
-          
-          // FIX FOR SNAP & GAP:
-          // 'true' binds animation 1:1 to scrollbar. 
-          // No lag = No gap at the bottom. No momentum fight = No snap at the top.
-          scrub: true, 
-          
-          fastScrollEnd: true,
-          anticipatePin: 0, // Disabled to prevent jump
+          scrub: 1, 
+          anticipatePin: 1,
           invalidateOnRefresh: true,
           animation: tl,
         });
@@ -176,24 +153,57 @@ const HomeServices = () => {
   };
 
   return (
-    <div className={classes.homeServicesWrapper}>
-      <div className={classes.servicesFixedHeading} ref={headingRef}>
-        <h2 className={classes.homeServicesHeading}>SERVICES</h2>
+    <div 
+      className={classes.homeServicesWrapper} 
+      style={{ position: "relative", minHeight: "100vh", backgroundColor: "#000" }}
+    >
+      
+      {/* FIXED HEADING */}
+      <div 
+        className={classes.servicesFixedHeading} 
+        ref={headingRef}
+        style={{
+            position: "absolute",
+            top: 0,
+            left: 0,
+            width: "100%",
+            pointerEvents: "none"
+        }}
+      >
+        <h2 className={classes.homeServicesHeading} style={{ margin: 0 }}>SERVICES</h2>
       </div>
 
       <div
         className={classes.homeServices}
         ref={containerRef}
-        style={{ height: "100dvh", position: "relative", overflow: "hidden" }}
+        style={{ 
+            height: "100vh", 
+            width: "100%",
+            position: "relative", 
+            overflow: "hidden", 
+            margin: 0, 
+            padding: 0,
+            backgroundColor: "transparent" 
+        }}
       >
         {homeServicesData.map((service, index) => (
           <div
             key={service.title}
             className={classes.serviceSection}
             ref={(el) => addToRefs(el, index)}
+            style={{
+                backgroundColor: index === 0 ? "transparent" : "#000",
+            }}
           >
+            {/* FIXED: Removed padding from the parent wrapper (.serviceContent) 
+               so it doesn't affect Mobile */}
             <div className={classes.serviceContent}>
-              <div className={classes.homeServicesDetails}>
+              
+              {/* FIXED: Applied padding ONLY to the Desktop container */}
+              <div 
+                className={classes.homeServicesDetails}
+                style={{ paddingTop: index === 0 ? "23vh" : "0" }}
+              >
                 <div className={classes.homeServicesLeftSection}>
                   <div className={classes.homeServicesImage}>
                     <img
@@ -221,6 +231,7 @@ const HomeServices = () => {
                 </div>
               </div>
 
+              {/* FIXED: Removed inline padding style from Mobile container entirely */}
               <div className={classes.homeServicesDetailsMobile}>
                 <h2 className={classes.homeServicesHeading}>SERVICES</h2>
                 <h2 className={classes.numberHeading}>{service.num}</h2>
