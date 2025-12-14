@@ -1,78 +1,73 @@
 .homeServicesWrapper {
   position: relative;
-  width: 100vw;
+  width: 100%;
   background-color: #000;
   color: #f4f4f4;
-  overscroll-behavior: contain;
   isolation: isolate;
-  overflow: hidden;
   margin: 0;
   padding: 0;
 }
 
+/* Fixed Heading at the top */
 .servicesFixedHeading {
-  position: relative;
-  z-index: 0;
+  /* position: absolute; */
+  /* top: 0; */
+  /* left: 0; */
+  /* z-index: 0; */
   pointer-events: none;
-  padding: 3em 1em 1em 2.5em;
+  padding: 3em 1em 0 2.5em;
   width: 90%;
   margin: 0 auto;
 }
 
 .servicesFixedHeading .homeServicesHeading {
-  font-family: "Space Grotesk";
+  font-family: "Space Grotesk", sans-serif;
   font-weight: 300;
   line-height: 88%;
-  letter-spacing: -5%;
+  letter-spacing: -0.05em;
   font-size: 100px;
   margin-bottom: 0;
   text-align: left;
   color: #f4f4f4;
 }
 
+/* Main Container - Allows scrolling */
 .homeServices {
   position: relative;
-  width: 100vw;
-  height: 100vh;
-  background: #000;
+  width: 100%;
+  height: auto;
+  min-height: 100vh;
+  background: transparent;
   color: #f4f4f4;
-  overflow: hidden;
+  overflow: visible;
   isolation: isolate;
   margin: 0;
   padding: 0;
-}
-
-.homeServices.isPinned {
-  z-index: 20000;
+  /* border: 1px solid red; */
 }
 
 .homeServices::-webkit-scrollbar {
-  display: none !important;
-  width: 0;
-  height: 0;
-  background: transparent;
+  display: none;
 }
 
+/* SECTIONS: Stacked Vertically */
 .serviceSection {
-  position: absolute;
-  inset: 0;
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  will-change: transform;
   background: #000;
-  height: 100vh;
-  width: 100vw;
+  min-height: 100vh;
+  width: 100%;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  backface-visibility: hidden;
-  transform: translateZ(0);
   z-index: 1;
 }
 
-.serviceSection.active {
-  z-index: 10;
+.serviceSection:first-child {
+  background: transparent;
+  padding-top: 5vh;
 }
 
 .serviceContent {
@@ -84,21 +79,6 @@
   align-items: stretch;
   justify-content: stretch;
   box-sizing: border-box;
-}
-
-.homeServicesHeading {
-  font-family: "Space Grotesk";
-  font-weight: 300;
-  line-height: 88%;
-  letter-spacing: -5%;
-  font-size: 100px;
-  margin-bottom: 0.1em;
-  text-align: left;
-  width: 100%;
-}
-
-.serviceSection:not(.active) {
-  pointer-events: none;
 }
 
 .homeServicesDetails {
@@ -135,43 +115,41 @@
   width: 100%;
   height: 100%;
   display: flex;
-  align-items: stretch;
+  align-items: center;
   max-height: none;
 }
 
 .homeServicesImage img {
   max-width: 100%;
   width: 100%;
-  height: 100%;
+  height: auto;
+  max-height: 80vh;
   object-fit: cover;
   object-position: center;
   display: block;
-  transform: translateZ(0);
-  will-change: transform;
-  backface-visibility: hidden;
 }
 
 .numberHeading {
-  font-family: "Space Grotesk";
+  font-family: "Space Grotesk", sans-serif;
   font-weight: 300;
   line-height: 89%;
-  letter-spacing: -4%;
+  letter-spacing: -0.04em;
   font-size: 135px;
   margin-bottom: 0.2em;
   margin-left: auto;
 }
 
 .investmentHeading {
-  font-family: "Space Grotesk";
+  font-family: "Space Grotesk", sans-serif;
   font-weight: 300;
   line-height: 88%;
-  letter-spacing: -2%;
+  letter-spacing: -0.02em;
   font-size: 64px;
   margin-bottom: 0.5em;
 }
 
 .homeServicesRightSection p {
-  font-family: "Poppins";
+  font-family: "Poppins", sans-serif;
   font-weight: 300;
   line-height: 140%;
   width: 80%;
@@ -192,9 +170,7 @@
   display: none;
 }
 
-.serviceSection.active {
-  z-index: 10;
-}
+/* ---------------- MEDIA QUERIES ---------------- */
 
 @media screen and (max-width: 1200px) {
   .servicesFixedHeading {
@@ -207,9 +183,6 @@
   }
   .homeServicesLeftSection {
     margin-left: 3em;
-  }
-  .homeServicesHeading {
-    font-size: 85px;
   }
   .numberHeading {
     font-size: 120px;
@@ -226,13 +199,9 @@
 @media screen and (max-width: 1100px) {
   .servicesFixedHeading .homeServicesHeading {
     font-size: 80px;
-    margin-left: 0;
   }
   .homeServicesLeftSection {
     margin-left: 2em;
-  }
-  .homeServicesHeading {
-    font-size: 80px;
   }
   .numberHeading {
     font-size: 110px;
@@ -245,24 +214,19 @@
   }
   .servicesFixedHeading .homeServicesHeading {
     font-size: 72px;
-    margin-left: 0;
   }
   .homeServicesDetails {
     gap: 3em;
   }
   .homeServicesLeftSection {
     margin-left: 1em;
-    height: 85vh;
+    height: auto;
   }
   .homeServicesImage {
     max-height: 85vh;
   }
   .homeServicesRightSection {
     width: 80%;
-  }
-  .homeServicesHeading {
-    font-size: 72px;
-    margin-bottom: 0.2em;
   }
   .numberHeading {
     font-size: 100px;
@@ -277,7 +241,7 @@
   }
 }
 
-/* Hide fixed heading on mobile and show mobile layout */
+/* Mobile Layout - Vertical Stack */
 @media screen and (max-width: 768px) {
   .servicesFixedHeading {
     display: none;
@@ -286,69 +250,47 @@
   .homeServicesWrapper {
     padding: 0;
     margin: 0;
+    background: #000;
   }
 
   .homeServices {
-    margin: 0;
-    height: calc(var(--vh, 1vh) * 100);
-    width: 100vw;
+    height: auto;
+    width: 100%;
   }
 
-  .homeServices,
   .serviceSection {
-    height: calc(var(--vh, 1vh) * 100);
-    overflow: hidden;
-    box-sizing: border-box;
+    position: relative;
+    height: auto;
+    min-height: 100vh;
+    padding: 4em 1.5em;
+    display: flex;
+    align-items: flex-start;
+    background: #000;
+    border-bottom: 1px solid #1a1a1a;
+  }
+
+  .serviceSection:first-child {
+    padding-top: 4em;
+    background: #000;
   }
 
   .homeServicesDetails {
     display: none;
   }
 
-  .serviceSection {
-    padding: 2em 7.5%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: absolute;
-    inset: 0;
-    transform: translateZ(0);
-    backface-visibility: hidden;
-  }
-
-  .serviceSection:first-child {
-    z-index: 2147483647;
-  }
-
   .serviceContent {
-    height: 100%;
+    height: auto;
     display: flex;
     flex-direction: column;
-    min-height: 0;
     max-width: 100%;
     margin: 0;
-    width: 100%;
   }
 
   .homeServicesDetailsMobile {
     display: flex;
-    flex: 1 1 auto;
     flex-direction: column;
-    gap: 1.5em;
-    padding: 0;
-    min-height: 0;
-    justify-content: flex-start;
-    align-items: flex-start;
     width: 100%;
-    height: 100%;
-    padding-bottom: env(safe-area-inset-bottom);
-    box-sizing: border-box;
-    transform: translateZ(0);
-    backface-visibility: hidden;
-  }
-
-  .homeServicesDetailsMobile::-webkit-scrollbar {
-    display: none !important;
+    height: auto;
   }
 
   .homeServicesDetailsMobile .homeServicesHeading {
@@ -356,34 +298,22 @@
     text-align: left;
     margin-bottom: 0.5em;
     line-height: 88%;
-    letter-spacing: -4%;
-    display: none;
-  }
-
-  .serviceSection:first-child .homeServicesDetailsMobile .homeServicesHeading {
+    letter-spacing: -0.04em;
     display: block;
+    color: #fff;
   }
 
   .homeServicesImage {
-    flex: 1 1 auto;
-    max-width: 85%;
-    width: 85%;
+    width: 100%;
     height: auto;
-    min-height: 40vh;
-    max-height: 60vh;
-    overflow: visible;
     margin-top: 2em;
-    transform: translateZ(0);
+    display: block;
   }
 
   .homeServicesImage img {
     width: 100%;
-    height: 100%;
+    height: auto;
     object-fit: cover;
-    display: block;
-    transform: translateZ(0);
-    will-change: transform;
-    backface-visibility: hidden;
   }
 
   .numberHeading {
@@ -398,67 +328,26 @@
   }
 
   .homeServicesDetailsMobile p {
-    width: 80%;
+    width: 100%;
     font-size: 16px;
     margin-top: 0.5em;
-    font-family: "Poppins";
+    font-family: "Poppins", sans-serif;
     font-weight: 300;
     line-height: 140%;
   }
-
-  .homeServicesDetailsMobile button {
-    margin-top: 1em;
-    flex-shrink: 0;
-    cursor: pointer;
-    pointer-events: all;
-    padding-left: 0;
-  }
 }
 
-/* Mobile - 480px and below */
 @media screen and (max-width: 499px) {
-  .homeServices {
-    margin: 0;
-  }
-
-  .homeServicesDetails {
-    display: none !important;
-  }
-
   .homeServicesHeading {
     font-size: 48px;
-    line-height: 85%;
-    text-align: left;
   }
-
-  .homeServicesImage {
-    max-width: 100%;
-    width: 100%;
-    min-height: 35vh;
-    max-height: 45vh;
-    margin-top: 1.5em;
-  }
-
   .numberHeading {
     font-size: 65px;
-    margin-bottom: 0.1em;
-    text-align: left;
-    width: 100%;
   }
-
   .investmentHeading {
     font-size: 32px;
-    margin-bottom: 0.3em;
   }
-
   .homeServicesDetailsMobile p {
     font-size: 15px;
-    line-height: 135%;
-    margin-top: 0.5em;
-    width: 90%;
-  }
-
-  .homeServicesDetailsMobile button {
-    margin-top: 0.8em;
   }
 }

@@ -4,12 +4,6 @@ import serviceImg1 from "../../Assets/Images/Services 1 - Image.png";
 import serviceImg2 from "../../Assets/Images/Services 2 - Image.png";
 import serviceImg3 from "../../Assets/Images/Services 3 - Image.png";
 import serviceImg4 from "../../Assets/Images/Services 4 - Image.png";
-import { useRef, useLayoutEffect, useState, useEffect } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { ScrollToPlugin } from "gsap/ScrollToPlugin";
-
-gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
 type Service = {
   num: string;
@@ -19,11 +13,6 @@ type Service = {
 };
 
 const HomeServices = () => {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const sectionsRef = useRef<(HTMLDivElement | null)[]>([]);
-  const headingRef = useRef<HTMLDivElement>(null);
-  const [imagesLoaded, setImagesLoaded] = useState(false);
-
   const homeServicesData: Service[] = [
     {
       num: "01",
@@ -51,165 +40,31 @@ const HomeServices = () => {
     },
   ];
 
-  const addToRefs = (el: HTMLDivElement | null, index: number) => {
-    sectionsRef.current[index] = el;
-  };
-
-  useEffect(() => {
-    const imageUrls = [serviceImg1, serviceImg2, serviceImg3, serviceImg4];
-    let loadedCount = 0;
-    const checkLoad = () => {
-      loadedCount++;
-      if (loadedCount === imageUrls.length) setImagesLoaded(true);
-    };
-    imageUrls.forEach((url) => {
-      const img = new Image();
-      img.src = url;
-      img.onload = checkLoad;
-      img.onerror = checkLoad;
-    });
-  }, []);
-
-  useLayoutEffect(() => {
-    if (!imagesLoaded || !containerRef.current) return;
-
-    const ctx = gsap.context(() => {
-      const container = containerRef.current;
-      const sections = sectionsRef.current.filter(Boolean) as HTMLDivElement[];
-
-      if (!container || sections.length === 0) return;
-
-      ScrollTrigger.getAll().forEach((t) => t.kill());
-
-      const mm = gsap.matchMedia();
-
-      const createAnimation = (isMobile: boolean) => {
-        // 1. SETUP:
-        sections.forEach((section, i) => {
-          gsap.set(section, {
-            position: "absolute",
-            top: 0,
-            left: 0,
-            width: "100%",
-            height: "100%",
-            zIndex: i + 1,
-            yPercent: i === 0 ? 0 : 100, 
-            opacity: 1,
-            visibility: "visible",
-            willChange: "transform",
-          });
-        });
-
-        const tl = gsap.timeline({
-          defaults: { ease: "none" },
-        });
-
-        // 2. ANIMATION:
-        sections.forEach((section, i) => {
-          if (i > 0) {
-            tl.to(section, {
-              yPercent: 0,
-              duration: 1,
-            });
-
-            tl.to(
-              sections[i - 1],
-              {
-                yPercent: -20,
-                opacity: 0,
-                duration: 1,
-              },
-              "<"
-            );
-          }
-        });
-
-        const getScrollDistance = () => window.innerHeight * 3; 
-
-        ScrollTrigger.create({
-          trigger: container,
-          start: "top top", 
-          end: () => `+=${getScrollDistance()}`, 
-          pin: true,
-          pinSpacing: true,
-          scrub: 1, 
-          anticipatePin: 1,
-          invalidateOnRefresh: true,
-          animation: tl,
-        });
-      };
-
-      mm.add("(min-width: 769px)", () => createAnimation(false));
-      mm.add("(max-width: 768px)", () => createAnimation(true));
-
-      ScrollTrigger.refresh();
-    }, containerRef);
-
-    return () => ctx.revert();
-  }, [imagesLoaded]);
-
   const scrollToContact = () => {
     document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
-    <div 
-      className={classes.homeServicesWrapper} 
-      style={{ position: "relative", minHeight: "100vh", backgroundColor: "#000" }}
-    >
+    <div className={classes.homeServicesWrapper}>
       
-      {/* FIXED HEADING */}
-      <div 
-        className={classes.servicesFixedHeading} 
-        ref={headingRef}
-        style={{
-            position: "absolute",
-            top: 0,
-            left: 0,
-            width: "100%",
-            pointerEvents: "none"
-        }}
-      >
-        <h2 className={classes.homeServicesHeading} style={{ margin: 0 }}>SERVICES</h2>
+      {/* HEADER: Stays at the top of the container */}
+      <div className={classes.servicesFixedHeading}>
+        <h2 className={classes.homeServicesHeading}>SERVICES</h2>
       </div>
 
-      <div
-        className={classes.homeServices}
-        ref={containerRef}
-        style={{ 
-            height: "100vh", 
-            width: "100%",
-            position: "relative", 
-            overflow: "hidden", 
-            margin: 0, 
-            padding: 0,
-            backgroundColor: "transparent" 
-        }}
-      >
-        {homeServicesData.map((service, index) => (
-          <div
-            key={service.title}
-            className={classes.serviceSection}
-            ref={(el) => addToRefs(el, index)}
-            style={{
-                backgroundColor: index === 0 ? "transparent" : "#000",
-            }}
-          >
-            {/* FIXED: Removed padding from the parent wrapper (.serviceContent) 
-               so it doesn't affect Mobile */}
+      <div className={classes.homeServices}>
+        {homeServicesData.map((service) => (
+          <div key={service.title} className={classes.serviceSection}>
             <div className={classes.serviceContent}>
               
-              {/* FIXED: Applied padding ONLY to the Desktop container */}
-              <div 
-                className={classes.homeServicesDetails}
-                style={{ paddingTop: index === 0 ? "23vh" : "0" }}
-              >
+              {/* DESKTOP CONTENT */}
+              <div className={classes.homeServicesDetails}>
                 <div className={classes.homeServicesLeftSection}>
                   <div className={classes.homeServicesImage}>
                     <img
                       src={service.img}
                       alt={`${service.title} service`}
-                      loading="eager"
+                      loading="lazy"
                     />
                   </div>
                 </div>
@@ -217,12 +72,7 @@ const HomeServices = () => {
                   <h2 className={classes.numberHeading}>{service.num}</h2>
                   <h2 className={classes.investmentHeading}>{service.title}</h2>
                   <p>{service.description}</p>
-                  <Button
-                    type="black"
-                    onClick={() =>
-                      gsap.to(window, { duration: 1, scrollTo: "#contact" })
-                    }
-                  >
+                  <Button type="black" onClick={scrollToContact}>
                     <span>TALK TO US</span>
                     <svg width="16" height="14" viewBox="0 0 16 14" fill="#000000">
                       <path d="M8.86307 0.119629L7.58108 1.3905L12.4858 6.1107H0V7.89481H12.4798L7.58108 12.6092L8.86307 13.8801L16 7L8.86307 0.119629Z" />
@@ -231,7 +81,7 @@ const HomeServices = () => {
                 </div>
               </div>
 
-              {/* FIXED: Removed inline padding style from Mobile container entirely */}
+              {/* MOBILE CONTENT */}
               <div className={classes.homeServicesDetailsMobile}>
                 <h2 className={classes.homeServicesHeading}>SERVICES</h2>
                 <h2 className={classes.numberHeading}>{service.num}</h2>
@@ -247,6 +97,7 @@ const HomeServices = () => {
                   <img src={service.img} alt={`${service.title} service`} />
                 </div>
               </div>
+
             </div>
           </div>
         ))}
