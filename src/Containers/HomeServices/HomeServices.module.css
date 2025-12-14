@@ -10,10 +10,10 @@
 
 /* Fixed Heading at the top */
 .servicesFixedHeading {
-  /* position: absolute; */
-  /* top: 0; */
-  /* left: 0; */
-  /* z-index: 0; */
+  /* position: absolute; 
+  top: 0;
+  left: 0; */
+  z-index: 5;
   pointer-events: none;
   padding: 3em 1em 0 2.5em;
   width: 90%;
@@ -43,7 +43,6 @@
   isolation: isolate;
   margin: 0;
   padding: 0;
-  /* border: 1px solid red; */
 }
 
 .homeServices::-webkit-scrollbar {
@@ -243,14 +242,23 @@
 
 /* Mobile Layout - Vertical Stack */
 @media screen and (max-width: 768px) {
-  .servicesFixedHeading {
-    display: none;
-  }
-
   .homeServicesWrapper {
     padding: 0;
     margin: 0;
     background: #000;
+  }
+
+  .servicesFixedHeading {
+    display: block;
+    position: relative;
+    padding: 2em 1.5em 0 1.5em;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .servicesFixedHeading .homeServicesHeading {
+    font-size: 60px;
+    margin: 0;
   }
 
   .homeServices {
@@ -261,16 +269,16 @@
   .serviceSection {
     position: relative;
     height: auto;
-    min-height: 100vh;
-    padding: 4em 1.5em;
+    min-height: 0;
+    padding: 3em 1.5em;
     display: flex;
     align-items: flex-start;
     background: #000;
-    border-bottom: 1px solid #1a1a1a;
+    /* border-bottom: 1px solid #1a1a1a; */
   }
 
   .serviceSection:first-child {
-    padding-top: 4em;
+    padding-top: 2em;
     background: #000;
   }
 
@@ -291,29 +299,21 @@
     flex-direction: column;
     width: 100%;
     height: auto;
-  }
-
-  .homeServicesDetailsMobile .homeServicesHeading {
-    font-size: 60px;
-    text-align: left;
-    margin-bottom: 0.5em;
-    line-height: 88%;
-    letter-spacing: -0.04em;
-    display: block;
-    color: #fff;
+    align-items: flex-start;
   }
 
   .homeServicesImage {
     width: 100%;
-    height: auto;
+    height: 35vh;
     margin-top: 2em;
     display: block;
   }
 
   .homeServicesImage img {
     width: 100%;
-    height: auto;
+    height: 100%;
     object-fit: cover;
+    display: block;
   }
 
   .numberHeading {
@@ -335,10 +335,16 @@
     font-weight: 300;
     line-height: 140%;
   }
+
+  .homeServicesDetailsMobile button {
+    margin-left: 0;
+    padding-left: 0;
+    margin-top: 1.5em;
+  }
 }
 
 @media screen and (max-width: 499px) {
-  .homeServicesHeading {
+  .servicesFixedHeading .homeServicesHeading {
     font-size: 48px;
   }
   .numberHeading {

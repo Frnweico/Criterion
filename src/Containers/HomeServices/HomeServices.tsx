@@ -83,7 +83,7 @@ const HomeServices = () => {
 
               {/* MOBILE CONTENT */}
               <div className={classes.homeServicesDetailsMobile}>
-                <h2 className={classes.homeServicesHeading}>SERVICES</h2>
+                {/* Removed repeated SERVICES heading here */}
                 <h2 className={classes.numberHeading}>{service.num}</h2>
                 <h2 className={classes.investmentHeading}>{service.title}</h2>
                 <p>{service.description}</p>
