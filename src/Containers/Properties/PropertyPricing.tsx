@@ -23,6 +23,10 @@ const PropertyPricing: React.FC<PropertyPricingProps> = ({ data, contact }) => {
       <div data-aos="fade-up" className={classes.propertyPricing}>
         <h2>Pricing & Payment Plan</h2>
         <div className={classes.propertyPricingContent}>
+          <div className={classes.priceHeader}>
+             <span className={classes.priceLabel}>PRICE: </span>
+             <span className={classes.priceValue}> NGN{data.totalPrice}</span>
+          </div>
           <img src={line} alt="a line" />
           <div className={classes.propertyTableWrapper}>
             <table className={classes.pricingTable}>

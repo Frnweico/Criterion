@@ -113,6 +113,7 @@ export interface StaticRow {
 
 export interface PricingData {
   rows: PricingRow[];
+  totalPrice: string;
   staticRows: StaticRow[];
   lineImage: string;
 }
@@ -328,6 +329,7 @@ export const properties: Record<string, PropertyData> = {
     },
     pricing: {
       lineImage: line8,
+      totalPrice: "350,000,000",
       rows: [
         {
           milestone: "Foundation",
@@ -539,6 +541,7 @@ export const properties: Record<string, PropertyData> = {
     },
     pricing: {
       lineImage: line8,
+      totalPrice: "450,000,000",
       rows: [
         {
           milestone: "Foundation",
