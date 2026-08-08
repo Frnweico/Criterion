@@ -1,0 +1,125 @@
+.section {
+  background: var(--color-platinum);
+}
+
+.inner {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  max-width: var(--page-max);
+  margin: 0 auto;
+  padding: 80px var(--gutter);
+}
+
+.heading {
+  margin: 0;
+  font-size: 32px;
+  font-weight: 400;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  text-align: center;
+  text-transform: capitalize;
+  color: var(--color-heading);
+}
+
+.list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 40px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.member {
+  display: flex;
+  flex-direction: column;
+}
+
+.figure {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  margin-bottom: 16px;
+  overflow: hidden;
+  background: var(--color-image-bg);
+}
+
+.image {
+  object-fit: cover;
+  object-position: center top;
+}
+
+.name {
+  margin: 0;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.4;
+  text-transform: uppercase;
+  color: var(--color-heading);
+}
+
+.role {
+  margin: 2px 0 12px;
+  font-size: 12px;
+  line-height: 1.4;
+  color: var(--color-body);
+}
+
+/* No overlay to open yet, so this renders without an action — see TODO.md. */
+.more {
+  align-self: flex-start;
+  padding: 0;
+  border: 0;
+  appearance: none;
+  background: none;
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1.4;
+  text-transform: uppercase;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+  color: var(--color-heading);
+  cursor: pointer;
+}
+
+.more:hover {
+  opacity: 0.6;
+}
+
+.more:focus-visible {
+  outline: 2px solid var(--color-carbon);
+  outline-offset: 4px;
+}
+
+/* --- Tablet ----------------------------------------------------------- */
+
+@media (min-width: 640px) {
+  .list {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 24px;
+  }
+}
+
+/* --- Desktop ---------------------------------------------------------- */
+
+@media (min-width: 1024px) {
+  .inner {
+    gap: 56px;
+    padding: 120px var(--gutter);
+  }
+
+  .heading {
+    font-size: 40px;
+  }
+
+  /* The frame centres three portraits rather than stretching them across the
+     full width. */
+  .list {
+    gap: 32px;
+    max-width: 1040px;
+    margin: 0 auto;
+  }
+}

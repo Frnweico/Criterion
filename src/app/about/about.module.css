@@ -1,0 +1,6 @@
+/* The About page renders the Criterion Pact on taupe, where the homepage uses
+   green. A descendant selector re-tones it without editing PactSection's own
+   stylesheet — one extra class beats the component's single-class rule. */
+.pactTaupe > section {
+  background: var(--color-taupe-grey);
+}
