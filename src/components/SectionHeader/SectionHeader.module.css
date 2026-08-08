@@ -1,0 +1,59 @@
+/* The rule sits above the label and is only as wide as the label itself — the
+   container hugs its content rather than spanning the column. Previously this
+   was `width: 100%`, which drew a full-width rule that isn't in any frame. */
+.sectionHeader {
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+  align-self: flex-start; /* so a stretching flex parent can't widen the rule */
+  width: fit-content;
+  padding: 12px 0;
+  border-top: 1px solid var(--color-rule);
+  color: var(--color-carbon);
+}
+
+/* Filled diamond: a square rotated 45deg. Drawn in CSS, not an asset. */
+.marker {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 8px;
+  height: 8px;
+}
+
+.marker::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  background: currentColor;
+  transform: rotate(-45deg);
+}
+
+.text {
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+/* Only applied when the header is a link. */
+.link {
+  transition: opacity 0.2s ease;
+}
+
+.link:hover {
+  opacity: 0.6;
+}
+
+.link:focus-visible {
+  outline: 2px solid var(--color-carbon);
+  outline-offset: 4px;
+}
+
+/* On light-on-dark sections. */
+.inverted {
+  color: var(--color-platinum);
+  border-top-color: rgba(252, 251, 255, 0.2);
+}

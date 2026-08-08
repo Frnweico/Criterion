@@ -1,0 +1,75 @@
+.section {
+  background: #1e1e1e;
+  color: var(--color-platinum);
+}
+
+.inner {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+  padding: 100px var(--gutter);
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.lead {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1.3;
+  letter-spacing: -0.02em;
+  color: var(--color-platinum);
+}
+
+/* Stacked and hugging their labels, as in the mobile frame. */
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+/* --- Tablet ----------------------------------------------------------- */
+
+@media (min-width: 768px) {
+  .inner {
+    padding: 120px 48px;
+  }
+
+  .lead {
+    font-size: 24px;
+  }
+}
+
+/* --- Desktop ---------------------------------------------------------- */
+
+/* Eyebrow left, content in a column on the right — the frame starts it at
+   x=740 in a 1440 section, i.e. just past the midpoint. */
+@media (min-width: 1024px) {
+  .inner {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 648px;
+    gap: 64px;
+    max-width: var(--page-max);
+    margin: 0 auto;
+    padding: 112px var(--gutter);
+  }
+
+  .lead {
+    font-size: 28px;
+  }
+
+  /* 298px in the frame — wide enough that both labels sit on one line and the
+     two buttons share an edge. */
+  .actions {
+    width: 298px;
+  }
+
+  .actions > * {
+    width: 100%;
+  }
+}

@@ -1,0 +1,293 @@
+/* Fills the viewport at any size.
+   `svh` is the small viewport height — the height with the mobile browser's
+   toolbars showing. `dvh` would track the toolbars and resize the hero as they
+   slide away, which shunts the content mid-scroll; `vh` ignores them entirely
+   and pushes the buttons and bars under the toolbar. `svh` is the one that
+   stays put and keeps everything reachable. */
+.hero {
+  position: relative;
+  width: 100%;
+  height: 100vh; /* fallback for browsers without svh */
+  height: 100svh;
+  overflow: hidden;
+  background: var(--color-carbon);
+}
+
+/* Embla's required structure: viewport clips, container is the moving flex
+   row, slides are full-width children. Embla handles drag on desktop and
+   swipe on touch itself — no scroll-snap or pointer handling of our own. */
+.viewport {
+  height: 100%;
+  overflow: hidden;
+}
+
+.container {
+  display: flex;
+  height: 100%;
+  /* Lets the page still scroll vertically while Embla takes the horizontal. */
+  touch-action: pan-y pinch-zoom;
+}
+
+/* Column so the content sits at the bottom through normal flow rather than
+   absolute offsets — it can then never be pushed off a short viewport. */
+.slide {
+  position: relative;
+  display: flex;
+  flex: 0 0 100%;
+  flex-direction: column;
+  justify-content: flex-end;
+  min-width: 0;
+  height: 100%;
+}
+
+.media {
+  position: absolute;
+  inset: 0;
+}
+
+/* `cover` scales the image to fill the frame while keeping its aspect ratio —
+   it crops, it never stretches. On a landscape viewport the width drives the
+   scale and the excess height is cropped; on a portrait one the height drives
+   it instead. That is exactly the behaviour asked for, from a single rule. */
+.media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* Slide 1's image is 1581x995 (ratio 1.59). On a portrait phone `cover` scales
+   it to fit the height and crops ~71% of the width, so the anchor decides what
+   survives — right edge here. The desktop rule below re-centres it, where the
+   viewport ratio is near identical to the image's and almost nothing is lost. */
+.mediaRight img {
+  object-position: right center;
+}
+
+.content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 100%;
+  max-width: calc(352px + var(--gutter) * 2);
+  /* Bottom padding clears the progress bars; they sit outside this flow. */
+  padding: 0 var(--gutter) clamp(64px, 11vh, 92px);
+  color: #fff;
+}
+
+.copy {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* The mobile frame is 393px wide with a 48px title, so 12.2vw reproduces the
+   design exactly at that width and scales either side of it. Capped at 48px so
+   tablets hold the mobile size until the desktop rule takes over at 1024px. */
+.title {
+  font-size: clamp(2rem, 12.2vw, 3rem);
+  text-transform: capitalize;
+  color: #fff;
+}
+
+.body {
+  color: var(--color-platinum);
+}
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  align-items: center;
+  font-weight: 700;
+}
+
+.metaDivider {
+  opacity: 0.6;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  align-items: center;
+}
+
+/* The mobile hero frames carry a single button; the second one is desktop only. */
+.secondaryCta {
+  display: none;
+}
+
+/* --- Progress bars ---------------------------------------------------- */
+
+.bars {
+  position: absolute;
+  right: var(--gutter);
+  bottom: 28px;
+  left: var(--gutter);
+  z-index: 2;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  padding: 0;
+}
+
+/* `appearance: none` and `display: flex` matter here. A native button wraps
+   its children in an anonymous internal box, so a percentage height on the
+   fill resolves to 0 — the scale animated correctly but drew nothing, leaving
+   only the grey track visible. Flex stretch sizes the fill without any
+   percentage involved. */
+.bar {
+  display: flex;
+  flex: 1;
+  height: 5.25px;
+  padding: 0;
+  border: 0;
+  overflow: hidden;
+  appearance: none;
+  -webkit-appearance: none;
+  background: var(--color-progress-track);
+  cursor: pointer;
+}
+
+.bar:focus-visible {
+  outline: 2px solid var(--color-platinum);
+  outline-offset: 4px;
+}
+
+/* The rectangle inside each bar. Scaled from the left edge rather than
+   animated by width, so it grows rightwards while staying anchored left.
+   The scale is written frame by frame from Hero.tsx — deliberately not a CSS
+   animation, so the fill and the slide advance share one clock and cannot
+   drift apart. Passed bars hold at 1, upcoming bars sit at 0. */
+.barFill {
+  flex: 1;
+  align-self: stretch;
+  background: var(--color-platinum);
+  transform: scaleX(0);
+  transform-origin: left center;
+  will-change: transform;
+}
+
+/* --- Tablet ----------------------------------------------------------- */
+
+@media (min-width: 768px) {
+  .content {
+    max-width: 560px;
+  }
+
+}
+
+/* --- Desktop ---------------------------------------------------------- */
+
+@media (min-width: 1024px) {
+  /* At desktop widths the viewport ratio (1.60 at 1440x900) is within 0.01 of
+     slide 1's image ratio, so `cover` crops about 6px vertically and shows
+     essentially the whole frame. Centred, since there is nothing to favour. */
+  .mediaRight img {
+    object-position: center;
+  }
+
+  .viewport {
+    cursor: grab;
+  }
+
+  .viewport:active {
+    cursor: grabbing;
+  }
+
+  .content {
+    gap: 32px;
+    max-width: 738px; /* 650px copy + the 44px gutters either side */
+    padding: 0 var(--gutter) clamp(88px, 12vh, 116px);
+  }
+
+  .body {
+    font-size: 20px;
+  }
+
+  /* Slide 1 only. Title and buttons on the left, the paragraph in its own
+     column on the right, level with the title. Slides 2 and 3 keep the plain
+     stacked column above, because their facts row sits under the title. */
+  .contentLead {
+    display: grid;
+    grid-template-columns: minmax(0, 650px) minmax(0, 384px);
+    justify-content: space-between;
+    align-items: end;
+    gap: 32px 64px;
+    max-width: none;
+  }
+
+  /* `.body` is nested inside `.copy`, so it can't be placed in the grid from
+     where it sits. `display: contents` drops the wrapper and promotes the
+     title and paragraph to grid items in their own right. */
+  .contentLead .copy {
+    display: contents;
+  }
+
+  .contentLead .title {
+    grid-column: 1;
+    grid-row: 1;
+    align-self: end;
+  }
+
+  .contentLead .body {
+    grid-column: 2;
+    grid-row: 1;
+    align-self: end;
+    margin-bottom: 6px;
+  }
+
+  .contentLead .actions {
+    grid-column: 1;
+    grid-row: 2;
+  }
+
+  .copy {
+    gap: 16px;
+  }
+
+  /* 80px at the 1440px design width, not the 88px the Figma frame specifies —
+     changed at the client's request. 5.56vw hits 80px exactly at 1440. */
+  .title {
+    font-size: clamp(3.5rem, 5.56vw, 5rem);
+  }
+
+  .secondaryCta {
+    display: inline-flex;
+  }
+
+  .bars {
+    right: var(--gutter);
+    bottom: 47px;
+    left: var(--gutter);
+    gap: 48px;
+  }
+}
+
+/* --- Short viewports -------------------------------------------------- */
+
+/* Landscape phones and small laptop screens. Without this the 88px title and
+   the buttons collide with the bars on anything under ~640px tall. */
+@media (max-height: 640px) {
+  .title {
+    font-size: clamp(1.75rem, 5vh, 2.5rem);
+  }
+
+  .content {
+    gap: 16px;
+    padding-bottom: clamp(52px, 9vh, 72px);
+  }
+
+  .copy {
+    gap: 12px;
+  }
+
+  /* The supporting paragraph is the first thing to go when height is scarce —
+     the title, the facts and the buttons carry the message on their own. */
+  .body {
+    display: none;
+  }
+}

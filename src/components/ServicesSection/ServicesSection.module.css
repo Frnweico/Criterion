@@ -1,0 +1,311 @@
+.section {
+  background: var(--color-platinum);
+}
+
+.inner {
+  padding: 50px var(--gutter) 100px;
+}
+
+/* Mobile order is intro → image → list → button. The two column wrappers use
+   `display: contents` so their children become direct flex items here and can
+   be interleaved; at desktop they become real columns again. */
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.column,
+.feature {
+  display: contents;
+}
+
+.intro {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  order: 1;
+}
+
+.figure {
+  position: relative;
+  order: 2;
+  width: 100%;
+  height: 311px;
+  overflow: hidden;
+  background: #f6f3f2;
+}
+
+/* Mobile carries a rule above the first row as well as under each one;
+   desktop has under-row rules only. */
+.list {
+  order: 3;
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid var(--color-rule-soft);
+  list-style: none;
+}
+
+.cta {
+  order: 4;
+  align-self: flex-start;
+}
+
+.header {
+  margin-bottom: 16px;
+}
+
+.heading {
+  margin: 0;
+  font-size: 40px;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  text-transform: capitalize;
+  color: var(--color-carbon);
+}
+
+.tagline {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.3;
+  letter-spacing: -0.02em;
+  color: var(--color-body);
+}
+
+.image {
+  object-fit: cover;
+}
+
+/* --- Accordion -------------------------------------------------------- */
+
+.row {
+  border-bottom: 1px solid var(--color-rule-soft);
+}
+
+.rowButton {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  width: 100%;
+  padding: 20px 16px 21px;
+  border: 0;
+  appearance: none;
+  background: none;
+  cursor: pointer;
+  text-align: left;
+}
+
+.rowButton:focus-visible {
+  outline: 2px solid var(--color-carbon);
+  outline-offset: -2px;
+}
+
+.rowIndex {
+  flex-shrink: 0;
+  font-size: 12px;
+  line-height: 1.4;
+  letter-spacing: -0.01em;
+  color: var(--color-muted);
+}
+
+.rowTitle {
+  flex: 1;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: -0.04em;
+  color: var(--color-ink);
+}
+
+/* Chevron drawn as a rotated corner rather than an asset. Closed points right,
+   as in the mobile frame; opening rotates it down.
+   Driven off `aria-expanded` rather than a second class: the two classes had
+   equal specificity, so which one won came down to stylesheet order — fragile,
+   and it broke outright under hot reload. The attribute selector is both more
+   specific and tied to the state the button actually reports. */
+.chevron {
+  flex-shrink: 0;
+  width: 9px;
+  height: 9px;
+  border-right: 1.5px solid var(--color-ink);
+  border-bottom: 1.5px solid var(--color-ink);
+  transform: rotate(-45deg);
+  transition: transform 0.2s ease;
+}
+
+.rowButton[aria-expanded="true"] .chevron {
+  transform: rotate(45deg);
+}
+
+.panel {
+  padding: 0 16px 20px 44px;
+}
+
+.panelText {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.3;
+  letter-spacing: -0.02em;
+  color: var(--color-body);
+}
+
+/* Desktop-only mirror of the open description; inline panels cover mobile. */
+.featureText {
+  display: none;
+}
+
+/* --- Desktop ---------------------------------------------------------- */
+
+@media (min-width: 1024px) {
+  .inner {
+    max-width: var(--page-max);
+    margin: 0 auto;
+    padding: 98px var(--gutter);
+  }
+
+  /* Left column carries the intro and the list; the right column starts near
+     the top of the section, running alongside the heading rather than below
+     it — the frame puts it at y=59 while the list sits at y=350. */
+  .body {
+    display: grid;
+    grid-template-columns: 360px 665px;
+    justify-content: space-between;
+    align-items: start;
+    gap: 0;
+  }
+
+  .column,
+  .feature {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .intro,
+  .figure,
+  .list,
+  .cta {
+    order: 0;
+  }
+
+  /* Offsets below reproduce the frame's vertical rhythm measured from the top
+     of the section: header 0, heading 67, tagline 185, list 350. */
+  .intro {
+    gap: 0;
+  }
+
+  .header {
+    margin-bottom: 0;
+  }
+
+  /* Must not wrap. At 64px "Four services." is wider than the 360px column,
+     and letting it wrap pushed everything below it down by ~100px. The frame
+     sets it nowrap and lets it overrun the column into the gutter. */
+  .heading {
+    margin-top: 27px;
+    font-size: 64px;
+    letter-spacing: -0.05em;
+    white-space: nowrap;
+  }
+
+  /* The frame gives this a 58px box starting at y=185, with the text centred
+     inside it — so the text lands at ~201, not at 185. Reproducing the box
+     rather than the text position is what gets the gap under "One Focus."
+     right, and it sets the list's start position correctly too. */
+  .tagline {
+    display: flex;
+    align-items: center;
+    width: 326px;
+    min-height: 58px;
+    margin-top: -11px;
+    font-size: 20px;
+    letter-spacing: -0.02em;
+    color: var(--color-carbon);
+  }
+
+  /* 308px, not the full column width. The column is 360px so the description
+     opposite has room, but the list and its rules stay at the frame's width. */
+  .list {
+    width: 308px;
+    margin-top: 107px;
+    border-top: 0;
+  }
+
+  .row {
+    border-bottom: 0.683px solid var(--color-carbon);
+  }
+
+  /* Closed rows sit back at 20% in the frame; the active one is full strength. */
+  .rowButton {
+    gap: 11px;
+    align-items: flex-start;
+    padding: 19px 16px;
+    opacity: 0.2;
+    transition: opacity 0.2s ease;
+  }
+
+  .rowOpen,
+  .rowButton:hover,
+  .rowButton:focus-visible {
+    opacity: 1;
+  }
+
+  .rowIndex {
+    padding-top: 6px;
+    font-size: 16px;
+    font-weight: 300;
+    letter-spacing: -0.01em;
+    color: var(--color-carbon);
+  }
+
+  .rowTitle {
+    font-size: 36px;
+    line-height: 1;
+    letter-spacing: -0.04em;
+    color: var(--color-carbon);
+  }
+
+  .chevron,
+  .panel {
+    display: none;
+  }
+
+  .feature {
+    margin-top: 59px;
+  }
+
+  /* Height is reserved rather than left to the content. Swapping services
+     changes the copy length, and without a floor the image and button below
+     shift on every selection. 360px keeps the current copy to two lines; the
+     78px floor holds three, so longer copy later still won't move anything. */
+  .featureText {
+    display: block;
+    width: 360px;
+    min-height: 78px;
+    margin: 21px 0 0;
+    font-size: 20px;
+    line-height: 1.3;
+    letter-spacing: -0.02em;
+    color: #1e1e1e;
+  }
+
+  /* 407px so the image's lower edge lands level with the bottom of the fourth
+     accordion row: list starts at 350 and runs 300px to 650; the image starts
+     at 243, so 407 finishes at the same line. */
+  .figure {
+    height: 407px;
+    margin-top: 85px;
+    background: none;
+  }
+
+  .cta {
+    margin-top: 52px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rowButton,
+  .chevron {
+    transition: none;
+  }
+}

@@ -1,0 +1,84 @@
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-accent);
+  color: #000;
+  font-family: var(--font-primary);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: normal;
+  text-transform: uppercase;
+  white-space: nowrap;
+  transition: filter 0.2s ease;
+}
+
+.button:hover {
+  filter: brightness(0.94);
+}
+
+.button:focus-visible {
+  outline: 2px solid var(--color-carbon);
+  outline-offset: 2px;
+}
+
+/* Default variant — roomy, and the only one that carries the icon. */
+.secondary {
+  gap: 12px;
+  padding: 20px 40px;
+}
+
+.small {
+  padding: 12px 28px;
+}
+
+/* Outlined. Sits beside the filled button over photography, so it carries no
+   background of its own and inherits platinum for text, border and icon. */
+.outline {
+  gap: 12px;
+  padding: 20px 40px;
+  border: 1px solid var(--color-outline);
+  background: transparent;
+  color: var(--color-platinum);
+}
+
+.outline:hover {
+  filter: none;
+  background: rgb(255 255 255 / 12%);
+}
+
+.outline:focus-visible {
+  outline-color: var(--color-platinum);
+}
+
+/* Same shape, carbon ink — for outlined buttons on light sections. */
+.outlineDark {
+  gap: 12px;
+  padding: 20px 40px;
+  border: 1px solid var(--color-carbon);
+  background: transparent;
+  color: var(--color-carbon);
+}
+
+.outlineDark:hover {
+  filter: none;
+  background: rgb(25 25 25 / 6%);
+}
+
+/* Outlined diamond: a square rotated 45deg. Drawn in CSS, not an asset. */
+.icon {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 17px;
+  height: 17px;
+}
+
+.icon::before {
+  content: "";
+  width: 12px;
+  height: 12px;
+  border: 1px solid currentColor;
+  transform: rotate(-45deg);
+}

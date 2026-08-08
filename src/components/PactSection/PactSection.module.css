@@ -1,0 +1,206 @@
+.section {
+  background: var(--color-green);
+  color: var(--color-platinum);
+}
+
+.inner {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+  padding: 100px var(--gutter);
+}
+
+/* Mobile keeps the intro left-aligned; desktop centres it. */
+.intro {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.heading {
+  margin: 0;
+  font-size: 40px;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  text-transform: capitalize;
+  color: var(--color-platinum);
+}
+
+.lead {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.3;
+  letter-spacing: -0.02em;
+  color: var(--color-platinum);
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.item {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.main {
+  display: flex;
+  gap: 12px;
+  align-items: baseline;
+}
+
+.index {
+  flex-shrink: 0;
+  margin: 0;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1;
+  opacity: 0.5;
+}
+
+/* Desktop only — the mobile frame runs the number inline with the title. */
+.rule {
+  display: none;
+}
+
+.title {
+  margin: 0;
+  font-size: 48px;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  text-transform: capitalize;
+  color: var(--color-platinum);
+}
+
+/* Indented to start level with the title, not the index: 20px index width
+   plus the 12px gap. */
+.caption {
+  margin: 0;
+  padding-left: 32px;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.4;
+  text-transform: uppercase;
+  color: var(--color-platinum);
+}
+
+/* --- Tablet ----------------------------------------------------------- */
+
+@media (min-width: 768px) {
+  .inner {
+    gap: 80px;
+    padding: 120px 48px;
+  }
+
+  .title {
+    font-size: 72px;
+  }
+
+  .caption {
+    font-size: 14px;
+  }
+}
+
+/* --- Desktop ---------------------------------------------------------- */
+
+@media (min-width: 1024px) {
+  .inner {
+    gap: 120px;
+    align-items: center;
+    max-width: var(--page-max);
+    margin: 0 auto;
+    padding: 160px var(--gutter);
+  }
+
+  /* SectionHeader sets  so its rule hugs the label;
+     that also stopped it centring here, leaving the eyebrow off to the left. */
+  .intro {
+    gap: 32px;
+    align-items: center;
+    max-width: 682px;
+    text-align: center;
+  }
+
+  .intro > :first-child {
+    align-self: center;
+  }
+
+  .heading {
+    font-size: 64px;
+    letter-spacing: -0.05em;
+  }
+
+  .lead {
+    font-size: 36px;
+    font-weight: 500;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+  }
+
+  /* No max-width — the frame's 1105px centred the list and left its edges at
+     160px while every other section sat at the 40px gutter. */
+  .list {
+    gap: 80px;
+    width: 100%;
+  }
+
+  /* Caption in a narrow column hard right. It was 482px, which pulled it far
+     enough left that the oversized titles ran underneath it. */
+  .item {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 258px;
+    gap: 0 48px;
+    align-items: start;
+  }
+
+  /* Number top-left with a short rule beside it; the title sits on the row
+     below, its left edge aligned to that rule. */
+  .main {
+    display: grid;
+    grid-template-columns: max-content minmax(0, 1fr);
+    column-gap: 22px;
+    align-items: center;
+  }
+
+  .index {
+    grid-column: 1;
+    grid-row: 1;
+    font-size: 32px;
+    opacity: 1;
+  }
+
+  .rule {
+    display: block;
+    grid-column: 2;
+    grid-row: 1;
+    justify-self: start;
+    width: 1px;
+    height: 44px;
+    background: currentcolor;
+    opacity: 0.6;
+  }
+
+  /* 125px in the frame, held back so "Transparency" clears the caption
+     column instead of colliding with it. */
+  .title {
+    grid-column: 2;
+    grid-row: 2;
+    font-size: clamp(4rem, 7.1vw, 6.5rem);
+    letter-spacing: -0.04em;
+  }
+
+  .caption {
+    padding-top: 8px;
+    padding-left: 0;
+    font-size: 16px;
+  }
+}

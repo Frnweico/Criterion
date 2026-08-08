@@ -1,0 +1,182 @@
+.section {
+  background: var(--color-platinum);
+}
+
+.inner {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  padding: 66px var(--gutter) 100px;
+}
+
+.head {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.heading {
+  margin: 0;
+  font-size: 40px;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  text-transform: capitalize;
+  color: var(--color-carbon);
+}
+
+.standfirst {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.4;
+  letter-spacing: -0.01em;
+  color: var(--color-body);
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 40px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  color: inherit;
+  text-decoration: none;
+}
+
+.figure {
+  position: relative;
+  width: 100%;
+  height: 260px;
+  overflow: hidden;
+  background: var(--color-image-bg);
+}
+
+.image {
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.card:hover .image {
+  transform: scale(1.03);
+}
+
+.cardBody {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.cardTitle {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: var(--color-card-title);
+}
+
+.cardExcerpt {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.3;
+  letter-spacing: -0.02em;
+  color: var(--color-card-body);
+}
+
+.date {
+  margin-top: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.4;
+  text-transform: uppercase;
+  opacity: 0.4;
+  color: var(--color-card-body);
+}
+
+.more {
+  align-self: center;
+}
+
+.card:focus-visible {
+  outline: 2px solid var(--color-carbon);
+  outline-offset: 4px;
+}
+
+/* --- Tablet ----------------------------------------------------------- */
+
+@media (min-width: 768px) {
+  .inner {
+    padding: 66px 48px 120px;
+  }
+
+  .cards {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px;
+  }
+
+  .heading {
+    font-size: 52px;
+  }
+}
+
+/* --- Desktop ---------------------------------------------------------- */
+
+@media (min-width: 1024px) {
+  .inner {
+    gap: 48px;
+    max-width: 1436px; /* 1356 content + 40px padding either side */
+    margin: 0 auto;
+    padding: 66px 40px 100px;
+  }
+
+  /* Heading left, standfirst right — the frame sets the standfirst at x=973
+     with a 422px measure. */
+  .head {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 422px;
+    gap: 64px;
+    align-items: start;
+  }
+
+  .heading {
+    font-size: 64px;
+    letter-spacing: -0.05em;
+  }
+
+  .standfirst {
+    font-size: 20px;
+  }
+
+  .cards {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 42px;
+  }
+
+  .figure {
+    height: 444px;
+  }
+
+  .cardTitle {
+    font-size: 28px;
+    letter-spacing: -0.03em;
+  }
+
+  .date {
+    font-size: 16px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .image,
+  .card:hover .image {
+    transform: none;
+    transition: none;
+  }
+}

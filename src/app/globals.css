@@ -1,0 +1,299 @@
+/* ==========================================================================
+   Criterion Homes — global foundation
+   Design tokens taken from the Figma file "F & C Board".
+   Figma letter-spacing is a percentage; it is expressed here in `em`
+   (-5% becomes -0.05em) so tracking scales with the font size.
+   ========================================================================== */
+
+:root {
+  /* --- Colour -------------------------------------------------------- */
+  --color-carbon: #191919; /* New CH/Carbon, Criterion Black */
+  --color-platinum: #fcfbff; /* New CH/Platinum, Magnolia, grey/99 */
+  --color-criterion-white: #f4f4f4; /* Criterion White */
+  --color-deep-blue: #2a3d44; /* New CH/Deep Blue */
+  --color-green: #133332; /* New CH/Green */
+  --color-taupe-grey: #554744; /* New CH/Taupe Grey */
+
+  /* Not in Figma variables — sampled from the frames. */
+  --color-accent: #96cad9; /* primary button fill */
+  --color-ink: #001e1d; /* services accordion title */
+  --color-muted: #808b9d; /* services accordion index */
+  --color-rule: rgba(0, 0, 0, 0.2); /* section header hairline */
+  --color-rule-soft: rgba(113, 120, 120, 0.2); /* accordion divider */
+  --color-outline: #8697a9; /* outlined button border, desktop hero */
+  --color-progress-track: #88807a; /* hero carousel bar track */
+  --color-heading: #1c1b1b; /* section headings on light backgrounds */
+  --color-body: #414848; /* body copy on light backgrounds */
+  --color-divider: #c1c8c7; /* vertical rule between card facts */
+  --color-image-bg: #eae7e7; /* placeholder behind card imagery */
+  --color-card-title: #191c1c; /* blog card heading */
+  --color-card-body: #3f4948; /* blog card excerpt */
+  --color-pagination-active: #eee; /* current page pill */
+  --color-surface-subtle: #f1f1f1; /* menu "latest project" card */
+
+  --opacity-muted: 0.5; /* Figma opacity/50 */
+
+  /* --- Type family ---------------------------------------------------- */
+  /* Manrope is the only family on the site. The Figma file also carried
+     Poppins ("Body 1") and Space Grotesk ("H2 Numbers"); both were
+     unintended, so those styles keep their metrics but render in Manrope. */
+  --font-primary: var(--font-manrope), system-ui, sans-serif;
+
+  /* --- Layout --------------------------------------------------------- */
+  --page-max: 1440px; /* desktop design width */
+  --gutter: 20px;
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --gutter: 40px;
+  }
+}
+
+/* --- Reset ------------------------------------------------------------ */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  height: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  min-height: 100%;
+  overflow-x: hidden;
+  font-family: var(--font-primary);
+  color: var(--color-carbon);
+  background: var(--color-platinum);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+img,
+svg,
+video {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+
+input {
+  font: inherit;
+  color: inherit;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+/* Respect users who ask for less motion. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* --- Type scale ------------------------------------------------------- */
+/* Mobile-first. Desktop values apply from 1024px up.
+   Apply these alongside a CSS Module class, e.g.
+   <h1 className={`type-h1 ${styles.heroTitle}`}>                          */
+
+.type-title,
+.type-h1,
+.type-h2,
+.type-h3,
+.type-h4,
+.type-h5,
+.type-h6,
+.type-body,
+.type-body-lg,
+.type-section-header,
+.type-caption,
+.type-caption-header,
+.type-body-alt,
+.type-numeric {
+  font-family: var(--font-primary);
+}
+
+.type-title {
+  font-size: 54px;
+  font-weight: 400;
+  line-height: 0.9;
+  letter-spacing: -0.05em;
+}
+
+.type-h1 {
+  font-size: 48px;
+  font-weight: 500;
+  line-height: 0.9;
+  letter-spacing: -0.025em;
+}
+
+.type-h2 {
+  font-size: 40px;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+
+.type-h3 {
+  font-size: 28px;
+  font-weight: 400;
+  line-height: 1.1;
+  letter-spacing: -0.05em;
+}
+
+/* Mobile merges H4 and H5 into a single 20px style. */
+.type-h4,
+.type-h5 {
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: -0.04em;
+}
+
+/* Desktop blog card titles. Mobile uses the 20px H4/H5 size instead. */
+.type-h6 {
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+
+.type-body {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.3;
+  letter-spacing: -0.02em;
+}
+
+.type-body-lg {
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1.3;
+  letter-spacing: -0.02em;
+}
+
+.type-section-header {
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0;
+}
+
+.type-caption {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.4;
+  letter-spacing: -0.01em;
+}
+
+.type-caption-header {
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: 0;
+}
+
+/* "Body 1" — About page. Same at every breakpoint. */
+.type-body-alt {
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 1.5;
+  letter-spacing: 0;
+}
+
+/* "H2 Numbers" — About page. */
+.type-numeric {
+  font-size: 75px;
+  font-weight: 400;
+  line-height: 0.89;
+  letter-spacing: -0.04em;
+}
+
+@media (min-width: 1024px) {
+  .type-title {
+    font-size: 125px;
+  }
+
+  .type-h1 {
+    font-size: 88px;
+    letter-spacing: -0.05em;
+  }
+
+  .type-h2 {
+    font-size: 64px;
+    letter-spacing: -0.05em;
+  }
+
+  .type-h3 {
+    font-size: 48px;
+    line-height: 1;
+  }
+
+  .type-h4 {
+    font-size: 36px;
+    line-height: 1;
+  }
+
+  .type-h5 {
+    font-size: 28px;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+  }
+
+  .type-h6 {
+    font-size: 24px;
+  }
+
+  .type-body {
+    font-size: 20px;
+  }
+
+  /* Desktop captions step up in size and drop to Light. */
+  .type-caption {
+    font-size: 16px;
+    font-weight: 300;
+  }
+
+  .type-caption-header {
+    font-size: 16px;
+  }
+}
+
+/* --- Accessibility helper --------------------------------------------- */
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}

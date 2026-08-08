@@ -1,0 +1,30 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell($tmp = \"C:\\\\Users\\\\PC\\\\Documents\\\\Frnwei\\\\Web\\\\criterion-homes-tmp\"; $dest = \"C:\\\\Users\\\\PC\\\\Documents\\\\Frnwei\\\\Web\\\\Criterion-Homes\"; Get-ChildItem -Path $tmp -Force | ForEach-Object { Move-Item -Path $_.FullName -Destination $dest -Force }; if \\($?\\) { Remove-Item $tmp -Recurse -Force; Write-Output \"moved into Criterion-Homes, temp removed\" })",
+      "PowerShell($scratch = \"C:\\\\Users\\\\PC\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\C--Users-PC-Documents-Frnwei-Web-Criterion-Homes\\\\d5d3b5f6-8472-4744-a732-ef10ebad80d3\\\\scratchpad\"; Move-Item \"$scratch\\\\claude-backup\" \"C:\\\\Users\\\\PC\\\\Documents\\\\Frnwei\\\\Web\\\\Criterion-Homes\\\\.claude\" -Force; if \\($?\\) { Write-Output \"restored .claude\" }; Get-ChildItem -Force \"C:\\\\Users\\\\PC\\\\Documents\\\\Frnwei\\\\Web\\\\Criterion-Homes\" | Select-Object -ExpandProperty Name)",
+      "mcp__cc49e27b-da85-45ed-948f-8c700dca0169__get_design_context",
+      "mcp__cc49e27b-da85-45ed-948f-8c700dca0169__get_motion_context",
+      "Bash([ -f \"$M\" ])",
+      "mcp__cc49e27b-da85-45ed-948f-8c700dca0169__get_variable_defs",
+      "mcp__cc49e27b-da85-45ed-948f-8c700dca0169__get_screenshot",
+      "mcp__cc49e27b-da85-45ed-948f-8c700dca0169__whoami",
+      "mcp__cc49e27b-da85-45ed-948f-8c700dca0169__search_design_system",
+      "WebSearch",
+      "WebFetch(domain:www.embla-carousel.com)",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "WebFetch(domain:api.npmjs.org)",
+      "Bash(node -e ' *)",
+      "PowerShell($p = \"C:\\\\Users\\\\PC\\\\Documents\\\\Frnwei\\\\Web\\\\Criterion-Homes\\\\.next\\\\cache\\\\images\"; if \\(Test-Path $p\\) { $n = \\(Get-ChildItem $p -Recurse -File\\).Count; Remove-Item $p -Recurse -Force; Write-Output \"Deleted image cache \\($n cached files\\)\" } else { Write-Output \"No image cache directory found at $p\" })",
+      "PowerShell($c = \"C:\\\\Users\\\\PC\\\\Documents\\\\Frnwei\\\\Web\\\\Criterion-Homes\\\\.next\\\\cache\"; if \\(Test-Path $c\\) { Get-ChildItem $c | Select-Object Name, @{n='Files';e={\\(Get-ChildItem $_.FullName -Recurse -File -EA SilentlyContinue\\).Count}} | Format-Table -AutoSize } else { Write-Output \"no .next/cache\" })",
+      "PowerShell($conns = Get-NetTCPConnection -LocalPort 3000 -State Listen -EA SilentlyContinue; if \\($conns\\) { foreach \\($c in $conns\\) { $p = Get-Process -Id $c.OwningProcess -EA SilentlyContinue; \"PID {0}  {1}  started {2}\" -f $c.OwningProcess, $p.ProcessName, $p.StartTime } } else { \"nothing listening on 3000\" }; Write-Output \"--- all node processes ---\"; Get-CimInstance Win32_Process -Filter \"Name='node.exe'\" | Select-Object ProcessId, @{n='Cmd';e={$_.CommandLine.Substring\\(0,[Math]::Min\\(150,$_.CommandLine.Length\\)\\)}} | Format-List; Write-Output \"--- other listening dev ports ---\"; Get-NetTCPConnection -State Listen -EA SilentlyContinue | Where-Object { $_.LocalPort -in 3000,3001,3002,4000,5173,8080 } | Select-Object LocalPort, OwningProcess | Sort-Object LocalPort -Unique | Format-Table -AutoSize)",
+      "Bash(curl -sL -o services-feature-v2.png \"https://www.figma.com/api/mcp/asset/c5084067-1b84-4fd1-ac3d-07183982401c.png\")",
+      "Bash(node -e *)",
+      "Bash(align-self: flex-start *)",
+      "Bash(git init *)",
+      "Bash(git config *)",
+      "Bash(git branch *)"
+    ]
+  }
+}

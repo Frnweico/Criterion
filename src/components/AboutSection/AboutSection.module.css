@@ -1,0 +1,65 @@
+.section {
+  background: var(--color-deep-blue);
+  color: var(--color-platinum);
+}
+
+.inner {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+  padding: 100px var(--gutter);
+}
+
+.copy {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  max-width: 353px;
+}
+
+.lead,
+.emphasis {
+  font-size: 20px;
+  line-height: 1.2;
+  letter-spacing: -0.04em;
+}
+
+.lead {
+  font-weight: 500;
+}
+
+.emphasis {
+  font-weight: 700;
+}
+
+/* --- Desktop ---------------------------------------------------------- */
+
+/* Header left, copy right — the desktop frame places the copy column at
+   x=693 inside an 1155px container, i.e. hard against the right edge. */
+@media (min-width: 1024px) {
+  .inner {
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 64px;
+    max-width: var(--page-max);
+    margin: 0 auto;
+    padding: 160px var(--gutter);
+  }
+
+  .header {
+    flex-shrink: 0;
+    align-self: flex-start;
+  }
+
+  .copy {
+    gap: 64px;
+    width: 474px;
+    max-width: 474px;
+  }
+
+  .lead,
+  .emphasis {
+    font-size: 28px;
+    letter-spacing: -0.01em;
+  }
+}

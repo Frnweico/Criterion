@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(ls -la \"C:/Users/PC/Documents/Frnwei/Web/Criterion-Homes\" 2>/dev/null | head -40; echo \"---PARENT---\"; ls -la \"C:/Users/PC/Documents/Frnwei/Web\" | head -40)",
+      "mcp__cc49e27b-da85-45ed-948f-8c700dca0169__get_metadata",
+      "mcp__cc49e27b-da85-45ed-948f-8c700dca0169__get_screenshot",
+      "Bash(python -c \"import PIL; print\\('PIL', PIL.__version__\\)\")",
+      "Bash(magick -version)",
+      "Bash(convert -version)",
+      "Bash(ffmpeg -version)",
+      "Bash(grep -iE \"^\\(sharp|jimp|pngjs|canvas\\)$\")",
+      "mcp__cc49e27b-da85-45ed-948f-8c700dca0169__get_figma_skill",
+      "mcp__cc49e27b-da85-45ed-948f-8c700dca0169__get_variable_defs",
+      "mcp__cc49e27b-da85-45ed-948f-8c700dca0169__get_design_context",
+      "PowerShell($scratch = \"C:\\\\Users\\\\PC\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\C--Users-PC-Documents-Frnwei-Web-Criterion-Homes\\\\d5d3b5f6-8472-4744-a732-ef10ebad80d3\\\\scratchpad\"; Move-Item \"C:\\\\Users\\\\PC\\\\Documents\\\\Frnwei\\\\Web\\\\Criterion-Homes\\\\.claude\" \"$scratch\\\\claude-backup\" -Force; if \\($?\\) { Write-Output \"moved .claude aside\" })"
+    ]
+  }
+}

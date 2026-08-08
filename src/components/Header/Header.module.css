@@ -1,0 +1,113 @@
+.header {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px var(--gutter);
+}
+
+/* For pages with no hero image behind the bar. */
+.solid {
+  position: relative;
+  background: var(--color-carbon);
+}
+
+.logo {
+  display: block;
+  width: 27px;
+  height: auto;
+}
+
+/* --- Hamburger -------------------------------------------------------- */
+
+.toggle {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  z-index: 40;
+}
+
+.toggle:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
+
+.bar {
+  width: 22px;
+  height: 1.5px;
+  background: #fff;
+  transition: transform 0.3s ease, opacity 0.2s ease;
+}
+
+/* Bars fold into an X while the menu is open. */
+.open .bar:nth-child(1) {
+  transform: translateY(6.5px) rotate(45deg);
+}
+
+.open .bar:nth-child(2) {
+  opacity: 0;
+}
+
+.open .bar:nth-child(3) {
+  transform: translateY(-6.5px) rotate(-45deg);
+}
+
+/* --- Menu overlay ----------------------------------------------------- */
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 30;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 var(--gutter);
+  color: var(--color-platinum);
+  background: var(--color-carbon);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.overlayOpen {
+  opacity: 1;
+  visibility: visible;
+}
+
+.menuList {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.menuLink {
+  display: inline-block;
+  transition: opacity 0.2s ease;
+}
+
+.menuLink:hover {
+  opacity: 0.6;
+}
+
+.menuLink:focus-visible {
+  outline: 2px solid var(--color-platinum);
+  outline-offset: 4px;
+}
+
+@media (min-width: 1024px) {
+  .header {
+    padding: 24px var(--gutter);
+  }
+
+  .logo {
+    width: 34px;
+  }
+}

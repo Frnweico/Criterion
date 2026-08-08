@@ -1,0 +1,164 @@
+/* Full-bleed interior photograph behind the envelope. */
+.section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* Always exactly one viewport tall, at every size. */
+  height: 100vh;
+  height: 100svh;
+  padding: 40px var(--gutter);
+  background-color: var(--color-carbon);
+  background-image: url("/images/benchmarkers-bg.png");
+  background-position: center;
+  background-size: cover;
+}
+
+/* Holds the envelope and the button. On mobile the button follows in normal
+   flow beneath the artwork; at desktop it is placed onto the flap. */
+.frame {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 371px;
+}
+
+/* The envelope artwork. `container-type: inline-size` makes this the reference
+   for the cqw units below, so every piece of type scales with the artwork
+   rather than staying a fixed size while the envelope shrinks. */
+.stage {
+  container-type: inline-size;
+  position: relative;
+  width: 100%;
+  aspect-ratio: 371 / 576;
+  background-image: url("/images/envelope-portrait.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+/* Percentages, so the card tracks the paper as the artwork scales. */
+.card {
+  position: absolute;
+  top: 7.5%;
+  right: 6%;
+  left: 6%;
+  display: flex;
+  flex-direction: column;
+  gap: 5.4cqw;
+  align-items: center;
+  text-align: center;
+  color: #32161f;
+}
+
+.heading {
+  margin: 0;
+  font-size: 10.8cqw;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  text-transform: capitalize;
+  color: #32161f;
+}
+
+.lead {
+  margin: 0;
+  font-size: 3.8cqw;
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+  color: #1c1b1b;
+}
+
+.perks {
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+  margin: 2.5cqw 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.perk {
+  padding: 3.1cqw 3cqw;
+  border-bottom: 1px solid rgb(28 27 27 / 60%);
+  font-size: 3.2cqw;
+  font-weight: 300;
+  line-height: 1.4;
+  color: #1c1b1b;
+}
+
+/* Beneath the envelope on mobile, full width of the artwork. */
+/* Hugs its label, like every other button on the site. */
+.action {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+/* --- Tablet ----------------------------------------------------------- */
+
+/* The portrait artwork is only 371px wide, so it is not scaled beyond its
+   native size — enlarging it would show compression. The section keeps it
+   centred with the background filling the rest. */
+@media (min-width: 768px) {
+  .section {
+    padding: 48px var(--gutter);
+  }
+}
+
+/* --- Desktop ---------------------------------------------------------- */
+
+/* Landscape artwork takes over. Offsets are derived from the frame: the
+   envelope is 881x877 centred in a 1440x1244 section, so the heading block
+   starts 72.5px into the envelope (8.3%) and the button 759.5px down (86.6%). */
+@media (min-width: 1024px) {
+  .section {
+    padding: 48px var(--gutter);
+  }
+
+  /* Capped by width AND by the height left after padding, converted through
+     the artwork's ratio, so the envelope and its button always fit the
+     viewport. Because the type is in `cqw` against this box, everything
+     scales together and the composition holds exactly.
+     The 178px covers 48px padding top and bottom, the button (62px) and its
+     20px gap. */
+  .frame {
+    max-width: min(881px, calc((100svh - 178px) * 881 / 877));
+  }
+
+  .stage {
+    aspect-ratio: 881 / 877;
+    background-image: url("/images/envelope-landscape.png");
+  }
+
+  .card {
+    top: 8.3%;
+    right: 21.5%;
+    left: 21.5%;
+    gap: 2.4cqw;
+  }
+
+  .heading {
+    font-size: 7.26cqw;
+  }
+
+  .lead {
+    font-size: 2.27cqw;
+    line-height: 1.3;
+  }
+
+  .perks {
+    width: 62%;
+    margin-top: 0.5cqw;
+  }
+
+  .perk {
+    padding: 1.4cqw 1.4cqw;
+    font-size: 1.82cqw;
+  }
+
+  .action {
+    margin-top: 20px;
+  }
+}
