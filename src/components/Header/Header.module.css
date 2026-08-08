@@ -62,16 +62,17 @@
 
 /* --- Menu overlay ----------------------------------------------------- */
 
+/* Platinum, not carbon — the menu frames are a light overlay. */
 .overlay {
   position: fixed;
   inset: 0;
   z-index: 30;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  padding: 0 var(--gutter);
-  color: var(--color-platinum);
-  background: var(--color-carbon);
+  overflow-y: auto;
+  padding: 104px var(--gutter) 64px;
+  color: var(--color-carbon);
+  background: var(--color-platinum);
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.3s ease, visibility 0.3s ease;
@@ -82,24 +83,64 @@
   visibility: visible;
 }
 
-.menuList {
+/* Logo and close control, pinned over the overlay's own top edge. */
+.overlayBar {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
   display: flex;
-  flex-direction: column;
-  gap: 24px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px var(--gutter);
+  border-bottom: 1px solid rgb(0 0 0 / 10%);
+  background: var(--color-platinum);
 }
 
-.menuLink {
-  display: inline-block;
-  transition: opacity 0.2s ease;
+.close {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  border: 0;
+  appearance: none;
+  background: none;
+  cursor: pointer;
 }
 
-.menuLink:hover {
-  opacity: 0.6;
+.close:focus-visible {
+  outline: 2px solid var(--color-carbon);
+  outline-offset: 2px;
 }
 
-.menuLink:focus-visible {
-  outline: 2px solid var(--color-platinum);
-  outline-offset: 4px;
+/* The X, drawn from two rotated rules on one element. */
+.closeIcon {
+  position: relative;
+  width: 22px;
+  height: 1.5px;
+  background: var(--color-carbon);
+  transform: rotate(45deg);
+}
+
+.closeIcon::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--color-carbon);
+  transform: rotate(-90deg);
+}
+
+/* Taupe band across the foot of the overlay. */
+.overlayFoot {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 18px;
+  background: var(--color-taupe-grey);
 }
 
 @media (min-width: 1024px) {
@@ -109,5 +150,31 @@
 
   .logo {
     width: 34px;
+  }
+
+  .overlay {
+    padding: 50px var(--gutter);
+  }
+
+  /* At desktop the frame shows only the close control, top right. */
+  .overlayBar {
+    padding: 16px var(--gutter);
+    border-bottom: 0;
+    background: none;
+    justify-content: flex-end;
+  }
+
+  .overlayBar a {
+    display: none;
+  }
+
+  .close {
+    width: 62px;
+    height: 62px;
+  }
+
+  .closeIcon {
+    width: 40px;
+    height: 2.7px;
   }
 }

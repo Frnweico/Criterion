@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { NAV } from "@/lib/site";
+import Menu from "@/components/Menu/Menu";
 import styles from "./Header.module.css";
 
 type Props = {
@@ -69,21 +69,38 @@ export default function Header({ solid }: Props) {
         className={`${styles.overlay} ${open ? styles.overlayOpen : ""}`}
         hidden={!open}
       >
-        <nav aria-label="Main">
-          <ul className={styles.menuList}>
-            {NAV.map((item) => (
-              <li key={item.href}>
-                <Link
-                  href={item.href}
-                  className={`type-h2 ${styles.menuLink}`}
-                  onClick={() => setOpen(false)}
-                >
-                  {item.label}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </nav>
+        {/* Repeats the logo and close control inside the overlay, since the
+            header bar sits behind it. */}
+        <div className={styles.overlayBar}>
+          <Link
+            href="/"
+            aria-label="Criterion Homes — home"
+            onClick={() => setOpen(false)}
+          >
+            <Image
+              src="/icons/logo-mark.svg"
+              alt=""
+              width={272}
+              height={274}
+              className={styles.logo}
+              unoptimized
+            />
+          </Link>
+
+          <button
+            type="button"
+            className={styles.close}
+            onClick={() => setOpen(false)}
+          >
+            <span className="visually-hidden">Close menu</span>
+            <span className={styles.closeIcon} aria-hidden />
+          </button>
+        </div>
+
+        <Menu onNavigate={() => setOpen(false)} />
+
+        {/* Taupe band across the foot of the overlay, per the frame. */}
+        <span className={styles.overlayFoot} aria-hidden />
       </div>
     </>
   );
