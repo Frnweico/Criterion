@@ -41,8 +41,8 @@
     flex-direction: row;
     justify-content: space-between;
     gap: 64px;
-    max-width: var(--page-max);
-    margin: 0 auto;
+    max-width: 1155px;
+    margin: 0;
     padding: 160px var(--gutter);
   }
 

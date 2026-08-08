@@ -71,8 +71,6 @@
 @media (min-width: 1024px) {
   .inner {
     gap: 64px;
-    max-width: var(--page-max);
-    margin: 0 auto;
     padding: 84px var(--gutter) 100px;
   }
 
@@ -80,6 +78,7 @@
      with the description column starting around the two-thirds mark. */
   .intro {
     display: grid;
+    max-width: 1155px;
     grid-template-columns: minmax(0, 503px) minmax(0, 462px);
     gap: 64px;
     justify-content: space-between;
