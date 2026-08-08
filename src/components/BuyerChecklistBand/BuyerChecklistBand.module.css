@@ -1,0 +1,125 @@
+.section {
+  scroll-margin-top: 80px;
+  background: var(--color-carbon);
+  color: var(--color-platinum);
+}
+
+.inner {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+  max-width: var(--page-max);
+  margin: 0 auto;
+  padding: 64px var(--gutter);
+}
+
+.intro {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  align-items: flex-start;
+}
+
+.heading {
+  margin: 0;
+  font-size: 32px;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  text-transform: capitalize;
+  color: var(--color-platinum);
+}
+
+.panel {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.lead {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.3;
+  letter-spacing: -0.02em;
+  color: var(--color-platinum);
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+.field {
+  display: block;
+}
+
+.input {
+  width: 100%;
+  padding: 20px 16px;
+  border: 0;
+  border-bottom: 1px solid #ccc;
+  appearance: none;
+  background: none;
+  font-family: inherit;
+  font-size: 20px;
+  line-height: 1.3;
+  letter-spacing: -0.02em;
+  color: var(--color-platinum);
+}
+
+.input::placeholder {
+  opacity: 0.5;
+  color: var(--color-platinum);
+}
+
+.input:focus-visible {
+  outline: 2px solid var(--color-platinum);
+  outline-offset: 2px;
+}
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.fineprint {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 1.4;
+  letter-spacing: -0.01em;
+  color: var(--color-platinum);
+}
+
+/* --- Desktop ---------------------------------------------------------- */
+
+@media (min-width: 1024px) {
+  .inner {
+    display: grid;
+    grid-template-columns: minmax(0, 447px) minmax(0, 435px);
+    justify-content: center;
+    align-items: start;
+    gap: 251px;
+    padding: 100px var(--gutter);
+  }
+
+  .heading {
+    font-size: 64px;
+    letter-spacing: -0.05em;
+  }
+
+  .panel {
+    gap: 64px;
+  }
+
+  .lead {
+    font-size: 20px;
+  }
+
+  .fineprint {
+    font-size: 16px;
+  }
+}

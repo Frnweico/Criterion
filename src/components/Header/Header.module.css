@@ -16,6 +16,21 @@
   background: var(--color-carbon);
 }
 
+/* Interior pages: platinum bar, black marks, ruled underneath. */
+.light {
+  position: relative;
+  border-bottom: 1px solid var(--color-rule);
+  background: var(--color-platinum);
+}
+
+.light .logo {
+  filter: invert(1);
+}
+
+.light .bar {
+  background: var(--color-carbon);
+}
+
 .logo {
   display: block;
   width: 27px;

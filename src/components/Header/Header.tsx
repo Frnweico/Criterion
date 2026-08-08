@@ -9,9 +9,14 @@ import styles from "./Header.module.css";
 type Props = {
   /** Use on pages with no hero image behind the bar. */
   solid?: boolean;
+  /**
+   * "light" gives the platinum bar with black logo and hamburger used on the
+   * interior pages; the default overlays a hero image with white marks.
+   */
+  tone?: "dark" | "light";
 };
 
-export default function Header({ solid }: Props) {
+export default function Header({ solid, tone = "dark" }: Props) {
   const [open, setOpen] = useState(false);
 
   // Close on Escape, and stop the page scrolling behind the overlay.
@@ -34,7 +39,11 @@ export default function Header({ solid }: Props) {
 
   return (
     <>
-      <header className={`${styles.header} ${solid ? styles.solid : ""}`}>
+      <header
+        className={`${styles.header} ${solid ? styles.solid : ""} ${
+          tone === "light" ? styles.light : ""
+        }`}
+      >
         <Link href="/" aria-label="Criterion Homes — home">
           <Image
             src="/icons/logo-mark.svg"

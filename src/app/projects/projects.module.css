@@ -1,0 +1,210 @@
+.intro {
+  background: var(--color-platinum);
+}
+
+.introInner {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  max-width: var(--page-max);
+  margin: 0 auto;
+  padding: 40px var(--gutter) 0;
+}
+
+.title {
+  margin: 0;
+  font-size: 48px;
+  font-weight: 500;
+  line-height: 0.9;
+  letter-spacing: -0.05em;
+  text-transform: capitalize;
+  color: var(--color-carbon);
+}
+
+.lead {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.3;
+  letter-spacing: -0.02em;
+  color: var(--color-carbon);
+}
+
+/* --- Project rows ------------------------------------------------------ */
+
+.list {
+  background: var(--color-platinum);
+}
+
+.listInner {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  max-width: var(--page-max);
+  margin: 0 auto;
+  padding: 50px var(--gutter) 100px;
+}
+
+.row {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.figure {
+  position: relative;
+  display: block;
+  width: 100%;
+  aspect-ratio: 670 / 514;
+  overflow: hidden;
+  background: var(--color-image-bg);
+}
+
+.image {
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.figure:hover .image {
+  transform: scale(1.03);
+}
+
+.details {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  color: var(--color-carbon);
+}
+
+.copy {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.location {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.4;
+  text-transform: uppercase;
+  opacity: 0.4;
+}
+
+.name {
+  margin: 0;
+  font-size: 28px;
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -0.04em;
+}
+
+.nameLink {
+  color: inherit;
+  text-decoration: none;
+}
+
+.nameLink:hover {
+  text-decoration: underline;
+}
+
+.description {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 1.4;
+  letter-spacing: -0.01em;
+  opacity: 0.5;
+}
+
+.facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+  margin: 0;
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 1.4;
+  letter-spacing: -0.01em;
+}
+
+.fact {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.divider {
+  opacity: 0.45;
+}
+
+/* --- Light footer ------------------------------------------------------ */
+
+/* This page's frame uses a white footer with black text. Re-toned here rather
+   than editing Footer's own stylesheet. */
+.footerLight > footer {
+  border-top-color: var(--color-rule);
+  background: #fff;
+  color: var(--color-carbon);
+}
+
+.footerLight > footer * {
+  color: var(--color-carbon);
+}
+
+.footerLight > footer input {
+  border-bottom-color: var(--color-carbon);
+}
+
+.footerLight > footer img {
+  filter: invert(1);
+}
+
+/* --- Desktop ---------------------------------------------------------- */
+
+@media (min-width: 1024px) {
+  .introInner {
+    gap: 24px;
+    padding: 50px var(--gutter) 0;
+  }
+
+  .title {
+    font-size: 80px;
+  }
+
+  .lead {
+    font-size: 20px;
+  }
+
+  .listInner {
+    gap: 40px;
+  }
+
+  /* Image left, details right — the frame pins the image at 670px and lets
+     the details column take the rest. */
+  .row {
+    display: grid;
+    grid-template-columns: 670px minmax(0, 1fr);
+    gap: 24px;
+    align-items: stretch;
+  }
+
+  .figure {
+    aspect-ratio: auto;
+    height: 514px;
+  }
+
+  .details {
+    justify-content: space-between;
+    gap: 48px;
+  }
+
+  .location,
+  .description,
+  .facts {
+    font-size: 16px;
+  }
+
+  .name {
+    font-size: 36px;
+  }
+}
