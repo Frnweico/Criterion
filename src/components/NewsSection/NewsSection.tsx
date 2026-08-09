@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Button from "@/components/Button/Button";
 import SectionHeader from "@/components/SectionHeader/SectionHeader";
-import { NEWS } from "@/lib/news";
+import { FEATURED_NEWS } from "@/lib/news";
 import styles from "./NewsSection.module.css";
 
 /**
@@ -31,7 +31,7 @@ export default function NewsSection() {
         </div>
 
         <ul className={styles.cards}>
-          {NEWS.map((item) => {
+          {FEATURED_NEWS.map((item) => {
             /* The blue panel carries only the title and excerpt; the source
                row sits beneath it on the page background, per the frames. */
             const body = (
@@ -43,13 +43,16 @@ export default function NewsSection() {
 
                 <div className={styles.cardFoot}>
                   <span className={styles.source}>
-                    <Image
-                      src={item.logo}
-                      alt=""
-                      width={28}
-                      height={28}
-                      className={styles.logo}
-                    />
+                    {/* Some items carry no publisher mark. */}
+                    {item.logo && (
+                      <Image
+                        src={item.logo}
+                        alt=""
+                        width={28}
+                        height={28}
+                        className={styles.logo}
+                      />
+                    )}
                     {item.source}
                   </span>
                   {/* Drawn as an SVG rather than rotated pseudo-elements —
