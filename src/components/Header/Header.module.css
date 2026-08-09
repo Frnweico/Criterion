@@ -8,22 +8,47 @@
   align-items: center;
   justify-content: space-between;
   padding: 14px var(--gutter);
+  /* Scrim from the nav artwork: black at 40% down to 25% of the bar's height,
+     easing to 4% at its foot. Keeps the marks legible over hero photography.
+     (The source gradient runs bottom-to-top at 0.1→1.0 with the rect at 40%
+     opacity, which inverts to this.) */
+  background-image: linear-gradient(
+    to bottom,
+    rgb(0 0 0 / 40%) 0%,
+    rgb(0 0 0 / 40%) 25%,
+    rgb(0 0 0 / 4%) 100%
+  );
+}
+
+.brand {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+/* Wordmark is desktop only — the mobile frames show the mark on its own. */
+.wordmark {
+  display: none;
 }
 
 /* For pages with no hero image behind the bar. */
 .solid {
   position: relative;
-  background: var(--color-carbon);
+  background-color: var(--color-carbon);
+  background-image: none;
 }
 
 /* Interior pages: platinum bar, black marks, ruled underneath. */
 .light {
   position: relative;
   border-bottom: 1px solid var(--color-rule);
-  background: var(--color-platinum);
+  background-color: var(--color-platinum);
+  background-image: none;
 }
 
-.light .logo {
+/* The artwork is white, so the light bar inverts it to black. */
+.light .logo,
+.light .wordmark {
   filter: invert(1);
 }
 
@@ -93,6 +118,15 @@
   transition: opacity 0.3s ease, visibility 0.3s ease;
 }
 
+/* `.overlay` sets `display: flex`, which outranks the browser's
+   `[hidden] { display: none }` — so the closed overlay kept its layout box and,
+   being `position: fixed; inset: 0`, sat wider than the document once a
+   scrollbar appeared. That produced a horizontal scroll on every page at
+   mobile. Restoring the attribute's meaning explicitly. */
+.overlay[hidden] {
+  display: none;
+}
+
 .overlayOpen {
   opacity: 1;
   visibility: visible;
@@ -159,12 +193,23 @@
 }
 
 @media (min-width: 1024px) {
+  /* 32px padding around a 50px lockup — the bar the nav artwork describes. */
   .header {
-    padding: 24px var(--gutter);
+    padding: 32px var(--gutter);
+  }
+
+  .brand {
+    gap: 12px;
   }
 
   .logo {
-    width: 34px;
+    width: 50px;
+  }
+
+  .wordmark {
+    display: block;
+    width: 115px;
+    height: auto;
   }
 
   .overlay {

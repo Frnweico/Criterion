@@ -17,6 +17,20 @@
   filter: brightness(0.94);
 }
 
+/* On narrow screens a long label plus 40px of padding either side can exceed
+   the viewport — "Download the buyer checklist" measured 374px against a 375px
+   screen. Wrapping and tighter padding let it fit instead of forcing a
+   horizontal scroll on the whole page. */
+@media (max-width: 480px) {
+  .button {
+    max-width: 100%;
+    padding-right: 24px;
+    padding-left: 24px;
+    text-align: center;
+    white-space: normal;
+  }
+}
+
 .button:focus-visible {
   outline: 2px solid var(--color-carbon);
   outline-offset: 2px;

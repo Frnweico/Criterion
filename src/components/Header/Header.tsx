@@ -44,16 +44,28 @@ export default function Header({ solid, tone = "dark" }: Props) {
           tone === "light" ? styles.light : ""
         }`}
       >
-        <Link href="/" aria-label="Criterion Homes — home">
+        {/* Mobile shows the mark alone; desktop adds the wordmark beside it,
+            as the nav artwork does. */}
+        <Link
+          href="/"
+          className={styles.brand}
+          aria-label="Criterion Homes — home"
+        >
           <Image
-            src="/icons/logo-mark.svg"
+            src="/icons/logo-wordmark-mark.svg"
             alt=""
-            /* Matches the SVG's own 27.1941 × 27.4246 viewBox ratio. Declaring
-               27 × 28 was ~3% off and tripped Next's aspect-ratio warning;
-               CSS still sizes it down to 27px. */
-            width={272}
-            height={274}
+            width={498}
+            height={502}
             className={styles.logo}
+            priority
+            unoptimized
+          />
+          <Image
+            src="/icons/logo-wordmark-text.svg"
+            alt=""
+            width={1144}
+            height={449}
+            className={styles.wordmark}
             priority
             unoptimized
           />
