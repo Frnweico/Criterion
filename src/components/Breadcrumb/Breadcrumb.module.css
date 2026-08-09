@@ -7,8 +7,6 @@
   flex-wrap: wrap;
   gap: 6px;
   align-items: center;
-  max-width: var(--page-max);
-  margin: 0 auto;
   padding: 4px var(--gutter);
   list-style: none;
 }

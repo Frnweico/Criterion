@@ -160,17 +160,24 @@
 /* Two columns: project and socials on the left, navigation on the right.
    The DOM keeps the mobile order, so `order` swaps them here. */
 @media (min-width: 1024px) {
+  /* Left-aligned with a fixed 300px gap, not space-between. The frame puts the
+     project column at x=40 and the nav at x=873, ending around 1262 — so the
+     nav must not stretch to the right edge as space-between made it do. */
   .content {
     flex-direction: row;
-    gap: 64px;
-    justify-content: space-between;
-    max-width: var(--page-max);
+    gap: 300px;
+    justify-content: flex-start;
+    max-width: none;
+    margin: 0;
   }
 
+  /* Fixed to the artwork's width so the 300px gap lands the nav at x=873. */
   .aside {
     order: 1;
+    flex: 0 0 533px;
     justify-content: space-between;
     gap: 48px;
+    width: 533px;
     min-height: 764px;
   }
 
