@@ -1,0 +1,151 @@
+.wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.item {
+  border-bottom: 1px solid var(--color-rule-soft);
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 20px 0;
+  border: 0;
+  appearance: none;
+  background: none;
+  cursor: pointer;
+  text-align: left;
+}
+
+.row:focus-visible {
+  outline: 2px solid var(--color-carbon);
+  outline-offset: -2px;
+}
+
+.title {
+  font-size: 22px;
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: var(--color-heading);
+}
+
+/* Mobile shows every reason expanded — there is no hover to reveal them. */
+.detail {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding-bottom: 24px;
+}
+
+.body {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 300;
+  line-height: 1.4;
+  letter-spacing: -0.01em;
+  color: var(--color-body);
+}
+
+.figureInline {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  background: var(--color-image-bg);
+}
+
+.image {
+  object-fit: cover;
+}
+
+/* The swapping panel is desktop only. */
+.panel {
+  display: none;
+}
+
+/* --- Desktop ----------------------------------------------------------- */
+
+@media (min-width: 1024px) {
+  /* List left, the revealed panel pinned on the right. */
+  .wrap {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 306px;
+    gap: 80px;
+    align-items: start;
+  }
+
+  .row {
+    padding: 28px 0;
+    transition: opacity 0.25s ease;
+    opacity: 0.35;
+  }
+
+  .rowOn,
+  .row:hover {
+    opacity: 1;
+  }
+
+  .title {
+    font-size: 36px;
+    letter-spacing: -0.03em;
+  }
+
+  /* Hidden here — the panel carries the copy and image instead. */
+  .detail {
+    display: none;
+  }
+
+  .panel {
+    display: flex;
+    flex-direction: column;
+    gap: 17px;
+    width: 306px;
+  }
+
+  .panelBody {
+    margin: 0;
+    padding: 12px 0;
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 1.4;
+    letter-spacing: -0.01em;
+    color: var(--color-carbon);
+  }
+
+  /* Images stacked and cross-faded so there's no flash between reasons. */
+  .panelFigure {
+    position: relative;
+    width: 306px;
+    height: 306px;
+    overflow: hidden;
+    background: var(--color-image-bg);
+  }
+
+  .panelFigure .image {
+    opacity: 0;
+    transition: opacity 0.35s ease;
+  }
+
+  .panelFigure .imageOn {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .row,
+  .panelFigure .image {
+    transition: none;
+  }
+}
