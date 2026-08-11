@@ -32,7 +32,8 @@
       "PowerShell(npm run build 2>&1)",
       "mcp__cc49e27b-da85-45ed-948f-8c700dca0169__get_metadata",
       "Bash(python -c ' *)",
-      "PowerShell(Set-Location \"C:\\\\Users\\\\PC\\\\Documents\\\\Frnwei\\\\Web\\\\Criterion-Homes\"; git status --short; \"---- branch ----\"; git rev-parse --abbrev-ref HEAD; \"---- counts ----\"; \"modified: \" + \\(git diff --name-only | Measure-Object -Line\\).Lines; \"untracked: \" + \\(git ls-files --others --exclude-standard | Measure-Object -Line\\).Lines)"
+      "PowerShell(Set-Location \"C:\\\\Users\\\\PC\\\\Documents\\\\Frnwei\\\\Web\\\\Criterion-Homes\"; git status --short; \"---- branch ----\"; git rev-parse --abbrev-ref HEAD; \"---- counts ----\"; \"modified: \" + \\(git diff --name-only | Measure-Object -Line\\).Lines; \"untracked: \" + \\(git ls-files --others --exclude-standard | Measure-Object -Line\\).Lines)",
+      "Bash(git commit *)"
     ]
   }
 }

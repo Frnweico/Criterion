@@ -16,10 +16,20 @@ import { getProject } from "@/lib/projects";
 import {
   ADDRESS_BODY,
   ADDRESS_HEADING,
+  ESSENTIALS,
+  FLOORS,
+  GALLERY,
+  GALLERY_NOTE,
+  LOCATION_POINTS,
+  LOCATION_QUOTE,
   MAP_CATEGORIES,
   MIDTOWN_TAGLINE,
+  PAYMENT,
+  PAYMENT_INTRO,
   PHILOSOPHY,
   PHILOSOPHY_INTRO,
+  PROXIMITY,
+  REASONS,
   SPECIFICATION,
   VIEWING_INTRO,
 } from "@/lib/midtown";
@@ -73,10 +83,10 @@ export default function MidtownTerracesPage() {
 
             <div className={styles.heroFigure}>
               <Image
-                src="/images/midtown-hero.png"
+                src="/images/midtown-hero.webp"
                 alt={project.imageAlt}
-                width={1893}
-                height={1551}
+                width={2880}
+                height={1750}
                 sizes="100vw"
                 priority
                 className={styles.heroImage}
@@ -144,10 +154,10 @@ export default function MidtownTerracesPage() {
           <div className={styles.addressFigureWrap}>
             <div className={styles.addressFigure}>
               <Image
-                src="/images/midtown-address.png"
+                src="/images/midtown-address.webp"
                 alt="The Midtown Terraces frontage"
-                width={1893}
-                height={1551}
+                width={2880}
+                height={1750}
                 sizes="100vw"
                 className={styles.addressImage}
               />
@@ -164,7 +174,7 @@ export default function MidtownTerracesPage() {
           pinOnMobile
         />
 
-        <Gallery />
+        <Gallery photos={GALLERY} note={GALLERY_NOTE} />
 
         {/* --- Location ------------------------------------------------
             Its own component: the slides carry a section label rather than a
@@ -172,7 +182,12 @@ export default function MidtownTerracesPage() {
             content — the drive times and the essentials list. Those used to
             be repeated as standalone sections below; they are slides 2 and 5
             of this story, so the duplicates are gone. */}
-        <LocationStory />
+        <LocationStory
+          points={LOCATION_POINTS}
+          quote={LOCATION_QUOTE}
+          proximity={PROXIMITY}
+          essentials={ESSENTIALS}
+        />
 
         {/* --- Explore essentials --------------------------------------
             Its own section in the frame (9342:5254). Still to be rebuilt to
@@ -202,7 +217,7 @@ export default function MidtownTerracesPage() {
             <h2 id="reasons-heading" className={styles.sectionHeading}>
               Why buy into {project.name}?
             </h2>
-            <ReasonsList />
+            <ReasonsList reasons={REASONS} />
           </div>
         </section>
 
@@ -210,14 +225,19 @@ export default function MidtownTerracesPage() {
             FloorPlan owns the whole section: the frame puts the heading in
             the same left column as the tabs (9418:5002). */}
         <section className={styles.floors} aria-labelledby="floors-heading">
-          <FloorPlan />
+          <FloorPlan floors={FLOORS} projectName={project.name} />
         </section>
 
         {/* --- Payment plan --------------------------------------------
             Its own component: the frame pairs the copy with a ruled price
             box and indents the milestone table (9342:5218). */}
         <section className={styles.payment} aria-labelledby="payment-heading">
-          <PaymentPlan />
+          <PaymentPlan
+            payment={PAYMENT}
+            intro={PAYMENT_INTRO}
+            projectName={project.name}
+            completion={project.completion}
+          />
         </section>
 
         {/* --- Request a viewing ---------------------------------------

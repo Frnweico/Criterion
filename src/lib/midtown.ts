@@ -1,9 +1,16 @@
 /**
  * Content for the Midtown Terraces project page.
- *
- * Only this project has a design so far; The Urban Nest falls back to the
- * summary in `projects.ts` until its frames arrive.
  */
+
+import type { Floor } from "@/components/FloorPlan/FloorPlan";
+import type { GalleryShot } from "@/components/Gallery/Gallery";
+import type {
+  LocationQuote,
+  ProximityEntry,
+} from "@/components/LocationStory/LocationStory";
+import type { Payment } from "@/components/PaymentPlan/PaymentPlan";
+import type { Reason } from "@/components/ReasonsList/ReasonsList";
+import type { ScrollPoint } from "@/components/ScrollStory/ScrollStory";
 
 export const MIDTOWN_TAGLINE =
   "Four highly individualized terraces anchored by a central atrium, prioritizing natural aeration and deliberate, light-filled living spaces.";
@@ -32,33 +39,20 @@ export const ADDRESS_BODY =
 export const PHILOSOPHY_INTRO =
   "At The Midtown Terraces, we’ve gone beyond structure and we’ve made the homeowner’s experience the center of our decision making.";
 
-export type ScrollPoint = {
-  id: string;
-  title: string;
-  body: string;
-  /**
-   * Optional. Two of the location points carry no photograph: "Proximity to
-   * Key Areas" is a set of drive times, and "Nearby Essentials" belongs to the
-   * map further down the page. Those steps render copy only.
-   */
-  image?: string;
-  imageAlt?: string;
-};
-
 /** Five points, revealed one at a time as the section is scrolled. */
 export const PHILOSOPHY: ScrollPoint[] = [
   {
     id: "enduring-architecture",
     title: "Enduring Architecture",
     body: "Clean lines, balanced proportions, and a restrained design give the home a quiet presence that stays relevant as trends change.",
-    image: "/images/midtown-philosophy-1.png",
+    image: "/images/midtown-philosophy-1.webp",
     imageAlt: "Line elevation drawing of the four Midtown Terraces",
   },
   {
     id: "structural-assurance",
     title: "Structural Assurance",
     body: "Construction supervised by seasoned experts with attention to strength, finish, and long-term performance.",
-    image: "/images/midtown-philosophy-2.png",
+    image: "/images/midtown-philosophy-2.webp",
     imageAlt:
       "A Criterion Homes engineer reviewing drawings on site at The Midtown Terraces",
   },
@@ -66,21 +60,21 @@ export const PHILOSOPHY: ScrollPoint[] = [
     id: "functional-layouts",
     title: "Functional Layouts",
     body: "Open-plan living areas, ensuite bedrooms, storage, kitchen, and utility spaces are planned to make everyday movement easier.",
-    image: "/images/midtown-philosophy-3.png",
+    image: "/images/midtown-philosophy-3.webp",
     imageAlt: "Open-plan living area",
   },
   {
     id: "bathed-in-light-and-air",
     title: "Bathed in Light and Air",
     body: "Expansive windows and a thoughtfully placed atrium fill the home with natural light and fresh air, creating a brighter, more uplifting and welcoming atmosphere.",
-    image: "/images/midtown-philosophy-4.png",
+    image: "/images/midtown-philosophy-4.webp",
     imageAlt: "Lit recessed balconies on the terrace facade at dusk",
   },
   {
     id: "private-green-patches",
     title: "Private Green Patches",
     body: "Landscaped outdoor patches give each home breathing room, privacy, and a relaxing everyday experience.",
-    image: "/images/midtown-philosophy-5.png",
+    image: "/images/midtown-philosophy-5.webp",
     imageAlt: "Landscaped hedging along the terrace frontage",
   },
 ];
@@ -88,37 +82,43 @@ export const PHILOSOPHY: ScrollPoint[] = [
 export const GALLERY_NOTE =
   "Interior visualizations are illustrative only and not representations of the final delivered design.";
 
-export type GalleryShot = { src: string; alt: string };
-
 /**
  * Display order, not file order. The lead is the side elevation; the other
- * two exteriors follow, then the interiors — which is the order the frame
- * shows down the thumbnail column.
+ * two exteriors follow, then the interiors.
+ *
+ * Filenames are descriptive rather than numbered: the supplied WEBP set was
+ * numbered on a different order from the PNGs it replaced (their "Gallery 1"
+ * was the frontage, not the kitchen), so numbers here would mean two
+ * different things depending on where you looked.
  */
 export const GALLERY: GalleryShot[] = [
   {
-    src: "/images/midtown-gallery-5.png",
+    src: "/images/midtown-gallery-side.webp",
     alt: "The Midtown Terraces seen from the side at dusk",
   },
   {
-    src: "/images/midtown-gallery-3.png",
+    src: "/images/midtown-gallery-frontage.webp",
     alt: "The frontage of The Midtown Terraces at dusk",
   },
   {
-    src: "/images/midtown-gallery-4.png",
+    src: "/images/midtown-gallery-corner.webp",
     alt: "The terraces from the side, showing the balcony bays",
   },
   {
-    src: "/images/midtown-gallery-1.png",
+    src: "/images/midtown-gallery-kitchen.webp",
     alt: "The kitchen, with a marble island and fitted cabinetry",
   },
   {
-    src: "/images/midtown-gallery-2.png",
+    src: "/images/midtown-gallery-bathroom.webp",
     alt: "A marble bathroom with a freestanding bath and walk-in shower",
+  },
+  {
+    src: "/images/midtown-gallery-bedroom.webp",
+    alt: "A bedroom with a slatted timber wall and desk",
   },
 ];
 
-export const LOCATION_QUOTE = {
+export const LOCATION_QUOTE: LocationQuote = {
   lead: "Often described as “it’s own city”",
   body: "Gwarinpa offers easy access while staying removed from Abuja’s rush.",
 };
@@ -129,7 +129,7 @@ export const LOCATION_POINTS: ScrollPoint[] = [
     id: "gwarinpa-abuja",
     title: "Gwarinpa, Abuja",
     body: "Gwarinpa remains one of Abuja’s most established and desirable residential districts; a mature, well-planned enclave that offers heritage, urban connectivity and lasting value.",
-    image: "/images/midtown-location-1.png",
+    image: "/images/midtown-location-1.webp",
     imageAlt: "Aerial view of Gwarinpa, Abuja",
   },
   {
@@ -141,14 +141,14 @@ export const LOCATION_POINTS: ScrollPoint[] = [
     id: "wide-boulevards",
     title: "Wide boulevards",
     body: "Wide boulevards that support nature, fitness, and a consistent infrastructure that reflects a neighbourhood designed for longevity.",
-    image: "/images/midtown-location-3.png",
+    image: "/images/midtown-location-3.webp",
     imageAlt: "Tree-lined boulevard in Gwarinpa",
   },
   {
     id: "stability",
     title: "Stability",
     body: "With strong occupancy, steady appreciation, and a track record of stability, it continues to offer the assurance buyers and investors seek in a prime residential address.",
-    image: "/images/midtown-location-4.png",
+    image: "/images/midtown-location-4.webp",
     imageAlt: "Aerial view along Gwarinpa's dual carriageway at sunset",
   },
   {
@@ -159,7 +159,7 @@ export const LOCATION_POINTS: ScrollPoint[] = [
 ];
 
 /** Drive times shown alongside "Proximity to Key Areas". */
-export const PROXIMITY = [
+export const PROXIMITY: ProximityEntry[] = [
   { minutes: "10", label: "minutes to drive to key zones like Jabi" },
   { minutes: "10", label: "minutes drive to Life Camp" },
   { minutes: "15", label: "minutes drive to the city centre" },
@@ -187,49 +187,41 @@ export const MAP_CATEGORIES = [
   "Leisure",
 ];
 
-export type Reason = {
-  id: string;
-  title: string;
-  body: string;
-  image: string;
-  imageAlt: string;
-};
-
-/** "Why buy into…" — desktop reveals the body and image on hover. */
+/** "Why buy into…" — a toggle list; one reason open at a time. */
 export const REASONS: Reason[] = [
   {
     id: "aspirational-lifestyle",
     title: "Aspirational Lifestyle",
     body: "A vision of living for those with a cultivated taste, where every detail reflects discernment, and your space embodies the assured confidence of distinction.",
-    image: "/images/midtown-reason-1.png",
+    image: "/images/midtown-reason-1.webp",
     imageAlt: "The Midtown Terraces at dusk",
   },
   {
     id: "spacious-living",
     title: "Spacious Living",
     body: "Multi-floor layouts with generous lounges, balconies, and family areas.",
-    image: "/images/midtown-reason-2.png",
+    image: "/images/midtown-reason-2.webp",
     imageAlt: "A generous lounge inside The Midtown Terraces",
   },
   {
     id: "exclusivity",
     title: "Exclusivity and Privacy",
     body: "A rare property in a prestigious, low-density neighborhood.",
-    image: "/images/midtown-reason-3.png",
+    image: "/images/midtown-reason-3.webp",
     imageAlt: "Gated timber entrance to The Midtown Terraces",
   },
   {
     id: "green-inspired",
     title: "Green-Inspired",
     body: "Each home is built around lushly landscaped compound spaces to enhance mental well-being, air quality, and aesthetics.",
-    image: "/images/midtown-reason-4.png",
+    image: "/images/midtown-reason-4.webp",
     imageAlt: "Landscaped compound planting",
   },
   {
     id: "quality-assurance",
     title: "Quality Assurance",
     body: "Crafted with enduring masonry and attentive workmanship, upheld by an uncompromising standard of care",
-    image: "/images/midtown-reason-5.png",
+    image: "/images/midtown-reason-5.webp",
     imageAlt: "Balcony corner detail with a glass balustrade",
   },
 ];
@@ -239,34 +231,37 @@ export const REASONS: Reason[] = [
  * figure takes its aspect from the drawing rather than a fixed box — a
  * letterboxed plan shrinks the annotation past the point of being readable.
  */
-export const FLOORS = [
+export const FLOORS: Floor[] = [
   {
     id: "ground",
     label: "Ground Floor",
-    plan: "/images/midtown-floor-ground.png",
-    width: 1786,
-    height: 1085,
+    caption: "Ground Floor",
+    plan: "/images/midtown-floor-ground.webp",
+    width: 1429,
+    height: 868,
   },
   {
     id: "first",
     label: "First Floor",
-    plan: "/images/midtown-floor-first.png",
-    width: 1786,
-    height: 1153,
+    caption: "First Floor",
+    plan: "/images/midtown-floor-first.webp",
+    width: 1429,
+    height: 923,
   },
   {
     id: "second",
     label: "Second Floor",
-    plan: "/images/midtown-floor-second.png",
-    width: 1786,
-    height: 1161,
+    caption: "Second Floor",
+    plan: "/images/midtown-floor-second.webp",
+    width: 1429,
+    height: 929,
   },
 ];
 
 export const PAYMENT_INTRO =
   "A 20% performance-based payment plan gives you flexibility and certainty. Each phase of the payment plan requires 3 months to complete.";
 
-export const PAYMENT = {
+export const PAYMENT: Payment = {
   unitPrice: "NGN 350,000,000",
   semiFinished: "NGN 275,000,000",
   milestones: [

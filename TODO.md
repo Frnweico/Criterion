@@ -13,7 +13,7 @@ Everything the build is waiting on. Grouped by who has to act.
 | Contact page | Mobile + desktop |
 | Individual blog post page | Template, not a one-off — drives `/blog/[slug]` |
 | Join the Benchmarker page | New page, route not yet decided |
-| Project detail pages | Template — drives `/projects/[slug]`. You said these need work |
+| ~~Project detail pages~~ | ✅ Urban Nest built 11 Aug 2026 as a text/image replica of Midtown's page — same sections, same components. See [HANDOVER.md §9](HANDOVER.md) for how content conflicts in its Figma frame were resolved. Still needs its own photography — see the image list below |
 | About page overlays | Team info overlay received — [mobile](https://www.figma.com/design/omnmmbNeQSnKDTr2MBVsJv/F---C-Board?node-id=10476-6637) · [desktop](https://www.figma.com/design/omnmmbNeQSnKDTr2MBVsJv/F---C-Board?node-id=10475-6587). Still needs the remaining overlays, plus the images and descriptions for each |
 
 ### Copy still reading "BUTTON" in Figma

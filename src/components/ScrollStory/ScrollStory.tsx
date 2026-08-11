@@ -2,8 +2,21 @@
 
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
-import type { ScrollPoint } from "@/lib/midtown";
 import styles from "./ScrollStory.module.css";
+
+/** Shared by both ScrollStory and LocationStory — one story-point shape. */
+export type ScrollPoint = {
+  id: string;
+  title: string;
+  body: string;
+  /**
+   * Optional. LocationStory's Proximity and Nearby Essentials points carry no
+   * photograph — they render built content instead, so those steps have no
+   * image at all.
+   */
+  image?: string;
+  imageAlt?: string;
+};
 
 type Props = {
   id: string;

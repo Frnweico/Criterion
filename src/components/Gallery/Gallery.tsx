@@ -2,15 +2,21 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { GALLERY, GALLERY_NOTE } from "@/lib/midtown";
 import styles from "./Gallery.module.css";
 
-export default function Gallery() {
+export type GalleryShot = { src: string; alt: string };
+
+type Props = {
+  photos: GalleryShot[];
+  note: string;
+};
+
+export default function Gallery({ photos, note }: Props) {
   /* order[0] is the lead picture and the rest are the thumbnails. Choosing a
      thumbnail swaps it with the lead rather than filtering the list, so the
      four thumbnail positions stay put instead of reshuffling under the
      pointer. */
-  const [order, setOrder] = useState(() => GALLERY.map((_, index) => index));
+  const [order, setOrder] = useState(() => photos.map((_, index) => index));
   const lead = order[0];
 
   const select = (position: number) =>
@@ -30,7 +36,7 @@ export default function Gallery() {
         {/* All five stay mounted and cross-fade, so choosing one doesn't
             blink while the next decodes. */}
         <div className={styles.main}>
-          {GALLERY.map((shot, index) => (
+          {photos.map((shot, index) => (
             <Image
               key={shot.src}
               src={shot.src}
@@ -48,7 +54,7 @@ export default function Gallery() {
 
         <ul className={styles.side}>
           {order.slice(1).map((imageIndex, position) => {
-            const shot = GALLERY[imageIndex];
+            const shot = photos[imageIndex];
             return (
               <li key={shot.src} className={styles.sideItem}>
                 <button
@@ -71,7 +77,7 @@ export default function Gallery() {
         </ul>
       </div>
 
-      <p className={styles.note}>{GALLERY_NOTE}</p>
+      <p className={styles.note}>{note}</p>
     </section>
   );
 }

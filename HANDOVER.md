@@ -93,6 +93,7 @@ npm run lint
 /about                       hero, statements, core values, pact, team
 /projects                    breadcrumb, 2 project rows, buyer checklist
 /projects/midtown-terraces   14 sections, 3 bespoke interactions
+/projects/the-urban-nest     same 14 sections, text-and-image replica — see §9
 /news                        lead story + 5 press cards
 /blog                        lead post hero + post grid
 ```
@@ -109,7 +110,8 @@ npm run lint
 | `news.ts` | 6 press items + `FEATURED_NEWS` (first 3, homepage) |
 | `blog.ts` | 3 posts + `formatPostDate` |
 | `about.ts` | Statements, 6 core values, 3 team members |
-| `midtown.ts` | All 151 strings from the Midtown frame |
+| `midtown.ts` | All content for the Midtown Terraces page |
+| `urban-nest.ts` | Same shape, Urban Nest's own copy — see §9 for how content conflicts in its Figma frame were resolved |
 
 **Never hardcode prices or dates in a component.** Doing so is what let the
 homepage and Projects page disagree earlier.
@@ -125,7 +127,15 @@ Homepage: `Hero` `AboutSection` `DevelopmentsSection` `ServicesSection`
 
 About: `PageHero` `StatementsSection` `ValuesSection` `TeamSection`
 
-Projects: `BuyerChecklistBand` `ScrollStory` `ReasonsList` `FloorPlan`
+Projects — shared by both Midtown and Urban Nest, each fed its own data via
+props (nothing here reads a lib file directly any more):
+`BuyerChecklistBand` `ScrollStory` `LocationStory` `Gallery` `ReasonsList`
+`FloorPlan` `PaymentPlan`
+
+`ScrollPoint` (the id/title/body/image shape both `ScrollStory` and
+`LocationStory` take) is exported from `ScrollStory.tsx`, not a lib file —
+both `midtown.ts` and `urban-nest.ts` import it from there rather than from
+each other, so the two projects' content stays independent.
 
 ---
 
@@ -275,7 +285,78 @@ Recorded in `docs/design-notes.md`. Don't "fix" these back.
 
 ---
 
-## 9. Outstanding
+## 9. The Urban Nest page
+
+Built 11 Aug 2026 as a text-and-image replica of the Midtown Terraces page —
+same 14 sections, same components, same interactions. Sourced from Figma
+frames `10163:5017` (desktop) and `10169:5553` (mobile).
+
+**No real photography exists for this project yet.** Every image path in
+`urban-nest.ts` and the page itself points at a `urban-nest-*.webp` file that
+doesn't exist on disk — the boxes holding them are sized correctly regardless,
+so dropping the real files in at those exact paths is the only step left once
+you send them. Full list: hero, address, 5× philosophy, 5× gallery, 3×
+location, 5× reason, 3× floor plan.
+
+### The mobile frame is largely unedited
+
+Urban Nest's desktop frame is properly customized. Its mobile frame is mostly
+the Midtown Terraces mobile frame, duplicated and never updated — several
+sections still read literal Midtown/Gwarinpa copy that doesn't apply to this
+project. Wherever the two frames disagreed, **desktop's version was used for
+both breakpoints**, matching how content already works elsewhere on this site
+(one string, not one per breakpoint). What was actually found:
+
+| Section | Mobile frame still says | Used instead |
+|---|---|---|
+| Design philosophy intro | "At **The Midtown Terraces**, architecture is guided by clarity of purpose…" | "At **The Urban Nest**…" (desktop) |
+| Philosophy point 1 body | Midtown's own point-1 wording, verbatim | Desktop's rewritten body |
+| Location quote | "Often described as 'it's own city' **Gwarinpa** offers easy access…" | Desktop's real quote about Wuse |
+| Location point 1 | Title **"Gwarinpa, Abuja"**, Midtown's body verbatim | "Wuse, Zone 7, Abuja" + desktop's body |
+| Location point 3 | Title **"Wide Boulevards"**, Midtown's body verbatim | "Quietly Central" (desktop; genuinely new to this project) |
+| Location point 5 body | "…delivers a complete living experience…" ends in **"Gwarinpa"** | Ends in "Wuse, Zone 7" (desktop) |
+| Proximity drive times | Wuse 2 / **Life Camp** / **the city centre** (Midtown's labels, new minute counts) | Wuse 2 / **Central Business District** / **Maitama** (desktop, fully updated) |
+| Payment instalments | **₦70M** per instalment (Midtown's unit price ÷ 5) | **₦100M** ×4 + ₦98M (desktop; the real split of ₦498M) |
+
+### Structural differences, not just text
+
+These aren't content swaps — the frame itself is shaped differently here:
+
+- **Six specification rows, not seven.** No "Area Size" row, on either
+  breakpoint. Confirmed deliberate, not a copy-paste miss.
+- **No Semi-Finished price tier.** Midtown's payment section has a second
+  ruled box below the milestone table; Urban Nest's frame has no equivalent
+  at all, on either breakpoint. `PaymentPlan`'s `semiFinished` field is now
+  optional for exactly this reason — the box simply doesn't render when it's
+  omitted.
+- **One viewing button, not two.** No product paper exists for this project,
+  and the frame only shows a single "Request viewing" button — matches what's
+  actually available.
+- **Floor plan captions carry "(Single Unit)"** — Midtown's read plain
+  "Ground Floor" etc.
+
+### One call made, not found
+
+Urban Nest's own gallery frame is still on the **pre-redesign** layout
+(full-width lead photo + a horizontally scrolling row of four thumbnails) —
+the same pattern Midtown's gallery had before you sent the reference
+screenshot that prompted its rebuild. Since the brief was a replica of the
+page *as it stands today*, this page uses the current Midtown gallery
+component (lead + clickable thumbnail column) rather than reproducing the
+older pattern from Urban Nest's own frame.
+
+### A gap this surfaced on Midtown's page too
+
+Both projects' Figma frames carry body copy under "Explore Essentials" —
+"Zone 7 stands at the heart of Wuse, one of Abuja's most connected and
+central neighbourhoods." — that was never wired into either page (Midtown's
+`Explore Essentials` section currently renders only a heading and the
+category chips). Left as-is on both pages for now, rather than adding it to
+one and not the other; flagging so it can be picked up deliberately.
+
+---
+
+## 10. Outstanding
 
 ### Blocked on the client
 
@@ -314,7 +395,7 @@ Recorded in `docs/design-notes.md`. Don't "fix" these back.
 
 ---
 
-## 10. Git
+## 11. Git
 
 Local only — **no remote**. 11 commits, `main`.
 
@@ -339,7 +420,7 @@ GitHub is also the prerequisite for Vercel deploys.
 
 ---
 
-## 11. SEO
+## 12. SEO
 
 The client cares about this — it drove the framework choice. Already in place:
 semantic markup, one `<h1>` per page, per-page `title`/`description` via the
@@ -354,7 +435,7 @@ posts, `Residence` on projects).
 
 ---
 
-## 12. Working with this client
+## 13. Working with this client
 
 - Terse and fast-moving. They correct in short messages — read them literally.
 - They asked explicitly: **verify, don't guess.** State what was measured and

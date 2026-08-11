@@ -1,0 +1,564 @@
+/* Mirrors midtown.module.css's structure and numbers everywhere the two
+   pages share geometry; only the hero and address image crop values differ,
+   since those are measured from Urban Nest's own frame (10163:5017). */
+
+.sectionHeading {
+  margin: 0;
+  font-size: 32px;
+  font-weight: 400;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  text-transform: capitalize;
+  color: var(--color-heading);
+}
+
+/* --- Hero -------------------------------------------------------------- */
+
+.hero {
+  background: var(--color-platinum);
+  color: #000;
+}
+
+.heroCrumb {
+  display: none;
+  padding: 4px 0 0;
+}
+
+.heroInner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 64px;
+  padding-top: 50px;
+}
+
+.heroCopy {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  width: 319px;
+  max-width: calc(100% - var(--gutter) * 2);
+}
+
+.heroHeadings {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+}
+
+.heroLocation {
+  margin: 0;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.4;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.heroTitle {
+  margin: 0;
+  padding: 0 20px;
+  font-size: 48px;
+  font-weight: 500;
+  line-height: 0.9;
+  letter-spacing: -1.2px;
+  text-align: center;
+  text-transform: capitalize;
+}
+
+.heroLink {
+  padding-bottom: 4px;
+  border-bottom: 1px solid currentColor;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: normal;
+  color: inherit;
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+}
+
+.heroLink:hover,
+.heroLink:focus-visible {
+  opacity: 0.6;
+}
+
+/* 10169:5578 — 393.021×399.336. The supplied artwork is 1440×875 (1.646),
+   far wider than this near-square band, so it must be cropped rather than
+   stretched to fit. */
+.heroFigure {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 393.02 / 399.34;
+  overflow: hidden;
+  background: var(--color-image-bg);
+}
+
+.heroImage {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* --- Specification ------------------------------------------------------ */
+
+.spec {
+  background: var(--color-platinum);
+}
+
+.specInner {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 43px;
+  padding: 50px var(--gutter);
+}
+
+.specBody {
+  display: flex;
+  flex-direction: column;
+  gap: 43px;
+  width: 100%;
+}
+
+.specIntro {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.3;
+  letter-spacing: -0.32px;
+}
+
+.specTable {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.3;
+  letter-spacing: -0.32px;
+}
+
+.specRow.specColHeadRow {
+  display: none;
+}
+
+.specColHead {
+  font-weight: 700;
+  color: var(--color-beige);
+}
+
+.specList {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  width: 100%;
+}
+
+.specRow {
+  display: flex;
+  gap: 50px;
+  align-items: flex-start;
+  width: 100%;
+  padding: 17.131px 0 16.123px;
+  border-top: 1.008px solid var(--color-rule);
+}
+
+.specList > .specRow:last-child {
+  border-bottom: 1.008px solid var(--color-rule);
+}
+
+.specLabel {
+  flex-shrink: 0;
+  width: 120px;
+  opacity: 0.55;
+}
+
+.specValue {
+  margin: 0;
+}
+
+/* --- Address ------------------------------------------------------------ */
+
+.address {
+  background: var(--color-platinum);
+}
+
+.addressInner {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 24px;
+  padding: 25px var(--gutter) 0;
+  color: #000;
+}
+
+.addressHeading {
+  margin: 0;
+  font-size: 28px;
+  font-weight: 400;
+  line-height: 1.1;
+  letter-spacing: -1.4px;
+  text-transform: capitalize;
+}
+
+.addressBody {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.3;
+  letter-spacing: -0.32px;
+  text-indent: 16px;
+}
+
+.addressFigureWrap {
+  padding: 24px var(--gutter) 50px;
+}
+
+/* 10169:5609 — 353×220, matching Midtown's mobile address box exactly. */
+.addressFigure {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 353 / 220;
+  overflow: hidden;
+  background: var(--color-image-bg);
+}
+
+.addressImage {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* --- Explore essentials / Why buy / Floors / Payment / Viewing shells --- */
+
+.essentials,
+.reasons,
+.floors,
+.payment,
+.viewing {
+  background: var(--color-platinum);
+}
+
+.essentialsInner,
+.reasonsInner {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 56px var(--gutter);
+}
+
+.mapPlaceholder {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 24px;
+  border: 1px dashed var(--color-rule);
+  background: var(--color-image-bg);
+}
+
+.mapCategories {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.mapCategory {
+  padding: 6px 14px;
+  border: 1px solid var(--color-rule);
+  background: var(--color-platinum);
+  font-size: 12px;
+  text-transform: uppercase;
+  color: var(--color-heading);
+}
+
+/* --- Viewing form --------------------------------------------------------
+   Urban Nest's card carries only the "Request viewing" button — no product
+   paper exists for this project — but its geometry is unchanged. */
+
+.viewingCard {
+  position: relative;
+  display: flex;
+  padding: 32px var(--gutter);
+  border: 1px solid var(--color-rule);
+  margin: 0 var(--gutter);
+  overflow: hidden;
+}
+
+.viewingInner {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  width: 100%;
+  padding: 0;
+}
+
+.viewingHeading {
+  margin: 0;
+  font-size: 28px;
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: -1.4px;
+  text-transform: capitalize;
+  color: #000;
+}
+
+.viewingIntro {
+  margin: -20px 0 0;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.3;
+  letter-spacing: -0.32px;
+  color: #000;
+}
+
+.viewingMark {
+  display: none;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  align-items: stretch;
+  width: 100%;
+}
+
+.formActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+  margin-top: 28px;
+}
+
+.field {
+  display: block;
+  width: 100%;
+}
+
+.input {
+  width: 100%;
+  height: 66px;
+  padding: 0 16px;
+  border: 0;
+  border-bottom: 1px solid var(--color-rule);
+  appearance: none;
+  background: none;
+  font-family: inherit;
+  font-size: 16px;
+  color: var(--color-heading);
+}
+
+.input::placeholder {
+  opacity: 0.5;
+  color: var(--color-body);
+}
+
+.input:focus-visible {
+  outline: 2px solid var(--color-carbon);
+  outline-offset: 2px;
+}
+
+/* --- Desktop -------------------------------------------------------------- */
+
+@media (min-width: 1024px) {
+  .sectionHeading {
+    font-size: 48px;
+  }
+
+  .heroCrumb {
+    display: block;
+  }
+
+  .heroInner {
+    gap: 100px;
+    padding-top: 100px;
+    padding-bottom: 50px;
+  }
+
+  .heroCopy {
+    gap: 38px;
+    width: 749px;
+  }
+
+  .heroHeadings {
+    gap: 8px;
+  }
+
+  .heroLocation {
+    font-size: 16px;
+  }
+
+  .heroTitle {
+    padding: 0;
+    font-size: 80px;
+    letter-spacing: -4px;
+    white-space: nowrap;
+  }
+
+  .heroLink {
+    font-size: 14px;
+  }
+
+  /* 10163:5031 — a 1440×874.712 band (same band Midtown uses) holding the
+     artwork at 1487.004 wide (103.2626%), pulled up 147.676px (16.883%) and
+     centred. */
+  .heroFigure {
+    aspect-ratio: 1440 / 874.712;
+  }
+
+  .heroImage {
+    top: -16.883%;
+    left: 50%;
+    width: 103.2626%;
+    height: auto;
+    transform: translateX(-50%);
+  }
+
+  .specInner {
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 40px;
+    padding: 50px var(--gutter) 100px;
+  }
+
+  .specBody {
+    flex: none;
+    gap: 64px;
+    width: 809px;
+    max-width: 100%;
+  }
+
+  .specIntro {
+    font-size: 24px;
+    line-height: 1.2;
+    letter-spacing: -0.24px;
+  }
+
+  .specTable {
+    font-size: 20px;
+    letter-spacing: -0.4px;
+  }
+
+  .specRow.specColHeadRow {
+    display: flex;
+  }
+
+  .specRow {
+    padding: 19.119px 16.388px;
+    border-top: none;
+    border-bottom: 2px solid var(--color-rule);
+  }
+
+  .specList > .specRow:last-child {
+    border-bottom: 2px solid var(--color-rule);
+  }
+
+  .specLabel {
+    width: 250px;
+    opacity: 1;
+  }
+
+  .addressInner {
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 40px;
+    max-width: calc(1143.32px + var(--gutter) * 2);
+    padding: 100px var(--gutter);
+  }
+
+  .addressHeading {
+    width: 505.617px;
+    flex: none;
+    font-size: 48px;
+    line-height: 1;
+    letter-spacing: -2.4px;
+  }
+
+  .addressBody {
+    width: 493.805px;
+    flex: none;
+    font-size: 24px;
+    line-height: 1.2;
+    letter-spacing: -0.24px;
+  }
+
+  .addressFigureWrap {
+    padding: 40px var(--gutter);
+  }
+
+  /* 10163:5076 — a 1360×730.011 panel (same size as Midtown's), artwork at
+     essentially the panel's own size with no meaningful vertical crop. */
+  .addressFigure {
+    aspect-ratio: 1360 / 730.011;
+  }
+
+  .addressImage {
+    top: 0%;
+    transform: translateX(-50%);
+  }
+
+  .essentialsInner,
+  .reasonsInner {
+    gap: 40px;
+    padding: 100px var(--gutter);
+  }
+
+  .viewing {
+    padding: 33.5px 0;
+  }
+
+  .viewingCard {
+    padding: 80px;
+  }
+
+  .viewingInner {
+    width: 581.97px;
+    gap: 38px;
+  }
+
+  .viewingHeading {
+    font-size: 40px;
+    line-height: 1.2;
+    letter-spacing: -2px;
+  }
+
+  .viewingIntro {
+    margin-top: -30px;
+    font-size: 20px;
+  }
+
+  .form {
+    gap: 4px;
+  }
+
+  .formActions {
+    gap: 32px;
+    margin-top: 32px;
+  }
+
+  .viewingMark {
+    position: absolute;
+    top: 90.27px;
+    right: 80px;
+    display: block;
+    width: 415.92px;
+    height: auto;
+  }
+}

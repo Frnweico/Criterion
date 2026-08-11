@@ -47,9 +47,13 @@
   opacity: 1;
 }
 
+/* Auto-flowed rather than a fixed column count, so this adapts to however
+   many thumbnails a project actually has — Midtown supplies 5, Urban Nest 4 —
+   without a layout change per project. */
 .side {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-auto-flow: column;
+  grid-auto-columns: 1fr;
   gap: 10px;
   margin: 0;
   padding: 0 10px;

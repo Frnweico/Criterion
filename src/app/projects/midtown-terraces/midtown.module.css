@@ -99,14 +99,17 @@
   background: var(--color-image-bg);
 }
 
+/* The supplied artwork is pre-cropped to the desktop band's 1.646 aspect, so
+   it fills the frame directly rather than being offset by hand as the older,
+   much taller source needed. `cover` keeps that true at every width. */
 .heroImage {
   position: absolute;
-  top: 0;
-  left: 50%;
-  width: auto;
+  inset: 0;
+  width: 100%;
   height: 100%;
   max-width: none;
-  transform: translateX(-50%);
+  object-fit: cover;
+  object-position: center;
 }
 
 /* --- Specification ----------------------------------------------------- */
@@ -238,12 +241,12 @@
 
 .addressImage {
   position: absolute;
-  top: 50%;
-  left: 50%;
+  inset: 0;
   width: 100%;
-  height: auto;
+  height: 100%;
   max-width: none;
-  transform: translate(-50%, -50%);
+  object-fit: cover;
+  object-position: center;
 }
 
 /* --- Gallery ----------------------------------------------------------- */
@@ -251,40 +254,8 @@
 /* Gallery lives in its own component — it needs client state for the
    selectable thumbnails. See components/Gallery. */
 
-/* --- Quote ------------------------------------------------------------- */
+/* --- Shared section grounds ---------------------------------------------- */
 
-.quote {
-  background: var(--color-green);
-  color: var(--color-platinum);
-}
-
-.quoteInner {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  padding: 64px var(--gutter);
-  text-align: center;
-}
-
-.quoteLead {
-  margin: 0;
-  font-size: 24px;
-  font-weight: 400;
-  line-height: 1.2;
-  letter-spacing: -0.02em;
-}
-
-.quoteBody {
-  margin: 0;
-  font-size: 16px;
-  font-weight: 300;
-  line-height: 1.4;
-  opacity: 0.85;
-}
-
-/* --- Proximity --------------------------------------------------------- */
-
-.proximity,
 .essentials,
 .reasons,
 .floors,
@@ -302,56 +273,6 @@
   padding: 56px var(--gutter);
 }
 
-.proximityList {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.proximityItem {
-  display: flex;
-  gap: 16px;
-  align-items: baseline;
-  padding-bottom: 16px;
-  border-bottom: 1px solid var(--color-rule-soft);
-}
-
-.proximityMinutes {
-  flex-shrink: 0;
-  font-size: 32px;
-  font-weight: 400;
-  line-height: 1;
-  color: var(--color-heading);
-}
-
-.proximityLabel {
-  font-size: 15px;
-  font-weight: 300;
-  line-height: 1.4;
-  color: var(--color-body);
-}
-
-/* --- Nearby essentials ------------------------------------------------- */
-
-.essentialsList {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 10px 16px;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.essentialsItem {
-  font-size: 14px;
-  font-weight: 300;
-  line-height: 1.4;
-  color: var(--color-body);
-}
-
 /* Stands in until a map provider is chosen. */
 .mapPlaceholder {
   display: flex;
@@ -360,13 +281,6 @@
   padding: 24px;
   border: 1px dashed var(--color-rule);
   background: var(--color-image-bg);
-}
-
-.mapHeading {
-  margin: 0;
-  font-size: 18px;
-  font-weight: 400;
-  color: var(--color-heading);
 }
 
 .mapCategories {
@@ -385,108 +299,6 @@
   font-size: 12px;
   text-transform: uppercase;
   color: var(--color-heading);
-}
-
-/* --- Payment ----------------------------------------------------------- */
-
-.paymentIntro {
-  margin: 0;
-  max-width: 720px;
-  font-size: 15px;
-  font-weight: 300;
-  line-height: 1.5;
-  color: var(--color-body);
-}
-
-.prices {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.priceRow {
-  display: flex;
-  gap: 16px;
-  align-items: baseline;
-  justify-content: space-between;
-  margin: 0;
-  padding-bottom: 8px;
-  border-bottom: 1px solid var(--color-rule-soft);
-}
-
-.priceLabel {
-  font-size: 14px;
-  font-weight: 300;
-  color: var(--color-body);
-}
-
-.priceValue {
-  font-size: 18px;
-  font-weight: 500;
-  color: var(--color-heading);
-}
-
-/* The table is wider than a phone; it scrolls inside its own box rather
-   than pushing the page sideways. */
-.tableScroll {
-  overflow-x: auto;
-}
-
-.table {
-  width: 100%;
-  min-width: 560px;
-  border-collapse: collapse;
-  font-size: 13px;
-}
-
-.table th,
-.table td {
-  padding: 12px 16px 12px 0;
-  border-bottom: 1px solid var(--color-rule-soft);
-  text-align: left;
-  vertical-align: top;
-}
-
-.table thead th {
-  font-weight: 600;
-  text-transform: uppercase;
-  font-size: 11px;
-  letter-spacing: 0.03em;
-  opacity: 0.6;
-  color: var(--color-heading);
-}
-
-.table tbody th {
-  font-weight: 500;
-  color: var(--color-heading);
-}
-
-.table tbody td {
-  font-weight: 300;
-  color: var(--color-body);
-}
-
-.terms {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.termsTitle {
-  margin: 0;
-  font-size: 12px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-  color: var(--color-heading);
-}
-
-.termsBody {
-  margin: 0;
-  font-size: 13px;
-  font-weight: 300;
-  line-height: 1.5;
-  color: var(--color-body);
 }
 
 /* --- Viewing form ------------------------------------------------------ */
@@ -622,16 +434,11 @@
     font-size: 14px;
   }
 
-  /* 9975:5034 — a 1440×874.712 band holding the artwork at 1505.695 wide
-     (104.5622%), pulled up 120.006px (13.7202%) and centred. */
+  /* 9975:5034 — a 1440×874.712 band. The artwork now matches that aspect, so
+     the hand-computed crop the older source needed is gone; `cover` above
+     does the whole job. */
   .heroFigure {
     aspect-ratio: 1440 / 874.712;
-  }
-
-  .heroImage {
-    top: -13.7202%;
-    width: 104.5622%;
-    height: auto;
   }
 
   /* Label alone on the left, tagline and table on the right (9388:8075). */
@@ -681,11 +488,6 @@
     opacity: 1;
   }
 
-  .essentialsItem,
-  .proximityLabel {
-    font-size: 16px;
-  }
-
   /* Heading and body as two columns (9345:5410). */
   .addressInner {
     flex-direction: row;
@@ -718,15 +520,9 @@
     padding: 40px var(--gutter);
   }
 
-  /* 9345:5419 — a 1360×730.011 frame with the artwork at full width and
-     pulled up 192.14px (26.3201%). */
+  /* 9345:5419 — a 1360×730.011 frame; `cover` above handles the crop. */
   .addressFigure {
     aspect-ratio: 1360 / 730.011;
-  }
-
-  .addressImage {
-    top: -26.3201%;
-    transform: translateX(-50%);
   }
 
   .essentialsInner,
@@ -782,44 +578,4 @@
     height: auto;
   }
 
-  .quoteInner {
-    padding: 120px var(--gutter);
-  }
-
-  .quoteLead {
-    font-size: 40px;
-  }
-
-  .quoteBody {
-    font-size: 20px;
-  }
-
-  .proximityList {
-    flex-direction: row;
-    gap: 40px;
-  }
-
-  .proximityItem {
-    flex: 1;
-    flex-direction: column;
-    gap: 8px;
-    align-items: flex-start;
-  }
-
-  .proximityMinutes {
-    font-size: 56px;
-  }
-
-  .essentialsList {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 14px 32px;
-  }
-
-  .table {
-    font-size: 15px;
-  }
-
-  .termsBody {
-    font-size: 14px;
-  }
 }

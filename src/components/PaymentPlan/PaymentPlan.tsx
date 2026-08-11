@@ -1,15 +1,38 @@
-import { getProject } from "@/lib/projects";
-import { PAYMENT, PAYMENT_INTRO } from "@/lib/midtown";
 import styles from "./PaymentPlan.module.css";
 
-const project = getProject("midtown-terraces")!;
+export type Milestone = {
+  stage: string;
+  instalment: string;
+  duration: string;
+  status: string;
+};
+
+export type Payment = {
+  unitPrice: string;
+  /** Not every project has an off-plan tier — Urban Nest's frame has none. */
+  semiFinished?: string;
+  milestones: Milestone[];
+  terms: string[];
+};
+
+type Props = {
+  payment: Payment;
+  intro: string;
+  projectName: string;
+  completion: string;
+};
 
 /**
  * Figma 9342:5218. Heading and intro on the left with the price box opposite;
  * the milestone table sits under both, indented to x 297. Completed stages
  * are greyed and their status set bold, which is how the frame marks them.
  */
-export default function PaymentPlan() {
+export default function PaymentPlan({
+  payment,
+  intro,
+  projectName,
+  completion,
+}: Props) {
   return (
     <div className={styles.wrap}>
       <div className={styles.head}>
@@ -17,7 +40,7 @@ export default function PaymentPlan() {
           <h2 id="payment-heading" className={styles.heading}>
             Payment Plan
           </h2>
-          <p className={styles.introText}>{PAYMENT_INTRO}</p>
+          <p className={styles.introText}>{intro}</p>
         </div>
 
         <dl className={styles.priceBox}>
@@ -26,14 +49,14 @@ export default function PaymentPlan() {
               <span className={styles.marker} aria-hidden />
               Unit Price
             </dt>
-            <dd className={styles.priceValue}>{PAYMENT.unitPrice}</dd>
+            <dd className={styles.priceValue}>{payment.unitPrice}</dd>
           </div>
           <div className={styles.priceRow}>
             <dt className={styles.priceLabel}>
               <span className={styles.marker} aria-hidden />
               Project completion
             </dt>
-            <dd className={styles.priceValue}>{project.completion}</dd>
+            <dd className={styles.priceValue}>{completion}</dd>
           </div>
         </dl>
       </div>
@@ -41,7 +64,7 @@ export default function PaymentPlan() {
       <div className={styles.tableScroll}>
         <table className={styles.table}>
           <caption className="visually-hidden">
-            Payment milestones for {project.name}
+            Payment milestones for {projectName}
           </caption>
           <thead>
             <tr>
@@ -52,7 +75,7 @@ export default function PaymentPlan() {
             </tr>
           </thead>
           <tbody>
-            {PAYMENT.milestones.map((row) => {
+            {payment.milestones.map((row) => {
               const done = row.status === "Completed";
               return (
                 <tr
@@ -72,21 +95,23 @@ export default function PaymentPlan() {
         </table>
       </div>
 
-      <div className={styles.semiBox}>
-        <div className={styles.semiRow}>
-          <p className={styles.priceLabel}>
-            <span className={styles.marker} aria-hidden />
-            Semi-Finished
-          </p>
-          <p className={styles.priceValue}>{PAYMENT.semiFinished}</p>
+      {payment.semiFinished && (
+        <div className={styles.semiBox}>
+          <div className={styles.semiRow}>
+            <p className={styles.priceLabel}>
+              <span className={styles.marker} aria-hidden />
+              Semi-Finished
+            </p>
+            <p className={styles.priceValue}>{payment.semiFinished}</p>
+          </div>
+          {/* No destination yet — see TODO.md. */}
+          <p className={styles.semiNote}>Contact us for more info</p>
         </div>
-        {/* No destination yet — see TODO.md. */}
-        <p className={styles.semiNote}>Contact us for more info</p>
-      </div>
+      )}
 
       <div className={styles.terms}>
         <p className={styles.termsTitle}>Terms &amp; Conditions</p>
-        {PAYMENT.terms.map((term) => (
+        {payment.terms.map((term) => (
           <p key={term} className={styles.termsBody}>
             {term}
           </p>

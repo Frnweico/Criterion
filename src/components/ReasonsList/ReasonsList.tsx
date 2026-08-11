@@ -2,8 +2,23 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { REASONS } from "@/lib/midtown";
 import styles from "./ReasonsList.module.css";
+
+export type Reason = {
+  id: string;
+  title: string;
+  body: string;
+  /**
+   * Optional — Urban Nest has no why-buy photography yet, so those panels
+   * open to copy alone rather than a broken picture frame.
+   */
+  image?: string;
+  imageAlt?: string;
+};
+
+type Props = {
+  reasons: Reason[];
+};
 
 /**
  * "Why buy into…" — a toggle list. One reason is open at a time: its title
@@ -13,12 +28,12 @@ import styles from "./ReasonsList.module.css";
  * Figma 9825:4760 — 80-tall rows, the open one 160, titles at x 460 and the
  * 306-wide panel at x 1032 whose picture overhangs the rows below it.
  */
-export default function ReasonsList() {
+export default function ReasonsList({ reasons }: Props) {
   const [open, setOpen] = useState(0);
 
   return (
     <ul className={styles.list}>
-      {REASONS.map((reason, index) => {
+      {reasons.map((reason, index) => {
         const isOpen = index === open;
 
         return (
@@ -46,15 +61,17 @@ export default function ReasonsList() {
               hidden={!isOpen}
             >
               <p className={styles.body}>{reason.body}</p>
-              <div className={styles.figure}>
-                <Image
-                  src={reason.image}
-                  alt={reason.imageAlt}
-                  fill
-                  sizes="(min-width: 1024px) 306px, calc(100vw - 40px)"
-                  className={styles.image}
-                />
-              </div>
+              {reason.image && (
+                <div className={styles.figure}>
+                  <Image
+                    src={reason.image}
+                    alt={reason.imageAlt ?? ""}
+                    fill
+                    sizes="(min-width: 1024px) 306px, calc(100vw - 40px)"
+                    className={styles.image}
+                  />
+                </div>
+              )}
             </div>
           </li>
         );

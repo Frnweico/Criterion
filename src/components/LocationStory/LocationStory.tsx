@@ -2,14 +2,21 @@
 
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
+import type { ScrollPoint } from "@/components/ScrollStory/ScrollStory";
 import SectionHeader from "@/components/SectionHeader/SectionHeader";
-import {
-  ESSENTIALS,
-  LOCATION_POINTS,
-  LOCATION_QUOTE,
-  PROXIMITY,
-} from "@/lib/midtown";
 import styles from "./LocationStory.module.css";
+
+export type LocationQuote = { lead: string; body: string };
+export type ProximityEntry = { minutes: string; label: string };
+
+type Props = {
+  points: ScrollPoint[];
+  quote: LocationQuote;
+  /** Rendered on the point whose id is "proximity". */
+  proximity: ProximityEntry[];
+  /** Rendered on the point whose id is "nearby-essentials". */
+  essentials: string[];
+};
 
 /**
  * The location story, intro included. Step 0 is the quote with the section
@@ -21,12 +28,17 @@ import styles from "./LocationStory.module.css";
  *
  * Figma 9342:5053; slides 9396:4763 (image), 4755 (drive times), 4771 (list).
  */
-export default function LocationStory() {
+export default function LocationStory({
+  points,
+  quote,
+  proximity,
+  essentials,
+}: Props) {
   const trackRef = useRef<HTMLDivElement>(null);
   const [step, setStep] = useState(0);
   const [pinned, setPinned] = useState(false);
 
-  const steps = LOCATION_POINTS.length + 1;
+  const steps = points.length + 1;
 
   useEffect(() => {
     const decide = () =>
@@ -81,7 +93,7 @@ export default function LocationStory() {
     if (id === "proximity") {
       return (
         <ul className={styles.rows}>
-          {PROXIMITY.map((entry) => (
+          {proximity.map((entry) => (
             <li key={entry.label} className={styles.row}>
               <span className={styles.minutes}>{entry.minutes}</span>
               <span className={styles.rowLabel}>{entry.label}</span>
@@ -94,7 +106,7 @@ export default function LocationStory() {
     if (id === "nearby-essentials") {
       return (
         <ul className={styles.essentials}>
-          {ESSENTIALS.map((item) => (
+          {essentials.map((item) => (
             <li key={item} className={styles.essential}>
               <span className={styles.marker} aria-hidden />
               {item}
@@ -119,7 +131,7 @@ export default function LocationStory() {
     );
   };
 
-  const slides = LOCATION_POINTS.map((point, index) => {
+  const slides = points.map((point, index) => {
     const isEssentials = point.id === "nearby-essentials";
     const hasImage = Boolean(point.image);
 
@@ -157,8 +169,8 @@ export default function LocationStory() {
         <SectionHeader text="Location" aria-hidden />
       </div>
       <div className={styles.quote}>
-        <p className={styles.quoteLine}>{LOCATION_QUOTE.lead}</p>
-        <p className={styles.quoteLine}>{LOCATION_QUOTE.body}</p>
+        <p className={styles.quoteLine}>{quote.lead}</p>
+        <p className={styles.quoteLine}>{quote.body}</p>
       </div>
     </>
   );
@@ -171,7 +183,7 @@ export default function LocationStory() {
           <div className={`${styles.stackItem} ${styles.stackIntro}`}>
             {intro}
           </div>
-          {LOCATION_POINTS.map((point, index) => (
+          {points.map((point, index) => (
             <div key={point.id} className={styles.stackItem}>
               <SectionHeader text="Location" aria-hidden />
               {slides[index]}
