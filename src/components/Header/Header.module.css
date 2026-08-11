@@ -103,13 +103,18 @@
 /* --- Menu overlay ----------------------------------------------------- */
 
 /* Platinum, not carbon — the menu frames are a light overlay. */
+/* Exactly one viewport tall and never scrolls — the content below flexes to
+   fit rather than overflowing. `svh` so a mobile toolbar can't push it taller
+   than the visible area. */
 .overlay {
   position: fixed;
   inset: 0;
   z-index: 30;
   display: flex;
   flex-direction: column;
-  overflow-y: auto;
+  height: 100vh;
+  height: 100svh;
+  overflow: hidden;
   padding: 104px var(--gutter) 64px;
   color: var(--color-carbon);
   background: var(--color-platinum);

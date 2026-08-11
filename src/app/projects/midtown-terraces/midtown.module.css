@@ -11,97 +11,102 @@
 
 /* --- Hero -------------------------------------------------------------- */
 
+/* Copy on the platinum ground, then a full-bleed image band beneath it. The
+   artwork is drawn larger than its frame and cropped by it, so the band is
+   not a plain `cover` fit. */
 .hero {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  min-height: 620px;
-  overflow: hidden;
-  background: var(--color-carbon);
-  color: var(--color-platinum);
+  background: var(--color-platinum);
+  color: #000; /* Figma "Black: #000000" — deliberately not --color-heading */
 }
 
-.heroMedia {
-  position: absolute;
-  inset: 0;
-}
-
-.heroImage {
-  object-fit: cover;
-}
-
-.heroScrim {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    to top,
-    rgb(0 0 0 / 78%),
-    rgb(0 0 0 / 40%) 55%,
-    rgb(0 0 0 / 30%)
-  );
+/* Its own row above the hero copy, aligned to the gutter (10894:6953).
+   The mobile frame has no breadcrumb, so it appears from 1024 up. */
+/* Breadcrumb carries its own gutter, so this row adds none of its own. */
+.heroCrumb {
+  display: none;
+  padding: 4px 0 0;
 }
 
 .heroInner {
-  position: relative;
-  z-index: 1;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
+  gap: 64px;
+  padding-top: 50px;
+}
+
+.heroCopy {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  width: 319px;
+  max-width: calc(100% - var(--gutter) * 2);
+}
+
+.heroHeadings {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   gap: 12px;
   width: 100%;
-  padding: 140px var(--gutter) 56px;
-}
-
-/* Breadcrumb is styled for light grounds; invert it over the photograph. */
-.heroInner > nav {
-  background: none;
-  margin-bottom: 20px;
-}
-
-.heroInner > nav ol {
-  padding: 0;
-}
-
-.heroInner > nav * {
-  color: var(--color-platinum);
 }
 
 .heroLocation {
   margin: 0;
-  font-size: 13px;
-  font-weight: 300;
-  line-height: 1.4;
-  opacity: 0.75;
-}
-
-.heroWelcome {
-  margin: 0;
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 600;
   line-height: 1.4;
+  text-align: center;
   text-transform: uppercase;
-  letter-spacing: 0.02em;
-  opacity: 0.7;
 }
 
+/* Two lines from the explicit break; "The Midtown Terraces" wraps again
+   inside the 279px measure on mobile, as the frame shows. */
 .heroTitle {
   margin: 0;
-  font-size: 40px;
+  padding: 0 20px;
+  font-size: 48px;
   font-weight: 500;
-  line-height: 0.95;
-  letter-spacing: -0.04em;
+  line-height: 0.9;
+  letter-spacing: -1.2px;
+  text-align: center;
   text-transform: capitalize;
-  color: var(--color-platinum);
 }
 
-.heroTagline {
-  margin: 8px 0 20px;
-  max-width: 560px;
-  font-size: 16px;
-  line-height: 1.4;
-  letter-spacing: -0.01em;
-  color: var(--color-platinum);
+/* An underlined text link in the design, not a filled button. */
+.heroLink {
+  padding-bottom: 4px;
+  border-bottom: 1px solid currentColor;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: normal;
+  color: inherit;
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+}
+
+.heroLink:hover,
+.heroLink:focus-visible {
+  opacity: 0.6;
+}
+
+.heroFigure {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 393 / 427.311;
+  overflow: hidden;
+  background: var(--color-image-bg);
+}
+
+.heroImage {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: auto;
+  height: 100%;
+  max-width: none;
+  transform: translateX(-50%);
 }
 
 /* --- Specification ----------------------------------------------------- */
@@ -113,63 +118,76 @@
 .specInner {
   display: flex;
   flex-direction: column;
-  gap: 24px;
-  padding: 48px var(--gutter);
+  align-items: flex-start;
+  gap: 43px;
+  padding: 50px var(--gutter);
 }
 
-.specHead {
+.specBody {
   display: flex;
-  gap: 16px;
-  align-items: baseline;
-  justify-content: space-between;
-  padding-bottom: 12px;
-  border-bottom: 1px solid var(--color-rule);
+  flex-direction: column;
+  gap: 43px;
+  width: 100%;
 }
 
-.specTitle {
+.specIntro {
   margin: 0;
-  font-size: 14px;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.3;
+  letter-spacing: -0.32px;
+}
+
+.specTable {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.3;
+  letter-spacing: -0.32px;
+}
+
+/* Column headings are desktop only; the mobile frame goes straight to the
+   first row. Needs to outrank `.specRow`, which sets `display: flex` below. */
+.specRow.specColHeadRow {
+  display: none;
+}
+
+.specColHead {
   font-weight: 700;
-  line-height: 1;
-  text-transform: uppercase;
-  color: var(--color-heading);
-}
-
-.specSub {
-  margin: 0;
-  font-size: 14px;
-  font-weight: 300;
-  opacity: 0.5;
-  color: var(--color-heading);
+  color: var(--color-beige);
 }
 
 .specList {
   display: flex;
   flex-direction: column;
   margin: 0;
+  width: 100%;
 }
 
+/* Mobile rules the top of every row and closes the last one. */
 .specRow {
   display: flex;
-  gap: 16px;
-  align-items: baseline;
-  justify-content: space-between;
-  padding: 14px 0;
-  border-bottom: 1px solid var(--color-rule-soft);
+  gap: 50px;
+  align-items: flex-start;
+  width: 100%;
+  padding: 17.131px 0 16.123px;
+  border-top: 1.008px solid var(--color-rule);
+}
+
+.specList > .specRow:last-child {
+  border-bottom: 1.008px solid var(--color-rule);
 }
 
 .specLabel {
-  font-size: 14px;
-  font-weight: 300;
-  color: var(--color-body);
+  flex-shrink: 0;
+  width: 120px;
+  opacity: 0.55;
 }
 
 .specValue {
   margin: 0;
-  font-size: 14px;
-  font-weight: 500;
-  text-align: right;
-  color: var(--color-heading);
 }
 
 /* --- Address ----------------------------------------------------------- */
@@ -181,90 +199,57 @@
 .addressInner {
   display: flex;
   flex-direction: column;
-  gap: 16px;
-  padding: 48px var(--gutter);
+  align-items: flex-start;
+  gap: 24px;
+  padding: 25px var(--gutter) 0;
+  color: #000;
 }
 
 .addressHeading {
   margin: 0;
-  max-width: 780px;
   font-size: 28px;
   font-weight: 400;
   line-height: 1.1;
-  letter-spacing: -0.03em;
-  color: var(--color-heading);
+  letter-spacing: -1.4px;
+  text-transform: capitalize;
 }
 
 .addressBody {
   margin: 0;
-  max-width: 640px;
-  font-size: 15px;
-  font-weight: 300;
-  line-height: 1.5;
-  color: var(--color-body);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.3;
+  letter-spacing: -0.32px;
+  text-indent: 16px;
+}
+
+/* Inset to the gutter rather than bled to the edge. */
+.addressFigureWrap {
+  padding: 24px var(--gutter) 50px;
 }
 
 .addressFigure {
   position: relative;
   width: 100%;
-  aspect-ratio: 16 / 10;
-  background: var(--color-image-bg);
-}
-
-.addressImage {
-  object-fit: cover;
-}
-
-/* --- Gallery ----------------------------------------------------------- */
-
-.gallery {
-  background: var(--color-platinum);
-}
-
-.galleryInner {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-  padding: 64px var(--gutter);
-}
-
-.galleryHeading {
-  margin: 0;
-  font-size: 32px;
-  font-weight: 400;
-  line-height: 1;
-  letter-spacing: -0.03em;
-  color: var(--color-heading);
-}
-
-.galleryGrid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 12px;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.galleryItem {
-  position: relative;
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 353 / 220;
   overflow: hidden;
   background: var(--color-image-bg);
 }
 
-.galleryImage {
-  object-fit: cover;
+.addressImage {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: auto;
+  max-width: none;
+  transform: translate(-50%, -50%);
 }
 
-.galleryNote {
-  margin: 0;
-  font-size: 12px;
-  font-weight: 300;
-  line-height: 1.4;
-  opacity: 0.6;
-  color: var(--color-body);
-}
+/* --- Gallery ----------------------------------------------------------- */
+
+/* Gallery lives in its own component — it needs client state for the
+   selectable thumbnails. See components/Gallery. */
 
 /* --- Quote ------------------------------------------------------------- */
 
@@ -308,12 +293,9 @@
   background: var(--color-platinum);
 }
 
-.proximityInner,
+/* FloorPlan, PaymentPlan and the viewing card own their own layout now. */
 .essentialsInner,
-.reasonsInner,
-.floorsInner,
-.paymentInner,
-.viewingInner {
+.reasonsInner {
   display: flex;
   flex-direction: column;
   gap: 24px;
@@ -509,21 +491,63 @@
 
 /* --- Viewing form ------------------------------------------------------ */
 
-.viewingIntro {
+/* Ruled card, inset to the gutter (9500:4942). */
+.viewingCard {
+  position: relative;
+  display: flex;
+  padding: 32px var(--gutter);
+  border: 1px solid var(--color-rule);
+  margin: 0 var(--gutter);
+  overflow: hidden;
+}
+
+.viewingInner {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  width: 100%;
+  padding: 0;
+}
+
+.viewingHeading {
   margin: 0;
-  max-width: 560px;
-  font-size: 15px;
-  font-weight: 300;
-  line-height: 1.5;
-  color: var(--color-body);
+  font-size: 28px;
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: -1.4px;
+  text-transform: capitalize;
+  color: #000;
+}
+
+.viewingIntro {
+  margin: -20px 0 0;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.3;
+  letter-spacing: -0.32px;
+  color: #000;
+}
+
+/* The outlined mark is decoration only — it goes when there's no room. */
+.viewingMark {
+  display: none;
 }
 
 .form {
   display: flex;
   flex-direction: column;
-  gap: 16px;
-  align-items: flex-start;
-  max-width: 520px;
+  gap: 4px;
+  align-items: stretch;
+  width: 100%;
+}
+
+/* The two actions sit side by side, wrapping when there isn't room. */
+.formActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+  margin-top: 28px;
 }
 
 .field {
@@ -531,9 +555,11 @@
   width: 100%;
 }
 
+/* 66-tall fields ruled underneath, text inset 16 (9500:4950). */
 .input {
   width: 100%;
-  padding: 14px 0;
+  height: 66px;
+  padding: 0 16px;
   border: 0;
   border-bottom: 1px solid var(--color-rule);
   appearance: none;
@@ -555,12 +581,6 @@
 
 /* --- Tablet ------------------------------------------------------------ */
 
-@media (min-width: 640px) {
-  .galleryGrid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-
 /* --- Desktop ----------------------------------------------------------- */
 
 @media (min-width: 1024px) {
@@ -568,73 +588,198 @@
     font-size: 48px;
   }
 
-  .hero {
-    min-height: 780px;
+  .heroCrumb {
+    display: block;
   }
 
   .heroInner {
-    padding: 180px var(--gutter) 88px;
+    gap: 100px;
+    padding-top: 100px;
+    padding-bottom: 50px;
+  }
+
+  .heroCopy {
+    gap: 38px;
+    width: 749px;
+  }
+
+  .heroHeadings {
+    gap: 8px;
+  }
+
+  .heroLocation {
+    font-size: 16px;
   }
 
   .heroTitle {
+    padding: 0;
     font-size: 80px;
+    letter-spacing: -4px;
+    white-space: nowrap;
   }
 
-  .heroTagline {
-    font-size: 20px;
+  .heroLink {
+    font-size: 14px;
   }
 
-  .specInner,
-  .addressInner {
-    padding: 64px var(--gutter);
+  /* 9975:5034 — a 1440×874.712 band holding the artwork at 1505.695 wide
+     (104.5622%), pulled up 120.006px (13.7202%) and centred. */
+  .heroFigure {
+    aspect-ratio: 1440 / 874.712;
   }
 
-  /* Spec label and value in two columns rather than pushed apart. */
-  .specRow {
-    display: grid;
-    grid-template-columns: 240px minmax(0, 1fr);
+  .heroImage {
+    top: -13.7202%;
+    width: 104.5622%;
+    height: auto;
+  }
+
+  /* Label alone on the left, tagline and table on the right (9388:8075). */
+  .specInner {
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
     gap: 40px;
+    padding: 50px var(--gutter) 100px;
   }
 
-  .specValue {
-    text-align: left;
+  .specBody {
+    flex: none;
+    gap: 64px;
+    width: 809px;
+    max-width: 100%;
   }
 
-  .specLabel,
-  .specValue,
+  .specIntro {
+    font-size: 24px;
+    line-height: 1.2;
+    letter-spacing: -0.24px;
+  }
+
+  .specTable {
+    font-size: 20px;
+    letter-spacing: -0.4px;
+  }
+
+  .specRow.specColHeadRow {
+    display: flex;
+  }
+
+  /* Desktop rules the foot of every row instead of the head. */
+  .specRow {
+    padding: 19.119px 16.388px;
+    border-top: none;
+    border-bottom: 2px solid var(--color-rule);
+  }
+
+  .specList > .specRow:last-child {
+    border-bottom: 2px solid var(--color-rule);
+  }
+
+  .specLabel {
+    width: 250px;
+    opacity: 1;
+  }
+
   .essentialsItem,
   .proximityLabel {
     font-size: 16px;
   }
 
+  /* Heading and body as two columns (9345:5410). */
+  .addressInner {
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 40px;
+    /* 9345:5410 is 1143.32 wide *inside* the gutter, so the cap has to carry
+       the padding with it. */
+    max-width: calc(1143.32px + var(--gutter) * 2);
+    padding: 100px var(--gutter);
+  }
+
   .addressHeading {
+    width: 505.617px;
+    flex: none;
     font-size: 48px;
+    line-height: 1;
+    letter-spacing: -2.4px;
   }
 
-  .addressBody,
-  .paymentIntro,
-  .viewingIntro {
-    font-size: 16px;
+  .addressBody {
+    width: 493.805px;
+    flex: none;
+    font-size: 24px;
+    line-height: 1.2;
+    letter-spacing: -0.24px;
   }
 
-  .galleryInner,
-  .proximityInner,
+  .addressFigureWrap {
+    padding: 40px var(--gutter);
+  }
+
+  /* 9345:5419 — a 1360×730.011 frame with the artwork at full width and
+     pulled up 192.14px (26.3201%). */
+  .addressFigure {
+    aspect-ratio: 1360 / 730.011;
+  }
+
+  .addressImage {
+    top: -26.3201%;
+    transform: translateX(-50%);
+  }
+
   .essentialsInner,
-  .reasonsInner,
-  .floorsInner,
-  .paymentInner,
-  .viewingInner {
+  .reasonsInner {
     gap: 40px;
     padding: 100px var(--gutter);
   }
 
-  .galleryHeading {
-    font-size: 48px;
+  /* --- Viewing card (9500:4942) ---------------------------------------
+     The card is inset to the gutter and its content indented a further 80.
+     The copy and form hold a 582 column; the mark sits opposite, 80 in from
+     the card's right edge so it travels with the card rather than a fixed
+     left offset. */
+  .viewing {
+    padding: 33.5px 0;
   }
 
-  .galleryGrid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 16px;
+  .viewingCard {
+    padding: 80px;
+  }
+
+  .viewingInner {
+    width: 581.97px;
+    gap: 38px;
+  }
+
+  .viewingHeading {
+    font-size: 40px;
+    line-height: 1.2;
+    letter-spacing: -2px;
+  }
+
+  .viewingIntro {
+    margin-top: -30px;
+    font-size: 20px;
+  }
+
+  .form {
+    gap: 4px;
+  }
+
+  .formActions {
+    gap: 32px;
+    margin-top: 32px;
+  }
+
+  .viewingMark {
+    position: absolute;
+    top: 90.27px;
+    right: 80px;
+    display: block;
+    width: 415.92px;
+    height: auto;
   }
 
   .quoteInner {

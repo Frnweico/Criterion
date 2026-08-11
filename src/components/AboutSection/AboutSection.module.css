@@ -40,8 +40,8 @@
   .inner {
     flex-direction: row;
     justify-content: space-between;
-    gap: 64px;
-    max-width: 1155px;
+    gap: 68px;
+    max-width: 1200px;
     margin: 0;
     padding: 160px var(--gutter);
   }

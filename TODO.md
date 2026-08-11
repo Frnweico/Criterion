@@ -32,6 +32,7 @@ gets logged here.
 | Button | Where | Needs |
 |---|---|---|
 | ~~Get Buyer Checklist~~ | Desktop hero, all 3 slides | ✅ Resolved — links to `/#buyer-checklist`, the checklist band on the homepage |
+| ~~Download Product Paper~~ | Midtown "Request a Private Viewing" | ✅ Resolved — PDF supplied 10 Aug 2026, served from `/midtown-terraces-product-paper.pdf` (3.94 MB, 41pp) |
 
 ### Content gaps found in the designs
 

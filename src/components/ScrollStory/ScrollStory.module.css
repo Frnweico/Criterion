@@ -1,71 +1,103 @@
-/* --- Shared ------------------------------------------------------------ */
+/* Scroll-driven story. The heading band and the step content share one
+   sticky viewport, so the section title stays on screen for the whole run
+   while the number, title, body and picture change beneath it.
+   Figma 9394:4687 (heading) and 9391:8542 (the step band). */
 
 .section {
   background: var(--color-platinum);
+  color: #000;
 }
 
-.intro {
+/* --- Heading band ------------------------------------------------------ */
+
+.head {
+  flex: none;
   display: flex;
   flex-direction: column;
   gap: 16px;
-}
-
-.label {
-  margin: 0;
-  font-size: 12px;
-  font-weight: 600;
-  line-height: 1.4;
-  text-transform: uppercase;
-  letter-spacing: 0.02em;
-  opacity: 0.5;
-  color: var(--color-heading);
+  padding: 50px var(--gutter) 24px;
 }
 
 .heading {
   margin: 0;
-  font-size: 32px;
+  font-size: 36px;
   font-weight: 400;
-  line-height: 1.05;
-  letter-spacing: -0.03em;
+  line-height: 1.1;
+  letter-spacing: -1.8px;
   text-transform: capitalize;
-  color: var(--color-heading);
 }
 
-.introText {
+.intro {
   margin: 0;
-  max-width: 520px;
   font-size: 16px;
-  line-height: 1.4;
-  letter-spacing: -0.01em;
-  color: var(--color-body);
+  font-weight: 400;
+  line-height: 1.3;
+  letter-spacing: -0.32px;
+  text-indent: 16px;
 }
 
-.counter {
-  margin: 0;
+/* --- Shared type ------------------------------------------------------- */
+
+/* Vertical rule either side of the step number (9391:8555). */
+.counterBox {
+  position: relative;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 49px;
+  height: 30px;
+  overflow: hidden;
+  border-right: 1px solid #000;
+  border-left: 1px solid #000;
   font-size: 14px;
-  font-weight: 300;
+  font-weight: 400;
   line-height: 1.4;
-  opacity: 0.5;
-  color: var(--color-heading);
+  text-transform: uppercase;
 }
 
-.pointTitle {
+/* Only the step number rolls; it is clipped to a single line box so it
+   travels inside the rules rather than past them. */
+.counterStack {
+  position: relative;
+  display: block;
+  width: 1ch;
+  height: 1.4em;
+  overflow: hidden;
+}
+
+.counterNum {
+  display: block;
+  width: 100%;
+  text-align: center;
+}
+
+/* Static — never animates. */
+.counterTotal {
+  display: block;
+}
+
+.title {
   margin: 0;
   font-size: 24px;
-  font-weight: 400;
-  line-height: 1.15;
-  letter-spacing: -0.02em;
-  color: var(--color-heading);
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -0.96px;
+  white-space: nowrap;
 }
 
-.pointBody {
+.body {
   margin: 0;
-  max-width: 460px;
-  font-size: 15px;
-  font-weight: 300;
-  line-height: 1.45;
-  letter-spacing: -0.01em;
-  color: var(--color-body);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.3;
+  letter-spacing: -0.32px;
+}
+
+.titleRow {
+  display: flex;
+  gap: 14px;
+  align-items: center;
 }
 
 .image {
@@ -78,20 +110,19 @@
   display: flex;
   flex-direction: column;
   gap: 48px;
-  padding: 64px var(--gutter);
+  padding: 0 var(--gutter) 64px;
 }
 
 .stackItem {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 16px;
 }
 
 .stackFigure {
   position: relative;
   width: 100%;
-  aspect-ratio: 4 / 3;
-  margin-bottom: 4px;
+  aspect-ratio: 673 / 520;
   overflow: hidden;
   background: var(--color-image-bg);
 }
@@ -99,140 +130,316 @@
 /* --- Pinned ------------------------------------------------------------ */
 
 /* The track is as tall as one viewport per point; the sticky child holds the
-   view still while that height scrolls past, which is what advances the
-   points. */
+   whole section still while that height scrolls past, which is what advances
+   the steps — under a wheel, a trackpad or a touch drag alike. */
 .track {
   position: relative;
-  background: var(--color-platinum);
 }
 
 .sticky {
   position: sticky;
   top: 0;
+  display: flex;
+  flex-direction: column;
   height: 100vh;
   height: 100svh;
   overflow: hidden;
 }
 
-.pinned {
+.band {
+  flex: 1;
+  min-height: 0;
   display: flex;
   flex-direction: column;
   gap: 24px;
-  height: 100%;
-  padding: 88px var(--gutter) 48px;
+  padding: 24px var(--gutter);
 }
 
-.copyColumn {
+.copyCol {
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
 
-/* Progress rail: one segment per point, filled up to the active one. */
+/* Horizontal on mobile, vertical beside the copy on desktop. */
 .rail {
   display: flex;
-  gap: 6px;
+  gap: 8px;
   margin: 0;
   padding: 0;
   list-style: none;
+  height: 4px;
 }
 
 .railItem {
-  flex: 1;
-  height: 2px;
-  background: rgb(25 25 25 / 15%);
-  transition: background 0.35s ease;
+  flex: 1 0 0;
+  background: #000;
+  opacity: 0.2;
+  transition: opacity 0.45s cubic-bezier(0.33, 1, 0.68, 1);
 }
 
-.railItemOn {
-  background: var(--color-carbon);
+.railOn {
+  opacity: 1;
 }
 
-.pointCopy {
+.copy {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 20px;
 }
 
-/* Images are stacked and cross-faded rather than swapped, so there is no
-   flash while the next one decodes. */
+/* Each of these holds its steps stacked on top of one another, so one can
+   leave while the next arrives. Heights are fixed to the tallest step to
+   stop the column shifting as the copy changes. */
+.titles {
+  position: relative;
+  flex: 1;
+  height: 24px;
+}
+
+.bodies {
+  position: relative;
+  min-height: 84px;
+}
+
+.slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  opacity: 0;
+  will-change: transform, opacity;
+  transition:
+    opacity 380ms cubic-bezier(0.33, 1, 0.68, 1),
+    transform 520ms cubic-bezier(0.33, 1, 0.68, 1);
+}
+
+.slide.on {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.slide.prev {
+  transform: translateY(-14px);
+}
+
+.slide.next {
+  transform: translateY(14px);
+}
+
+/* The number travels a full line box, so it reads as rolling over. */
+.counterNum.prev {
+  transform: translateY(-100%);
+}
+
+.counterNum.next {
+  transform: translateY(100%);
+}
+
+/* Titles don't slide — they settle out of a soft blur instead, which reads
+   far gentler than a step at this size.
+
+   Title only — the rest of the step keeps the section's own stagger below.
+
+   The handoff is quick and the arrival is slow: the outgoing title clears in
+   220ms and is down to 4% at 165ms, which is exactly when the incoming one
+   starts, so the two never sit on top of each other. The incoming fade then
+   eases out over 620ms and the scale settles over 900ms, so it slows into
+   place rather than snapping.
+
+   Blur runs to its own clock either side, solved against those curves so it
+   only lives below 35% opacity: clear by 83ms in, and starting at 92ms out. */
+.title {
+  will-change: transform, opacity, filter;
+}
+
+.title.on {
+  opacity: 1;
+  transform: scale(1);
+  filter: blur(0);
+  transition-property: opacity, transform, filter;
+  transition-duration: 620ms, 900ms, 83ms;
+  transition-timing-function:
+    cubic-bezier(0.33, 1, 0.68, 1),
+    cubic-bezier(0.16, 1, 0.3, 1),
+    linear;
+  transition-delay: 165ms, 165ms, 165ms;
+}
+
+.title.prev,
+.title.next {
+  opacity: 0;
+  transform: scale(0.985);
+  filter: blur(10px);
+  transition-property: opacity, transform, filter;
+  transition-duration: 220ms, 220ms, 128ms;
+  transition-timing-function:
+    cubic-bezier(0.4, 0, 0.2, 1),
+    cubic-bezier(0.4, 0, 0.2, 1),
+    linear;
+  transition-delay: 0ms, 0ms, 92ms;
+}
+
 .figure {
   position: relative;
   flex: 1;
   min-height: 0;
   overflow: hidden;
-  background: var(--color-image-bg);
+  background: var(--color-platinum);
 }
 
-.figure .image {
-  opacity: 0;
-  transition: opacity 0.5s ease;
+/* Outgoing shrinks back and fades; incoming fades up into the frame. */
+.imageSlide {
+  transform-origin: center;
+  will-change: transform, opacity;
+  transition:
+    opacity 520ms cubic-bezier(0.33, 1, 0.68, 1),
+    transform 760ms cubic-bezier(0.33, 1, 0.68, 1);
 }
 
-.figure .imageOn {
+.imageSlide.on {
   opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.imageSlide.prev {
+  opacity: 0;
+  transform: translateY(0) scale(0.92);
+}
+
+.imageSlide.next {
+  opacity: 0;
+  transform: translateY(6%) scale(1);
+}
+
+/* Arrival is staggered — number and title, then the description well after
+   it, then the picture. Departures carry no delay, so the outgoing step
+   clears promptly instead of lingering under the incoming one. (The title's
+   own delays are set on its rules above, since its blur runs to a different
+   clock from its fade.) */
+.counterNum.on {
+  transition-delay: 0ms;
+}
+
+.body.on {
+  transition-delay: 260ms;
+}
+
+.imageSlide.on {
+  transition-delay: 420ms;
 }
 
 /* --- Desktop ----------------------------------------------------------- */
 
 @media (min-width: 1024px) {
-  .stack {
-    gap: 80px;
-    padding: 100px var(--gutter);
+  /* 9394:4687 — heading left, intro right. */
+  .head {
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 40px;
+    padding: 72px var(--gutter) 40px;
   }
 
   .heading {
-    font-size: 48px;
+    font-size: 64px;
+    line-height: 1;
+    letter-spacing: -3.2px;
+    white-space: nowrap;
   }
 
-  .introText {
-    font-size: 20px;
+  .intro {
+    width: 532px;
+    flex: none;
+    font-size: 24px;
+    line-height: 1.2;
+    letter-spacing: -0.24px;
   }
 
-  .pointTitle {
-    font-size: 36px;
+  .stack {
+    gap: 80px;
+    padding: 0 var(--gutter) 100px;
   }
 
-  .pointBody,
-  .counter {
+  /* 9391:8542 — rail, copy, then the picture. */
+  .band {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+    padding: 42px 37px;
+  }
+
+  /* Definite height, so the rail inside it can resolve against something and
+     clamp on short viewports instead of running past the band. */
+  .copyCol {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 113px;
+    flex: none;
+    height: 520px;
+    max-height: 100%;
+  }
+
+  .rail {
+    flex-direction: column;
+    gap: 16px;
+    width: 5px;
+    height: 100%;
+  }
+
+  .copy {
+    gap: 48px;
+    width: 414px;
+  }
+
+  .titleRow {
+    gap: 20px;
+  }
+
+  .counterBox {
+    width: 49px;
+    height: 34px;
     font-size: 16px;
   }
 
-  /* Copy left, image right — the rail runs down the left edge of the copy. */
-  .pinned {
-    display: grid;
-    grid-template-columns: minmax(0, 470px) minmax(0, 1fr);
-    gap: 80px;
-    align-items: center;
-    padding: 120px var(--gutter) 96px;
+  .titles {
+    height: 36px;
   }
 
-  .copyColumn {
-    gap: 28px;
+  .title {
+    font-size: 36px;
+    letter-spacing: -1.44px;
   }
 
-  /* Vertical on desktop, sitting beside the copy. */
-  .rail {
-    flex-direction: column;
-    gap: 8px;
-    height: 180px;
+  .bodies {
+    min-height: 104px;
+    width: 414px;
   }
 
-  .railItem {
-    flex: 1;
-    width: 2px;
-    height: auto;
+  .body {
+    font-size: 20px;
+    letter-spacing: -0.4px;
   }
 
   .figure {
-    height: 100%;
-    min-height: 0;
+    flex: none;
+    width: 673px;
+    height: 520px;
+    max-height: 100%;
+  }
+
+  /* A step with no picture gives the copy the full width. */
+  .bandSolo .figure {
+    display: none;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .railItem,
-  .figure .image {
+  .slide,
+  .title,
+  .imageSlide {
     transition: none;
   }
 }

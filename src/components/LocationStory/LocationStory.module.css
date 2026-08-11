@@ -1,0 +1,425 @@
+/* Location story, intro included. One pinned frame: the label starts centred
+   over the quote, then settles top-left while the five points run under it.
+   Figma 9342:5053 — slides 9396:4763 (image), 4755 (drive times), 4771 (list).
+
+   Everything inside the frame is inset by the page gutter — 20px on mobile,
+   40px from 1024 — and nothing bleeds past it. */
+
+.section {
+  background: var(--color-platinum);
+  color: #000;
+}
+
+/* --- Pinned frame ------------------------------------------------------ */
+
+.track {
+  position: relative;
+}
+
+.sticky {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  height: 100svh;
+  overflow: hidden;
+}
+
+.introLayer,
+.pointsLayer {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  padding: var(--gutter);
+  opacity: 0;
+  pointer-events: none;
+  will-change: transform, opacity;
+  transition:
+    opacity 520ms cubic-bezier(0.33, 1, 0.68, 1),
+    transform 700ms cubic-bezier(0.33, 1, 0.68, 1);
+}
+
+.introLayer.on,
+.pointsLayer.on {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* The quote travels up and out as it fades, rather than dissolving in place —
+   it reads as being carried off by the scroll. */
+.introLayer {
+  transform: translateY(-64px);
+}
+
+.introLayer.on {
+  transform: translateY(0);
+}
+
+/* Held back so the quote has cleared before the first point arrives. */
+.pointsLayer.on {
+  transition-delay: 220ms;
+}
+
+/* Intro: label and quote together in the middle of the frame. */
+.introLayer {
+  gap: 32px;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.introLabel {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+/* The two sentences read as one block of wrapped lines, so no gap between
+   them — only the line height. */
+.quote {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* The measure is set in `em`, so it scales with the type. That keeps the
+   three-line arrangement — lead on its own line, body breaking after
+   "while" — identical at every viewport rather than only at one size. */
+.quoteLine {
+  margin: 0;
+  max-width: 17.5em;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1.3;
+  letter-spacing: -0.4px;
+}
+
+/* Points: label pinned to the top left, slides filling the whole frame. */
+.pointsLayer {
+  align-items: flex-start;
+}
+
+.label {
+  position: absolute;
+  top: var(--gutter);
+  left: var(--gutter);
+}
+
+.slides {
+  position: relative;
+  flex: 1;
+  align-self: stretch;
+  min-height: 0;
+}
+
+/* --- Slides ------------------------------------------------------------ */
+
+/* Mobile: everything sits to the bottom of the frame, left aligned, with the
+   picture or list last so it meets the padding at the foot of the screen. */
+/* Capped to the lower 70% of the frame. On a tablet the square picture plus
+   its copy is tall enough to run up into the section label otherwise; the
+   picture shrinks to fit rather than the stack overflowing. */
+.slides > .slide {
+  position: absolute;
+  inset: 30% 0 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 20px;
+  text-align: left;
+  opacity: 0;
+  will-change: transform, opacity;
+  transition:
+    opacity 460ms cubic-bezier(0.33, 1, 0.68, 1),
+    transform 620ms cubic-bezier(0.33, 1, 0.68, 1);
+}
+
+.slides > .on {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.slides > .prev {
+  transform: translateY(-16px);
+}
+
+.slides > .next {
+  transform: translateY(16px);
+}
+
+.slides > .on .aside {
+  transition-delay: 120ms;
+}
+
+/* Slides built from copy rather than a photograph breathe more. */
+.slides > .slideBuilt,
+.slides > .slideBuilt .copy {
+  gap: 40px;
+}
+
+.copy {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.title {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 1.3;
+  letter-spacing: -1.2px;
+  text-transform: capitalize;
+}
+
+.body {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.3;
+  letter-spacing: -0.32px;
+}
+
+.aside {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  min-height: 0;
+}
+
+.figure {
+  position: relative;
+  flex: 0 1 auto;
+  width: 100%;
+  min-height: 0;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  background: var(--color-image-bg);
+}
+
+.image {
+  object-fit: cover;
+}
+
+/* Drive times (9418:4910) */
+.rows {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* Generous room between each rule and the figures it encloses. */
+.row {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  padding: 40px 0;
+  border-top: 1px solid var(--color-rule);
+}
+
+.rows > .row:last-child {
+  border-bottom: 1px solid var(--color-rule);
+}
+
+.minutes {
+  flex-shrink: 0;
+  width: 34px;
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 1;
+  color: var(--color-beige);
+}
+
+.rowLabel {
+  font-size: 16px;
+  line-height: 1.3;
+  letter-spacing: -0.32px;
+}
+
+/* Essentials list (9401:5023) */
+.essentials {
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.essential {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  font-size: 16px;
+  line-height: 1.3;
+  letter-spacing: -0.32px;
+}
+
+/* A dot between two hairlines, as the frame draws it. */
+.marker {
+  position: relative;
+  flex-shrink: 0;
+  width: 32.375px;
+  height: 24.375px;
+  border-right: 1px solid var(--color-rule);
+  border-left: 1px solid var(--color-rule);
+}
+
+.marker::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 8.375px;
+  height: 8.375px;
+  border-radius: 50%;
+  background: #000;
+  transform: translate(-50%, -50%);
+}
+
+/* --- Reduced-motion stack ---------------------------------------------- */
+
+.stack {
+  display: flex;
+  flex-direction: column;
+}
+
+.stackItem {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 45px var(--gutter) 50px;
+}
+
+.stackIntro {
+  align-items: center;
+  text-align: center;
+}
+
+/* --- Desktop ----------------------------------------------------------- */
+
+@media (min-width: 1024px) {
+  .introLayer {
+    gap: 48px;
+  }
+
+  .quoteLine {
+    font-size: 32px;
+    letter-spacing: -0.96px;
+  }
+
+  /* The label holds the corner; the slides take the rest of the frame and
+     centre their content in it. */
+  /* Full frame again — the row layout centres rather than bottom-anchoring,
+     so it has no reason to clear the label. */
+  .slides > .slide {
+    inset: 0;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+  }
+
+  .slides > .slideBuilt,
+  .slides > .slideBuilt .copy {
+    gap: 40px;
+  }
+
+  /* The essentials slide is the tall one: its heading sits level with the top
+     of the list rather than centring against it. Grid does both — the row
+     track centres in the frame (`align-content`), while the two columns align
+     to the top of that row (`align-items`). Flex could only do one or the
+     other, which is what let the heading ride up under the label.
+     Content block is 1299.81 wide, not the full 1360 (9404:5046). */
+  .slides > .slideEssentials {
+    display: grid;
+    grid-template-columns: 537.57px 609.24px;
+    justify-content: space-between;
+    align-content: center;
+    align-items: start;
+    /* The frame sets this block lower than centre — top at 205 of an 810
+       frame, so its middle lands at 58% rather than 50%. Starting the
+       centring band 16% down reproduces that without hard-coding a height. */
+    top: 16%;
+    right: auto;
+    width: 1299.81px;
+    max-width: 100%;
+  }
+
+  .copy {
+    flex: none;
+    width: 537.57px;
+    gap: 88px;
+  }
+
+  .title {
+    font-size: 48px;
+    line-height: 1;
+    letter-spacing: -2.4px;
+  }
+
+  .body {
+    font-size: 24px;
+    line-height: 1.2;
+    letter-spacing: -0.24px;
+  }
+
+  .aside {
+    flex: none;
+    width: 690px;
+    gap: 36px;
+  }
+
+  .figure {
+    width: 690px;
+    aspect-ratio: 690 / 388.125;
+  }
+
+  .rows {
+    width: 670px;
+  }
+
+  .row {
+    padding: 0 24px;
+    height: 144px;
+  }
+
+  .minutes {
+    width: 46px;
+    font-size: 48px;
+  }
+
+  .rowLabel {
+    font-size: 24px;
+    line-height: 1.2;
+    letter-spacing: -0.24px;
+  }
+
+  .slideEssentials .aside {
+    width: 609.24px;
+  }
+
+  .slideEssentials .body {
+    width: 537.57px;
+  }
+
+  .essentials {
+    padding-left: 32px;
+  }
+
+  .essential {
+    font-size: 20px;
+    line-height: 1.3;
+    letter-spacing: -0.4px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .introLayer,
+  .pointsLayer,
+  .slides > .slide {
+    transition: none;
+  }
+}

@@ -1,8 +1,7 @@
-.wrap {
-  display: flex;
-  flex-direction: column;
-  gap: 32px;
-}
+/* "Why buy into…" toggle list. Mobile is an accordion — title, chevron, then
+   the copy and picture beneath. Desktop moves the copy and picture into a
+   fixed right-hand column and lets the picture overhang the rows below.
+   Figma 9825:4760. */
 
 .list {
   display: flex;
@@ -12,53 +11,98 @@
   list-style: none;
 }
 
-.item {
-  border-bottom: 1px solid var(--color-rule-soft);
+.row {
+  position: relative;
+  border-bottom: 1px solid var(--color-rule);
 }
 
-.row {
+.toggle {
   display: flex;
+  gap: 16px;
   align-items: center;
+  justify-content: space-between;
   width: 100%;
   padding: 20px 0;
-  border: 0;
   appearance: none;
+  border: 0;
   background: none;
-  cursor: pointer;
+  font-family: inherit;
   text-align: left;
+  cursor: pointer;
 }
 
-.row:focus-visible {
+.toggle:focus-visible {
   outline: 2px solid var(--color-carbon);
-  outline-offset: -2px;
+  outline-offset: 4px;
 }
 
 .title {
-  font-size: 22px;
+  font-size: 18px;
   font-weight: 400;
-  line-height: 1.15;
-  letter-spacing: -0.02em;
+  line-height: 1.4;
+  letter-spacing: -0.36px;
   color: var(--color-heading);
+  opacity: 0.45;
+  transition: opacity 0.3s ease;
 }
 
-/* Mobile shows every reason expanded — there is no hover to reveal them. */
-.detail {
+.rowOpen .title,
+.toggle:hover .title {
+  opacity: 1;
+}
+
+/* Chevron is the mobile affordance; the desktop frame has none.
+
+   Two borders on a *square* box, rotated 45deg — the box has to be square or
+   the two arms come out unequal and the V looks bent. The nudge on Y offsets
+   the rotated box's centre, which sits above the visual point of the V. */
+.chevron {
+  flex-shrink: 0;
+  box-sizing: border-box;
+  width: 11px;
+  height: 11px;
+  border-right: 1.5px solid currentColor;
+  border-bottom: 1.5px solid currentColor;
+  opacity: 0.45;
+  transform: translateY(-3px) rotate(45deg);
+  transform-origin: center;
+  transition:
+    transform 0.3s ease,
+    opacity 0.3s ease;
+}
+
+.rowOpen .chevron {
+  transform: translateY(3px) rotate(-135deg);
+}
+
+.rowOpen .chevron,
+.toggle:hover .chevron {
+  opacity: 1;
+}
+
+.panel {
   display: flex;
   flex-direction: column;
   gap: 16px;
   padding-bottom: 24px;
 }
 
+/* `display: flex` above outranks the UA rule for [hidden], which would leave
+   every closed panel occupying layout. */
+.panel[hidden] {
+  display: none;
+}
+
 .body {
   margin: 0;
   font-size: 15px;
-  font-weight: 300;
+  font-weight: 400;
   line-height: 1.4;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.3px;
   color: var(--color-body);
 }
 
-.figureInline {
+.figure {
   position: relative;
   width: 100%;
   aspect-ratio: 1 / 1;
@@ -70,82 +114,66 @@
   object-fit: cover;
 }
 
-/* The swapping panel is desktop only. */
-.panel {
-  display: none;
-}
-
 /* --- Desktop ----------------------------------------------------------- */
 
 @media (min-width: 1024px) {
-  /* List left, the revealed panel pinned on the right. */
-  .wrap {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) 306px;
-    gap: 80px;
-    align-items: start;
-  }
-
+  /* 80-tall rows; the open one doubles to 160 so the copy has room. The
+     picture is taller than either and deliberately overhangs. */
   .row {
-    padding: 28px 0;
-    transition: opacity 0.25s ease;
-    opacity: 0.35;
+    height: 80px;
+    transition: height 0.35s cubic-bezier(0.33, 1, 0.68, 1);
   }
 
-  .rowOn,
-  .row:hover {
-    opacity: 1;
+  .rowOpen {
+    height: 160px;
   }
 
-  .title {
-    font-size: 36px;
-    letter-spacing: -0.03em;
+  .toggle {
+    height: 100%;
+    padding: 0 0 0 420px;
   }
 
-  /* Hidden here — the panel carries the copy and image instead. */
-  .detail {
+  .rowOpen .toggle {
+    align-items: flex-start;
+    padding-top: 12px;
+  }
+
+  .chevron {
     display: none;
   }
 
+  .title {
+    font-size: 24px;
+    letter-spacing: -0.48px;
+  }
+
+  /* 9825:4766 — a 306 column starting at x 992 within the 1358 list. */
   .panel {
-    display: flex;
-    flex-direction: column;
+    position: absolute;
+    top: 0;
+    left: 992px;
+    z-index: 1;
+    width: 306px;
     gap: 17px;
-    width: 306px;
+    padding-bottom: 0;
   }
 
-  .panelBody {
-    margin: 0;
-    padding: 12px 0;
+  .body {
     font-size: 16px;
-    font-weight: 300;
     line-height: 1.4;
-    letter-spacing: -0.01em;
-    color: var(--color-carbon);
+    letter-spacing: -0.32px;
+    padding-top: 12px;
   }
 
-  /* Images stacked and cross-faded so there's no flash between reasons. */
-  .panelFigure {
-    position: relative;
+  .figure {
     width: 306px;
-    height: 306px;
-    overflow: hidden;
-    background: var(--color-image-bg);
-  }
-
-  .panelFigure .image {
-    opacity: 0;
-    transition: opacity 0.35s ease;
-  }
-
-  .panelFigure .imageOn {
-    opacity: 1;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .row,
-  .panelFigure .image {
+  .title,
+  .chevron {
     transition: none;
   }
 }

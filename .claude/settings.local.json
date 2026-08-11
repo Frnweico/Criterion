@@ -24,7 +24,15 @@
       "Bash(align-self: flex-start *)",
       "Bash(git init *)",
       "Bash(git config *)",
-      "Bash(git branch *)"
+      "Bash(git branch *)",
+      "Bash(git add *)",
+      "Bash(git commit -q -m ' *)",
+      "Bash(sed 's/ = .*asset\\\\// -> /')",
+      "Bash(cd \"C:/Users/PC/Documents/Frnwei/Criterion Homes/2026 Positioning/Web/Nav\" && echo \"=== dark gradient def ===\" && grep -oE \"<linearGradient[^>]*>.*</linearGradient>\" \"Mode=Dark.svg\" | head -c 600; echo; echo \"=== any stop colors ===\" && grep -oE \"<stop[^>]*/?>\" \"Mode=Dark.svg\")",
+      "PowerShell(npm run build 2>&1)",
+      "mcp__cc49e27b-da85-45ed-948f-8c700dca0169__get_metadata",
+      "Bash(python -c ' *)",
+      "PowerShell(Set-Location \"C:\\\\Users\\\\PC\\\\Documents\\\\Frnwei\\\\Web\\\\Criterion-Homes\"; git status --short; \"---- branch ----\"; git rev-parse --abbrev-ref HEAD; \"---- counts ----\"; \"modified: \" + \\(git diff --name-only | Measure-Object -Line\\).Lines; \"untracked: \" + \\(git ls-files --others --exclude-standard | Measure-Object -Line\\).Lines)"
     ]
   }
 }

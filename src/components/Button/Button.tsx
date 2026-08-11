@@ -21,6 +21,11 @@ type CommonProps = {
 type LinkProps = CommonProps & {
   /** Renders an <a>. Omit to render a <button> instead. */
   href: string;
+  /**
+   * For a static asset rather than a route — renders a plain <a download>, so
+   * the file saves instead of the router trying to navigate to it.
+   */
+  download?: boolean;
   onClick?: never;
   type?: never;
 };
@@ -53,8 +58,18 @@ export default function Button({
   );
 
   if ("href" in rest && rest.href) {
+    const { href, download } = rest as LinkProps;
+
+    if (download) {
+      return (
+        <a href={href} download className={classes}>
+          {content}
+        </a>
+      );
+    }
+
     return (
-      <Link href={rest.href} className={classes}>
+      <Link href={href} className={classes}>
         {content}
       </Link>
     );

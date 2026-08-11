@@ -33,24 +33,28 @@ export default function BenchmarkersSection() {
             <h2 id="benchmarkers-heading" className={styles.heading}>
               Become A Benchmarker
             </h2>
+            <div className={styles.copy}>
+              <p className={styles.lead}>
+                An exclusive circle for buyers and investors who prefer to move
+                early, and with clarity.
+              </p>
 
-            <p className={styles.lead}>
-              An exclusive circle for buyers and investors who prefer to move
-              early, and with clarity.
-            </p>
-
-            <p className={styles.lead}>
-              Get early access to our developments like The Urban Nest, along
-              with updates from ongoing builds and practical insights into real
-              estate decisions.
-            </p>
-
+              <p className={styles.lead}>
+                Get early access to our developments like The Urban Nest, along
+                with updates from ongoing builds and practical insights into real
+                estate decisions.
+              </p>
+            </div>
             <ul className={styles.perks}>
-              {PERKS.map((perk) => (
-                <li key={perk} className={styles.perk}>
-                  {perk}
-                </li>
-              ))}
+              <li className={styles.perk}>
+                Early access before public release
+              </li>
+              <li className={styles.perk}>
+                Private updates from Midtown Terraces
+              </li>
+              <li className={styles.perk}>
+                Clear, practical real estate insights
+              </li>
             </ul>
           </div>
         </div>

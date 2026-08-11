@@ -36,8 +36,13 @@ export type ScrollPoint = {
   id: string;
   title: string;
   body: string;
-  image: string;
-  imageAlt: string;
+  /**
+   * Optional. Two of the location points carry no photograph: "Proximity to
+   * Key Areas" is a set of drive times, and "Nearby Essentials" belongs to the
+   * map further down the page. Those steps render copy only.
+   */
+  image?: string;
+  imageAlt?: string;
 };
 
 /** Five points, revealed one at a time as the section is scrolled. */
@@ -47,14 +52,15 @@ export const PHILOSOPHY: ScrollPoint[] = [
     title: "Enduring Architecture",
     body: "Clean lines, balanced proportions, and a restrained design give the home a quiet presence that stays relevant as trends change.",
     image: "/images/midtown-philosophy-1.png",
-    imageAlt: "Floor plans for The Midtown Terraces",
+    imageAlt: "Line elevation drawing of the four Midtown Terraces",
   },
   {
     id: "structural-assurance",
     title: "Structural Assurance",
     body: "Construction supervised by seasoned experts with attention to strength, finish, and long-term performance.",
     image: "/images/midtown-philosophy-2.png",
-    imageAlt: "Construction underway at The Midtown Terraces",
+    imageAlt:
+      "A Criterion Homes engineer reviewing drawings on site at The Midtown Terraces",
   },
   {
     id: "functional-layouts",
@@ -68,19 +74,49 @@ export const PHILOSOPHY: ScrollPoint[] = [
     title: "Bathed in Light and Air",
     body: "Expansive windows and a thoughtfully placed atrium fill the home with natural light and fresh air, creating a brighter, more uplifting and welcoming atmosphere.",
     image: "/images/midtown-philosophy-4.png",
-    imageAlt: "Light-filled interior with expansive windows",
+    imageAlt: "Lit recessed balconies on the terrace facade at dusk",
   },
   {
     id: "private-green-patches",
     title: "Private Green Patches",
     body: "Landscaped outdoor patches give each home breathing room, privacy, and a relaxing everyday experience.",
     image: "/images/midtown-philosophy-5.png",
-    imageAlt: "Landscaped outdoor space",
+    imageAlt: "Landscaped hedging along the terrace frontage",
   },
 ];
 
 export const GALLERY_NOTE =
   "Interior visualizations are illustrative only and not representations of the final delivered design.";
+
+export type GalleryShot = { src: string; alt: string };
+
+/**
+ * Display order, not file order. The lead is the side elevation; the other
+ * two exteriors follow, then the interiors — which is the order the frame
+ * shows down the thumbnail column.
+ */
+export const GALLERY: GalleryShot[] = [
+  {
+    src: "/images/midtown-gallery-5.png",
+    alt: "The Midtown Terraces seen from the side at dusk",
+  },
+  {
+    src: "/images/midtown-gallery-3.png",
+    alt: "The frontage of The Midtown Terraces at dusk",
+  },
+  {
+    src: "/images/midtown-gallery-4.png",
+    alt: "The terraces from the side, showing the balcony bays",
+  },
+  {
+    src: "/images/midtown-gallery-1.png",
+    alt: "The kitchen, with a marble island and fitted cabinetry",
+  },
+  {
+    src: "/images/midtown-gallery-2.png",
+    alt: "A marble bathroom with a freestanding bath and walk-in shower",
+  },
+];
 
 export const LOCATION_QUOTE = {
   lead: "Often described as “it’s own city”",
@@ -100,8 +136,6 @@ export const LOCATION_POINTS: ScrollPoint[] = [
     id: "proximity",
     title: "Proximity to Key Areas",
     body: "Its location in the third phase of the country’s capital city ensures direct access to key zones.",
-    image: "/images/midtown-location-2.png",
-    imageAlt: "Road connections around Gwarinpa",
   },
   {
     id: "wide-boulevards",
@@ -115,14 +149,12 @@ export const LOCATION_POINTS: ScrollPoint[] = [
     title: "Stability",
     body: "With strong occupancy, steady appreciation, and a track record of stability, it continues to offer the assurance buyers and investors seek in a prime residential address.",
     image: "/images/midtown-location-4.png",
-    imageAlt: "Established residential streets in Gwarinpa",
+    imageAlt: "Aerial view along Gwarinpa's dual carriageway at sunset",
   },
   {
     id: "nearby-essentials",
     title: "Nearby Essentials",
     body: "Supported by reputable schools, medical facilities, retail, and hospitality, Gwarinpa delivers a complete living experience within a self-sufficient setting.",
-    image: "/images/midtown-location-5.png",
-    imageAlt: "Local amenities in Gwarinpa",
   },
 ];
 
@@ -184,7 +216,7 @@ export const REASONS: Reason[] = [
     title: "Exclusivity and Privacy",
     body: "A rare property in a prestigious, low-density neighborhood.",
     image: "/images/midtown-reason-3.png",
-    imageAlt: "The low-density streets around the development",
+    imageAlt: "Gated timber entrance to The Midtown Terraces",
   },
   {
     id: "green-inspired",
@@ -198,14 +230,37 @@ export const REASONS: Reason[] = [
     title: "Quality Assurance",
     body: "Crafted with enduring masonry and attentive workmanship, upheld by an uncompromising standard of care",
     image: "/images/midtown-reason-5.png",
-    imageAlt: "Masonry detail showing the standard of workmanship",
+    imageAlt: "Balcony corner detail with a glass balustrade",
   },
 ];
 
+/**
+ * Intrinsic pixel sizes of the plan drawings. They differ in height, so the
+ * figure takes its aspect from the drawing rather than a fixed box — a
+ * letterboxed plan shrinks the annotation past the point of being readable.
+ */
 export const FLOORS = [
-  { id: "ground", label: "Ground Floor", plan: "/images/midtown-floor-ground.png" },
-  { id: "first", label: "First Floor", plan: "/images/midtown-floor-first.png" },
-  { id: "second", label: "Second Floor", plan: "/images/midtown-floor-second.png" },
+  {
+    id: "ground",
+    label: "Ground Floor",
+    plan: "/images/midtown-floor-ground.png",
+    width: 1786,
+    height: 1085,
+  },
+  {
+    id: "first",
+    label: "First Floor",
+    plan: "/images/midtown-floor-first.png",
+    width: 1786,
+    height: 1153,
+  },
+  {
+    id: "second",
+    label: "Second Floor",
+    plan: "/images/midtown-floor-second.png",
+    width: 1786,
+    height: 1161,
+  },
 ];
 
 export const PAYMENT_INTRO =

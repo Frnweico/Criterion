@@ -7,21 +7,19 @@ import styles from "./ScrollStory.module.css";
 
 type Props = {
   id: string;
-  /** Eyebrow above the section. */
-  label: string;
   heading?: string;
   intro?: string;
   points: ScrollPoint[];
   /**
-   * Whether the pinned scroll behaviour also runs on mobile. The design gives
-   * it to Location only; Design Philosophy stacks normally on small screens.
+   * Whether the pinned scroll behaviour also runs on mobile. Pinning is what
+   * makes a touch scroll advance the story, so any section that should
+   * respond to a swipe needs this.
    */
   pinOnMobile?: boolean;
 };
 
 export default function ScrollStory({
   id,
-  label,
   heading,
   intro,
   points,
@@ -31,9 +29,8 @@ export default function ScrollStory({
   const [active, setActive] = useState(0);
   const [pinned, setPinned] = useState(false);
 
-  /* Pinning is opt-in per breakpoint. Below 1024 only the Location section
-     pins; everything else renders as a plain stack, which is also the
-     fallback when a visitor has asked for reduced motion. */
+  /* Pinning is opt-in per breakpoint, and off entirely for anyone who has
+     asked for reduced motion — they get the plain stack. */
   useEffect(() => {
     const decide = () => {
       const wide = window.matchMedia("(min-width: 1024px)").matches;
@@ -49,7 +46,8 @@ export default function ScrollStory({
 
   /* Active point comes from how far the track has travelled past the top of
      the viewport, divided into one band per point. Read in a rAF so a fast
-     scroll doesn't queue up layout reads. */
+     scroll doesn't queue up layout reads. Touch scrolling drives this the
+     same way a wheel does, which is what makes the swipe work. */
   useEffect(() => {
     if (!pinned) return;
     const track = trackRef.current;
@@ -86,41 +84,53 @@ export default function ScrollStory({
 
   const headingId = `${id}-heading`;
 
-  const intoduction = (
-    <div className={styles.intro}>
-      <p className={styles.label}>{label}</p>
+  /* Everything already passed parks above, everything still to come parks
+     below. Direction of travel then falls out of the index on its own —
+     forward, the outgoing item leaves upward and the incoming one rises into
+     place; backward, both reverse without tracking scroll direction. */
+  const state = (index: number) =>
+    index === active ? styles.on : index < active ? styles.prev : styles.next;
+
+  const head = (heading || intro) && (
+    <div className={styles.head}>
       {heading && (
         <h2 id={headingId} className={styles.heading}>
           {heading}
         </h2>
       )}
-      {intro && <p className={styles.introText}>{intro}</p>}
+      {intro && <p className={styles.intro}>{intro}</p>}
     </div>
   );
 
-  /* Unpinned: every point in normal flow. This is also what search engines and
-     screen readers see, since the pinned view renders the same markup. */
+  /* Unpinned: every point in normal flow. This is also what search engines
+     and anyone on reduced motion sees. */
   if (!pinned) {
     return (
-      <section className={styles.section} aria-labelledby={headingId}>
+      <section id={id} className={styles.section} aria-labelledby={headingId}>
+        {head}
         <div className={styles.stack}>
-          {intoduction}
           {points.map((point, index) => (
             <article key={point.id} className={styles.stackItem}>
-              <p className={styles.counter}>
-                {index + 1}/{points.length}
-              </p>
-              <div className={styles.stackFigure}>
-                <Image
-                  src={point.image}
-                  alt={point.imageAlt}
-                  fill
-                  sizes="100vw"
-                  className={styles.image}
-                />
+              <div className={styles.titleRow}>
+                <span className={styles.counterBox}>
+                  <span className={styles.counter}>
+                    {index + 1}/{points.length}
+                  </span>
+                </span>
+                <h3 className={styles.title}>{point.title}</h3>
               </div>
-              <h3 className={styles.pointTitle}>{point.title}</h3>
-              <p className={styles.pointBody}>{point.body}</p>
+              <p className={styles.body}>{point.body}</p>
+              {point.image && (
+                <div className={styles.stackFigure}>
+                  <Image
+                    src={point.image}
+                    alt={point.imageAlt ?? ""}
+                    fill
+                    sizes="100vw"
+                    className={styles.image}
+                  />
+                </div>
+              )}
             </article>
           ))}
         </div>
@@ -128,57 +138,104 @@ export default function ScrollStory({
     );
   }
 
+  const anyFigure = points.some((point) => point.image);
+  const activeHasFigure = Boolean(points[active]?.image);
+
   return (
-    <section aria-labelledby={headingId}>
-      {/* One viewport of scroll per point. */}
+    <section id={id} className={styles.section} aria-labelledby={headingId}>
+      {/* One viewport of scroll per point. The heading band lives inside the
+          sticky child, so it stays put for the whole section rather than
+          scrolling away once the first step pins. */}
       <div
         ref={trackRef}
         className={styles.track}
         style={{ height: `${points.length * 100}svh` }}
       >
         <div className={styles.sticky}>
-          <div className={styles.pinned}>
-            <div className={styles.copyColumn}>
-              {intoduction}
-
-              {/* Progress rail — one segment per point, filled up to the
-                  current one. */}
+          {head}
+          <div
+            className={`${styles.band} ${
+              activeHasFigure ? "" : styles.bandSolo
+            }`}
+          >
+            <div className={styles.copyCol}>
+              {/* Only the current segment is solid; the rest sit at 20%. */}
               <ol className={styles.rail} aria-hidden>
                 {points.map((point, index) => (
                   <li
                     key={point.id}
                     className={`${styles.railItem} ${
-                      index <= active ? styles.railItemOn : ""
+                      index === active ? styles.railOn : ""
                     }`}
                   />
                 ))}
               </ol>
 
-              <p className={styles.counter}>
-                {active + 1}/{points.length}
-              </p>
+              <div className={styles.copy}>
+                <div className={styles.titleRow}>
+                  {/* Only the step number moves; the total stays put. Both
+                      clipped, so it travels inside its own rules. */}
+                  <div className={styles.counterBox}>
+                    <span className={styles.counterStack}>
+                      {points.map((point, index) => (
+                        <span
+                          key={point.id}
+                          className={`${styles.counterNum} ${styles.slide} ${state(index)}`}
+                          aria-hidden={index !== active}
+                        >
+                          {index + 1}
+                        </span>
+                      ))}
+                    </span>
+                    <span className={styles.counterTotal}>
+                      /{points.length}
+                    </span>
+                  </div>
 
-              <div className={styles.pointCopy}>
-                <h3 className={styles.pointTitle}>{points[active].title}</h3>
-                <p className={styles.pointBody}>{points[active].body}</p>
+                  <div className={styles.titles}>
+                    {points.map((point, index) => (
+                      <h3
+                        key={point.id}
+                        className={`${styles.title} ${styles.slide} ${state(index)}`}
+                        aria-hidden={index !== active}
+                      >
+                        {point.title}
+                      </h3>
+                    ))}
+                  </div>
+                </div>
+
+                <div className={styles.bodies}>
+                  {points.map((point, index) => (
+                    <p
+                      key={point.id}
+                      className={`${styles.body} ${styles.slide} ${state(index)}`}
+                      aria-hidden={index !== active}
+                    >
+                      {point.body}
+                    </p>
+                  ))}
+                </div>
               </div>
             </div>
 
-            <div className={styles.figure}>
-              {points.map((point, index) => (
-                <Image
-                  key={point.id}
-                  src={point.image}
-                  alt={index === active ? point.imageAlt : ""}
-                  fill
-                  sizes="(min-width: 1024px) 50vw, 100vw"
-                  className={`${styles.image} ${
-                    index === active ? styles.imageOn : ""
-                  }`}
-                  aria-hidden={index !== active}
-                />
-              ))}
-            </div>
+            {anyFigure && (
+              <div className={styles.figure}>
+                {points.map((point, index) =>
+                  point.image ? (
+                    <Image
+                      key={point.id}
+                      src={point.image}
+                      alt={index === active ? (point.imageAlt ?? "") : ""}
+                      fill
+                      sizes="(min-width: 1024px) 673px, 100vw"
+                      className={`${styles.image} ${styles.imageSlide} ${state(index)}`}
+                      aria-hidden={index !== active}
+                    />
+                  ) : null,
+                )}
+              </div>
+            )}
           </div>
         </div>
       </div>

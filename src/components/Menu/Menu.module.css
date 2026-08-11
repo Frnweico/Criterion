@@ -1,10 +1,13 @@
-/* Mobile: nav, then the latest project, then socials. */
+/* Mobile: nav, then the latest project, then socials.
+   `min-height: 0` lets this shrink inside the fixed-height overlay instead of
+   forcing it to scroll; the gap collapses on short screens. */
 .content {
   display: flex;
   flex: 1;
   flex-direction: column;
-  gap: 88px;
+  gap: clamp(20px, 6vh, 88px);
   width: 100%;
+  min-height: 0;
   max-width: 355px;
   margin: 0 auto;
 }
@@ -15,6 +18,7 @@
   display: flex;
   flex: 1;
   flex-direction: column;
+  min-height: 0;
 }
 
 .navList {
@@ -27,10 +31,11 @@
   border-bottom: 1px solid var(--color-carbon);
 }
 
+/* Scales with viewport height so six rows always fit without scrolling. */
 .navLink {
   display: block;
-  padding: 8px 0;
-  font-size: 40px;
+  padding: clamp(4px, 0.8vh, 8px) 0;
+  font-size: clamp(26px, 4.6vh, 40px);
   font-weight: 400;
   line-height: 1;
   letter-spacing: -0.03em;
@@ -160,34 +165,38 @@
 /* Two columns: project and socials on the left, navigation on the right.
    The DOM keeps the mobile order, so `order` swaps them here. */
 @media (min-width: 1024px) {
-  /* Left-aligned with a fixed 300px gap, not space-between. The frame puts the
-     project column at x=40 and the nav at x=873, ending around 1262 — so the
-     nav must not stretch to the right edge as space-between made it do. */
-  .content {
-    flex-direction: row;
-    gap: 300px;
-    justify-content: flex-start;
-    max-width: none;
-    margin: 0;
+  .menu {
+    height: 100svh;
+    min-height: 100svh;
+    padding: 40px var(--gutter);
+    overflow: hidden;
   }
 
-  /* Fixed to the artwork's width so the 300px gap lands the nav at x=873. */
-  .aside {
-    order: 1;
-    flex: 0 0 533px;
-    justify-content: space-between;
-    gap: 48px;
-    width: 533px;
-    min-height: 764px;
+  .content {
+    display: grid;
+    grid-template-columns: 533px 388px;
+    column-gap: 300px;
+    flex: 1;
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    min-height: 0;
   }
+
+  .aside {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
 
   .nav {
     order: 2;
-    flex: 0 0 auto;
+    display: flex;
+    flex-direction: column;
     gap: 24px;
+    min-height: 0;
   }
 
-  /* The label above the list only exists at desktop. */
   .nav::before {
     content: "Navigate";
     font-size: 16px;
@@ -202,18 +211,23 @@
   }
 
   .navLink {
-    padding: 16px 0;
-    font-size: 64px;
-    letter-spacing: -0.05em;
+  padding: 8px 0;
+  font-size: 64px;
+  line-height: 1;
+  letter-spacing: -0.05em;
   }
 
-  /* Desktop stacks the card: label, image, then the location and name. */
-  .latest {
-    flex-direction: column;
-    gap: 24px;
-    padding: 0;
-    background: none;
+  .latestProject {
+    height: 0%;
   }
+
+  .latest {
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 24px;
+  padding: 0;
+  background: none;
+}
 
   .latestText {
     display: contents;
@@ -226,10 +240,12 @@
   }
 
   .latestFigure {
-    order: 2;
-    width: 533px;
-    max-width: 100%;
-    height: 426px;
+  order: 2;
+  flex: none;
+  width: 533px;
+  aspect-ratio: 5 / 4;
+  height: auto;
+  max-width: 100%;
   }
 
   .latestMeta {
@@ -237,24 +253,13 @@
     gap: 4px;
   }
 
-  .latestLocation {
-    font-size: 16px;
-    font-weight: 300;
-  }
-
-  .latestName {
-    font-size: 28px;
-    font-weight: 500;
-    line-height: 1.2;
+  .follow {
+    flex-shrink: 0;
   }
 
   .followLabel,
   .followLink {
     font-size: 16px;
-  }
-
-  .followLink {
-    font-weight: 300;
   }
 
   .followList {

@@ -6,68 +6,59 @@ import { REASONS } from "@/lib/midtown";
 import styles from "./ReasonsList.module.css";
 
 /**
- * "Why buy into The Midtown Terraces?"
+ * "Why buy into…" — a toggle list. One reason is open at a time: its title
+ * goes black while the rest sit grey, and its copy and picture appear in the
+ * right-hand column on desktop, or beneath the title on mobile.
  *
- * Desktop reveals each reason's copy and image on hover, per the design.
- * Mobile has no hover, so every reason is shown expanded — hiding content
- * behind an interaction that can't happen would make it unreachable.
- *
- * Focus counts as well as hover, so the same content is reachable by keyboard.
+ * Figma 9825:4760 — 80-tall rows, the open one 160, titles at x 460 and the
+ * 306-wide panel at x 1032 whose picture overhangs the rows below it.
  */
 export default function ReasonsList() {
-  const [active, setActive] = useState(0);
+  const [open, setOpen] = useState(0);
 
   return (
-    <div className={styles.wrap}>
-      <ul className={styles.list}>
-        {REASONS.map((reason, index) => (
-          <li key={reason.id} className={styles.item}>
+    <ul className={styles.list}>
+      {REASONS.map((reason, index) => {
+        const isOpen = index === open;
+
+        return (
+          <li
+            key={reason.id}
+            className={`${styles.row} ${isOpen ? styles.rowOpen : ""}`}
+          >
             <button
               type="button"
-              className={`${styles.row} ${index === active ? styles.rowOn : ""}`}
-              onMouseEnter={() => setActive(index)}
-              onFocus={() => setActive(index)}
-              onClick={() => setActive(index)}
-              aria-expanded={index === active}
+              className={styles.toggle}
+              aria-expanded={isOpen}
+              aria-controls={`reason-panel-${reason.id}`}
+              id={`reason-toggle-${reason.id}`}
+              onClick={() => setOpen(isOpen ? -1 : index)}
             >
               <span className={styles.title}>{reason.title}</span>
+              <span className={styles.chevron} aria-hidden />
             </button>
 
-            {/* Always in the DOM; desktop hides the inactive ones with CSS. */}
-            <div className={styles.detail}>
+            <div
+              id={`reason-panel-${reason.id}`}
+              role="region"
+              aria-labelledby={`reason-toggle-${reason.id}`}
+              className={styles.panel}
+              hidden={!isOpen}
+            >
               <p className={styles.body}>{reason.body}</p>
-              <div className={styles.figureInline}>
+              <div className={styles.figure}>
                 <Image
                   src={reason.image}
                   alt={reason.imageAlt}
                   fill
-                  sizes="100vw"
+                  sizes="(min-width: 1024px) 306px, calc(100vw - 40px)"
                   className={styles.image}
                 />
               </div>
             </div>
           </li>
-        ))}
-      </ul>
-
-      {/* Desktop only — the panel that swaps as you move down the list. */}
-      <div className={styles.panel} aria-hidden>
-        <p className={styles.panelBody}>{REASONS[active].body}</p>
-        <div className={styles.panelFigure}>
-          {REASONS.map((reason, index) => (
-            <Image
-              key={reason.id}
-              src={reason.image}
-              alt=""
-              fill
-              sizes="(min-width: 1024px) 306px, 0px"
-              className={`${styles.image} ${
-                index === active ? styles.imageOn : ""
-              }`}
-            />
-          ))}
-        </div>
-      </div>
-    </div>
+        );
+      })}
+    </ul>
   );
 }

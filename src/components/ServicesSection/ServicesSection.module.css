@@ -159,9 +159,7 @@
 
 @media (min-width: 1024px) {
   .inner {
-    max-width: var(--page-max);
-    margin: 0 auto;
-    padding: 100px var(--gutter);
+    padding: 98px var(--gutter);
   }
 
   /* Left column carries the intro and the list; the right column starts near

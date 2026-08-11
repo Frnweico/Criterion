@@ -283,8 +283,7 @@ Recorded in `docs/design-notes.md`. Don't "fix" these back.
 |---|---|
 | **Video** | Midtown "address" section should be video. MP4 not supplied. Still image stands in. Agreed approach: `preload="none"` + IntersectionObserver, skip on `saveData`/slow connection, autoplay muted → click to unmute. Cloudflare Stream if it exceeds ~15 MB |
 | **Designs** | `/contact`, `/blog/[slug]`, `/projects/the-urban-nest`, Join the Benchmarker page, remaining team overlays |
-| **Floor plan drawings** | `midtown-floor-{ground,first,second}.png` were never exported. Tabs work, frames are empty |
-| **Map** | "Explore Essentials" — no provider chosen, no pin data. Dashed placeholder with 6 category chips |
+| **Map** | "Nearby Essentials" is a location guide, not a photo: a map of the site, with the category buttons above it filtering to one essential at a time and showing its proximity. No provider chosen, no pin data — the dashed "Explore Essentials" placeholder with its 6 category chips is the slot. The Location scroll step of the same name now carries copy only |
 | **News article URLs** | All 6 render non-clickable |
 | **Blog content** | Markdown under `content/blog/` was the agreed approach; not yet set up |
 | **Newsletter provider** | 3 forms submit nowhere |
@@ -292,17 +291,19 @@ Recorded in `docs/design-notes.md`. Don't "fix" these back.
 
 ### Known issues
 
-- **`public/` is 132 MB**, 56.7 MB of it unreferenced. Heaviest:
-  `blog-hero.png` 10.8 MB, `hero-background.png` 8.3 MB (superseded),
-  `midtown-philosophy-5.png` 8.1 MB. Git keeps every version of a binary
-  forever — **compress before adding more**, because fixing it later means
-  rewriting history.
+- **`public/` is 89.7 MB**, down from 132 MB — the client supplied compressed
+  replacements for the whole Midtown set, which fell from ~52 MB to 10.4 MB.
+  Heaviest remaining: `blog-hero.png` 10.8 MB, `hero-background.png` 8.3 MB
+  (superseded). Git keeps every version of a binary forever — **compress before
+  adding more**, because fixing it later means rewriting history.
 - Safe to delete now: `hero-background.png`, `services-feature.png`,
   `navbar-scrim.png`, and the Next.js scaffold SVGs (`next/vercel/globe/
   file/window.svg`). ~9.5 MB. *The rest of the "unused" list is for pages not
   yet built — don't delete it.*
-- Three Midtown gallery files are **JPEGs with a `.png` extension**. Works, but
-  untidy.
+- The **floor plans render at 335 × 204 on a 375px viewport**, where the room
+  annotation is too small to read. Inherent to a 1786px-wide technical drawing
+  on a phone — needs a pinch/zoom or full-screen affordance, which is a design
+  decision, not a bug.
 - Menu viewport-height work (`height: 100svh`, flexing content) is built but
   **unverified at short viewports**.
 
