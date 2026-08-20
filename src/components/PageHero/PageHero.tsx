@@ -4,7 +4,7 @@ import styles from "./PageHero.module.css";
 type Props = {
   title: string;
   body: string;
-  cta?: { text: string; href: string };
+  cta?: { text: string; href: string; newTab?: boolean };
 };
 
 /**
@@ -22,7 +22,12 @@ export default function PageHero({ title, body, cta }: Props) {
         <div className={styles.aside}>
           <p className={styles.body}>{body}</p>
           {cta && (
-            <Button text={cta.text} href={cta.href} className={styles.cta} />
+            <Button
+              text={cta.text}
+              href={cta.href}
+              newTab={cta.newTab}
+              className={styles.cta}
+            />
           )}
         </div>
       </div>

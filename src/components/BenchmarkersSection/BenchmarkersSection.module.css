@@ -1,14 +1,25 @@
 /* Full-bleed interior photograph behind the envelope. */
 .section {
+  position: relative;
+  overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
-  /* Always exactly one viewport tall, at every size. */
-  height: 100vh;
-  height: 100svh;
+  /* One full viewport plus a deliberate 15% continuation, so the invitation
+     remains a scroll moment rather than ending exactly at the fold. */
+  min-height: 115vh;
+  min-height: 115svh;
   padding: 40px var(--gutter);
   background-color: var(--color-carbon);
-  background-image: url("/images/benchmarkers-bg.png");
+}
+
+.background {
+  position: absolute;
+  /* More than twice the maximum parallax travel, so the section ground can
+     never show through at the top or bottom. */
+  inset: -64px 0;
+  z-index: 0;
+  background-image: url("/images/Webp images/WP-benchmarkers-bg - Copy.webp");
   background-position: center;
   background-size: cover;
 }
@@ -17,6 +28,7 @@
    flow beneath the artwork; at desktop it is placed onto the flap. */
 .frame {
   position: relative;
+  z-index: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -32,7 +44,7 @@
   position: relative;
   width: 100%;
   aspect-ratio: 371 / 576;
-  background-image: url("/images/envelope-portrait.png");
+  background-image: url("/images/Webp images/envelope-portrait - Copy.webp");
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
@@ -44,6 +56,7 @@
   top: 8%;
   right: 6%;
   left: 6%;
+  transform: translateY(-4px);
   display: flex;
   flex-direction: column;
   gap: 18px;
@@ -135,13 +148,14 @@
 
   .stage {
     aspect-ratio: 881 / 877;
-    background-image: url("/images/envelope-landscape.png");
+    background-image: url("/images/Webp images/envelope-landscape - Copy.webp");
   }
 
   .card {
     top: 8.3%;
     right: 21.5%;
     left: 21.5%;
+    transform: none;
     gap: 2.4cqw;
   }
 

@@ -1,8 +1,9 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import Menu from "@/components/Menu/Menu";
 import styles from "./Header.module.css";
 
@@ -18,31 +19,88 @@ type Props = {
 
 export default function Header({ solid, tone = "dark" }: Props) {
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const [hidden, setHidden] = useState(false);
+  const wasOpen = useRef(false);
+  const toggleRef = useRef<HTMLButtonElement>(null);
+  const overlayRef = useRef<HTMLDivElement>(null);
+  const pathname = usePathname();
 
-  // Close on Escape, and stop the page scrolling behind the overlay.
+  // Close on Escape, lock the page behind the modal menu, and keep keyboard
+  // focus inside it until it is closed.
   useEffect(() => {
-    if (!open) return;
+    if (!open) {
+      if (wasOpen.current) toggleRef.current?.focus();
+      wasOpen.current = false;
+      return;
+    }
+
+    wasOpen.current = true;
 
     const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") setOpen(false);
+      if (event.key === "Escape") {
+        setOpen(false);
+        return;
+      }
+      if (event.key !== "Tab") return;
+
+      const focusable = overlayRef.current?.querySelectorAll<HTMLElement>(
+        'a[href], button:not([disabled])',
+      );
+      if (!focusable?.length) return;
+
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
     };
 
     document.addEventListener("keydown", onKeyDown);
     const previousOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
+    const frame = window.requestAnimationFrame(() => {
+      overlayRef.current?.querySelector<HTMLElement>("a[href]")?.focus();
+    });
 
     return () => {
       document.removeEventListener("keydown", onKeyDown);
       document.body.style.overflow = previousOverflow;
+      window.cancelAnimationFrame(frame);
     };
   }, [open]);
+
+  useEffect(() => {
+    let lastY = window.scrollY;
+    let frame = 0;
+    const update = () => {
+      frame = 0;
+      const currentY = window.scrollY;
+      setScrolled(currentY > 24);
+      setHidden(currentY > 160 && currentY > lastY);
+      lastY = currentY;
+    };
+    const onScroll = () => {
+      if (!frame) frame = window.requestAnimationFrame(update);
+    };
+    update();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => {
+      if (frame) window.cancelAnimationFrame(frame);
+      window.removeEventListener("scroll", onScroll);
+    };
+  }, []);
 
   return (
     <>
       <header
         className={`${styles.header} ${solid ? styles.solid : ""} ${
           tone === "light" ? styles.light : ""
-        }`}
+        } ${scrolled ? styles.scrolled : ""} ${hidden && !open ? styles.hidden : ""}`}
       >
         {/* Mobile shows the mark alone; desktop adds the wordmark beside it,
             as the nav artwork does. */}
@@ -73,6 +131,7 @@ export default function Header({ solid, tone = "dark" }: Props) {
 
         <button
           type="button"
+          ref={toggleRef}
           className={`${styles.toggle} ${open ? styles.open : ""}`}
           aria-expanded={open}
           aria-controls="site-menu"
@@ -87,9 +146,15 @@ export default function Header({ solid, tone = "dark" }: Props) {
 
       <div
         id="site-menu"
+        ref={overlayRef}
         className={`${styles.overlay} ${open ? styles.overlayOpen : ""}`}
-        hidden={!open}
+        role="dialog"
+        aria-modal="true"
+        aria-label="Site navigation"
+        aria-hidden={!open}
+        data-menu-open={open ? "" : undefined}
       >
+        <div className={styles.overlayPanel}>
         {/* Repeats the logo and close control inside the overlay, since the
             header bar sits behind it. */}
         <div className={styles.overlayBar}>
@@ -118,10 +183,11 @@ export default function Header({ solid, tone = "dark" }: Props) {
           </button>
         </div>
 
-        <Menu onNavigate={() => setOpen(false)} />
+        <Menu onNavigate={() => setOpen(false)} activePath={pathname} />
 
         {/* Taupe band across the foot of the overlay, per the frame. */}
         <span className={styles.overlayFoot} aria-hidden />
+        </div>
       </div>
     </>
   );

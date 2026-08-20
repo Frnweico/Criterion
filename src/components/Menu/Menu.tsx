@@ -22,7 +22,7 @@ const MENU_NAV = [
   { label: "News", href: "/news" },
   { label: "Blog", href: "/blog" },
   { label: "About Us", href: "/about" },
-  { label: "Contact", href: "/contact" },
+  { label: "Contact Us", href: "/contact" },
 ];
 
 const SOCIAL_ORDER = ["Instagram", "LinkedIn", "Facebook", "X (Twitter)"];
@@ -33,9 +33,10 @@ const MENU_SOCIALS = SOCIAL_ORDER.map((label) =>
 
 type Props = {
   onNavigate: () => void;
+  activePath: string;
 };
 
-export default function Menu({ onNavigate }: Props) {
+export default function Menu({ onNavigate, activePath }: Props) {
   return (
     <div className={styles.content}>
       <nav className={styles.nav} aria-label="Main">
@@ -46,6 +47,7 @@ export default function Menu({ onNavigate }: Props) {
                 href={item.href}
                 className={styles.navLink}
                 onClick={onNavigate}
+                aria-current={activePath === item.href ? "page" : undefined}
               >
                 {item.label}
               </Link>

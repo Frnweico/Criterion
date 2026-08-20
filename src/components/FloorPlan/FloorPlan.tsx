@@ -79,6 +79,7 @@ export default function FloorPlan({ floors, projectName }: Props) {
             height={current.height}
             sizes="(min-width: 1024px) 714px, calc(100vw - 40px)"
             className={styles.image}
+            data-motion-preserve
           />
         </div>
 

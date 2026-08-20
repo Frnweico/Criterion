@@ -45,8 +45,8 @@ export const PHILOSOPHY: ScrollPoint[] = [
     id: "enduring-architecture",
     title: "Enduring Architecture",
     body: "Clean lines, balanced proportions, and a restrained design give the home a quiet presence that stays relevant as trends change.",
-    image: "/images/midtown-philosophy-1.webp",
-    imageAlt: "Line elevation drawing of the four Midtown Terraces",
+    image: "/images/midtown-gallery-frontage.webp",
+    imageAlt: "The Midtown Terraces property frontage",
   },
   {
     id: "structural-assurance",
@@ -103,6 +103,10 @@ export const GALLERY: GalleryShot[] = [
   {
     src: "/images/midtown-gallery-corner.webp",
     alt: "The terraces from the side, showing the balcony bays",
+  },
+  {
+    src: "/images/Gallery new/TMT D.png",
+    alt: "Aerial view of The Midtown Terraces during construction",
   },
   {
     src: "/images/midtown-gallery-kitchen.webp",
@@ -193,36 +197,31 @@ export const REASONS: Reason[] = [
     id: "aspirational-lifestyle",
     title: "Aspirational Lifestyle",
     body: "A vision of living for those with a cultivated taste, where every detail reflects discernment, and your space embodies the assured confidence of distinction.",
-    image: "/images/midtown-reason-1.webp",
-    imageAlt: "The Midtown Terraces at dusk",
   },
   {
     id: "spacious-living",
     title: "Spacious Living",
     body: "Multi-floor layouts with generous lounges, balconies, and family areas.",
-    image: "/images/midtown-reason-2.webp",
-    imageAlt: "A generous lounge inside The Midtown Terraces",
+  },
+  {
+    id: "perfect-for-families-and-professionals",
+    title: "Perfect for Families and Professionals",
+    body: "A considered home that supports family life, professional pace, and the privacy to return to both with ease.",
   },
   {
     id: "exclusivity",
     title: "Exclusivity and Privacy",
     body: "A rare property in a prestigious, low-density neighborhood.",
-    image: "/images/midtown-reason-3.webp",
-    imageAlt: "Gated timber entrance to The Midtown Terraces",
   },
   {
     id: "green-inspired",
     title: "Green-Inspired",
     body: "Each home is built around lushly landscaped compound spaces to enhance mental well-being, air quality, and aesthetics.",
-    image: "/images/midtown-reason-4.webp",
-    imageAlt: "Landscaped compound planting",
   },
   {
     id: "quality-assurance",
     title: "Quality Assurance",
     body: "Crafted with enduring masonry and attentive workmanship, upheld by an uncompromising standard of care",
-    image: "/images/midtown-reason-5.webp",
-    imageAlt: "Balcony corner detail with a glass balustrade",
   },
 ];
 
@@ -258,8 +257,14 @@ export const FLOORS: Floor[] = [
   },
 ];
 
-export const PAYMENT_INTRO =
-  "A 20% performance-based payment plan gives you flexibility and certainty. Each phase of the payment plan requires 3 months to complete.";
+export const PAYMENT_INTRO = {
+  lead: "Build As You Pay puts control back in your hands.",
+  points: [
+    "Pay as each stage is completed.",
+    "See the quality being delivered as your property takes shape.",
+    "Payments are tied to documented construction milestones.",
+  ],
+};
 
 export const PAYMENT: Payment = {
   unitPrice: "NGN 350,000,000",

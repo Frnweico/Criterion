@@ -18,6 +18,10 @@
   align-items: flex-start;
 }
 
+.intro > :nth-child(1) { --pact-delay: 0ms; }
+.intro > :nth-child(2) { --pact-delay: 100ms; }
+.intro > :nth-child(3) { --pact-delay: 220ms; }
+
 .heading {
   margin: 0;
   font-size: 40px;

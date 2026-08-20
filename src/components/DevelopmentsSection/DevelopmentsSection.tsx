@@ -37,7 +37,7 @@ export default function DevelopmentsSection() {
           </div>
         </div>
 
-        <div className={styles.cards}>
+        <div className={styles.cards} data-motion-stagger>
           {PROJECTS.map((project) => (
             <ProjectCard key={project.slug} project={project} />
           ))}

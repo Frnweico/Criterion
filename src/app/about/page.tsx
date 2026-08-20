@@ -28,6 +28,7 @@ export default function AboutPage() {
           cta={{
             text: "Download company profile",
             href: "/Criterion-Homes-Company-Profile.pdf",
+            newTab: true,
           }}
         />
         <StatementsSection />

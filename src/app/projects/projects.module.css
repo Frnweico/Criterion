@@ -19,6 +19,14 @@
   color: var(--color-carbon);
 }
 
+/* The archive title uses a deliberately tight line-height. Give only its
+   animated mask extra room for the descender in "Projects" without changing
+   the shared line-reveal treatment or the title's visual position. */
+.title > :global(.line-reveal-mask) {
+  padding-block: 0.24em;
+  margin-block: -0.24em;
+}
+
 .lead {
   margin: 0;
   font-size: 16px;
@@ -57,11 +65,13 @@
 
 .image {
   object-fit: cover;
-  transition: transform 0.5s ease;
+  transition: transform 680ms cubic-bezier(0.22, 1, 0.36, 1) 120ms;
 }
 
-.figure:hover .image {
-  transform: scale(1.03);
+@media (hover: hover) and (pointer: fine) {
+  .figure:hover .image {
+    transform: scale(1.012);
+  }
 }
 
 .details {

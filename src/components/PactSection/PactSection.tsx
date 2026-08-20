@@ -1,4 +1,5 @@
 import SectionHeader from "@/components/SectionHeader/SectionHeader";
+import type { CSSProperties } from "react";
 import { PACT_INTRO, PACT_ITEMS } from "@/lib/pact";
 import styles from "./PactSection.module.css";
 
@@ -11,9 +12,14 @@ import styles from "./PactSection.module.css";
  */
 export default function PactSection() {
   return (
-    <section className={styles.section} aria-labelledby="pact-heading">
+    <section
+      className={styles.section}
+      aria-labelledby="pact-heading"
+      data-motion-pact
+      data-motion-preserve
+    >
       <div className={styles.inner}>
-        <div className={styles.intro}>
+        <div className={styles.intro} data-pact-intro>
           <SectionHeader text="Our agreement" inverted />
 
           <h2 id="pact-heading" className={styles.heading}>
@@ -24,19 +30,36 @@ export default function PactSection() {
         </div>
 
         <ol className={styles.list}>
-          {PACT_ITEMS.map((item) => (
+          {PACT_ITEMS.map((item, index) => (
             <li key={item.index} className={styles.item}>
               <div className={styles.main}>
-                <p className={styles.index} aria-hidden>
+                <p
+                  className={styles.index}
+                  aria-hidden
+                  data-pact-index
+                  style={{ "--pact-delay": `${420 + index * 300}ms` } as CSSProperties}
+                >
                   {item.index}
                 </p>
                 {/* Short vertical rule beside the number; the title aligns to
                     its left edge on the row below. */}
                 <span className={styles.rule} aria-hidden />
-                <h3 className={styles.title}>{item.title}</h3>
+                <h3
+                  className={styles.title}
+                  data-pact-title
+                  style={{ "--pact-delay": `${510 + index * 300}ms` } as CSSProperties}
+                >
+                  {item.title}
+                </h3>
               </div>
 
-              <p className={styles.caption}>{item.caption}</p>
+              <p
+                className={styles.caption}
+                data-pact-caption
+                style={{ "--pact-delay": `${620 + index * 300}ms` } as CSSProperties}
+              >
+                {item.caption}
+              </p>
             </li>
           ))}
         </ol>

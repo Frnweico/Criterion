@@ -60,11 +60,13 @@
 
 .image {
   object-fit: cover;
-  transition: transform 0.5s ease;
+  transition: transform 680ms cubic-bezier(0.22, 1, 0.36, 1) 120ms;
 }
 
-.card:hover .image {
-  transform: scale(1.03);
+@media (hover: hover) and (pointer: fine) {
+  .card:hover .image {
+    transform: scale(1.012);
+  }
 }
 
 .cardBody {

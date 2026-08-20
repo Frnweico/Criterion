@@ -70,21 +70,12 @@ export default function ChecklistSection() {
             </label>
 
             <div className={styles.actions}>
-              {/* The frames use different wording per breakpoint: "Send me the
-                  checklist" on mobile, "Download the buyer checklist" on
-                  desktop. Both are rendered and swapped by CSS so each matches
-                  its design; only one is ever visible or announced. */}
+              {/* One submission action is used at every viewport. */}
               <Button
                 text="Send me the checklist"
                 variant="outline"
                 type="submit"
                 className={styles.ctaMobile}
-              />
-              <Button
-                text="Download the buyer checklist"
-                variant="outline"
-                type="submit"
-                className={styles.ctaDesktop}
               />
               <p className={styles.fineprint}>
                 We&rsquo;ll send the checklist and relevant real estate

@@ -31,7 +31,7 @@ export default function ServicesExplorer({ intro }: { intro: ReactNode }) {
      tablet — so both are required. */
   useEffect(() => {
     const query = window.matchMedia(
-      "(min-width: 1024px) and (hover: hover) and (pointer: fine)",
+      "(min-width: 1200px) and (hover: hover) and (pointer: fine)",
     );
     const sync = () => setHoverReveals(query.matches);
     sync();
@@ -74,8 +74,14 @@ export default function ServicesExplorer({ intro }: { intro: ReactNode }) {
                   <span className={styles.chevron} aria-hidden />
                 </button>
 
-                <div id={panelId} className={styles.panel} hidden={!isOpen}>
-                  <p className={styles.panelText}>{service.description}</p>
+                <div
+                  id={panelId}
+                  aria-hidden={!isOpen}
+                  className={`${styles.panel} ${isOpen ? styles.panelOpen : ""}`}
+                >
+                  <div className={styles.panelInner}>
+                    <p className={styles.panelText}>{service.description}</p>
+                  </div>
                 </div>
               </li>
             );
@@ -90,10 +96,10 @@ export default function ServicesExplorer({ intro }: { intro: ReactNode }) {
 
         <div className={styles.figure}>
           <Image
-            src="/images/services-feature-v2.png"
+            src="/images/Webp images/services-feature-v2 - Copy.webp"
             alt="A Criterion Homes development under construction"
             fill
-            sizes="(min-width: 1024px) 665px, 100vw"
+            sizes="(min-width: 1200px) 665px, 100vw"
             className={styles.image}
           />
         </div>

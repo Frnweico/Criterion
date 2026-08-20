@@ -1,10 +1,11 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useContext, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
 import Button from "@/components/Button/Button";
+import { HomeEntranceCompleteContext } from "@/components/HomeIntro/HomeIntro";
 import { HERO_SLIDES, SLIDE_DURATION_MS } from "@/lib/hero";
 import styles from "./Hero.module.css";
 
@@ -16,11 +17,13 @@ import styles from "./Hero.module.css";
    so they cannot disagree with the slide that is actually showing. */
 
 export default function Hero() {
+  const entranceComplete = useContext(HomeEntranceCompleteContext);
   const [emblaRef, emblaApi] = useEmblaCarousel(
     { loop: true, align: "start", duration: 30 },
     [
       Autoplay({
         delay: SLIDE_DURATION_MS,
+        playOnInit: false,
         stopOnInteraction: false,
         stopOnMouseEnter: false,
       }),
@@ -67,6 +70,13 @@ export default function Hero() {
       return;
     }
 
+    if (entranceComplete) {
+      autoplay.play();
+    } else {
+      autoplay.stop();
+      paint(emblaApi.selectedScrollSnap(), 0);
+    }
+
     let frame = 0;
     const tick = () => {
       const remaining = autoplay.timeUntilNext();
@@ -80,8 +90,10 @@ export default function Hero() {
     };
 
     frame = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(frame);
-  }, [emblaApi, paint]);
+    return () => {
+      cancelAnimationFrame(frame);
+    };
+  }, [emblaApi, entranceComplete, paint]);
 
   const goTo = useCallback(
     (position: number) => emblaApi?.scrollTo(position),
@@ -93,6 +105,7 @@ export default function Hero() {
       className={styles.hero}
       aria-roledescription="carousel"
       aria-label="Featured developments"
+      data-motion-preserve
     >
       <div className={styles.viewport} ref={emblaRef}>
         <div className={styles.container}>
@@ -117,7 +130,7 @@ export default function Hero() {
                   alt={slide.imageAlt}
                   fill
                   sizes="100vw"
-                  priority={slideIndex === 0}
+                  preload={slideIndex === 0}
                   draggable={false}
                 />
               </div>

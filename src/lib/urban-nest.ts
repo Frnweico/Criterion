@@ -151,10 +151,10 @@ export const LOCATION_POINTS: ScrollPoint[] = [
   },
   {
     id: "stability",
-    title: "Stability",
+    title: "Prestige",
     body: "With strong occupancy, steady appreciation, and a track record of stability, it continues to offer the assurance buyers and investors seek in a prime residential address.",
-    image: "/images/urban-nest-location-4.webp",
-    imageAlt: "A gated residential street in Wuse, Zone 7",
+    image: "/images/Prestige.webp",
+    imageAlt: "A prestigious tree-lined residential street in Abuja",
   },
   {
     id: "nearby-essentials",
@@ -165,9 +165,9 @@ export const LOCATION_POINTS: ScrollPoint[] = [
 
 /** Drive times shown alongside "Proximity to Key Areas". */
 export const PROXIMITY: ProximityEntry[] = [
-  { minutes: "8", label: "minutes to drive to Wuse 2" },
-  { minutes: "8", label: "minutes drive to Central Business District" },
-  { minutes: "11", label: "minutes drive to Maitama" },
+  { minutes: "4", label: "minutes to drive to Wuse 2" },
+  { minutes: "3", label: "minutes drive to Central Business District" },
+  { minutes: "5", label: "minutes drive to Maitama" },
 ];
 
 export const ESSENTIALS = [
@@ -208,9 +208,9 @@ export const REASONS: Reason[] = [
     body: "A vision of living for those with a cultivated taste, where every detail reflects discernment, and your space embodies the assured confidence of distinction.",
   },
   {
-    id: "un-spacious-living",
-    title: "Spacious Living",
-    body: "Multi-floor layouts with generous lounges, balconies, and family areas.",
+    id: "un-coveted-address",
+    title: "A Place of Standing",
+    body: "Ownership in Wuse Zone 7 places you at a coveted address, where centrality, privacy, and lasting value give the home a quiet sense of standing.",
   },
   {
     id: "un-exclusivity",
@@ -260,8 +260,14 @@ export const FLOORS: Floor[] = [
   },
 ];
 
-export const PAYMENT_INTRO =
-  "A 20% performance-based payment plan gives you flexibility and certainty. Each phase of the payment plan requires 2-3 months to complete.";
+export const PAYMENT_INTRO = {
+  lead: "Build As You Pay puts control back in your hands.",
+  points: [
+    "Pay as each stage is completed.",
+    "See the quality being delivered as your property takes shape.",
+    "Payments are tied to documented construction milestones.",
+  ],
+};
 
 /** No semi-finished tier — the frame has no equivalent to Midtown's box. */
 export const PAYMENT: Payment = {

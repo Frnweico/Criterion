@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Breadcrumb from "@/components/Breadcrumb/Breadcrumb";
-import BuyerChecklistBand from "@/components/BuyerChecklistBand/BuyerChecklistBand";
+import ChecklistSection from "@/components/ChecklistSection/ChecklistSection";
 import Button from "@/components/Button/Button";
 import FloorPlan from "@/components/FloorPlan/FloorPlan";
 import Footer from "@/components/Footer/Footer";
@@ -22,7 +22,6 @@ import {
   GALLERY_NOTE,
   LOCATION_POINTS,
   LOCATION_QUOTE,
-  MAP_CATEGORIES,
   PAYMENT,
   PAYMENT_INTRO,
   PHILOSOPHY,
@@ -69,7 +68,11 @@ export default function UrbanNestPage() {
             <div className={styles.heroCopy}>
               <div className={styles.heroHeadings}>
                 <p className={styles.heroLocation}>{project.location}</p>
-                <h1 id="project-heading" className={styles.heroTitle}>
+                <h1
+                  id="project-heading"
+                  className={styles.heroTitle}
+                  data-motion-line-safe
+                >
                   Welcome to
                   <br />
                   {project.name}
@@ -88,7 +91,7 @@ export default function UrbanNestPage() {
                 width={1440}
                 height={875}
                 sizes="100vw"
-                priority
+                preload
                 className={styles.heroImage}
               />
             </div>
@@ -135,10 +138,16 @@ export default function UrbanNestPage() {
         {/* --- Address --------------------------------------------------- */}
         <section className={styles.address} aria-labelledby="address-heading">
           <div className={styles.addressInner}>
-            <h2 id="address-heading" className={styles.addressHeading}>
+            <h2
+              id="address-heading"
+              className={styles.addressHeading}
+              data-motion-line-safe
+            >
               {ADDRESS_HEADING}
             </h2>
-            <p className={styles.addressBody}>{ADDRESS_BODY}</p>
+            <p className={styles.addressBody} data-motion-line-safe>
+              {ADDRESS_BODY}
+            </p>
           </div>
 
           {/* Video goes here once the MP4 lands; the still stands in until
@@ -178,24 +187,6 @@ export default function UrbanNestPage() {
         />
 
         {/* --- Explore essentials -------------------------------------- */}
-        <section className={styles.essentials} aria-labelledby="essentials-heading">
-          <div className={styles.essentialsInner}>
-            <h2 id="essentials-heading" className={styles.sectionHeading}>
-              Explore Essentials
-            </h2>
-
-            <div className={styles.mapPlaceholder}>
-              <ul className={styles.mapCategories}>
-                {MAP_CATEGORIES.map((category) => (
-                  <li key={category} className={styles.mapCategory}>
-                    {category}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-        </section>
-
         {/* --- Why buy --------------------------------------------------- */}
         <section className={styles.reasons} aria-labelledby="reasons-heading">
           <div className={styles.reasonsInner}>
@@ -273,7 +264,7 @@ export default function UrbanNestPage() {
           </div>
         </section>
 
-        <BuyerChecklistBand />
+        <ChecklistSection />
       </main>
       <Footer />
     </>

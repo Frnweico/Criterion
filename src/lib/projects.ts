@@ -37,7 +37,7 @@ export const PROJECTS: Project[] = [
     stage: "Stage 4/5",
     description:
       "Set within Abuja's established Gwarinpa II Estate, The Midtown Terraces introduces Criterion Homes' signature architecture of restraint. Anchored by a foundational central atrium, these four highly individualized residences deliver continuous natural aeration and deliberate, light-filled living spaces over generic layouts.",
-    image: "/images/project-midtown-terraces-hero.png",
+    image: "/images/midtown-hero.webp",
     imageAlt: "The Midtown Terraces, Gwarinpa, Abuja",
   },
   {
@@ -50,7 +50,7 @@ export const PROJECTS: Project[] = [
     stage: "Stage 2/5",
     description:
       "Located in the highly connected district of Wuse Zone 7, The Urban Nest provides a secure, low-density residential base. The design prioritizes a deliberately quiet way of living without sacrificing citywide access.",
-    image: "/images/project-urban-nest-hero.png",
+    image: "/images/urban-nest-hero.webp",
     imageAlt: "The Urban Nest, Wuse Zone 7, Abuja",
   },
 ];

@@ -78,12 +78,13 @@
   display: flex;
   flex-direction: column;
   gap: 24px;
-  padding: 32px 20px;
+  padding: 20px;
   background: var(--color-image-bg);
 }
 
 .figure {
   width: 100%;
+  overflow: hidden;
 }
 
 /* `contain`, never cropped — and never upscaled past its own pixels, since a

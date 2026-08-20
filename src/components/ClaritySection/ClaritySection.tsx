@@ -30,7 +30,12 @@ export default function ClaritySection() {
             <Button text="Speak with us" href="/contact" />
 
             {/* The Benchmarker page doesn't exist yet — logged in TODO.md. */}
-            <Button text="Join the Benchmarkers" variant="outline" icon={false} />
+            <Button
+              text="Join the Benchmarkers"
+              href="/benchmarkers"
+              variant="outline"
+              icon={false}
+            />
           </div>
         </div>
       </div>

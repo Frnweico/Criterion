@@ -1,0 +1,14 @@
+.cards { display: grid; grid-template-columns: 1fr; gap: 36px; margin: 0; padding: 0; list-style: none; }
+.card { display: flex; }
+.cardLink { display: flex; flex: 1; flex-direction: column; gap: 11px; color: inherit; text-decoration: none; }
+.panel { display: flex; flex: 1; flex-direction: column; justify-content: space-between; gap: 48px; padding: 24px; background: var(--color-accent); }
+.cardTitle { margin: 0; font-size: 28px; font-weight: 400; line-height: 1.1; letter-spacing: -0.03em; text-transform: capitalize; color: var(--color-carbon); }
+.cardExcerpt { margin: 0; font-size: 16px; line-height: 1.4; letter-spacing: -0.01em; color: #2f3a3a; }
+.cardFoot { display: flex; gap: 16px; align-items: center; justify-content: space-between; }
+.source { display: flex; gap: 8px; align-items: center; font-size: 12px; font-weight: 600; line-height: 1.4; color: var(--color-carbon); }
+.logo { flex-shrink: 0; width: 28px; height: 28px; border-radius: 50%; object-fit: contain; }
+.arrow { display: flex; flex-shrink: 0; align-items: center; justify-content: center; width: 40px; height: 40px; border: 1px solid var(--color-carbon); border-radius: 50%; color: var(--color-carbon); }
+.arrow svg { width: 20px; height: 20px; }
+.cardLink:focus-visible { outline: 2px solid var(--color-carbon); outline-offset: -4px; }
+@media (min-width: 768px) { .cards { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (min-width: 1024px) { .cards { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; } .cardLink { gap: 20px; } .panel { min-height: 405px; padding: 32px; } .cardTitle { font-size: 36px; } .cardExcerpt { font-size: 20px; } }

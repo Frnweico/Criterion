@@ -29,7 +29,25 @@
 
 .navItem {
   border-bottom: 1px solid var(--color-carbon);
+  opacity: 0;
+  translate: 18px 0;
+  transition:
+    opacity 260ms ease,
+    translate 360ms cubic-bezier(0.22, 1, 0.36, 1);
 }
+
+:global([data-menu-open]) .navItem,
+:global([data-menu-open]) .aside {
+  opacity: 1;
+  translate: 0;
+}
+
+:global([data-menu-open]) .navItem:nth-child(1) { transition-delay: 140ms; }
+:global([data-menu-open]) .navItem:nth-child(2) { transition-delay: 200ms; }
+:global([data-menu-open]) .navItem:nth-child(3) { transition-delay: 260ms; }
+:global([data-menu-open]) .navItem:nth-child(4) { transition-delay: 320ms; }
+:global([data-menu-open]) .navItem:nth-child(5) { transition-delay: 380ms; }
+:global([data-menu-open]) .navItem:nth-child(6) { transition-delay: 440ms; }
 
 /* Scales with viewport height so six rows always fit without scrolling. */
 .navLink {
@@ -42,11 +60,16 @@
   text-transform: capitalize;
   color: var(--color-carbon);
   text-decoration: none;
+  opacity: 0.7;
   transition: opacity 0.2s ease;
 }
 
 .navLink:hover {
-  opacity: 0.6;
+  opacity: 1;
+}
+
+.navLink[aria-current="page"] {
+  opacity: 1;
 }
 
 .navLink:focus-visible {
@@ -60,6 +83,11 @@
   display: flex;
   flex-direction: column;
   gap: 40px;
+  opacity: 0;
+  translate: 18px 0;
+  transition:
+    opacity 260ms ease 500ms,
+    translate 360ms cubic-bezier(0.22, 1, 0.36, 1) 500ms;
 }
 
 /* Mobile lays this out as a row — text left, thumbnail right. */
@@ -174,8 +202,9 @@
 
   .content {
     display: grid;
-    grid-template-columns: 533px 388px;
-    column-gap: 300px;
+    grid-template-columns: minmax(0, 533px) minmax(280px, 1fr);
+    /* 48px at 1024px, growing to the frame's 300px gap at 1440px. */
+    column-gap: clamp(48px, calc(60.6vw - 572px), 300px);
     flex: 1;
     width: 100%;
     max-width: none;
@@ -194,6 +223,8 @@
     display: flex;
     flex-direction: column;
     gap: 24px;
+    width: 100%;
+    max-width: 388px;
     min-height: 0;
   }
 
@@ -207,14 +238,14 @@
   }
 
   .navList {
-    width: 388px;
+    width: 100%;
   }
 
   .navLink {
-  padding: 8px 0;
-  font-size: 64px;
-  line-height: 1;
-  letter-spacing: -0.05em;
+    padding: 8px 0;
+    font-size: clamp(44px, 4.44vw, 64px);
+    line-height: 1;
+    letter-spacing: -0.05em;
   }
 
   .latestProject {
@@ -222,12 +253,12 @@
   }
 
   .latest {
-  flex: 0 0 auto;
-  flex-direction: column;
-  gap: 24px;
-  padding: 0;
-  background: none;
-}
+    flex: 0 0 auto;
+    flex-direction: column;
+    gap: 24px;
+    padding: 0;
+    background: none;
+  }
 
   .latestText {
     display: contents;
@@ -240,12 +271,12 @@
   }
 
   .latestFigure {
-  order: 2;
-  flex: none;
-  width: 533px;
-  aspect-ratio: 5 / 4;
-  height: auto;
-  max-width: 100%;
+    order: 2;
+    flex: none;
+    width: 533px;
+    aspect-ratio: 5 / 4;
+    height: auto;
+    max-width: 100%;
   }
 
   .latestMeta {

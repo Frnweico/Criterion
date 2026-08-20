@@ -2,7 +2,8 @@ import Image from "next/image";
 import Link from "next/link";
 import Button from "@/components/Button/Button";
 import SectionHeader from "@/components/SectionHeader/SectionHeader";
-import { BLOG_POSTS, formatPostDate } from "@/lib/blog";
+import { IMAGE_BLUR_PLACEHOLDER } from "@/lib/image-placeholder";
+import { BLOG_GRID, formatPostDate } from "@/lib/blog";
 import styles from "./BlogSection.module.css";
 
 /**
@@ -27,8 +28,8 @@ export default function BlogSection() {
           </p>
         </div>
 
-        <ul className={styles.cards}>
-          {BLOG_POSTS.map((post) => (
+        <ul className={styles.cards} data-motion-stagger>
+          {BLOG_GRID.slice(0, 3).map((post) => (
             <li key={post.slug}>
               <Link href={`/blog/${post.slug}`} className={styles.card}>
                 <div className={styles.figure}>
@@ -37,6 +38,8 @@ export default function BlogSection() {
                     alt={post.imageAlt}
                     fill
                     sizes="(min-width: 1024px) 423px, 100vw"
+                    placeholder="blur"
+                    blurDataURL={IMAGE_BLUR_PLACEHOLDER}
                     className={styles.image}
                   />
                 </div>

@@ -39,9 +39,13 @@ export default function Footer() {
               placeholder="email address"
               className={styles.signupInput}
             />
-            <button type="submit" className={styles.signupSubmit}>
-              Sign up
-            </button>
+            <Button
+              text="Sign up"
+              type="submit"
+              variant="small"
+              icon={false}
+              className={styles.signupSubmit}
+            />
           </form>
         </section>
 
@@ -82,6 +86,7 @@ export default function Footer() {
               href={COMPANY_PROFILE}
               variant="outline"
               icon={false}
+              newTab
               className={styles.profileButton}
             />
           </section>

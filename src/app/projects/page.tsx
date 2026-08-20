@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import Breadcrumb from "@/components/Breadcrumb/Breadcrumb";
-import BuyerChecklistBand from "@/components/BuyerChecklistBand/BuyerChecklistBand";
+import ChecklistSection from "@/components/ChecklistSection/ChecklistSection";
 import Footer from "@/components/Footer/Footer";
 import Header from "@/components/Header/Header";
 import { PROJECTS } from "@/lib/projects";
@@ -43,7 +43,7 @@ export default function ProjectsPage() {
         </section>
 
         <section className={styles.list} aria-label="Current developments">
-          <div className={styles.listInner}>
+          <div className={styles.listInner} data-motion-stagger>
             {PROJECTS.map((project) => (
               <article key={project.slug} className={styles.row}>
                 <Link
@@ -97,7 +97,7 @@ export default function ProjectsPage() {
           </div>
         </section>
 
-        <BuyerChecklistBand />
+        <ChecklistSection />
       </main>
 
       {/* The frame gives this page a light footer rather than the carbon one

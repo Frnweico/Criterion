@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Breadcrumb from "@/components/Breadcrumb/Breadcrumb";
 import Button from "@/components/Button/Button";
-import BuyerChecklistBand from "@/components/BuyerChecklistBand/BuyerChecklistBand";
+import ChecklistSection from "@/components/ChecklistSection/ChecklistSection";
 import FloorPlan from "@/components/FloorPlan/FloorPlan";
 import Footer from "@/components/Footer/Footer";
 import Gallery from "@/components/Gallery/Gallery";
@@ -12,6 +12,7 @@ import PaymentPlan from "@/components/PaymentPlan/PaymentPlan";
 import ReasonsList from "@/components/ReasonsList/ReasonsList";
 import ScrollStory from "@/components/ScrollStory/ScrollStory";
 import SectionHeader from "@/components/SectionHeader/SectionHeader";
+import SmartAutoplayVideo from "@/components/SmartAutoplayVideo/SmartAutoplayVideo";
 import { getProject } from "@/lib/projects";
 import {
   ADDRESS_BODY,
@@ -22,7 +23,6 @@ import {
   GALLERY_NOTE,
   LOCATION_POINTS,
   LOCATION_QUOTE,
-  MAP_CATEGORIES,
   MIDTOWN_TAGLINE,
   PAYMENT,
   PAYMENT_INTRO,
@@ -69,7 +69,11 @@ export default function MidtownTerracesPage() {
             <div className={styles.heroCopy}>
               <div className={styles.heroHeadings}>
                 <p className={styles.heroLocation}>{project.location}</p>
-                <h1 id="project-heading" className={styles.heroTitle}>
+                <h1
+                  id="project-heading"
+                  className={styles.heroTitle}
+                  data-motion-line-safe
+                >
                   Welcome to
                   <br />
                   {project.name}
@@ -88,7 +92,7 @@ export default function MidtownTerracesPage() {
                 width={2880}
                 height={1750}
                 sizes="100vw"
-                priority
+                preload
                 className={styles.heroImage}
               />
             </div>
@@ -142,24 +146,25 @@ export default function MidtownTerracesPage() {
             the gutter rather than full-bleed. */}
         <section className={styles.address} aria-labelledby="address-heading">
           <div className={styles.addressInner}>
-            <h2 id="address-heading" className={styles.addressHeading}>
+            <h2
+              id="address-heading"
+              className={styles.addressHeading}
+              data-motion-line-safe
+            >
               {ADDRESS_HEADING}
             </h2>
-            <p className={styles.addressBody}>{ADDRESS_BODY}</p>
+            <p className={styles.addressBody} data-motion-line-safe>
+              {ADDRESS_BODY}
+            </p>
           </div>
 
-          {/* Video goes here once the MP4 lands; the still stands in until
-              then, so the frame's play control is deliberately absent —
-              see TODO.md. */}
           <div className={styles.addressFigureWrap}>
             <div className={styles.addressFigure}>
-              <Image
-                src="/images/midtown-address.webp"
+              <SmartAutoplayVideo
+                className={styles.addressVideo}
+                src="/images/TMT Web.webm"
+                poster="/images/midtown-address.webp"
                 alt="The Midtown Terraces frontage"
-                width={2880}
-                height={1750}
-                sizes="100vw"
-                className={styles.addressImage}
               />
             </div>
           </div>
@@ -193,24 +198,6 @@ export default function MidtownTerracesPage() {
             Its own section in the frame (9342:5254). Still to be rebuilt to
             the reference, and the map itself is blocked on a provider and pin
             data — see TODO.md. */}
-        <section className={styles.essentials} aria-labelledby="essentials-heading">
-          <div className={styles.essentialsInner}>
-            <h2 id="essentials-heading" className={styles.sectionHeading}>
-              Explore Essentials
-            </h2>
-
-            <div className={styles.mapPlaceholder}>
-              <ul className={styles.mapCategories}>
-                {MAP_CATEGORIES.map((category) => (
-                  <li key={category} className={styles.mapCategory}>
-                    {category}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-        </section>
-
         {/* --- Why buy -------------------------------------------------- */}
         <section className={styles.reasons} aria-labelledby="reasons-heading">
           <div className={styles.reasonsInner}>
@@ -276,7 +263,7 @@ export default function MidtownTerracesPage() {
                   <Button
                     text="Download product paper"
                     href="/midtown-terraces-product-paper.pdf"
-                    download
+                    newTab
                     variant="outlineDark"
                     icon={false}
                   />
@@ -296,7 +283,7 @@ export default function MidtownTerracesPage() {
           </div>
         </section>
 
-        <BuyerChecklistBand />
+        <ChecklistSection />
       </main>
       <Footer />
     </>

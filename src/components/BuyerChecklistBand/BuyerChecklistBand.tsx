@@ -1,4 +1,3 @@
-import Button from "@/components/Button/Button";
 import SectionHeader from "@/components/SectionHeader/SectionHeader";
 import styles from "./BuyerChecklistBand.module.css";
 
@@ -44,11 +43,6 @@ export default function BuyerChecklistBand() {
             </label>
 
             <div className={styles.actions}>
-              <Button
-                text="Download the buyer checklist"
-                variant="outline"
-                type="submit"
-              />
               <p className={styles.fineprint}>
                 We&rsquo;ll send the checklist and relevant real estate
                 insights. No spam.

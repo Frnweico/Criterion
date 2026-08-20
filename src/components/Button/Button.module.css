@@ -10,30 +10,55 @@
   line-height: normal;
   text-transform: uppercase;
   white-space: nowrap;
-  transition: filter 0.2s ease;
-}
-
-.button:hover {
-  filter: brightness(0.94);
 }
 
 /* On narrow screens a long label plus 40px of padding either side can exceed
    the viewport — "Download the buyer checklist" measured 374px against a 375px
-   screen. Wrapping and tighter padding let it fit instead of forcing a
-   horizontal scroll on the whole page. */
-@media (max-width: 480px) {
-  .button {
-    max-width: 100%;
-    padding-right: 24px;
-    padding-left: 24px;
-    text-align: center;
-    white-space: normal;
-  }
-}
-
+   screen. Wrapping lets it fit instead of forcing a horizontal scroll on the
+   whole page while retaining the component padding. */
 .button:focus-visible {
   outline: 2px solid var(--color-carbon);
   outline-offset: 2px;
+}
+
+/* The interaction belongs to the content, never the button container. A
+   duplicate label rolls through a clipped text rail. It uses currentColor, so
+   hover and press do not recolour either label or the button surface. */
+.label {
+  position: relative;
+  display: inline-grid;
+  overflow: hidden;
+  line-height: 1.15;
+}
+
+.labelText,
+.labelSweep {
+  grid-area: 1 / 1;
+  transition: translate 520ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.labelSweep {
+  translate: 0 115%;
+  pointer-events: none;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .button:hover .labelText {
+    translate: 0 -115%;
+  }
+
+  .button:hover .labelSweep {
+    translate: 0;
+  }
+}
+
+.button:active .labelText {
+  translate: 0 -115%;
+}
+
+.button:active .labelSweep {
+  translate: 0;
+  transition-duration: 180ms;
 }
 
 /* Default variant — roomy, and the only one that carries the icon. */
@@ -46,6 +71,31 @@
   padding: 12px 28px;
 }
 
+/* The supplied mobile button has a 16px label but is visually too tall for
+   the current site. 16px vertical and 24px horizontal padding produces a
+   roughly 54px control: smaller than the 62px desktop-sized component while
+   still clearing the 44px touch-target minimum. */
+@media (max-width: 480px) {
+  .secondary,
+  .button.outline,
+  .button.outlineDark {
+    gap: 10px;
+    padding: 16px 24px;
+  }
+}
+
+/* The documented mobile frame is 393px wide. On smaller handsets, preserve
+   the 16px label and one-line CTA rule by reducing only horizontal padding. */
+@media (max-width: 360px) {
+  .secondary,
+  .button.outline,
+  .button.outlineDark {
+    gap: 8px;
+    padding-right: 12px;
+    padding-left: 12px;
+  }
+}
+
 /* Outlined. Sits beside the filled button over photography, so it carries no
    background of its own and inherits platinum for text, border and icon. */
 .outline {
@@ -54,11 +104,6 @@
   border: 1px solid var(--color-outline);
   background: transparent;
   color: var(--color-platinum);
-}
-
-.outline:hover {
-  filter: none;
-  background: rgb(255 255 255 / 12%);
 }
 
 .outline:focus-visible {
@@ -72,11 +117,6 @@
   border: 1px solid var(--color-carbon);
   background: transparent;
   color: var(--color-carbon);
-}
-
-.outlineDark:hover {
-  filter: none;
-  background: rgb(25 25 25 / 6%);
 }
 
 /* Outlined diamond: a square rotated 45deg. Drawn in CSS, not an asset. */
@@ -95,4 +135,16 @@
   height: 12px;
   border: 1px solid currentColor;
   transform: rotate(-45deg);
+  transition: transform 460ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .button:hover .icon::before {
+    transform: rotate(0deg);
+  }
+}
+
+.button:active .icon::before {
+  transform: rotate(0deg);
+  transition-duration: 180ms;
 }

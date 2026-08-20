@@ -1,0 +1,267 @@
+.form,
+.confirmation {
+  width: 100%;
+  background: var(--color-platinum);
+}
+
+.form {
+  padding: 66px 56px 60px;
+}
+
+.copy,
+.details,
+.more {
+  max-width: 493px;
+  margin-inline: auto;
+}
+
+.copy h1,
+.confirmation h1 {
+  font-size: clamp(30px, 2.5vw, 40px);
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: -0.055em;
+}
+
+.copy p {
+  margin-top: 12px;
+  font-size: 16px;
+  line-height: 1.28;
+  letter-spacing: -0.035em;
+}
+
+.copy p + p {
+  margin-top: 22px;
+}
+
+.details,
+.more {
+  display: grid;
+  border: 0;
+}
+
+.details {
+  gap: 0;
+  margin-top: 57px;
+}
+
+.more {
+  gap: 8px;
+  margin-top: 56px;
+}
+
+.details legend,
+.more legend {
+  width: 100%;
+  padding: 0;
+  font-size: 16px;
+  line-height: 1;
+  text-align: center;
+  color: var(--color-beige);
+}
+
+.details legend {
+  margin-bottom: 31px;
+}
+
+.more legend {
+  margin-bottom: 19px;
+}
+
+.details input,
+.selectField select {
+  width: 100%;
+  border: 0;
+  border-bottom: 1px solid rgb(25 25 25 / 20%);
+  border-radius: 0;
+  outline: 0;
+  color: var(--color-carbon);
+  background: linear-gradient(
+      var(--color-taupe-grey),
+      var(--color-taupe-grey)
+    ) left bottom / 0 1px no-repeat;
+  transition:
+    background-size 360ms cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 360ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.details input {
+  height: 60px;
+  padding: 0 14px;
+  font-size: 16px;
+}
+
+.details input::placeholder,
+.selectField select:invalid {
+  color: rgb(25 25 25 / 22%);
+}
+
+.details input:focus,
+.selectField select:focus {
+  border-color: var(--color-taupe-grey);
+  background-size: 100% 1px;
+}
+
+.details input:focus-visible,
+.selectField select:focus-visible {
+  outline: none;
+}
+
+:global(html[data-input-modality="keyboard"]) .details input:focus-visible,
+:global(html[data-input-modality="keyboard"]) .selectField select:focus-visible {
+  outline: 2px solid var(--color-taupe-grey);
+  outline-offset: 3px;
+}
+
+.selectField {
+  display: grid;
+  gap: 7px;
+  font-size: 16px;
+  line-height: 1.1;
+}
+
+.selectField select {
+  height: 58px;
+  padding: 0 42px 0 14px;
+  border: 1px solid rgb(25 25 25 / 17%);
+  appearance: auto;
+}
+
+.submitArea {
+  display: grid;
+  justify-items: center;
+  gap: 15px;
+  margin-top: 36px;
+  text-align: center;
+}
+
+.submit {
+  display: inline-flex;
+  gap: 11px;
+  align-items: center;
+  justify-content: center;
+  min-width: 144px;
+  height: 53px;
+  padding: 0 22px;
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  background: var(--color-accent);
+}
+
+.submit:hover {
+  background: #add7e3;
+}
+
+.submit:focus-visible {
+  outline: 2px solid var(--color-carbon);
+  outline-offset: 3px;
+}
+
+.submitArea p {
+  font-size: 11px;
+  line-height: 1.2;
+}
+
+.confirmation {
+  display: grid;
+  min-height: 305px;
+  padding: 54px 60px;
+  place-content: center;
+  text-align: center;
+}
+
+.confirmation p {
+  max-width: 570px;
+  margin-top: 42px;
+  font-size: 20px;
+  line-height: 1.25;
+  letter-spacing: -0.035em;
+}
+
+@media (max-width: 639px) {
+  .form {
+    padding: 35px 26px 31px;
+  }
+
+  .copy h1 {
+    font-size: 24px;
+  }
+
+  .copy p {
+    margin-top: 8px;
+    font-size: 13px;
+    line-height: 1.2;
+  }
+
+  .copy p + p {
+    margin-top: 22px;
+  }
+
+  .details {
+    margin-top: 50px;
+  }
+
+  .more {
+    margin-top: 50px;
+  }
+
+  .details legend,
+  .more legend,
+  .details input,
+  .selectField {
+    font-size: 13px;
+  }
+
+  .details legend {
+    margin-bottom: 21px;
+  }
+
+  .more legend {
+    margin-bottom: 18px;
+  }
+
+  .details input {
+    height: 50px;
+    padding-inline: 13px;
+  }
+
+  .selectField {
+    gap: 8px;
+  }
+
+  .selectField select {
+    height: 50px;
+    padding-left: 13px;
+    font-size: 13px;
+  }
+
+  .submitArea {
+    gap: 14px;
+    margin-top: 33px;
+  }
+
+  .submit {
+    min-width: 128px;
+    height: 47px;
+    font-size: 12px;
+  }
+
+  .submitArea p {
+    font-size: 9px;
+  }
+
+  .confirmation {
+    min-height: 237px;
+    padding: 40px 34px;
+  }
+
+  .confirmation h1 {
+    font-size: 30px;
+  }
+
+  .confirmation p {
+    margin-top: 25px;
+    font-size: 16px;
+  }
+}

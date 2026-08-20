@@ -9,6 +9,36 @@ import styles from "./LocationStory.module.css";
 export type LocationQuote = { lead: string; body: string };
 export type ProximityEntry = { minutes: string; label: string };
 
+function CountUp({ value, active }: { value: string; active: boolean }) {
+  const [display, setDisplay] = useState(value);
+
+  useEffect(() => {
+    const match = value.match(/\d+/);
+    if (!match) return;
+
+    const target = Number(match[0]);
+    const suffix = value.slice(match.index! + match[0].length);
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (!active || reduceMotion) {
+      setDisplay(value);
+      return;
+    }
+
+    const startedAt = performance.now();
+    let frame = 0;
+    const update = (now: number) => {
+      const progress = Math.min((now - startedAt) / 720, 1);
+      const eased = 1 - (1 - progress) ** 3;
+      setDisplay(`${Math.round(target * eased)}${suffix}`);
+      if (progress < 1) frame = requestAnimationFrame(update);
+    };
+    frame = requestAnimationFrame(update);
+    return () => cancelAnimationFrame(frame);
+  }, [active, value]);
+
+  return <>{display}</>;
+}
+
 type Props = {
   points: ScrollPoint[];
   quote: LocationQuote;
@@ -89,13 +119,20 @@ export default function LocationStory({
         ? styles.prev
         : styles.next;
 
-  const aside = (id: string, image?: string, imageAlt?: string) => {
+  const aside = (
+    id: string,
+    active: boolean,
+    image?: string,
+    imageAlt?: string,
+  ) => {
     if (id === "proximity") {
       return (
         <ul className={styles.rows}>
           {proximity.map((entry) => (
             <li key={entry.label} className={styles.row}>
-              <span className={styles.minutes}>{entry.minutes}</span>
+              <span className={styles.minutes}>
+                <CountUp value={entry.minutes} active={active} />
+              </span>
               <span className={styles.rowLabel}>{entry.label}</span>
             </li>
           ))}
@@ -133,6 +170,7 @@ export default function LocationStory({
 
   const slides = points.map((point, index) => {
     const isEssentials = point.id === "nearby-essentials";
+    const isProximity = point.id === "proximity";
     const hasImage = Boolean(point.image);
 
     return (
@@ -142,6 +180,7 @@ export default function LocationStory({
           styles.slide,
           pinned ? state(index) : "",
           isEssentials ? styles.slideEssentials : "",
+          isProximity ? styles.slideProximity : "",
           hasImage ? "" : styles.slideBuilt,
         ]
           .filter(Boolean)
@@ -155,7 +194,7 @@ export default function LocationStory({
 
         <div className={styles.aside}>
           {isEssentials && <p className={styles.body}>{point.body}</p>}
-          {aside(point.id, point.image, point.imageAlt)}
+          {aside(point.id, index === activePoint || !pinned, point.image, point.imageAlt)}
         </div>
       </article>
     );

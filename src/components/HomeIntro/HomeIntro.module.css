@@ -1,0 +1,47 @@
+.stage {
+  position: relative;
+  overflow: clip;
+}
+
+.intro {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  overflow: hidden;
+  background: var(--color-carbon);
+}
+
+.video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.site {
+  position: relative;
+  z-index: 101;
+  transition: transform 3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.siteWaiting {
+  transform: translateY(100%);
+}
+
+/* Set before React hydrates by the Navigation Timing script in the root
+   layout. This prevents a client-side route change from flashing the video or
+   the off-screen site while HomeIntro changes its state to complete. */
+:global(html[data-home-intro="skip"]) .intro {
+  display: none;
+}
+
+:global(html[data-home-intro="skip"]) .site {
+  transform: none;
+  transition: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .intro,
+  .site {
+    transition: none;
+  }
+}

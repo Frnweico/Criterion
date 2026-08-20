@@ -81,16 +81,28 @@
 }
 
 .panel {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
+  display: grid;
+  grid-template-rows: 0fr;
+  opacity: 0;
+  padding-bottom: 0;
+  transition:
+    grid-template-rows 480ms cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 260ms ease,
+    padding-bottom 480ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.panelOpen {
+  grid-template-rows: 1fr;
+  opacity: 1;
   padding-bottom: 24px;
 }
 
-/* `display: flex` above outranks the UA rule for [hidden], which would leave
-   every closed panel occupying layout. */
-.panel[hidden] {
-  display: none;
+.panelInner {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-height: 0;
+  overflow: hidden;
 }
 
 .body {
@@ -149,6 +161,7 @@
 
   /* 9825:4766 — a 306 column starting at x 992 within the 1358 list. */
   .panel {
+    display: block;
     position: absolute;
     top: 0;
     left: 992px;
@@ -156,6 +169,24 @@
     width: 306px;
     gap: 17px;
     padding-bottom: 0;
+    opacity: 0;
+    transform: translateY(8px);
+    visibility: hidden;
+    transition:
+      opacity 240ms ease,
+      transform 360ms cubic-bezier(0.22, 1, 0.36, 1),
+      visibility 0s linear 360ms;
+  }
+
+  .panelOpen {
+    opacity: 1;
+    transform: translateY(0);
+    visibility: visible;
+    transition-delay: 0s;
+  }
+
+  .panelInner {
+    overflow: visible;
   }
 
   .body {
@@ -174,6 +205,10 @@
   .row,
   .title,
   .chevron {
+    transition: none;
+  }
+
+  .panel {
     transition: none;
   }
 }

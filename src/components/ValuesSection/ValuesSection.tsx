@@ -16,7 +16,7 @@ export default function ValuesSection() {
           <p className={styles.lead}>{VALUES_INTRO}</p>
         </div>
 
-        <ol className={styles.list}>
+        <ol className={styles.list} data-motion-stagger>
           {CORE_VALUES.map((value) => (
             <li key={value.index} className={styles.item}>
               <p className={styles.index} aria-hidden>

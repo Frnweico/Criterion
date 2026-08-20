@@ -1,0 +1,97 @@
+.contact {
+  border-bottom: 1px solid var(--color-carbon);
+  background: var(--color-platinum);
+}
+
+.inner { padding: 63px var(--gutter) 0; }
+
+.intro { padding: 64px 0 43px; }
+
+.eyebrow {
+  margin: 0 0 42px;
+}
+
+.intro h1 {
+  max-width: 360px;
+  margin: 0;
+  font-size: 30px;
+  font-weight: 400;
+  line-height: 0.98;
+  letter-spacing: -0.06em;
+}
+
+.details { margin: 0; }
+
+.row {
+  display: grid;
+  grid-template-columns: minmax(100px, 1fr) minmax(0, 1.8fr);
+  gap: 20px;
+  align-items: start;
+  min-height: 141px;
+  /* On mobile each column starts and ends exactly at the detail container's
+     edges; the section's gutter supplies the only horizontal inset. */
+  padding: 46px 0 32px;
+  border-top: 2px solid rgb(25 25 25 / 18%);
+}
+
+.row:last-child { min-height: 213px; }
+
+.row dt {
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.row dd {
+  margin: 0;
+  min-width: 0;
+  overflow-wrap: anywhere;
+  text-align: right;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.32;
+  letter-spacing: -0.035em;
+}
+
+.row a { text-decoration: none; }
+.row:nth-child(2) dd a { white-space: nowrap; }
+.row:first-child a,
+.row:nth-child(2) a { text-decoration: underline; text-underline-offset: 4px; }
+
+@media (max-width: 767px) {
+  /* Keeps the email as one line down to narrow phones while retaining the
+     16px type used at the 393px design width. */
+  .row dd { font-size: clamp(12px, 4vw, 16px); }
+}
+
+.footerLight { background: var(--color-platinum); }
+.footerLight > footer { border-top: 0; background: var(--color-platinum); color: var(--color-carbon); }
+.footerLight :global(footer) :is(h2, p, a, address, input) { color: var(--color-carbon); }
+.footerLight :global(footer) input { border-bottom-color: var(--color-carbon); }
+.footerLight :global(footer) input::placeholder { color: rgb(25 25 25 / 40%); }
+.footerLight :global(footer) a:has(span) { border-color: var(--color-carbon); }
+.footerLight :global(footer) img { filter: invert(1); }
+
+@media (min-width: 768px) {
+  .inner { padding-top: 124px; }
+  .intro { padding: 78px 0 115px; }
+  .eyebrow { margin-bottom: 52px; }
+  .intro h1 { max-width: none; font-size: 50px; }
+  .row {
+    grid-template-columns: minmax(210px, 1fr) minmax(0, 1.9fr);
+    min-height: 150px;
+    padding: 43px 20px;
+  }
+  .row:last-child { min-height: 195px; }
+  .row dt { font-size: 14px; }
+  .row dd { font-size: 24px; }
+}
+
+@media (min-width: 1024px) {
+  .inner { padding: 124px 40px 0; }
+  .intro { padding: 77px 0 115px; }
+  .eyebrow { margin-bottom: 52px; }
+  .intro h1 { font-size: 50px; }
+  .row { padding: 44px 20px; }
+}

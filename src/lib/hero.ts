@@ -46,7 +46,7 @@ export const HERO_SLIDES: HeroSlide[] = [
     ctaHref: "/projects",
     secondaryCtaText: SECONDARY_CTA,
     secondaryCtaHref: SECONDARY_CTA_HREF,
-    image: "/images/hero-slide-1-v2.png",
+    image: "/images/Webp images/hero-slide-1-v2 - Copy.webp",
     imageAlt: "A Criterion Homes development at dusk",
   },
   {
@@ -63,7 +63,7 @@ export const HERO_SLIDES: HeroSlide[] = [
     ctaHref: `/projects/${midtown.slug}`,
     secondaryCtaText: SECONDARY_CTA,
     secondaryCtaHref: SECONDARY_CTA_HREF,
-    image: "/images/hero-slide-2-v2.png",
+    image: "/images/Webp images/hero-slide-2-v2 - Copy.webp",
     imageAlt: midtown.imageAlt,
   },
   {
@@ -80,7 +80,7 @@ export const HERO_SLIDES: HeroSlide[] = [
     ctaHref: `/projects/${urbanNest.slug}`,
     secondaryCtaText: SECONDARY_CTA,
     secondaryCtaHref: SECONDARY_CTA_HREF,
-    image: "/images/hero-slide-3-v2.png",
+    image: "/images/Webp images/hero-slide-3-v2 - Copy.webp",
     imageAlt: urbanNest.imageAlt,
   },
 ];

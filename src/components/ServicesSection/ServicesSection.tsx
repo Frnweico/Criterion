@@ -14,7 +14,11 @@ export default function ServicesSection() {
     <div className={styles.intro}>
       <SectionHeader text="Services" className={styles.header} />
 
-      <h2 id="services-heading" className={styles.heading}>
+      <h2
+        id="services-heading"
+        className={styles.heading}
+        data-motion-line-safe
+      >
         Four services.
         <br />
         One focus.

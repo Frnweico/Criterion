@@ -27,10 +27,28 @@ export default function Gallery({ photos, note }: Props) {
     });
 
   return (
-    <section className={styles.gallery} aria-labelledby="gallery-heading">
+    <section
+      className={styles.gallery}
+      aria-labelledby="gallery-heading"
+      data-parallax-preserve
+    >
       <h2 id="gallery-heading" className={styles.heading}>
         Gallery
       </h2>
+
+      <div className={styles.mobileList}>
+        {photos.map((shot) => (
+          <div key={shot.src} className={styles.mobileItem}>
+            <img
+              src={shot.src}
+              alt={shot.alt}
+              loading="lazy"
+              decoding="async"
+              className={styles.mobileImage}
+            />
+          </div>
+        ))}
+      </div>
 
       <div className={styles.grid}>
         {/* All five stay mounted and cross-fade, so choosing one doesn't
@@ -43,7 +61,6 @@ export default function Gallery({ photos, note }: Props) {
               alt={index === lead ? shot.alt : ""}
               fill
               sizes="(min-width: 1024px) 79vw, 100vw"
-              priority={index === 0}
               aria-hidden={index !== lead}
               className={`${styles.image} ${
                 index === lead ? styles.imageOn : ""

@@ -1,257 +1,208 @@
-/* --- Lead post hero ---------------------------------------------------- */
-
 .hero {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  min-height: 560px;
-  overflow: hidden;
-  background: var(--color-deep-blue);
-  color: var(--color-platinum);
-}
-
-.heroMedia {
-  position: absolute;
-  inset: 0;
-}
-
-.heroImage {
-  object-fit: cover;
-  object-position: center;
-}
-
-/* Keeps the title legible over the photograph. */
-.heroScrim {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    to top,
-    rgb(42 61 68 / 92%),
-    rgb(42 61 68 / 55%) 55%,
-    rgb(42 61 68 / 30%)
-  );
+  color: var(--color-carbon);
+  background: var(--color-platinum);
 }
 
 .heroInner {
   position: relative;
-  z-index: 1;
   display: flex;
   flex-direction: column;
-  gap: 32px;
-  align-items: flex-start;
-  width: 100%;
-  padding: 140px var(--gutter) 56px;
+  padding: var(--gutter);
 }
 
-/* The shared Breadcrumb is styled for light grounds; on this dark hero it
-   needs inverting, and its own padding removed since the hero supplies it. */
-.heroInner > nav {
-  background: none;
+.heroInner > nav { display: none; }
+
+.heroLayout {
+  display: grid;
+  grid-template-rows: auto 40svh auto;
+  gap: 24px;
+  min-height: 0;
 }
 
-.heroInner > nav ol {
-  padding: 0;
-}
-
-.heroInner > nav * {
-  color: var(--color-platinum);
-}
-
-.heroCopy {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-.heroDate {
+.latestStory {
   margin: 0;
-  font-size: 14px;
-  font-weight: 600;
-  line-height: 1.4;
-  text-transform: uppercase;
-  opacity: 0.6;
-}
-
-.heroTitle {
-  margin: 0;
-  max-width: 769px;
   font-size: 40px;
   font-weight: 400;
   line-height: 1;
-  letter-spacing: -0.04em;
-  text-transform: capitalize;
-  color: var(--color-platinum);
+  letter-spacing: -0.03em;
+  color: var(--color-beige);
 }
 
-.heroExcerpt {
+.heroMedia {
+  position: relative;
+  min-height: 0;
+  overflow: hidden;
+  background: var(--color-image-bg);
+}
+
+.heroImage { object-fit: cover; object-position: center; }
+
+.heroContent {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-height: 0;
+}
+
+.heroCopy { max-width: 470px; }
+
+.heroDate {
+  margin: 0 0 5px;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.2;
+  text-transform: uppercase;
+  color: rgb(25 25 25 / 60%);
+}
+
+.heroCopy h1 {
   margin: 0;
-  max-width: 648px;
-  font-size: 18px;
-  font-weight: 500;
-  line-height: 1.25;
-  letter-spacing: -0.01em;
-  color: var(--color-platinum);
+  font-size: 40px;
+  font-weight: 400;
+  line-height: 0.96;
+  letter-spacing: -0.055em;
 }
 
-/* --- Post grid --------------------------------------------------------- */
+.heroCopy p:last-child {
+  max-width: 290px;
+  margin: 9px 0 0;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.22;
+  letter-spacing: -0.025em;
+}
+
+.heroButton {
+  margin-top: 24px;
+}
 
 .list {
   background: var(--color-platinum);
 }
 
-.listInner {
-  display: flex;
-  flex-direction: column;
-  gap: 32px;
-  padding: 48px var(--gutter);
-}
+.listInner { padding: 50px var(--gutter) 34px; }
 
-.listHeading {
-  margin: 0;
+.list h2 {
+  margin: 0 0 16px;
   font-size: 40px;
   font-weight: 400;
   line-height: 1;
-  letter-spacing: -0.04em;
-  text-transform: capitalize;
-  color: var(--color-heading);
+  letter-spacing: -0.055em;
 }
 
 .grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 40px;
+  gap: 29px;
   margin: 0;
   padding: 0;
   list-style: none;
 }
 
-.cardLink {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  height: 100%;
-  color: inherit;
-  text-decoration: none;
-}
+.cardLink,
+.cardStatic { display: block; color: inherit; }
+.cardLink { text-decoration: none; }
 
 .cardFigure {
   position: relative;
-  width: 100%;
-  aspect-ratio: 500 / 400;
+  aspect-ratio: 1.25 / 1;
   overflow: hidden;
   background: var(--color-image-bg);
 }
 
-.cardImage {
-  object-fit: cover;
-  transition: transform 0.5s ease;
-}
+.cardImage { object-fit: cover; transition: transform 680ms cubic-bezier(0.22, 1, 0.36, 1) 120ms; }
+@media (hover: hover) and (pointer: fine) { .cardLink:hover .cardImage { transform: scale(1.012); } }
 
-.cardLink:hover .cardImage {
-  transform: scale(1.03);
-}
+.cardBody { padding-top: 9px; }
 
-/* Date pinned to the foot so cards in a row align regardless of copy length. */
-.cardBody {
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-  justify-content: space-between;
-  gap: 16px;
-}
-
-.cardCopy {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-
-.cardTitle {
+.cardBody h3 {
   margin: 0;
   font-size: 20px;
-  font-weight: 400;
-  line-height: 1.2;
-  letter-spacing: -0.01em;
-  color: var(--color-heading);
+  font-weight: 500;
+  line-height: 1.08;
+  letter-spacing: -0.04em;
 }
 
-.cardExcerpt {
-  margin: 0;
-  font-size: 14px;
-  font-weight: 300;
-  line-height: 1.4;
-  letter-spacing: -0.01em;
+.cardBody p {
+  margin: 5px 0 0;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
   color: var(--color-body);
 }
 
-.cardDate {
-  margin: 0;
-  font-size: 14px;
+.cardBody time {
+  display: block;
+  margin-top: 18px;
+  font-size: 12px;
   font-weight: 600;
-  line-height: 1.4;
+  line-height: 1;
   text-transform: uppercase;
-  opacity: 0.4;
-  color: var(--color-heading);
+  color: rgb(25 25 25 / 43%);
 }
 
-/* --- Taupe footer ------------------------------------------------------ */
-
-/* Re-toned from here rather than editing Footer's own stylesheet. */
-.footerTaupe > footer {
-  background: var(--color-taupe-grey);
-}
-
-/* --- Tablet ------------------------------------------------------------ */
+.footerTaupe > footer { background: var(--color-taupe-grey); }
 
 @media (min-width: 640px) {
-  .grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
+  .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px 16px; }
 }
 
-/* --- Desktop ----------------------------------------------------------- */
-
-@media (min-width: 1024px) {
+@media (min-width: 768px) {
   .hero {
-    min-height: 798px;
+    height: 100svh;
+    min-height: 100svh;
   }
 
   .heroInner {
-    gap: 128px;
-    padding: 131px var(--gutter) 96px;
+    height: 100%;
+    min-height: 100svh;
   }
 
-  .heroTitle {
-    font-size: 64px;
-    letter-spacing: -0.05em;
+  .heroLayout {
+    flex: 1;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-rows: 1fr;
+    gap: 40px;
   }
+  .latestStory {
+    z-index: 1;
+    grid-column: 1;
+    grid-row: 1;
+    align-self: start;
+    margin-top: 62px;
+  }
+  .heroMedia { grid-column: 2; grid-row: 1; }
+  .heroContent {
+    grid-column: 1;
+    grid-row: 1;
+    justify-content: center;
+    padding: 0;
+  }
+}
 
-  .heroExcerpt {
-    font-size: 28px;
+@media (min-width: 1024px) {
+  .heroInner > nav {
+    position: absolute;
+    top: 40px;
+    left: 40px;
+    z-index: 1;
+    display: block;
+    background: none;
   }
-
-  .listInner {
-    gap: 32px;
-    padding: 68px var(--gutter);
-  }
-
-  .listHeading {
-    font-size: 64px;
-    letter-spacing: -0.05em;
-  }
-
-  .grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 40px 32px;
-  }
-
-  .cardTitle {
-    font-size: 24px;
-  }
-
-  .cardExcerpt,
-  .cardDate {
-    font-size: 16px;
-  }
+  .heroInner > nav ol { padding: 0; }
+  .heroInner > nav * { color: var(--color-deep-blue); }
+  .latestStory { font-size: 64px; letter-spacing: -0.05em; }
+  .heroDate { margin-bottom: 13px; font-size: 16px; }
+  .heroCopy h1 { font-size: 64px; }
+  .heroCopy p:last-child { max-width: 430px; margin-top: 12px; font-size: 28px; }
+  .heroButton { margin-top: 77px; }
+  .listInner { padding: 100px var(--gutter) 73px; }
+  .list h2 { margin-bottom: 22px; font-size: 64px; }
+  .grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 42px 16px; }
+  .cardFigure { aspect-ratio: 1.25 / 1; }
+  .cardBody { padding-top: 12px; }
+  .cardBody h3 { font-size: 24px; font-weight: 400; }
+  .cardBody p { margin-top: 6px; font-size: 16px; }
+  .cardBody time { margin-top: 25px; font-size: 16px; }
 }

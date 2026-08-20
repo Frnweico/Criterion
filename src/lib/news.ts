@@ -3,11 +3,8 @@ export type NewsItem = {
   title: string;
   excerpt: string;
   source: string;
-  /** null where the frame supplies no publisher mark. */
-  logo: string | null;
-  /** null until the real article URL is supplied — see TODO.md. */
-  href: string | null;
-  /** Shown on the News page. */
+  logo: string;
+  href: string;
   date?: string;
 };
 
@@ -15,62 +12,38 @@ export const NEWS: NewsItem[] = [
   {
     id: "the-nation",
     title: "Firm Promises Trust and Enduring Design in Property Sector",
-    excerpt:
-      "Criterion Homes LTD marks its market entry with a mission to rebuild homebuyer confidence through meticulous due diligence and timeless finishes.",
+    excerpt: "Criterion Homes marks its market entry with a mission to rebuild homebuyer confidence through meticulous due diligence and timeless finishes.",
     source: "The Nation Newspaper",
-    logo: "/images/news-1.png",
-    href: null,
-    date: "May 11, 2026",
+    logo: "/images/Webp images/The nation logo - Copy.webp",
+    href: "https://thenationonlineng.net/firm-promises-trust-others-in-property-sector/",
+    date: "October 23, 2025",
   },
   {
     id: "guardian",
-    title: "Quiet Conviction: How Nigerian Builders Can Compete Globally",
-    excerpt:
-      "Managing Director Hakeem Bakare speaks on breaking the cycle of rapidly aging luxury developments through deliberate project design and architectural restraint.",
+    title: "How Nigerian Builders Can Compete Globally",
+    excerpt: "Managing Director Hakeem Bakare speaks on breaking the cycle of rapidly aging luxury developments through deliberate project design and architectural restraint.",
     source: "The Guardian Nigeria",
-    logo: "/images/news-2.png",
-    href: null,
+    logo: "/images/Webp images/The guardian logo - Copy.webp",
+    href: "https://guardian.ng/news/how-nigerian-builders-can-compete-globally/",
   },
   {
     id: "thisday",
-    title: "Redefining Housing Standards via Long-Term Value Creation",
-    excerpt:
-      "A look into how Criterion Homes is tackling poor building lifespans and rising urban emissions by shifting focus to sustainable luxury in key Nigerian cities",
+    title: "Criterion Homes Targets Sustainability in Nigeria's Real Estate Sector",
+    excerpt: "Criterion Homes is tackling poor building lifespans and rising urban emissions by shifting focus to sustainable luxury in key Nigerian cities.",
     source: "ThisDay Live",
-    logo: "/images/news-3.png",
-    href: null,
+    logo: "/images/Webp images/THISDAYLIVE Logo - Copy.webp",
+    href: "https://www.thisdaylive.com/2025/10/29/criterion-homes-targets-sustainability-in-nigerias-real-estate-sector/",
   },
-  /* The three below appear on the News page only — the homepage carries the
-     first three. No publisher marks were exported for these. */
   {
     id: "punch",
-    title:
-      "Firm Advocates Sustainability Over Profit in Construction Projects",
-    excerpt:
-      "CEO Hakeem Bakare outlines the critical need for long-term environmental responsibility and quality in Nigerian construction.",
+    title: "Firm Advocates Sustainability Over Profit in Construction Projects",
+    excerpt: "Criterion Homes calls for long-term environmental responsibility, quality and resilience in Nigerian construction.",
     source: "Punch Newspapers",
-    logo: null,
-    href: null,
-  },
-  {
-    id: "estate-intel-midtown",
-    title: "Project Pipeline: The Midtown Terraces Data Index",
-    excerpt:
-      "Live structural metrics, location analytics, and construction timelines for Criterion's deluxe residential development in Gwarinpa.",
-    source: "Estate Intel",
-    logo: null,
-    href: null,
-  },
-  {
-    id: "estate-intel-urban-nest",
-    title: "Conceptual Analysis: The Urban Nest Real Estate Portfolio",
-    excerpt:
-      "Tracking Criterion Homes' upcoming deluxe multi-unit residential footprint within the Wuse development corridor.",
-    source: "Estate Intel",
-    logo: null,
-    href: null,
+    logo: "/images/Webp images/Punch-Logo.webp",
+    href: "https://punchng.com/firm-advocates-sustainability-over-profit-in-construction-projects/",
+    date: "November 10, 2025",
   },
 ];
 
-/** The homepage shows only the first three. */
+/** The homepage shows only three press stories. */
 export const FEATURED_NEWS = NEWS.slice(0, 3);

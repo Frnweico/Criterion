@@ -157,6 +157,13 @@
   gap: 40px;
 }
 
+/* Lists need the full lower frame on phones. Keeping their centre higher
+   prevents the last row from disappearing below the safe viewport edge. */
+.slides > .slideBuilt {
+  inset: 16% 0 0;
+  justify-content: center;
+}
+
 .copy {
   display: flex;
   flex-direction: column;

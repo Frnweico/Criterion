@@ -76,6 +76,85 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Do not let the underlying route scroll before the entry sequence hands
+   control back to it. `:has()` is supported by every browser we target. */
+html:has(.siteWaiting),
+body:has(.siteWaiting) {
+  overflow: hidden;
+}
+
+/* HomeIntro renders its stable wrapper during hydration. On client-side route
+   changes, Navigation Timing marks it as skipped before React runs, so that
+   temporary wrapper must not lock the document. */
+html[data-home-intro="skip"]:has(.siteWaiting),
+html[data-home-intro="skip"] body:has(.siteWaiting) {
+  overflow-y: auto;
+}
+
+/* One calm entrance per content group, never the section container itself.
+   The observer adds the marker only after above-the-fold content is measured,
+   avoiding a hidden first frame. */
+@media (prefers-reduced-motion: no-preference) {
+  .motion-ready [data-scroll-reveal] {
+    transform: translateY(36px);
+    transition:
+      transform 900ms cubic-bezier(0.22, 1, 0.36, 1) var(--reveal-delay, 0ms);
+    will-change: transform;
+  }
+
+  .motion-ready [data-scroll-reveal].is-scroll-revealed {
+    transform: translateY(0);
+  }
+}
+
+/* Native page transition snapshots sit above the document. The outgoing page
+   clears first, exposing the same warm taupe used on refresh, then the new page settles in.
+   This deliberately avoids blending unrelated photography or typography. */
+::view-transition {
+  background: #a99888;
+  pointer-events: none;
+}
+
+::view-transition-group(.criterion-page-fade) {
+  animation-duration: 1400ms;
+  animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+::view-transition-old(.criterion-page-fade) {
+  animation: 440ms ease-in both criterion-page-fade-out;
+}
+
+::view-transition-new(.criterion-page-fade) {
+  animation: 960ms cubic-bezier(0.22, 1, 0.36, 1) 440ms both criterion-page-fade-in;
+}
+
+@keyframes criterion-page-fade-out {
+  to { opacity: 0; }
+}
+
+@keyframes criterion-page-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* A very small image-only parallax keeps photography alive while preserving
+   readable content and the page's physical layout. It is disabled for users
+   who request reduced motion. */
+@media (prefers-reduced-motion: no-preference) {
+  [data-parallax-media] {
+    /* `translate` composes with a card's existing `transform` hover or
+       gallery transition instead of overwriting it. */
+    translate: 0 var(--parallax-y, 0);
+    will-change: translate;
+  }
+
+  [data-parallax-media]:not([data-parallax-background]) {
+    /* Each image receives just enough measured overscan to cover its own
+       motion range, including short mobile cards. */
+    scale: var(--parallax-scale, 1.1);
+  }
+}
+
 img,
 svg,
 video {
@@ -101,6 +180,11 @@ input {
   color: inherit;
 }
 
+select {
+  font: inherit;
+  color: inherit;
+}
+
 ul,
 ol {
   list-style: none;
@@ -115,6 +199,13 @@ ol {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
+  }
+
+  ::view-transition-old(*),
+  ::view-transition-new(*),
+  ::view-transition-group(*) {
+    animation-duration: 0s !important;
+    animation-delay: 0s !important;
   }
 }
 
@@ -297,4 +388,111 @@ ol {
   clip-path: inset(50%);
   white-space: nowrap;
   border: 0;
+}
+/* Each measured header line owns a mask, so its rise never escapes into the
+   next line. MotionController adds these spans after the web font is ready. */
+.line-reveal-mask {
+  display: block;
+  width: max-content;
+  max-width: 100%;
+  /* Fonts may paint ascenders/descenders outside their nominal line box.
+     Preserve a small vertical bleed inside the clip so a settling line never
+     loses the bottom of a letter, while the negative margin keeps layout
+     exactly the same height as the unmasked heading. */
+  padding-block: 0.14em;
+  margin-block: -0.14em;
+  overflow: hidden;
+  text-align: inherit;
+}
+
+/* These elements have an authored desktop/mobile composition. Their line
+   masks fill the authored text column instead of inheriting each row's width,
+   so short rows cannot reposition or fragment the copy. */
+html.motion-ready [data-line-reveal-layout] .line-reveal-mask {
+  padding-block: 0;
+  margin-block: 0;
+  overflow: hidden;
+  clip-path: none;
+}
+
+html.motion-ready [data-line-reveal-layout] .line-reveal-line {
+  box-sizing: border-box;
+  /* The paragraph's text-indent belongs to its first authored line only.
+     Each animated line is a block, so it must not inherit that indent again. */
+  text-indent: 0;
+}
+
+.line-reveal-line {
+  display: block;
+}
+
+html.motion-ready [data-line-reveal] .line-reveal-line {
+  transform: translateY(135%);
+  transition: transform 1050ms cubic-bezier(0.22, 1, 0.36, 1) var(--line-reveal-delay, 0ms);
+}
+
+html.motion-ready [data-line-reveal]:not([data-line-reveal-layout]) {
+  width: var(--line-reveal-width);
+  max-width: 100%;
+}
+
+html.motion-ready [data-line-reveal].is-scroll-revealed .line-reveal-line {
+  transform: translateY(0);
+}
+
+html.motion-ready [data-line-reveal-resize] .line-reveal-line {
+  transition: none;
+}
+
+/* A single observer reveals each card collection, with CSS delays assigned to
+   its direct children. The list remains accessible and in normal flow. */
+html.motion-ready [data-motion-stagger] > * {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity 460ms ease var(--stagger-delay, 0ms),
+    transform 760ms cubic-bezier(0.22, 1, 0.36, 1) var(--stagger-delay, 0ms);
+}
+
+html.motion-ready [data-motion-stagger].is-scroll-revealed > * {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* The Pact is a deliberately ordered sequence: intro, then the number, point
+   and description of each commitment. */
+html.motion-ready [data-motion-pact] [data-pact-intro] > *,
+html.motion-ready [data-motion-pact] [data-pact-index],
+html.motion-ready [data-motion-pact] [data-pact-title],
+html.motion-ready [data-motion-pact] [data-pact-caption] {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity 420ms ease var(--pact-delay, 0ms),
+    transform 720ms cubic-bezier(0.22, 1, 0.36, 1) var(--pact-delay, 0ms);
+}
+
+html.motion-ready [data-motion-pact].is-pact-revealed [data-pact-intro] > *,
+html.motion-ready [data-motion-pact].is-pact-revealed [data-pact-index],
+html.motion-ready [data-motion-pact].is-pact-revealed [data-pact-title],
+html.motion-ready [data-motion-pact].is-pact-revealed [data-pact-caption] {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html.motion-ready [data-line-reveal] .line-reveal-line {
+    transform: none;
+    transition: none;
+  }
+
+  html.motion-ready [data-motion-stagger] > *,
+  html.motion-ready [data-motion-pact] [data-pact-intro] > *,
+  html.motion-ready [data-motion-pact] [data-pact-index],
+  html.motion-ready [data-motion-pact] [data-pact-title],
+  html.motion-ready [data-motion-pact] [data-pact-caption] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
 }

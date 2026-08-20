@@ -26,6 +26,8 @@ type LinkProps = CommonProps & {
    * the file saves instead of the router trying to navigate to it.
    */
   download?: boolean;
+  /** Opens a document or external destination in a separate browser tab. */
+  newTab?: boolean;
   onClick?: never;
   type?: never;
 };
@@ -53,16 +55,34 @@ export default function Button({
       {variant !== "small" && icon && (
         <span className={styles.icon} aria-hidden />
       )}
-      {text}
+      <span className={styles.label}>
+        <span className={styles.labelText}>{text}</span>
+        <span className={styles.labelSweep} aria-hidden>
+          {text}
+        </span>
+      </span>
     </>
   );
 
   if ("href" in rest && rest.href) {
-    const { href, download } = rest as LinkProps;
+    const { href, download, newTab } = rest as LinkProps;
 
     if (download) {
       return (
         <a href={href} download className={classes}>
+          {content}
+        </a>
+      );
+    }
+
+    if (newTab) {
+      return (
+        <a
+          href={href}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={classes}
+        >
           {content}
         </a>
       );

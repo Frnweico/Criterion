@@ -1,0 +1,62 @@
+.page {
+  color: var(--color-carbon);
+  background-color: #211b15;
+  background-image: linear-gradient(rgb(0 0 0 / 18%), rgb(0 0 0 / 18%)),
+    url("/images/Webp images/WP-benchmarkers-bg - Copy.webp");
+  background-position: center;
+  background-size: cover;
+}
+
+.hero {
+  display: flex;
+  justify-content: center;
+  min-height: 1510px;
+  padding: 173px var(--gutter) 101px;
+}
+
+.panel {
+  width: min(810px, 100%);
+  align-self: flex-start;
+  padding: 67px 55px;
+  background: var(--color-platinum);
+}
+
+.panel > * {
+  outline: 1px solid rgb(25 25 25 / 16%);
+}
+
+.panel > [class*="confirmation"] {
+  outline: 0;
+}
+
+.hero:has([class*="confirmation"]) {
+  min-height: 625px;
+  padding-top: 200px;
+  padding-bottom: 120px;
+}
+
+.panel:has([class*="confirmation"]) {
+  width: min(754px, 100%);
+  padding: 0;
+}
+
+@media (max-width: 639px) {
+  .hero {
+    min-height: 1229px;
+    padding: 152px var(--gutter) 59px;
+  }
+
+  .panel {
+    padding: 0;
+  }
+
+  .panel > * {
+    outline: 0;
+  }
+
+  .hero:has([class*="confirmation"]) {
+    min-height: 559px;
+    padding-top: 201px;
+    padding-bottom: 121px;
+  }
+}

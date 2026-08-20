@@ -38,6 +38,10 @@
   justify-content: flex-end;
   min-width: 0;
   height: 100%;
+  /* Parallax deliberately scales each image beyond its frame. The slide,
+     rather than the moving Embla row, owns that crop so one slide can never
+     paint into the neighbouring slide during a translate. */
+  overflow: hidden;
 }
 
 .media {

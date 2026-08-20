@@ -57,21 +57,23 @@ export default function ReasonsList({ reasons }: Props) {
               id={`reason-panel-${reason.id}`}
               role="region"
               aria-labelledby={`reason-toggle-${reason.id}`}
-              className={styles.panel}
-              hidden={!isOpen}
+              aria-hidden={!isOpen}
+              className={`${styles.panel} ${isOpen ? styles.panelOpen : ""}`}
             >
-              <p className={styles.body}>{reason.body}</p>
-              {reason.image && (
-                <div className={styles.figure}>
-                  <Image
-                    src={reason.image}
-                    alt={reason.imageAlt ?? ""}
-                    fill
-                    sizes="(min-width: 1024px) 306px, calc(100vw - 40px)"
-                    className={styles.image}
-                  />
-                </div>
-              )}
+              <div className={styles.panelInner}>
+                <p className={styles.body}>{reason.body}</p>
+                {reason.image && (
+                  <div className={styles.figure}>
+                    <Image
+                      src={reason.image}
+                      alt={reason.imageAlt ?? ""}
+                      fill
+                      sizes="(min-width: 1024px) 306px, calc(100vw - 40px)"
+                      className={styles.image}
+                    />
+                  </div>
+                )}
+              </div>
             </div>
           </li>
         );

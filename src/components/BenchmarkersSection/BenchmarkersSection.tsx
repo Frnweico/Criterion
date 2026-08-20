@@ -23,7 +23,9 @@ export default function BenchmarkersSection() {
     <section
       className={styles.section}
       aria-labelledby="benchmarkers-heading"
+      data-motion-page-static
     >
+      <div className={styles.background} data-parallax-background aria-hidden />
       {/* `frame` is the positioning context so the button can sit beneath the
           envelope on mobile and be placed onto its flap at desktop, without
           living inside the aspect-ratio box in both cases. */}
@@ -62,7 +64,7 @@ export default function BenchmarkersSection() {
         {/* No Benchmarker page yet, so this renders without a destination —
             logged in TODO.md. */}
         <div className={styles.action}>
-          <Button text="Join the Benchmarkers" />
+          <Button text="Join the Benchmarkers" href="/benchmarkers" />
         </div>
       </div>
     </section>

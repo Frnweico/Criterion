@@ -139,7 +139,25 @@
 }
 
 .panel {
-  padding: 0 16px 20px 44px;
+  display: grid;
+  grid-template-rows: 0fr;
+  opacity: 0;
+  padding: 0 16px 0 44px;
+  transition:
+    grid-template-rows 440ms cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 240ms ease,
+    padding-bottom 440ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.panelOpen {
+  grid-template-rows: 1fr;
+  opacity: 1;
+  padding-bottom: 20px;
+}
+
+.panelInner {
+  min-height: 0;
+  overflow: hidden;
 }
 
 .panelText {
@@ -157,7 +175,11 @@
 
 /* --- Desktop ---------------------------------------------------------- */
 
-@media (min-width: 1024px) {
+/* The two fixed desktop columns total 1025px. With the 40px gutters, 1200px
+   is the first viewport that also leaves a clear gap for the heading's
+   deliberate overrun; below it, retain the stacked layout rather than let
+   fixed-width content overlap. */
+@media (min-width: 1200px) {
   .inner {
     padding: 98px var(--gutter);
   }
@@ -304,6 +326,10 @@
 @media (prefers-reduced-motion: reduce) {
   .rowButton,
   .chevron {
+    transition: none;
+  }
+
+  .panel {
     transition: none;
   }
 }

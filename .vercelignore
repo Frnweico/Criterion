@@ -1,0 +1,6 @@
+# Source copies retained locally for future image swaps. The application uses
+# the named assets directly under public/images, not these staging folders.
+public/images/TUN Webp images/
+
+# Temporary local development output.
+dev-server.log

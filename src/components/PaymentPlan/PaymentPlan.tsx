@@ -15,9 +15,14 @@ export type Payment = {
   terms: string[];
 };
 
+export type PaymentIntro = {
+  lead: string;
+  points: string[];
+};
+
 type Props = {
   payment: Payment;
-  intro: string;
+  intro: PaymentIntro;
   projectName: string;
   completion: string;
 };
@@ -38,9 +43,14 @@ export default function PaymentPlan({
       <div className={styles.head}>
         <div className={styles.intro}>
           <h2 id="payment-heading" className={styles.heading}>
-            Payment Plan
+            Build As You Pay
           </h2>
-          <p className={styles.introText}>{intro}</p>
+          <p className={styles.introLead}>{intro.lead}</p>
+          <ul className={styles.introList}>
+            {intro.points.map((point) => (
+              <li key={point}>{point}</li>
+            ))}
+          </ul>
         </div>
 
         <dl className={styles.priceBox}>
@@ -51,7 +61,7 @@ export default function PaymentPlan({
             </dt>
             <dd className={styles.priceValue}>{payment.unitPrice}</dd>
           </div>
-          <div className={styles.priceRow}>
+          <div className={`${styles.priceRow} ${styles.completionRow}`}>
             <dt className={styles.priceLabel}>
               <span className={styles.marker} aria-hidden />
               Project completion

@@ -54,7 +54,7 @@
 
 .heroLocation {
   margin: 0;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
   line-height: 1.4;
   text-align: center;
@@ -66,10 +66,10 @@
 .heroTitle {
   margin: 0;
   padding: 0 20px;
-  font-size: 48px;
-  font-weight: 500;
-  line-height: 0.9;
-  letter-spacing: -1.2px;
+  font-size: 40px;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: -0.03em;
   text-align: center;
   text-transform: capitalize;
 }
@@ -239,7 +239,8 @@
   background: var(--color-image-bg);
 }
 
-.addressImage {
+.addressImage,
+.addressVideo {
   position: absolute;
   inset: 0;
   width: 100%;
@@ -375,10 +376,16 @@
   border: 0;
   border-bottom: 1px solid var(--color-rule);
   appearance: none;
-  background: none;
+  background: linear-gradient(
+      var(--color-taupe-grey),
+      var(--color-taupe-grey)
+    ) left bottom / 0 1px no-repeat;
   font-family: inherit;
   font-size: 16px;
   color: var(--color-heading);
+  transition:
+    background-size 360ms cubic-bezier(0.22, 1, 0.36, 1),
+    border-bottom-color 360ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .input::placeholder {
@@ -386,9 +393,18 @@
   color: var(--color-body);
 }
 
+.input:focus {
+  border-bottom-color: var(--color-taupe-grey);
+  background-size: 100% 1px;
+}
+
 .input:focus-visible {
-  outline: 2px solid var(--color-carbon);
-  outline-offset: 2px;
+  outline: none;
+}
+
+:global(html[data-input-modality="keyboard"]) .input:focus-visible {
+  outline: 2px solid var(--color-taupe-grey);
+  outline-offset: 3px;
 }
 
 /* --- Tablet ------------------------------------------------------------ */
