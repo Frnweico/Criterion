@@ -109,6 +109,14 @@ export const GALLERY: GalleryShot[] = [
     alt: "Front view of The Midtown Terraces during construction",
   },
   {
+    src: "/images/Gallery new/TMT-Live-colour-graded.webp",
+    alt: "Aerial view of The Midtown Terraces during construction",
+  },
+  {
+    src: "/images/Gallery new/TMT-D-colour-graded.webp",
+    alt: "The Midtown Terraces during construction, viewed from above",
+  },
+  {
     src: "/images/midtown-gallery-kitchen.webp",
     alt: "The kitchen, with a marble island and fitted cabinetry",
   },
