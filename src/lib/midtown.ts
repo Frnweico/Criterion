@@ -105,8 +105,8 @@ export const GALLERY: GalleryShot[] = [
     alt: "The terraces from the side, showing the balcony bays",
   },
   {
-    src: "/images/Gallery new/TMT D.png",
-    alt: "Aerial view of The Midtown Terraces during construction",
+    src: "/images/Gallery new/TMT front.webp",
+    alt: "Front view of The Midtown Terraces during construction",
   },
   {
     src: "/images/midtown-gallery-kitchen.webp",
