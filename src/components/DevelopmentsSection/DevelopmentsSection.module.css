@@ -10,12 +10,6 @@
   padding: 51px var(--gutter) 50px;
 }
 
-.intro {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
 .heading {
   margin: 0;
   font-size: 40px;
@@ -23,29 +17,6 @@
   line-height: 1;
   letter-spacing: -0.03em;
   text-transform: capitalize;
-  color: var(--color-heading);
-}
-
-.blurb {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  padding-top: 8px;
-}
-
-.description {
-  margin: 0;
-  font-size: 16px;
-  line-height: 1.3;
-  letter-spacing: -0.02em;
-  color: var(--color-body);
-}
-
-.emphasis {
-  margin: 0;
-  font-size: 18px;
-  font-weight: 700;
-  line-height: 1.78;
   color: var(--color-heading);
 }
 
@@ -74,34 +45,8 @@
     padding: 84px var(--gutter) 100px;
   }
 
-  /* Heading left, blurb right — the desktop frame runs them side by side
-     with the description column starting around the two-thirds mark. */
-  .intro {
-    display: grid;
-    max-width: 1155px;
-    grid-template-columns: minmax(0, 503px) minmax(0, 462px);
-    gap: 64px;
-    justify-content: space-between;
-    align-items: start;
-  }
-
   .heading {
     font-size: 64px;
     letter-spacing: -0.05em;
-  }
-
-  .blurb {
-    gap: 24px;
-    padding-top: 0;
-  }
-
-  .description,
-  .emphasis {
-    font-size: 20px;
-    line-height: 1.3;
-  }
-
-  .emphasis {
-    font-size: 20px;
   }
 }

@@ -1,12 +1,16 @@
 "use client";
 
 import { useCallback, useContext, useEffect, useRef, useState } from "react";
-import Image from "next/image";
+import Image, { getImageProps } from "next/image";
 import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
 import Button from "@/components/Button/Button";
 import { HomeEntranceCompleteContext } from "@/components/HomeIntro/HomeIntro";
-import { HERO_SLIDES, SLIDE_DURATION_MS } from "@/lib/hero";
+import {
+  HERO_SLIDES,
+  SLIDE_DURATION_MS,
+  type HeroSlide,
+} from "@/lib/hero";
 import styles from "./Hero.module.css";
 
 /* Embla owns the clock, the scroll position and the drag gestures as one
@@ -15,6 +19,58 @@ import styles from "./Hero.module.css";
    anything paused. Here the bars are a pure readout of the autoplay plugin's
    own countdown — `timeUntilNext()`, added in Embla 8.5.0 for exactly this —
    so they cannot disagree with the slide that is actually showing. */
+
+function SlideImage({
+  slide,
+  slideIndex,
+}: {
+  slide: HeroSlide;
+  slideIndex: number;
+}) {
+  if (!slide.mobileImage) {
+    return (
+      <Image
+        src={slide.image}
+        alt={slide.imageAlt}
+        fill
+        sizes="100vw"
+        preload={slideIndex === 0}
+        draggable={false}
+      />
+    );
+  }
+
+  const common = {
+    alt: slide.imageAlt,
+    sizes: "100vw",
+    quality: 75,
+    fetchPriority: slideIndex === 0 ? ("high" as const) : ("auto" as const),
+  };
+  const {
+    props: { srcSet: desktop },
+  } = getImageProps({
+    ...common,
+    src: slide.image,
+    width: 1680,
+    height: 945,
+  });
+  const {
+    props: { srcSet: mobile, alt, ...imageProps },
+  } = getImageProps({
+    ...common,
+    src: slide.mobileImage,
+    width: 853,
+    height: 1872,
+  });
+
+  return (
+    <picture className={styles.picture}>
+      <source media="(min-width: 768px)" srcSet={desktop} />
+      <source media="(max-width: 767px)" srcSet={mobile} />
+      <img {...imageProps} alt={alt} draggable={false} />
+    </picture>
+  );
+}
 
 export default function Hero() {
   const entranceComplete = useContext(HomeEntranceCompleteContext);
@@ -125,14 +181,7 @@ export default function Hero() {
                   slideIndex === 0 ? styles.mediaRight : ""
                 }`}
               >
-                <Image
-                  src={slide.image}
-                  alt={slide.imageAlt}
-                  fill
-                  sizes="100vw"
-                  preload={slideIndex === 0}
-                  draggable={false}
-                />
+                <SlideImage slide={slide} slideIndex={slideIndex} />
               </div>
 
               {/* Slide 1 alone puts its paragraph in a right-hand column on

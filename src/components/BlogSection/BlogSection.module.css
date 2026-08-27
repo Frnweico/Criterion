@@ -9,12 +9,6 @@
   padding: 66px var(--gutter) 100px;
 }
 
-.head {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
 .heading {
   margin: 0;
   font-size: 40px;
@@ -23,14 +17,6 @@
   letter-spacing: -0.03em;
   text-transform: capitalize;
   color: var(--color-carbon);
-}
-
-.standfirst {
-  margin: 0;
-  font-size: 16px;
-  line-height: 1.4;
-  letter-spacing: -0.01em;
-  color: var(--color-body);
 }
 
 .cards {
@@ -84,14 +70,6 @@
   color: var(--color-card-title);
 }
 
-.cardExcerpt {
-  margin: 0;
-  font-size: 16px;
-  line-height: 1.3;
-  letter-spacing: -0.02em;
-  color: var(--color-card-body);
-}
-
 .date {
   margin-top: 8px;
   font-size: 12px;
@@ -138,22 +116,9 @@
     padding: 66px 40px 100px;
   }
 
-  /* Heading left, standfirst right — the frame sets the standfirst at x=973
-     with a 422px measure. */
-  .head {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) 422px;
-    gap: 64px;
-    align-items: start;
-  }
-
   .heading {
     font-size: 64px;
     letter-spacing: -0.05em;
-  }
-
-  .standfirst {
-    font-size: 20px;
   }
 
   .cards {

@@ -28,12 +28,11 @@ export default function AboutSection() {
 
         <div className={styles.copy}>
           <p className={styles.lead}>
-            Criterion Homes approaches development with restraint. Every project
-            is shaped by clear decisions. What to include, what to leave out,
-            and what truly holds value over time.
+            Criterion Homes builds with restraint, making clear choices about
+            what adds lasting value.
           </p>
           <p className={styles.emphasis}>
-            We don&rsquo;t just aim to build more. We aim to build right
+            We build what matters, and nothing without purpose.
           </p>
         </div>
       </div>

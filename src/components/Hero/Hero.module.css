@@ -49,6 +49,10 @@
   inset: 0;
 }
 
+.picture {
+  display: contents;
+}
+
 /* `cover` scales the image to fill the frame while keeping its aspect ratio —
    it crops, it never stretches. On a landscape viewport the width drives the
    scale and the excess height is cropped; on a portrait one the height drives
@@ -98,6 +102,14 @@
 
 .body {
   color: var(--color-platinum);
+}
+
+/* Slide 1 is intentionally more concise on mobile; its supporting copy is
+   retained from the desktop layout at the breakpoint below. */
+@media (max-width: 1023px) {
+  .contentLead .body {
+    display: none;
+  }
 }
 
 .meta {

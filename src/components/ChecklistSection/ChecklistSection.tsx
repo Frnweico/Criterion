@@ -25,12 +25,8 @@ export default function ChecklistSection() {
 
         <div className={styles.panel}>
           <p className={styles.lead}>
-            Before committing to any property, the questions you ask matter more
-            than the promises you hear.
-          </p>
-          <p className={styles.lead}>
-            We&rsquo;ve put together 5 questions every Nigerian homebuyer should
-            ask before signing anything.
+            Get five essential questions every Nigerian homebuyer should ask
+            before committing to a property.
           </p>
 
           <form className={styles.form}>

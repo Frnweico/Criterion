@@ -17,6 +17,8 @@ export type HeroSlide = {
       renders but does not navigate. */
   secondaryCtaHref?: string;
   image: string;
+  /** Optional portrait crop for the first slide on phones. */
+  mobileImage?: string;
   imageAlt: string;
 };
 
@@ -46,8 +48,9 @@ export const HERO_SLIDES: HeroSlide[] = [
     ctaHref: "/projects",
     secondaryCtaText: SECONDARY_CTA,
     secondaryCtaHref: SECONDARY_CTA_HREF,
-    image: "/images/Webp images/hero-slide-1-v2 - Copy.webp",
-    imageAlt: "A Criterion Homes development at dusk",
+    image: "/images/hero-abuja-interior-desktop-v1.webp",
+    mobileImage: "/images/hero-abuja-interior-mobile-v1.webp",
+    imageAlt: "A refined contemporary living room opening onto an Abuja courtyard",
   },
   {
     id: midtown.slug,
