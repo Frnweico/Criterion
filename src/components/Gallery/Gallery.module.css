@@ -1,6 +1,5 @@
-/* One lead picture with four selectable thumbnails. Full-bleed on mobile
-   with the four in a row beneath; on desktop they stack into a right-hand
-   column. Figma 9345:5411 / 9942:5390. */
+/* One lead picture with selectable thumbnails on desktop. A Midtown-only
+   desktop carousel is opt-in; the mobile gallery stays on this original stack. */
 
 .gallery {
   padding-inline: 10px;
@@ -19,17 +18,11 @@
   text-transform: capitalize;
 }
 
-.grid {
+.grid,
+.carousel {
   display: none;
-  flex-direction: column;
-  gap: 10px;
-  margin-top: 28px;
-  overflow: hidden;
 }
 
-/* Mobile shows every photograph as a full-width image at its native aspect
-   ratio. This avoids layering several decoded images in the lead frame and
-   keeps every shot available without a thumbnail interaction. */
 .mobileList {
   display: flex;
   flex-direction: column;
@@ -68,9 +61,6 @@
   opacity: 1;
 }
 
-/* Auto-flowed rather than a fixed column count, so this adapts to however
-   many thumbnails a project actually has — Midtown supplies 5, Urban Nest 4 —
-   without a layout change per project. */
 .side {
   display: grid;
   grid-auto-flow: column;
@@ -101,15 +91,10 @@
   transition: transform 680ms cubic-bezier(0.22, 1, 0.36, 1) 120ms;
 }
 
-@media (hover: hover) and (pointer: fine) {
-  .thumb:hover .image {
-    transform: scale(1.012);
-  }
-}
-
-.thumb:focus-visible {
-  outline: 2px solid var(--color-carbon);
-  outline-offset: 2px;
+.thumb:focus-visible,
+.carouselControl:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 4px;
 }
 
 .note {
@@ -122,7 +107,11 @@
   text-align: center;
 }
 
-/* --- Desktop ----------------------------------------------------------- */
+@media (hover: hover) and (pointer: fine) {
+  .thumb:hover .image {
+    transform: scale(1.012);
+  }
+}
 
 @media (min-width: 1024px) {
   .gallery {
@@ -136,14 +125,12 @@
     letter-spacing: -3.2px;
   }
 
-  /* 9345:5411 — a 1138 lead beside a 329.17 column, 10px apart. Those add up
-     to more than the frame, so the column bleeds off the right edge exactly
-     as the design has it; the grid clips the overhang. */
   .grid {
     display: grid;
     grid-template-columns: 79.0278% 22.8588%;
     gap: 10px;
     margin-top: 40px;
+    overflow: hidden;
   }
 
   .mobileList {
@@ -171,6 +158,63 @@
     padding: 40px var(--gutter) 50px;
     font-size: 16px;
     line-height: 1.4;
+  }
+
+  .desktopCarousel .grid {
+    display: none;
+  }
+
+  .desktopCarousel .carousel {
+    display: block;
+    position: relative;
+    margin: 40px 0 0;
+  }
+
+  .carouselFrame {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    background: var(--color-image-bg);
+  }
+
+  .carouselImage {
+    object-fit: cover;
+  }
+
+  .carouselControls {
+    position: absolute;
+    bottom: 24px;
+    left: var(--gutter);
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 8px;
+  }
+
+  .carouselControl {
+    display: grid;
+    place-items: center;
+    width: 46px;
+    height: 46px;
+    padding: 0;
+    border: 1.5px solid rgb(255 255 255 / 0.88);
+    border-radius: 50%;
+    color: rgb(255 255 255 / 0.96);
+    background: rgb(255 255 255 / 0.08);
+    box-shadow: 0 3px 7px rgb(0 0 0 / 0.28);
+    backdrop-filter: blur(14px) saturate(125%);
+    -webkit-backdrop-filter: blur(14px) saturate(125%);
+    cursor: pointer;
+  }
+
+  .carouselArrow {
+    width: 18px;
+    height: 18px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
   }
 }
 

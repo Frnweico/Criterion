@@ -6,7 +6,6 @@ import Button from "@/components/Button/Button";
 import FloorPlan from "@/components/FloorPlan/FloorPlan";
 import Footer from "@/components/Footer/Footer";
 import Gallery from "@/components/Gallery/Gallery";
-import Header from "@/components/Header/Header";
 import LocationStory from "@/components/LocationStory/LocationStory";
 import PaymentPlan from "@/components/PaymentPlan/PaymentPlan";
 import ReasonsList from "@/components/ReasonsList/ReasonsList";
@@ -50,7 +49,6 @@ export const metadata: Metadata = {
 export default function UrbanNestPage() {
   return (
     <>
-      <Header tone="light" />
       <main>
         {/* --- Hero ---------------------------------------------------- */}
         <section className={styles.hero} aria-labelledby="project-heading">

@@ -1,0 +1,448 @@
+.page {
+  overflow: clip;
+  background: var(--color-platinum);
+}
+
+/* The shared page canvas moves over the intro before this page's hero is
+   settled. Keep only the logo and headline out of view during that movement,
+   then reveal them once the canvas has completed its entrance. */
+@media (prefers-reduced-motion: no-preference) {
+  html[data-home-intro="initial"] .page [data-approach-intro-copy] {
+    opacity: 0;
+    transform: translateY(24px);
+    transition:
+      opacity 260ms ease,
+      transform 720ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  html[data-home-intro="initial"][data-approach-entrance="complete"]
+    .page [data-approach-intro-copy] {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* The shared entrance treatment only translates its targets. On this landing
+   page, where the hero is intentionally spare, that leaves the text readable
+   while it moves. Keep each group hidden until its own reveal begins. */
+@media (prefers-reduced-motion: no-preference) {
+  html.motion-ready .page [data-scroll-reveal] {
+    opacity: 0;
+    transform: translateY(26px);
+    transition:
+      opacity 240ms ease var(--reveal-delay, 0ms),
+      transform 760ms cubic-bezier(0.22, 1, 0.36, 1) var(--reveal-delay, 0ms);
+  }
+
+  html.motion-ready .page [data-scroll-reveal].is-scroll-revealed {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.intro,
+.problem,
+.approach,
+.evidence,
+.signup {
+  padding-right: var(--gutter);
+  padding-left: var(--gutter);
+}
+
+.intro {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  gap: 24px;
+  min-height: 88svh;
+  padding-top: 44px;
+  padding-bottom: 56px;
+  border-bottom: 1px solid var(--color-rule);
+}
+
+.logoLockup {
+  display: flex;
+  align-items: end;
+  gap: 14px;
+  width: fit-content;
+}
+
+.logoMark {
+  width: 44px;
+  height: auto;
+  /* The supplied logo files are white. This page has a platinum hero, so
+     invert only this instance rather than changing the shared brand assets. */
+  filter: invert(1);
+}
+
+.wordmark {
+  width: 100px;
+  height: auto;
+  /* The supplied wordmark is white. This page has a platinum hero, so invert
+     only this instance rather than changing the shared brand asset. */
+  filter: invert(1);
+}
+
+.heroImage {
+  position: relative;
+  align-self: center;
+  width: min(100%, 760px);
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: var(--color-image-bg);
+}
+
+.eyebrow,
+.sectionLabel {
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.intro h1 {
+  max-width: 980px;
+  margin-top: 24px;
+  font-size: clamp(48px, 11vw, 150px);
+  font-weight: 400;
+  line-height: 0.88;
+  letter-spacing: -0.065em;
+}
+
+.problem {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding-top: 80px;
+  padding-bottom: 80px;
+}
+
+.problem p,
+.signupCopy {
+  max-width: 680px;
+  font-size: clamp(25px, 6.4vw, 52px);
+  font-weight: 400;
+  line-height: 1.08;
+  letter-spacing: -0.05em;
+}
+
+.approach {
+  padding-top: 56px;
+  padding-bottom: 80px;
+  background: var(--color-carbon);
+  color: var(--color-platinum);
+}
+
+.approach h2,
+.signup h2 {
+  max-width: 700px;
+  margin-top: 16px;
+  font-size: clamp(42px, 9vw, 108px);
+  font-weight: 400;
+  line-height: 0.9;
+  letter-spacing: -0.065em;
+}
+
+.evidence h2 {
+  max-width: 700px;
+  margin-top: 16px;
+  font-size: clamp(36px, 8.25vw, 108px);
+  font-weight: 400;
+  line-height: 0.9;
+  letter-spacing: -0.065em;
+}
+
+.practices {
+  margin-top: 70px;
+  border-top: 1px solid rgb(252 251 255 / 35%);
+}
+
+.practices li {
+  display: grid;
+  grid-template-columns: 44px 1fr;
+  gap: 12px;
+  padding: 24px 0;
+  border-bottom: 1px solid rgb(252 251 255 / 35%);
+}
+
+.practices li > span {
+  color: rgb(252 251 255 / 55%);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+}
+
+.practices h3 {
+  font-size: 22px;
+  font-weight: 500;
+  line-height: 1.1;
+  letter-spacing: -0.045em;
+}
+
+.practices p {
+  max-width: 660px;
+  margin-top: 12px;
+  font-size: 19px;
+  line-height: 1.35;
+  letter-spacing: -0.035em;
+}
+
+.evidence {
+  padding-top: 80px;
+  padding-bottom: 80px;
+}
+
+.imageGrid {
+  display: grid;
+  gap: 32px;
+  margin-top: 44px;
+}
+
+.projectTimeline {
+  display: grid;
+  gap: 8px;
+  margin-top: 20px;
+  color: var(--color-body);
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.4;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.figure {
+  display: grid;
+  gap: 10px;
+}
+
+.imageFrame {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: var(--color-image-bg);
+}
+
+.image {
+  object-fit: cover;
+}
+
+.figure figcaption {
+  display: grid;
+  gap: 4px;
+  color: var(--color-body);
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.figure figcaption strong {
+  color: var(--color-carbon);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.film {
+  margin-top: 56px;
+}
+
+.filmLabel {
+  margin-bottom: 12px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.filmFrame {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: var(--color-image-bg);
+}
+
+.signup {
+  padding-top: 80px;
+  padding-bottom: 96px;
+  border-top: 1px solid var(--color-rule);
+}
+
+.signupCopy {
+  margin-top: 24px;
+  margin-bottom: 42px;
+  font-size: clamp(21px, 5.5vw, 34px);
+  line-height: 1.18;
+}
+
+.signupActions {
+  display: grid;
+  gap: 24px;
+  width: 100%;
+  max-width: 560px;
+}
+
+.aboutLink {
+  width: fit-content;
+  padding-bottom: 5px;
+  border-bottom: 1px solid currentColor;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.aboutLink:focus-visible {
+  outline: 2px solid var(--color-carbon);
+  outline-offset: 4px;
+}
+
+@media (min-width: 768px) {
+  .intro,
+  .problem,
+  .approach,
+  .evidence,
+  .signup {
+    padding-right: max(var(--gutter), 7vw);
+    padding-left: max(var(--gutter), 7vw);
+  }
+
+  .intro {
+    min-height: 90svh;
+    padding-top: 52px;
+    padding-bottom: 72px;
+  }
+
+  .problem,
+  .evidence,
+  .signup {
+    padding-top: 120px;
+    padding-bottom: 120px;
+  }
+
+  .approach {
+    padding-top: 92px;
+    padding-bottom: 120px;
+  }
+
+  .practices {
+    margin-top: 104px;
+  }
+
+  .practices li {
+    grid-template-columns: minmax(100px, 20%) 1fr;
+    padding: 32px 0;
+  }
+
+  .practices p {
+    font-size: 26px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .intro,
+  .problem,
+  .approach,
+  .evidence,
+  .signup {
+    padding-right: 8.333vw;
+    padding-left: 8.333vw;
+  }
+
+  .problem p {
+    max-width: 920px;
+  }
+
+  .intro {
+    box-sizing: border-box;
+    display: grid;
+    grid-template-areas:
+      "logo image"
+      "copy image";
+    grid-template-columns: minmax(0, 0.85fr) minmax(430px, 1.15fr);
+    grid-template-rows: auto minmax(0, 1fr);
+    column-gap: clamp(48px, 6vw, 128px);
+    row-gap: 0;
+    min-height: 100svh;
+    height: 100svh;
+    padding-top: clamp(48px, 4.5vw, 96px);
+    padding-bottom: clamp(48px, 4.5vw, 96px);
+  }
+
+  .logoLockup {
+    grid-area: logo;
+  }
+
+  .heroImage {
+    grid-area: image;
+    align-self: center;
+    justify-self: end;
+    width: auto;
+    max-width: 100%;
+    height: min(calc(100svh - clamp(96px, 9vw, 192px)), 56.25vw);
+    max-height: 100%;
+    aspect-ratio: 16 / 9;
+  }
+
+  .heroImage .image {
+    object-fit: contain;
+  }
+
+  .heroCopy {
+    grid-area: copy;
+    align-self: end;
+  }
+
+  .intro h1 {
+    max-width: 680px;
+    font-size: clamp(72px, 6.5vw, 124px);
+  }
+
+  .approach h2,
+  .evidence h2,
+  .signup h2 {
+    max-width: 900px;
+  }
+
+  .practices {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+  }
+
+  .practices li {
+    display: block;
+    min-height: 300px;
+    padding: 24px 0 32px;
+  }
+
+  .practices p {
+    margin-top: 72px;
+    font-size: 24px;
+  }
+
+  .practices h3 + p {
+    margin-top: 20px;
+  }
+
+  .imageGrid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+  }
+
+  .signup {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(350px, 560px);
+    column-gap: 10vw;
+    align-items: start;
+  }
+
+  .signup > .sectionLabel,
+  .signup > h2,
+  .signup > .signupCopy {
+    grid-column: 1;
+  }
+
+  .signup > .signupActions {
+    grid-column: 2;
+    grid-row: 1 / span 3;
+    align-self: end;
+  }
+}

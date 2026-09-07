@@ -4,7 +4,6 @@ import Link from "next/link";
 import Breadcrumb from "@/components/Breadcrumb/Breadcrumb";
 import ChecklistSection from "@/components/ChecklistSection/ChecklistSection";
 import Footer from "@/components/Footer/Footer";
-import Header from "@/components/Header/Header";
 import { PROJECTS } from "@/lib/projects";
 import styles from "./projects.module.css";
 
@@ -23,7 +22,6 @@ const UNITS: Record<string, string> = {
 export default function ProjectsPage() {
   return (
     <>
-      <Header tone="light" />
       <main>
         <Breadcrumb
           items={[{ label: "Home", href: "/" }, { label: "Projects" }]}

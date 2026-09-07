@@ -7,7 +7,6 @@ import DevelopmentsSection from "@/components/DevelopmentsSection/DevelopmentsSe
 import Footer from "@/components/Footer/Footer";
 import Header from "@/components/Header/Header";
 import Hero from "@/components/Hero/Hero";
-import LifestyleBridge from "@/components/LifestyleBridge/LifestyleBridge";
 import NewsSection from "@/components/NewsSection/NewsSection";
 import PactSection from "@/components/PactSection/PactSection";
 import ServicesSection from "@/components/ServicesSection/ServicesSection";
@@ -15,11 +14,10 @@ import ServicesSection from "@/components/ServicesSection/ServicesSection";
 export default function HomePage() {
   return (
     <>
-      <Header />
+      <Header persistent />
       <main>
         <Hero />
         <AboutSection />
-        <LifestyleBridge />
         <DevelopmentsSection />
         <ServicesSection />
         <ChecklistSection />

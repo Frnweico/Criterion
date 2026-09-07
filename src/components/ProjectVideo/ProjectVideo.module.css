@@ -1,0 +1,137 @@
+.playButton {
+  position: absolute;
+  z-index: 1;
+  top: 50%;
+  left: 50%;
+  display: grid;
+  width: 58px;
+  height: 58px;
+  padding: 0;
+  border: 1px solid rgb(252 251 255 / 86%);
+  border-radius: 50%;
+  place-items: center;
+  color: var(--color-platinum);
+  background: rgb(25 25 25 / 24%);
+  backdrop-filter: blur(5px);
+  transform: translate(-50%, -50%);
+  transition: background-color 180ms ease, transform 180ms ease;
+}
+
+.poster {
+  object-fit: cover;
+}
+
+.playButton:hover {
+  background: rgb(25 25 25 / 48%);
+  transform: translate(-50%, -50%) scale(1.05);
+}
+
+.playButton:focus-visible,
+.closeButton:focus-visible {
+  outline: 2px solid var(--color-platinum);
+  outline-offset: 3px;
+}
+
+.playIcon {
+  width: 0;
+  height: 0;
+  margin-left: 4px;
+  border-top: 8px solid transparent;
+  border-bottom: 8px solid transparent;
+  border-left: 12px solid currentColor;
+}
+
+.dialog {
+  position: fixed;
+  z-index: 120;
+  inset: 0;
+  display: grid;
+  padding: 24px;
+  place-items: center;
+  background: var(--color-platinum);
+  animation: dialogEnter 350ms ease-out both;
+}
+
+@keyframes dialogEnter {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.dialog[data-closing] {
+  animation: dialogExit 350ms ease-in both;
+}
+
+@keyframes dialogExit {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+.player {
+  width: min(1120px, 100%);
+  aspect-ratio: 16 / 9;
+  border: 0;
+  background: #000;
+}
+
+.closeButton {
+  position: absolute;
+  top: 16px;
+  right: var(--gutter);
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 1px solid rgb(25 25 25 / 34%);
+  border-radius: 50%;
+  color: var(--color-carbon);
+  background: transparent;
+  transition: background-color 180ms ease, transform 180ms ease;
+}
+
+.closeButton:hover {
+  background: rgb(25 25 25 / 8%);
+  transform: scale(1.05);
+}
+
+.closeIcon,
+.closeIcon::after {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 24px;
+  height: 1px;
+  background: currentColor;
+}
+
+.closeIcon {
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.closeIcon::after {
+  content: "";
+  transform: translate(-50%, -50%) rotate(-90deg);
+}
+
+@media (min-width: 1024px) {
+  .playButton {
+    width: 72px;
+    height: 72px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .playButton,
+  .dialog {
+    transition: none;
+    animation: none;
+  }
+}

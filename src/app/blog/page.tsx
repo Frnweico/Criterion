@@ -5,7 +5,6 @@ import Breadcrumb from "@/components/Breadcrumb/Breadcrumb";
 import Button from "@/components/Button/Button";
 import ChecklistSection from "@/components/ChecklistSection/ChecklistSection";
 import Footer from "@/components/Footer/Footer";
-import Header from "@/components/Header/Header";
 import { IMAGE_BLUR_PLACEHOLDER } from "@/lib/image-placeholder";
 import {
   BLOG_GRID,
@@ -54,7 +53,6 @@ function FeaturedTitle({ title }: { title: string }) {
 export default function BlogPage() {
   return (
     <>
-      <Header tone="light" />
       <main>
         <section className={styles.hero} aria-labelledby="blog-lead-heading">
           <div className={styles.heroInner}>

@@ -153,6 +153,11 @@
   background: #add7e3;
 }
 
+.submit:disabled {
+  cursor: wait;
+  opacity: 0.65;
+}
+
 .submit:focus-visible {
   outline: 2px solid var(--color-carbon);
   outline-offset: 3px;
@@ -161,6 +166,10 @@
 .submitArea p {
   font-size: 11px;
   line-height: 1.2;
+}
+
+.submitArea .error {
+  color: #a22424;
 }
 
 .confirmation {

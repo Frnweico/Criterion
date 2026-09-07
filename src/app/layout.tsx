@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Manrope } from "next/font/google";
 import Script from "next/script";
 import HomeIntro from "@/components/HomeIntro/HomeIntro";
+import InteriorHeader from "@/components/Header/InteriorHeader";
 import MotionController from "@/components/MotionController/MotionController";
 import "./globals.css";
 
@@ -14,6 +15,7 @@ const manrope = Manrope({
 });
 
 const SITE_URL = "https://criterionhomesltd.com";
+const GA4_MEASUREMENT_ID = "G-F3KGQ2HGJJ";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -50,8 +52,19 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="en-NG"
       className={manrope.variable}
       suppressHydrationWarning
-    >
+      >
       <body>
+        <Script id="ga4-config" strategy="afterInteractive">
+          {`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}window.gtag=gtag;gtag("js",new Date());gtag("config","${GA4_MEASUREMENT_ID}");`}
+        </Script>
+        <Script
+          id="ga4-library"
+          src={`https://www.googletagmanager.com/gtag/js?id=${GA4_MEASUREMENT_ID}`}
+          strategy="afterInteractive"
+        />
+        <Script id="meta-pixel" strategy="beforeInteractive">
+          {`!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version="2.0";n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,"script","https://connect.facebook.net/en_US/fbevents.js");fbq("init","743970928697244");fbq("track","PageView");`}
+        </Script>
         <Script id="home-intro-navigation-type" strategy="beforeInteractive">
           {`try {
             const [navigation] = window.performance?.getEntriesByType("navigation") || [];
@@ -63,12 +76,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
               !isReload &&
               navigationType !== "back_forward";
             const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-            const scrollKey = "criterion-scroll:" + window.location.pathname + window.location.search;
-            const saveScrollPosition = () => {
-              try {
-                window.sessionStorage.setItem(scrollKey, String(Math.round(window.scrollY)));
-              } catch {}
-            };
+            if (!reducedMotion) {
+              document.documentElement.dataset.motionPrepared = "true";
+            }
             document.documentElement.dataset.inputModality = "pointer";
             window.addEventListener("keydown", () => {
               document.documentElement.dataset.inputModality = "keyboard";
@@ -80,26 +90,22 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
               !reducedMotion && (isReload || isInitialHomeVisit)
               ? "initial"
               : "skip";
-            window.addEventListener("pagehide", saveScrollPosition, { capture: true });
             if (isReload) {
-              const savedScroll = Number(window.sessionStorage.getItem(scrollKey));
-              if (Number.isFinite(savedScroll) && savedScroll > 0) {
-                window.history.scrollRestoration = "manual";
-                const restoreScrollPosition = () => {
-                  window.requestAnimationFrame(() => window.requestAnimationFrame(() => {
-                    window.scrollTo(0, savedScroll);
-                  }));
-                };
-                if (document.readyState === "complete") restoreScrollPosition();
-                else window.addEventListener("load", restoreScrollPosition, { once: true });
-              }
+              // A marketing-page refresh should begin at the top, not where a
+              // previous visit happened to end. Keep browser restoration manual:
+              // automatic mode restores the last scroll position on refresh.
+              window.history.scrollRestoration = "manual";
+              window.scrollTo(0, 0);
             }
           } catch {
             document.documentElement.dataset.homeIntro = "skip";
           }`}
         </Script>
         <MotionController />
-        <HomeIntro>{children}</HomeIntro>
+        <HomeIntro>
+          <InteriorHeader />
+          {children}
+        </HomeIntro>
       </body>
     </html>
   );

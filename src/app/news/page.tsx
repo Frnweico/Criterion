@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import BlogSection from "@/components/BlogSection/BlogSection";
 import ChecklistSection from "@/components/ChecklistSection/ChecklistSection";
 import Footer from "@/components/Footer/Footer";
-import Header from "@/components/Header/Header";
 import NewsCards from "@/components/NewsCards/NewsCards";
 import { NEWS } from "@/lib/news";
 import styles from "./news.module.css";
@@ -15,7 +14,6 @@ export const metadata: Metadata = {
 export default function NewsPage() {
   return (
     <>
-      <Header tone="light" />
       <main>
         <section className={styles.archive} aria-labelledby="news-heading">
           <div className={styles.inner}>

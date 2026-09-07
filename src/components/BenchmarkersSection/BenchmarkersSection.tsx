@@ -29,33 +29,32 @@ export default function BenchmarkersSection() {
       {/* `frame` is the positioning context so the button can sit beneath the
           envelope on mobile and be placed onto its flap at desktop, without
           living inside the aspect-ratio box in both cases. */}
-      <div className={styles.frame}>
+      <div className={styles.frame} data-motion-stagger>
         <div className={styles.stage}>
           <div className={styles.card}>
             <h2 id="benchmarkers-heading" className={styles.heading}>
-              Become A Benchmarker
+              Be Close To What’s Taking Shape.
             </h2>
             <div className={styles.copy}>
               <p className={styles.lead}>
-                An exclusive circle for buyers and investors who prefer to move
-                early, and with clarity.
+                A considered circle for buyers, investors, and advisers who want
+                a clearer view before the wider market is looking.
               </p>
 
               <p className={styles.lead}>
-                Get early access to our developments like The Urban Nest, along
-                with updates from ongoing builds and practical insights into real
-                estate decisions.
+                Get early visibility of selected releases, grounded updates from
+                live projects, and useful context for considered decisions.
               </p>
             </div>
             <ul className={styles.perks}>
               <li className={styles.perk}>
-                Early access before public release
+                Early visibility of selected releases
               </li>
               <li className={styles.perk}>
-                Private updates from Midtown Terraces
+                Grounded updates from live projects
               </li>
               <li className={styles.perk}>
-                Clear, practical real estate insights
+                Context for considered decisions
               </li>
             </ul>
           </div>

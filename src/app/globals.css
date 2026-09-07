@@ -76,6 +76,14 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Give the transparent difference-blended navigation a real page backdrop.
+   A background propagated only from `body` paints the browser canvas rather
+   than an element layer, so it is unavailable to blend modes. Individual
+   dark and photographic sections still paint over this base normally. */
+main {
+  background: var(--color-platinum);
+}
+
 /* Do not let the underlying route scroll before the entry sequence hands
    control back to it. `:has()` is supported by every browser we target. */
 html:has(.siteWaiting),
@@ -92,17 +100,30 @@ html[data-home-intro="skip"] body:has(.siteWaiting) {
 }
 
 /* One calm entrance per content group, never the section container itself.
-   The observer adds the marker only after above-the-fold content is measured,
-   avoiding a hidden first frame. */
+   The root startup script applies this initial state before React hydrates.
+   MotionController activates its observer setup in a layout effect, before
+   the first interactive paint, so an element never flashes at rest before it
+   moves into view. */
 @media (prefers-reduced-motion: no-preference) {
+  html[data-motion-prepared]:not([data-motion-activated])
+    main:not([data-motion-page-static])
+    > section:not(#philosophy):not(#location):not([data-motion-preserve]):not(:has([data-motion-preserve]))
+    > :not(h1):not(h2):not([data-motion-static]) {
+    opacity: 0;
+    transform: translateY(36px);
+  }
+
   .motion-ready [data-scroll-reveal] {
+    opacity: 0;
     transform: translateY(36px);
     transition:
+      opacity 260ms ease var(--reveal-delay, 0ms),
       transform 900ms cubic-bezier(0.22, 1, 0.36, 1) var(--reveal-delay, 0ms);
     will-change: transform;
   }
 
   .motion-ready [data-scroll-reveal].is-scroll-revealed {
+    opacity: 1;
     transform: translateY(0);
   }
 }

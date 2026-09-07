@@ -93,7 +93,7 @@
 
 @media (min-width: 768px) {
   .inner {
-    padding: 66px 48px 120px;
+    padding: 66px var(--gutter) 120px;
   }
 
   .cards {
@@ -111,9 +111,7 @@
 @media (min-width: 1024px) {
   .inner {
     gap: 48px;
-    max-width: 1436px; /* 1356 content + 40px padding either side */
-    margin: 0 auto;
-    padding: 66px 40px 100px;
+    padding: 66px var(--gutter) 100px;
   }
 
   .heading {

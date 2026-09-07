@@ -36,7 +36,7 @@ export type SpecRow = { label: string; value: string };
  */
 export const SPECIFICATION: SpecRow[] = [
   { label: "Property Type", value: "Terrace Duplexes" },
-  { label: "Available Units", value: "4/4" },
+  { label: "Available Units", value: "2/3" },
   { label: "Bedrooms", value: "4" },
   { label: "Floors", value: "3" },
   { label: "Location", value: "Wuse, Zone 7, Abuja." },
@@ -124,8 +124,9 @@ export const GALLERY: GalleryShot[] = [
 ];
 
 export const LOCATION_QUOTE: LocationQuote = {
-  lead: "An address “rooted in Abuja’s city centre”,",
+  lead: "Rooted in Abuja's city center,",
   body: "Wuse offers the rare advantage of living where the city is already established around you.",
+  naturalFlow: true,
 };
 
 /** Same scroll treatment as the philosophy section; runs on mobile too. */
@@ -146,8 +147,8 @@ export const LOCATION_POINTS: ScrollPoint[] = [
     id: "quietly-central",
     title: "Quietly Central",
     body: "Wuse Zone 7 offers you privacy while putting the city central right in the palm of your hands.",
-    image: "/images/urban-nest-location-3.webp",
-    imageAlt: "Aerial view of a major Abuja interchange near Wuse",
+    image: "/images/urban-nest-location-wuse-2-v3.png",
+    imageAlt: "Aerial view over Wuse 2, Abuja, with the surrounding hills",
   },
   {
     id: "stability",

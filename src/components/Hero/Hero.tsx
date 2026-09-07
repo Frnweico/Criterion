@@ -158,6 +158,7 @@ export default function Hero() {
 
   return (
     <section
+      id="home-hero"
       className={styles.hero}
       aria-roledescription="carousel"
       aria-label="Featured developments"
@@ -173,12 +174,15 @@ export default function Hero() {
               aria-roledescription="slide"
               aria-label={`${slideIndex + 1} of ${HERO_SLIDES.length}`}
             >
-              {/* Slide 1 anchors right; the other two stay centred. The
-                  gradient and wash overlays were removed at the client's
-                  request — the photography now carries the frame unaided. */}
+              {/* Slide 1 anchors right and gains its own desktop-only wash.
+                  The development slides retain their responsive contrast wash. */}
               <div
                 className={`${styles.media} ${
-                  slideIndex === 0 ? styles.mediaRight : ""
+                  slideIndex === 0
+                    ? `${styles.mediaRight} ${styles.mediaLeadContrast}`
+                    : ""
+                } ${
+                  slideIndex > 0 ? styles.mediaContrast : ""
                 }`}
               >
                 <SlideImage slide={slide} slideIndex={slideIndex} />

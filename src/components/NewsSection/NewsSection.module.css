@@ -3,5 +3,5 @@
 .head { display: flex; flex-direction: column; gap: 24px; align-items: flex-start; }
 .heading { margin: 0; font-size: 40px; font-weight: 400; line-height: 1; letter-spacing: -0.03em; text-transform: capitalize; color: var(--color-carbon); }
 .viewAll { flex-shrink: 0; }
-@media (min-width: 768px) { .inner { padding: 66px 48px 120px; } .heading { font-size: 52px; } }
-@media (min-width: 1024px) { .inner { gap: 48px; max-width: 1432px; margin: 0 auto; padding: 66px 40px 100px; } .head { flex-direction: row; gap: 40px; align-items: center; justify-content: space-between; } .heading { font-size: 64px; letter-spacing: -0.05em; } }
+@media (min-width: 768px) { .inner { padding: 66px var(--gutter) 120px; } .heading { font-size: 52px; } }
+@media (min-width: 1024px) { .inner { gap: 48px; padding: 66px var(--gutter) 100px; } .head { flex-direction: row; gap: 40px; align-items: center; justify-content: space-between; } .heading { font-size: 64px; letter-spacing: -0.05em; } }

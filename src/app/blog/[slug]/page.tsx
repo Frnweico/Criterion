@@ -4,7 +4,6 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import Breadcrumb from "@/components/Breadcrumb/Breadcrumb";
 import Footer from "@/components/Footer/Footer";
-import Header from "@/components/Header/Header";
 import { IMAGE_BLUR_PLACEHOLDER } from "@/lib/image-placeholder";
 import {
   BLOG_GRID,
@@ -87,7 +86,6 @@ export default async function BlogPostPage({
 
   return (
     <>
-      <Header tone="light" />
       <main>
         <article className={styles.article}>
           <div className={styles.breadcrumbWrap}>

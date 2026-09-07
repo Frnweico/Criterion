@@ -4,20 +4,26 @@ import { useState } from "react";
 import Image from "next/image";
 import styles from "./Gallery.module.css";
 
-export type GalleryShot = { src: string; alt: string };
+export type GalleryShot = {
+  src: string;
+  alt: string;
+  width?: number;
+  height?: number;
+};
 
 type Props = {
   photos: GalleryShot[];
   note: string;
+  desktopPhotos?: GalleryShot[];
 };
 
-export default function Gallery({ photos, note }: Props) {
-  /* order[0] is the lead picture and the rest are the thumbnails. Choosing a
-     thumbnail swaps it with the lead rather than filtering the list, so the
-     four thumbnail positions stay put instead of reshuffling under the
-     pointer. */
+export default function Gallery({ photos, note, desktopPhotos }: Props) {
   const [order, setOrder] = useState(() => photos.map((_, index) => index));
+  const [active, setActive] = useState(0);
   const lead = order[0];
+  const carouselPhotos = desktopPhotos ?? photos;
+  const activeShot = carouselPhotos[active];
+  const usesDesktopCarousel = Boolean(desktopPhotos);
 
   const select = (position: number) =>
     setOrder((current) => {
@@ -26,9 +32,17 @@ export default function Gallery({ photos, note }: Props) {
       return next;
     });
 
+  const changeSlide = (direction: 1 | -1) =>
+    setActive(
+      (current) =>
+        (current + direction + carouselPhotos.length) % carouselPhotos.length,
+    );
+
   return (
     <section
-      className={styles.gallery}
+      className={`${styles.gallery} ${
+        usesDesktopCarousel ? styles.desktopCarousel : ""
+      }`}
       aria-labelledby="gallery-heading"
       data-parallax-preserve
     >
@@ -50,51 +64,87 @@ export default function Gallery({ photos, note }: Props) {
         ))}
       </div>
 
-      <div className={styles.grid}>
-        {/* All five stay mounted and cross-fade, so choosing one doesn't
-            blink while the next decodes. */}
-        <div className={styles.main}>
-          {photos.map((shot, index) => (
+      {usesDesktopCarousel ? (
+        <div className={styles.carousel} aria-label="Gallery">
+          <div className={styles.carouselFrame}>
             <Image
-              key={shot.src}
-              src={shot.src}
-              alt={index === lead ? shot.alt : ""}
+              src={activeShot.src}
+              alt={activeShot.alt}
               fill
-              sizes="(min-width: 1024px) 79vw, 100vw"
-              aria-hidden={index !== lead}
-              className={`${styles.image} ${
-                index === lead ? styles.imageOn : ""
-              }`}
+              sizes="(min-width: 1024px) 92vw, 100vw"
+              className={styles.carouselImage}
             />
-          ))}
-        </div>
+          </div>
 
-        <ul className={styles.side}>
-          {order.slice(1).map((imageIndex, position) => {
-            const shot = photos[imageIndex];
-            return (
-              <li key={shot.src} className={styles.sideItem}>
-                <button
-                  type="button"
-                  className={styles.thumb}
-                  onClick={() => select(position + 1)}
-                >
-                  <span className="visually-hidden">Show {shot.alt}</span>
-                  <Image
-                    src={shot.src}
-                    alt=""
-                    fill
-                    sizes="(min-width: 1024px) 23vw, 25vw"
-                    className={styles.image}
-                  />
-                </button>
-              </li>
-            );
-          })}
-        </ul>
-      </div>
+          <div className={styles.carouselControls}>
+            <button
+              type="button"
+              className={styles.carouselControl}
+              onClick={() => changeSlide(-1)}
+            >
+              <svg className={styles.carouselArrow} viewBox="0 0 24 24" aria-hidden>
+                <path d="M20 12H4M11 5l-7 7 7 7" />
+              </svg>
+              <span className="visually-hidden">Previous image</span>
+            </button>
+            <button
+              type="button"
+              className={styles.carouselControl}
+              onClick={() => changeSlide(1)}
+            >
+              <svg className={styles.carouselArrow} viewBox="0 0 24 24" aria-hidden>
+                <path d="M4 12h16M13 5l7 7-7 7" />
+              </svg>
+              <span className="visually-hidden">Next image</span>
+            </button>
+          </div>
+        </div>
+      ) : (
+        <div className={styles.grid}>
+          <div className={styles.main}>
+            {photos.map((shot, index) => (
+              <Image
+                key={shot.src}
+                src={shot.src}
+                alt={index === lead ? shot.alt : ""}
+                fill
+                sizes="(min-width: 1024px) 79vw, 100vw"
+                aria-hidden={index !== lead}
+                className={`${styles.image} ${
+                  index === lead ? styles.imageOn : ""
+                }`}
+              />
+            ))}
+          </div>
+
+          <ul className={styles.side}>
+            {order.slice(1).map((imageIndex, position) => {
+              const shot = photos[imageIndex];
+              return (
+                <li key={shot.src} className={styles.sideItem}>
+                  <button
+                    type="button"
+                    className={styles.thumb}
+                    onClick={() => select(position + 1)}
+                  >
+                    <span className="visually-hidden">Show {shot.alt}</span>
+                    <Image
+                      src={shot.src}
+                      alt=""
+                      fill
+                      sizes="(min-width: 1024px) 23vw, 25vw"
+                      className={styles.image}
+                    />
+                  </button>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+      )}
 
       <p className={styles.note}>{note}</p>
+
     </section>
   );
 }

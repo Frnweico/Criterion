@@ -115,6 +115,39 @@
   margin-top: 20px;
 }
 
+/* The envelope is one artwork, rather than separate flap and paper layers.
+   Give the artwork a longer, gentler arrival, then let the live card copy
+   settle into it a beat later. This keeps the illustration and its overlay
+   reading as one object instead of two competing reveals. */
+@media (prefers-reduced-motion: no-preference) {
+  :global(html.motion-ready) .frame[data-motion-stagger] > .stage {
+    opacity: 0;
+    transform: translateY(44px) scale(0.975);
+    transform-origin: center;
+    transition:
+      opacity 620ms ease var(--stagger-delay, 0ms),
+      transform 1100ms cubic-bezier(0.22, 1, 0.36, 1) var(--stagger-delay, 0ms);
+  }
+
+  :global(html.motion-ready) .frame[data-motion-stagger].is-scroll-revealed > .stage {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+
+  :global(html.motion-ready) .frame[data-motion-stagger] .card {
+    opacity: 0;
+    translate: 0 18px;
+    transition:
+      opacity 520ms ease 130ms,
+      translate 900ms cubic-bezier(0.22, 1, 0.36, 1) 130ms;
+  }
+
+  :global(html.motion-ready) .frame[data-motion-stagger].is-scroll-revealed .card {
+    opacity: 1;
+    translate: 0 0;
+  }
+}
+
 /* --- Tablet ----------------------------------------------------------- */
 
 /* The portrait artwork is only 371px wide, so it is not scaled beyond its

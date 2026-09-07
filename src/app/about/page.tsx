@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Footer from "@/components/Footer/Footer";
-import Header from "@/components/Header/Header";
 import PactSection from "@/components/PactSection/PactSection";
 import PageHero from "@/components/PageHero/PageHero";
 import StatementsSection from "@/components/StatementsSection/StatementsSection";
@@ -20,7 +19,6 @@ export const metadata: Metadata = {
 export default function AboutPage() {
   return (
     <>
-      <Header />
       <main>
         <PageHero
           title="Who We Are"

@@ -53,13 +53,16 @@
 
   .copy {
     gap: 64px;
-    width: 474px;
-    max-width: 474px;
+    width: 400px;
+    max-width: 400px;
   }
 
   .lead,
   .emphasis {
+    width: 100%;
+    max-width: 400px;
     font-size: 28px;
     letter-spacing: -0.01em;
   }
+
 }

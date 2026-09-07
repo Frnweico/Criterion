@@ -6,13 +6,12 @@ import ChecklistSection from "@/components/ChecklistSection/ChecklistSection";
 import FloorPlan from "@/components/FloorPlan/FloorPlan";
 import Footer from "@/components/Footer/Footer";
 import Gallery from "@/components/Gallery/Gallery";
-import Header from "@/components/Header/Header";
 import LocationStory from "@/components/LocationStory/LocationStory";
 import PaymentPlan from "@/components/PaymentPlan/PaymentPlan";
 import ReasonsList from "@/components/ReasonsList/ReasonsList";
 import ScrollStory from "@/components/ScrollStory/ScrollStory";
 import SectionHeader from "@/components/SectionHeader/SectionHeader";
-import SmartAutoplayVideo from "@/components/SmartAutoplayVideo/SmartAutoplayVideo";
+import ProjectVideo from "@/components/ProjectVideo/ProjectVideo";
 import { getProject } from "@/lib/projects";
 import {
   ADDRESS_BODY,
@@ -45,9 +44,6 @@ export const metadata: Metadata = {
 export default function MidtownTerracesPage() {
   return (
     <>
-      {/* Light ground behind the bar now, so it sits in flow with black marks
-          and a rule beneath — same as /projects and /news. */}
-      <Header tone="light" />
       <main>
         {/* --- Hero ----------------------------------------------------
             Figma 9342:5395 (desktop) / 9942:5285 (mobile): centred copy on
@@ -158,13 +154,15 @@ export default function MidtownTerracesPage() {
             </p>
           </div>
 
-          <div className={styles.addressFigureWrap}>
+          <div className={styles.addressFigureWrap} data-motion-static>
             <div className={styles.addressFigure}>
-              <SmartAutoplayVideo
+              <ProjectVideo
                 className={styles.addressVideo}
                 src="/images/TMT Web.webm"
                 poster="/images/midtown-address.webp"
                 alt="The Midtown Terraces frontage"
+                youtubeId="Ah-YE848T-Y"
+                title="The Midtown Terraces film"
               />
             </div>
           </div>
@@ -179,7 +177,11 @@ export default function MidtownTerracesPage() {
           pinOnMobile
         />
 
-        <Gallery photos={GALLERY} note={GALLERY_NOTE} />
+        <Gallery
+          photos={GALLERY}
+          note={GALLERY_NOTE}
+          desktopPhotos={GALLERY}
+        />
 
         {/* --- Location ------------------------------------------------
             Its own component: the slides carry a section label rather than a

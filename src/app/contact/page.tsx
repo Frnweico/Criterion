@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Footer from "@/components/Footer/Footer";
-import Header from "@/components/Header/Header";
 import SectionHeader from "@/components/SectionHeader/SectionHeader";
 import { CONTACT } from "@/lib/site";
 import styles from "./contact.module.css";
@@ -14,7 +13,6 @@ export const metadata: Metadata = {
 export default function ContactPage() {
   return (
     <>
-      <Header tone="light" />
       <main>
         <section className={styles.contact} aria-labelledby="contact-heading">
           <div className={styles.inner}>

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useLayoutEffect } from "react";
 import { usePathname } from "next/navigation";
 
 const REVEAL_SELECTOR = "main > section";
@@ -130,7 +130,7 @@ function prepareTextLines(
 export default function MotionController() {
   const pathname = usePathname();
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const reduceMotion = window.matchMedia(
       "(prefers-reduced-motion: reduce)",
     ).matches;
@@ -151,7 +151,8 @@ export default function MotionController() {
         (child): child is HTMLElement =>
           child instanceof HTMLElement &&
           child.tagName !== "H1" &&
-          child.tagName !== "H2",
+          child.tagName !== "H2" &&
+          !child.hasAttribute("data-motion-static"),
       ),
     );
 
@@ -275,6 +276,7 @@ export default function MotionController() {
     });
 
     document.documentElement.classList.add("motion-ready");
+    document.documentElement.dataset.motionActivated = "true";
 
     let disposed = false;
     const setupHeadings = () => {
@@ -437,6 +439,7 @@ export default function MotionController() {
       window.removeEventListener("resize", onScroll);
       window.removeEventListener("resize", onResize);
       document.documentElement.classList.remove("motion-ready");
+      delete document.documentElement.dataset.motionActivated;
       revealTargets.forEach((target) => {
         delete target.dataset.scrollReveal;
         target.style.removeProperty("--reveal-delay");

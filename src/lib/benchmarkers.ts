@@ -1,10 +1,10 @@
 export const BENCHMARKER_COPY = {
-  title: "Become A Benchmarker",
+  title: "Be Close To What’s Taking Shape.",
   intro:
-    "Join The Benchmarkers for early access to selected Criterion Homes developments, private project updates, and considered insights from the world of premium real estate.",
+    "The Benchmarkers is a considered circle for buyers, investors, and advisers who want a clearer view of selected Criterion Homes developments before they reach the wider market.",
   detail:
-    "Tell us a little about yourself, and we’ll keep you close to what’s worth knowing.",
-  confirmationTitle: "Welcome To The Benchmarkers",
+    "Receive early visibility of selected releases, grounded updates from live projects, and the context to make a property decision with greater confidence.",
+  confirmationTitle: "You’re Closer To What’s Next.",
 } as const;
 
 export const BENCHMARKER_OPTIONS = {

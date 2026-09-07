@@ -82,15 +82,7 @@ export const PHILOSOPHY: ScrollPoint[] = [
 export const GALLERY_NOTE =
   "Interior visualizations are illustrative only and not representations of the final delivered design.";
 
-/**
- * Display order, not file order. The lead is the side elevation; the other
- * two exteriors follow, then the interiors.
- *
- * Filenames are descriptive rather than numbered: the supplied WEBP set was
- * numbered on a different order from the PNGs it replaced (their "Gallery 1"
- * was the frontage, not the kitchen), so numbers here would mean two
- * different things depending on where you looked.
- */
+/** The same selected sequence is used on mobile and desktop. */
 export const GALLERY: GalleryShot[] = [
   {
     src: "/images/midtown-gallery-side.webp",
@@ -103,18 +95,6 @@ export const GALLERY: GalleryShot[] = [
   {
     src: "/images/midtown-gallery-corner.webp",
     alt: "The terraces from the side, showing the balcony bays",
-  },
-  {
-    src: "/images/Gallery new/TMT front.webp",
-    alt: "Front view of The Midtown Terraces during construction",
-  },
-  {
-    src: "/images/Gallery new/TMT-Live-colour-graded.webp",
-    alt: "Aerial view of The Midtown Terraces during construction",
-  },
-  {
-    src: "/images/Gallery new/TMT-D-colour-graded.webp",
-    alt: "The Midtown Terraces during construction, viewed from above",
   },
   {
     src: "/images/midtown-gallery-kitchen.webp",

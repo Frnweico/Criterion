@@ -1,15 +1,18 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Menu from "@/components/Menu/Menu";
+import { HomeEntranceCompleteContext } from "@/components/HomeIntro/HomeIntro";
 import styles from "./Header.module.css";
 
 type Props = {
   /** Use on pages with no hero image behind the bar. */
   solid?: boolean;
+  /** Keep the homepage header available for scroll-down/up reveal behaviour. */
+  persistent?: boolean;
   /**
    * "light" gives the platinum bar with black logo and hamburger used on the
    * interior pages; the default overlays a hero image with white marks.
@@ -17,10 +20,12 @@ type Props = {
   tone?: "dark" | "light";
 };
 
-export default function Header({ solid, tone = "dark" }: Props) {
+export default function Header({ solid, persistent, tone = "dark" }: Props) {
+  const entranceComplete = useContext(HomeEntranceCompleteContext);
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [hidden, setHidden] = useState(false);
+  const [pastHero, setPastHero] = useState(false);
   const wasOpen = useRef(false);
   const toggleRef = useRef<HTMLButtonElement>(null);
   const overlayRef = useRef<HTMLDivElement>(null);
@@ -82,6 +87,10 @@ export default function Header({ solid, tone = "dark" }: Props) {
       const currentY = window.scrollY;
       setScrolled(currentY > 24);
       setHidden(currentY > 160 && currentY > lastY);
+      if (persistent) {
+        const hero = document.getElementById("home-hero");
+        setPastHero(Boolean(hero && hero.getBoundingClientRect().bottom <= 0));
+      }
       lastY = currentY;
     };
     const onScroll = () => {
@@ -93,14 +102,22 @@ export default function Header({ solid, tone = "dark" }: Props) {
       if (frame) window.cancelAnimationFrame(frame);
       window.removeEventListener("scroll", onScroll);
     };
-  }, []);
+  }, [persistent]);
+
+  const adaptiveContrast = !persistent || pastHero;
 
   return (
     <>
       <header
         className={`${styles.header} ${solid ? styles.solid : ""} ${
+          persistent ? styles.persistent : ""
+        } ${
           tone === "light" ? styles.light : ""
-        } ${scrolled ? styles.scrolled : ""} ${hidden && !open ? styles.hidden : ""}`}
+        } ${adaptiveContrast ? styles.adaptive : ""} ${
+          scrolled ? styles.scrolled : ""
+        } ${entranceComplete ? styles.controlsReady : ""} ${
+          hidden && !open ? styles.hidden : ""
+        }`}
       >
         {/* Mobile shows the mark alone; desktop adds the wordmark beside it,
             as the nav artwork does. */}

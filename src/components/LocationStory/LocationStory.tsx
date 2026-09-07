@@ -6,7 +6,12 @@ import type { ScrollPoint } from "@/components/ScrollStory/ScrollStory";
 import SectionHeader from "@/components/SectionHeader/SectionHeader";
 import styles from "./LocationStory.module.css";
 
-export type LocationQuote = { lead: string; body: string };
+export type LocationQuote = {
+  lead: string;
+  body: string;
+  /** Lets a project quote wrap as one sentence instead of two forced lines. */
+  naturalFlow?: boolean;
+};
 export type ProximityEntry = { minutes: string; label: string };
 
 function CountUp({ value, active }: { value: string; active: boolean }) {
@@ -208,8 +213,16 @@ export default function LocationStory({
         <SectionHeader text="Location" aria-hidden />
       </div>
       <div className={styles.quote}>
-        <p className={styles.quoteLine}>{quote.lead}</p>
-        <p className={styles.quoteLine}>{quote.body}</p>
+        {quote.naturalFlow ? (
+          <p className={styles.quoteLine}>
+            {quote.lead} {quote.body}
+          </p>
+        ) : (
+          <>
+            <p className={styles.quoteLine}>{quote.lead}</p>
+            <p className={styles.quoteLine}>{quote.body}</p>
+          </>
+        )}
       </div>
     </>
   );
