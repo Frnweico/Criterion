@@ -200,6 +200,24 @@ export default function MotionController() {
 
     const initiallyVisibleTargets: HTMLElement[] = [];
 
+    // IntersectionObserver is the primary reveal mechanism. A few mobile
+    // browsers can miss an observer transition during a composited page
+    // entrance, however, which must never leave an animated item invisible.
+    // This small geometry check mirrors the observer's viewport threshold and
+    // acts as a safe fallback for the envelope and every other stagger group.
+    const revealStaggerGroupIfVisible = (group: HTMLElement) => {
+      if (group.classList.contains("is-scroll-revealed")) return;
+
+      const bounds = group.getBoundingClientRect();
+      const revealEdge = window.innerHeight * 0.14;
+      const isVisible =
+        bounds.top < window.innerHeight - revealEdge && bounds.bottom > 0;
+
+      if (!isVisible) return;
+      group.classList.add("is-scroll-revealed");
+      staggerObserver.unobserve(group);
+    };
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -368,6 +386,7 @@ export default function MotionController() {
         );
       });
       staggerObserver.observe(group);
+      revealStaggerGroupIfVisible(group);
     });
 
     pactSections.forEach((section) => pactObserver.observe(section));
@@ -419,8 +438,12 @@ export default function MotionController() {
     };
 
     const onScroll = () => {
+      staggerGroups.forEach(revealStaggerGroupIfVisible);
       if (!frame) frame = window.requestAnimationFrame(paintParallax);
     };
+    window.requestAnimationFrame(() => {
+      staggerGroups.forEach(revealStaggerGroupIfVisible);
+    });
     paintParallax();
     window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", onScroll);
