@@ -129,7 +129,7 @@
       transform 1100ms cubic-bezier(0.22, 1, 0.36, 1) var(--stagger-delay, 0ms);
   }
 
-  :global(html.motion-ready) .frame[data-motion-stagger].is-scroll-revealed > .stage {
+  :global(html.motion-ready) .frame[data-motion-stagger]:global(.is-scroll-revealed) > .stage {
     opacity: 1;
     transform: translateY(0) scale(1);
   }
@@ -142,7 +142,7 @@
       translate 900ms cubic-bezier(0.22, 1, 0.36, 1) 130ms;
   }
 
-  :global(html.motion-ready) .frame[data-motion-stagger].is-scroll-revealed .card {
+  :global(html.motion-ready) .frame[data-motion-stagger]:global(.is-scroll-revealed) .card {
     opacity: 1;
     translate: 0 0;
   }
