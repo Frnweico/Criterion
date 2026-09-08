@@ -1,12 +1,6 @@
 import Button from "@/components/Button/Button";
 import styles from "./BenchmarkersSection.module.css";
 
-const PERKS = [
-  "Early access before public release",
-  "Private updates from Midtown Terraces",
-  "Clear, practical real estate insights",
-];
-
 /**
  * "Become A Benchmarker".
  *
@@ -33,7 +27,7 @@ export default function BenchmarkersSection() {
         <div className={styles.stage}>
           <div className={styles.card}>
             <h2 id="benchmarkers-heading" className={styles.heading}>
-              Be Close To What’s Taking Shape.
+              Become a Benchmarker
             </h2>
             <div className={styles.copy}>
               <p className={styles.lead}>
