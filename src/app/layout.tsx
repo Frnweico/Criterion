@@ -106,8 +106,8 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <HomeIntro>
           <InteriorHeader />
           {children}
+          <WhatsAppWidget />
         </HomeIntro>
-        <WhatsAppWidget />
       </body>
     </html>
   );
