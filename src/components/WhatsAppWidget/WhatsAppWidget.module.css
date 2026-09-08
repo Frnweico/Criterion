@@ -1,0 +1,57 @@
+.widget {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 25;
+  display: grid;
+  width: 54px;
+  height: 54px;
+  place-items: center;
+  border: 1px solid rgb(255 255 255 / 68%);
+  border-radius: 50%;
+  color: #fff;
+  background: #25d366;
+  box-shadow: 0 8px 20px rgb(0 0 0 / 22%);
+  transition: transform 220ms ease, box-shadow 220ms ease, background 220ms ease;
+}
+
+.widget svg {
+  width: 27px;
+  height: 27px;
+  fill: currentColor;
+}
+
+.widget:hover {
+  background: #1ebd5a;
+  box-shadow: 0 12px 26px rgb(0 0 0 / 28%);
+  transform: translateY(-3px);
+}
+
+.widget:focus-visible {
+  outline: 2px solid var(--color-carbon);
+  outline-offset: 4px;
+}
+
+@media (min-width: 1024px) {
+  .widget {
+    right: 40px;
+    bottom: 40px;
+    width: 60px;
+    height: 60px;
+  }
+
+  .widget svg {
+    width: 30px;
+    height: 30px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .widget {
+    transition: none;
+  }
+
+  .widget:hover {
+    transform: none;
+  }
+}

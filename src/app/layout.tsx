@@ -4,6 +4,7 @@ import Script from "next/script";
 import HomeIntro from "@/components/HomeIntro/HomeIntro";
 import InteriorHeader from "@/components/Header/InteriorHeader";
 import MotionController from "@/components/MotionController/MotionController";
+import WhatsAppWidget from "@/components/WhatsAppWidget/WhatsAppWidget";
 import "./globals.css";
 
 // Manrope is the site's only family. Its variable axis covers every weight
@@ -106,6 +107,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           <InteriorHeader />
           {children}
         </HomeIntro>
+        <WhatsAppWidget />
       </body>
     </html>
   );
