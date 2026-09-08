@@ -185,7 +185,7 @@
   }
 
   .card {
-    top: 8.3%;
+    top: calc(8.3% + 40px);
     right: 21.5%;
     left: 21.5%;
     transform: none;
