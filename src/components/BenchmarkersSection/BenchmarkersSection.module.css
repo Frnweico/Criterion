@@ -189,7 +189,7 @@
     right: 21.5%;
     left: 21.5%;
     transform: none;
-    gap: 2.4cqw;
+    gap: calc(2.4cqw - 2px);
   }
 
   .heading {
