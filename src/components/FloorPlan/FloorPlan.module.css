@@ -112,14 +112,6 @@
   letter-spacing: -0.4px;
 }
 
-.captionSub {
-  margin: 0;
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 1.4;
-  opacity: 0.6;
-}
-
 /* --- Desktop ----------------------------------------------------------- */
 
 @media (min-width: 1024px) {

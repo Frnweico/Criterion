@@ -85,8 +85,6 @@ export default function FloorPlan({ floors, projectName }: Props) {
 
         <div className={styles.caption}>
           <p className={styles.captionTitle}>{current.caption}</p>
-          {/* Placeholder copy in the frame — no real caption supplied yet. */}
-          <p className={styles.captionSub}>more information or details</p>
         </div>
       </div>
     </div>
