@@ -1,6 +1,6 @@
 import { getImageProps } from "next/image";
-import desktopImage from "../../../public/images/midtown-lifestyle-arrival-desktop-v1.png";
-import mobileImage from "../../../public/images/midtown-lifestyle-arrival-mobile-v1.png";
+import desktopImage from "../../../public/images/midtown-lifestyle-arrival-desktop-v1.webp";
+import mobileImage from "../../../public/images/midtown-lifestyle-arrival-mobile-v1.webp";
 import styles from "./LifestyleBridge.module.css";
 
 const alt =

@@ -147,7 +147,7 @@ export const LOCATION_POINTS: ScrollPoint[] = [
     id: "quietly-central",
     title: "Quietly Central",
     body: "Wuse Zone 7 offers you privacy while putting the city central right in the palm of your hands.",
-    image: "/images/urban-nest-location-wuse-2-v3.png",
+    image: "/images/urban-nest-location-wuse-2-v3.webp",
     imageAlt: "Aerial view over Wuse 2, Abuja, with the surrounding hills",
   },
   {

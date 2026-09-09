@@ -16,7 +16,7 @@ export const metadata: Metadata = {
       "See how Criterion Homes approaches clearer, more accountable homebuilding in Abuja.",
     images: [
       {
-        url: "/images/approach-hero-midtown.png",
+        url: "/images/approach-hero-midtown.webp",
         width: 1920,
         height: 1080,
         alt: "The Midtown Terraces at dusk",
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     title: "A Better Way to Buy a Home Is Possible",
     description:
       "See how Criterion Homes approaches clearer, more accountable homebuilding in Abuja.",
-    images: ["/images/approach-hero-midtown.png"],
+    images: ["/images/approach-hero-midtown.webp"],
   },
 };
 
@@ -49,22 +49,22 @@ const PRACTICES = [
 
 const EVIDENCE = [
   {
-    src: "/images/midtown-milestone-1-foundation.png",
+    src: "/images/midtown-milestone-1-foundation.webp",
     alt: "Foundation work at The Midtown Terraces",
     milestone: "Milestone 1 · Foundation completion",
   },
   {
-    src: "/images/midtown-milestone-2-first-floor-slab.png",
+    src: "/images/midtown-milestone-2-first-floor-slab.webp",
     alt: "First-floor slab construction at The Midtown Terraces",
     milestone: "Milestone 2 · First-floor slab complete",
   },
   {
-    src: "/images/midtown-milestone-3-second-floor-slab.png",
+    src: "/images/midtown-milestone-3-second-floor-slab.webp",
     alt: "Second-floor slab construction at The Midtown Terraces",
     milestone: "Milestone 3 · Second-floor slab complete",
   },
   {
-    src: "/images/midtown-milestone-4-blockwork.png",
+    src: "/images/midtown-milestone-4-blockwork.webp",
     alt: "Blockwork in progress at The Midtown Terraces",
     milestone: "Milestone 4 · Blockwork in progress",
   },
@@ -107,7 +107,7 @@ export default function ApproachPage() {
           </div>
           <div className={styles.heroImage}>
             <Image
-              src="/images/approach-hero-midtown.png"
+              src="/images/approach-hero-midtown.webp"
               alt="The Midtown Terraces at dusk"
               fill
               priority
