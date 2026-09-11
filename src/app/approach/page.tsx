@@ -187,7 +187,7 @@ export default function ApproachPage() {
             <div className={styles.filmFrame}>
               <ProjectVideo
                 ambient={false}
-                src="/images/TMT Web.webm"
+                src="/images/tmt-web-optimised.mp4"
                 poster="/images/midtown-address.webp"
                 alt="The Midtown Terraces frontage"
                 youtubeId="Ah-YE848T-Y"

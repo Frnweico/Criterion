@@ -158,7 +158,7 @@ export default function MidtownTerracesPage() {
             <div className={styles.addressFigure}>
               <ProjectVideo
                 className={styles.addressVideo}
-                src="/images/TMT Web.webm"
+                src="/images/tmt-web-optimised.mp4"
                 poster="/images/midtown-address.webp"
                 alt="The Midtown Terraces frontage"
                 youtubeId="Ah-YE848T-Y"
