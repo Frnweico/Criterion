@@ -6,6 +6,7 @@ import ChecklistSection from "@/components/ChecklistSection/ChecklistSection";
 import FloorPlan from "@/components/FloorPlan/FloorPlan";
 import Footer from "@/components/Footer/Footer";
 import Gallery from "@/components/Gallery/Gallery";
+import NextProperty from "@/components/NextProperty/NextProperty";
 import LocationStory from "@/components/LocationStory/LocationStory";
 import PaymentPlan from "@/components/PaymentPlan/PaymentPlan";
 import ReasonsList from "@/components/ReasonsList/ReasonsList";
@@ -286,6 +287,7 @@ export default function MidtownTerracesPage() {
         </section>
 
         <ChecklistSection />
+        <NextProperty name="The Urban Nest" href="/projects/the-urban-nest" />
       </main>
       <Footer />
     </>

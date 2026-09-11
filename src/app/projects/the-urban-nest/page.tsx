@@ -6,6 +6,7 @@ import Button from "@/components/Button/Button";
 import FloorPlan from "@/components/FloorPlan/FloorPlan";
 import Footer from "@/components/Footer/Footer";
 import Gallery from "@/components/Gallery/Gallery";
+import NextProperty from "@/components/NextProperty/NextProperty";
 import LocationStory from "@/components/LocationStory/LocationStory";
 import PaymentPlan from "@/components/PaymentPlan/PaymentPlan";
 import ReasonsList from "@/components/ReasonsList/ReasonsList";
@@ -174,7 +175,7 @@ export default function UrbanNestPage() {
           pinOnMobile
         />
 
-        <Gallery photos={GALLERY} note={GALLERY_NOTE} />
+        <Gallery photos={GALLERY} note={GALLERY_NOTE} desktopPhotos={GALLERY} />
 
         {/* --- Location ---------------------------------------------------- */}
         <LocationStory
@@ -263,6 +264,7 @@ export default function UrbanNestPage() {
         </section>
 
         <ChecklistSection />
+        <NextProperty name="The Midtown Terraces" href="/projects/midtown-terraces" />
       </main>
       <Footer />
     </>

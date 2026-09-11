@@ -1,0 +1,25 @@
+.section {
+  padding: 56px var(--gutter);
+  border-top: 1px solid var(--color-rule);
+  background: var(--color-platinum);
+}
+.label {
+  margin-bottom: 20px;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  font-size: clamp(26px, 3.5vw, 48px);
+  line-height: 1.15;
+  letter-spacing: -0.04em;
+}
+.link:hover { text-decoration: underline; text-underline-offset: 8px; }
+.link:focus-visible { outline: 2px solid currentColor; outline-offset: 8px; }
+@media (min-width: 1024px) {
+  .section { padding-block: 80px; }
+}
