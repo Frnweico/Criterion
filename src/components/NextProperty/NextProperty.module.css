@@ -4,7 +4,7 @@
   background: var(--color-platinum);
 }
 .label {
-  margin-bottom: 20px;
+  margin-bottom: 14px;
   font-size: 12px;
   text-transform: uppercase;
   letter-spacing: 0.06em;
@@ -14,7 +14,7 @@
   align-items: center;
   justify-content: space-between;
   gap: 24px;
-  font-size: clamp(26px, 3.5vw, 48px);
+  font-size: 16px;
   line-height: 1.15;
   letter-spacing: -0.04em;
 }
@@ -23,3 +23,17 @@
 @media (min-width: 1024px) {
   .section { padding-block: 80px; }
 }
+
+.imageLink { position: relative; display: block; aspect-ratio: 4 / 3; overflow: hidden; }
+.image { object-fit: cover; transition: transform 500ms ease; }
+.imageLink:hover .image { transform: scale(1.025); }
+.details { display: flex; flex-direction: column; gap: 28px; padding-top: 28px; }
+.name { font-size: clamp(30px, 3.5vw, 48px); line-height: 1.1; font-weight: 400; letter-spacing: -0.04em; }
+.location { margin-top: 12px; font-size: 14px; color: var(--color-body); }
+.link { width: fit-content; padding-bottom: 8px; border-bottom: 1px solid currentColor; }
+.imageLink:focus-visible { outline: 2px solid currentColor; outline-offset: 6px; }
+@media (min-width: 1024px) {
+  .details { flex-direction: row; align-items: flex-end; justify-content: space-between; }
+  .imageLink { aspect-ratio: 2 / 1; }
+}
+@media (prefers-reduced-motion: reduce) { .image { transition: none; } .imageLink:hover .image { transform: none; } }
