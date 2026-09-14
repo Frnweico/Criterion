@@ -14,7 +14,7 @@ import NewsSection from "@/components/NewsSection/NewsSection";
 import PactSection from "@/components/PactSection/PactSection";
 import ServicesSection from "@/components/ServicesSection/ServicesSection";
 
-export const metadata = pageMetadata("/", "Abuja Property Developer | Criterion Homes", "Explore thoughtfully designed homes in Abuja by Criterion Homes, including The Midtown Terraces in Gwarinpa and The Urban Nest in Wuse Zone 7.");
+export const metadata = pageMetadata("/", "Building what matters and nothing without purpose", "Explore thoughtfully designed homes in Abuja by Criterion Homes, including The Midtown Terraces in Gwarinpa and The Urban Nest in Wuse Zone 7.");
 
 export default function HomePage() {
   return (
