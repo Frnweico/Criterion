@@ -1,14 +1,11 @@
+import { pageMetadata } from "@/lib/seo";
 import type { Metadata } from "next";
 import Footer from "@/components/Footer/Footer";
 import SectionHeader from "@/components/SectionHeader/SectionHeader";
 import { CONTACT } from "@/lib/site";
 import styles from "./contact.module.css";
 
-export const metadata: Metadata = {
-  title: "Contact Us",
-  description:
-    "Contact Criterion Homes in Wuse Zone 2, Abuja for premium residential development enquiries.",
-};
+export const metadata: Metadata = pageMetadata("/contact", "Contact Us", "Contact Criterion Homes in Wuse Zone 2, Abuja for premium residential development enquiries.");
 
 export default function ContactPage() {
   return (

@@ -15,7 +15,7 @@ const manrope = Manrope({
   display: "swap",
 });
 
-const SITE_URL = "https://criterionhomesltd.com";
+const SITE_URL = "https://www.criterionhomesltd.com";
 const GA4_MEASUREMENT_ID = "G-F3KGQ2HGJJ";
 
 export const metadata: Metadata = {

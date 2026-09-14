@@ -1,3 +1,4 @@
+import { pageMetadata } from "@/lib/seo";
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
@@ -7,11 +8,7 @@ import Footer from "@/components/Footer/Footer";
 import { PROJECTS } from "@/lib/projects";
 import styles from "./projects.module.css";
 
-export const metadata: Metadata = {
-  title: "Projects",
-  description:
-    "Every Criterion development is engineered with a distinct lifestyle in mind — a curated portfolio united by our signature architecture of restraint.",
-};
+export const metadata: Metadata = pageMetadata("/projects", "Projects", "Every Criterion development is engineered with a distinct lifestyle in mind — a curated portfolio united by our signature architecture of restraint.");
 
 /** Unit descriptions are page-specific; price and completion come from data. */
 const UNITS: Record<string, string> = {

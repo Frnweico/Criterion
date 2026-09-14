@@ -1,3 +1,6 @@
+import { pageMetadata } from "@/lib/seo";
+import { CONTACT, SOCIALS } from "@/lib/site";
+import { SEO_ORIGIN } from "@/lib/seo";
 import AboutSection from "@/components/AboutSection/AboutSection";
 import BenchmarkersSection from "@/components/BenchmarkersSection/BenchmarkersSection";
 import BlogSection from "@/components/BlogSection/BlogSection";
@@ -11,9 +14,18 @@ import NewsSection from "@/components/NewsSection/NewsSection";
 import PactSection from "@/components/PactSection/PactSection";
 import ServicesSection from "@/components/ServicesSection/ServicesSection";
 
+export const metadata = pageMetadata("/", "Abuja Property Developer | Criterion Homes", "Explore thoughtfully designed homes in Abuja by Criterion Homes, including The Midtown Terraces in Gwarinpa and The Urban Nest in Wuse Zone 7.");
+
 export default function HomePage() {
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
+        "@context": "https://schema.org", "@type": "Organization",
+        "@id": `${SEO_ORIGIN}/#organization`, name: "Criterion Homes", url: SEO_ORIGIN,
+        telephone: CONTACT.phone, email: CONTACT.email,
+        address: { "@type": "PostalAddress", streetAddress: CONTACT.address, addressLocality: "Abuja", addressCountry: "NG" },
+        sameAs: SOCIALS.map(social => social.href),
+      }).replace(/</g, "\\u003c") }} />
       <Header persistent />
       <main>
         <Hero />

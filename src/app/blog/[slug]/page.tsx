@@ -1,3 +1,4 @@
+import { pageMetadata } from "@/lib/seo";
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
@@ -26,7 +27,7 @@ export async function generateMetadata({
 
   if (!post) return {};
 
-  return { title: post.title, description: post.excerpt };
+  return pageMetadata(`/blog/${slug}`, post.title, post.excerpt, post.image);
 }
 
 function formatArticleDate(iso: string) {

@@ -1,3 +1,4 @@
+import { pageMetadata } from "@/lib/seo";
 import type { Metadata } from "next";
 import Footer from "@/components/Footer/Footer";
 import PactSection from "@/components/PactSection/PactSection";
@@ -8,13 +9,7 @@ import ValuesSection from "@/components/ValuesSection/ValuesSection";
 import { ABOUT_INTRO } from "@/lib/about";
 import styles from "./about.module.css";
 
-export const metadata: Metadata = {
-  /* The root layout appends "| Criterion Homes" via its title template, so the
-     brand is deliberately not repeated here. */
-  title: "Who We Are",
-  description:
-    "Criterion Homes is a real estate development firm reinventing the business in Nigeria — our vision, values, the Criterion Pact, and the team behind it.",
-};
+export const metadata: Metadata = pageMetadata("/about", "Who We Are", "Criterion Homes is a real estate development firm reinventing the business in Nigeria — our vision, values, the Criterion Pact, and the team behind it.");
 
 export default function AboutPage() {
   return (

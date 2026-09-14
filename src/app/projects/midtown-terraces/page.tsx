@@ -1,3 +1,4 @@
+import { pageMetadata } from "@/lib/seo";
 import type { Metadata } from "next";
 import Image from "next/image";
 import Breadcrumb from "@/components/Breadcrumb/Breadcrumb";
@@ -37,10 +38,7 @@ import styles from "./midtown.module.css";
 
 const project = getProject("midtown-terraces")!;
 
-export const metadata: Metadata = {
-  title: project.name,
-  description: MIDTOWN_TAGLINE,
-};
+export const metadata: Metadata = pageMetadata("/projects/midtown-terraces", "The Midtown Terraces in Gwarinpa, Abuja", "Explore The Midtown Terraces: 4-bedroom terrace duplexes in Gwarinpa, Abuja, with central atriums and light-filled living spaces.", "/images/midtown-hero.webp");
 
 export default function MidtownTerracesPage() {
   return (

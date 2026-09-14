@@ -1,3 +1,4 @@
+import { pageMetadata } from "@/lib/seo";
 import type { Metadata } from "next";
 import BlogSection from "@/components/BlogSection/BlogSection";
 import ChecklistSection from "@/components/ChecklistSection/ChecklistSection";
@@ -6,10 +7,7 @@ import NewsCards from "@/components/NewsCards/NewsCards";
 import { NEWS } from "@/lib/news";
 import styles from "./news.module.css";
 
-export const metadata: Metadata = {
-  title: "News",
-  description: "Criterion Homes in the press â€” coverage from The Nation, The Guardian Nigeria, ThisDay Live and Punch.",
-};
+export const metadata: Metadata = pageMetadata("/news", "News", "Criterion Homes in the press — coverage from The Nation, The Guardian Nigeria, ThisDay Live and Punch.");
 
 export default function NewsPage() {
   return (

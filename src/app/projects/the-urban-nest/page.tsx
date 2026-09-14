@@ -1,3 +1,4 @@
+import { pageMetadata } from "@/lib/seo";
 import type { Metadata } from "next";
 import Image from "next/image";
 import Breadcrumb from "@/components/Breadcrumb/Breadcrumb";
@@ -36,10 +37,7 @@ import styles from "./urban-nest.module.css";
 
 const project = getProject("the-urban-nest")!;
 
-export const metadata: Metadata = {
-  title: project.name,
-  description: URBAN_NEST_TAGLINE,
-};
+export const metadata: Metadata = pageMetadata("/projects/the-urban-nest", "The Urban Nest in Wuse, Abuja", "Explore The Urban Nest: 4-bedroom terrace duplexes in Wuse Zone 7, Abuja, designed for quiet living with convenient city access.", "/images/urban-nest-hero.webp");
 
 /**
  * A replica of the Midtown Terraces page — same sections, same components,

@@ -1,3 +1,4 @@
+import { pageMetadata } from "@/lib/seo";
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
@@ -6,31 +7,7 @@ import ProjectVideo from "@/components/ProjectVideo/ProjectVideo";
 import ApproachEntranceState from "./ApproachEntranceState";
 import styles from "./approach.module.css";
 
-export const metadata: Metadata = {
-  title: "A Better Way to Buy a Home Is Possible",
-  description:
-    "Criterion Homes documents construction progress, ties payments to milestones, and begins every home with the life it needs to support.",
-  openGraph: {
-    title: "A Better Way to Buy a Home Is Possible",
-    description:
-      "See how Criterion Homes approaches clearer, more accountable homebuilding in Abuja.",
-    images: [
-      {
-        url: "/images/approach-hero-midtown.webp",
-        width: 1920,
-        height: 1080,
-        alt: "The Midtown Terraces at dusk",
-      },
-    ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "A Better Way to Buy a Home Is Possible",
-    description:
-      "See how Criterion Homes approaches clearer, more accountable homebuilding in Abuja.",
-    images: ["/images/approach-hero-midtown.webp"],
-  },
-};
+export const metadata: Metadata = pageMetadata("/approach", "A Better Way to Buy a Home Is Possible", "Criterion Homes documents construction progress, ties payments to milestones, and begins every home with the life it needs to support.", "/images/approach-hero-midtown.webp");
 
 const PRACTICES = [
   {

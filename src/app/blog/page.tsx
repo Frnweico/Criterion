@@ -1,3 +1,4 @@
+import { pageMetadata } from "@/lib/seo";
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
@@ -14,11 +15,7 @@ import {
 } from "@/lib/blog";
 import styles from "./blog.module.css";
 
-export const metadata: Metadata = {
-  title: "Blog",
-  description:
-    "A record of how we build — writing on restraint, structure and the long-term value of every Criterion Homes project.",
-};
+export const metadata: Metadata = pageMetadata("/blog", "Blog", "A record of how we build — writing on restraint, structure and the long-term value of every Criterion Homes project.");
 
 function BlogCardContent({ post }: { post: BlogGridItem }) {
   return (
