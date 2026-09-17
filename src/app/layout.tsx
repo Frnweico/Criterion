@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Manrope } from "next/font/google";
+import localFont from "next/font/local";
 import Script from "next/script";
 import HomeIntro from "@/components/HomeIntro/HomeIntro";
 import InteriorHeader from "@/components/Header/InteriorHeader";
@@ -9,9 +9,10 @@ import "./globals.css";
 
 // Manrope is the site's only family. Its variable axis covers every weight
 // the design uses: Light 300 through Bold 700.
-const manrope = Manrope({
+const manrope = localFont({
+  src: "./fonts/Manrope[wght].ttf",
   variable: "--font-manrope",
-  subsets: ["latin"],
+  weight: "200 800",
   display: "swap",
 });
 
