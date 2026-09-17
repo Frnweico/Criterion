@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import styles from "./FloorPlan.module.css";
 
@@ -31,10 +31,69 @@ type Props = {
  */
 export default function FloorPlan({ floors, projectName }: Props) {
   const [active, setActive] = useState(floors[0].id);
+  const [pending, setPending] = useState<string | null>(null);
+  const [loadedFloors, setLoadedFloors] = useState<Set<string>>(
+    () => new Set([floors[0].id]),
+  );
+  const wrapRef = useRef<HTMLDivElement>(null);
+  const requestedFloors = useRef(new Set<string>());
   const current = floors.find((floor) => floor.id === active) ?? floors[0];
 
+  const markFloorLoaded = useCallback((floorId: string) => {
+    setLoadedFloors((currentFloors) => {
+      if (currentFloors.has(floorId)) return currentFloors;
+      return new Set(currentFloors).add(floorId);
+    });
+  }, []);
+
+  const preloadFloor = useCallback((floor: Floor) => {
+    if (requestedFloors.current.has(floor.id)) return;
+    requestedFloors.current.add(floor.id);
+
+    const image = new window.Image();
+    image.onload = () => markFloorLoaded(floor.id);
+    image.onerror = () => requestedFloors.current.delete(floor.id);
+    image.src = floor.plan;
+  }, [markFloorLoaded]);
+
+  useEffect(() => {
+    const wrap = wrapRef.current;
+    if (!wrap) return;
+
+    const preloadPlans = () => floors.forEach(preloadFloor);
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (!entries.some((entry) => entry.isIntersecting)) return;
+        preloadPlans();
+        observer.disconnect();
+      },
+      { rootMargin: "600px 0px" },
+    );
+
+    observer.observe(wrap);
+    return () => observer.disconnect();
+  }, [floors, preloadFloor]);
+
+  useEffect(() => {
+    if (!pending || !loadedFloors.has(pending)) return;
+    setActive(pending);
+    setPending(null);
+  }, [loadedFloors, pending]);
+
+  const selectFloor = (floor: Floor) => {
+    if (floor.id === active) return;
+    if (loadedFloors.has(floor.id)) {
+      setActive(floor.id);
+      setPending(null);
+      return;
+    }
+
+    setPending(floor.id);
+    preloadFloor(floor);
+  };
+
   return (
-    <div className={styles.wrap}>
+    <div ref={wrapRef} className={styles.wrap}>
       <div className={styles.aside}>
         <h2 id="floors-heading" className={styles.heading}>
           Floor Plan
@@ -56,7 +115,7 @@ export default function FloorPlan({ floors, projectName }: Props) {
                 className={`${styles.tab} ${
                   floor.id === active ? styles.tabOn : ""
                 }`}
-                onClick={() => setActive(floor.id)}
+                onClick={() => selectFloor(floor)}
               >
                 {floor.label}
               </button>
@@ -70,6 +129,7 @@ export default function FloorPlan({ floors, projectName }: Props) {
         id={`floor-panel-${current.id}`}
         aria-labelledby={`floor-tab-${current.id}`}
         className={styles.panel}
+        aria-busy={pending !== null}
       >
         <div className={styles.figure}>
           <Image
@@ -80,6 +140,8 @@ export default function FloorPlan({ floors, projectName }: Props) {
             sizes="(min-width: 1024px) 714px, calc(100vw - 40px)"
             className={styles.image}
             data-motion-preserve
+            unoptimized
+            onLoad={() => markFloorLoaded(current.id)}
           />
         </div>
 
