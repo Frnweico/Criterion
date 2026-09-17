@@ -1,4 +1,4 @@
-import { pageMetadata } from "@/lib/seo";
+import { pageMetadata, projectListingJsonLd } from "@/lib/seo";
 import type { Metadata } from "next";
 import Image from "next/image";
 import Breadcrumb from "@/components/Breadcrumb/Breadcrumb";
@@ -43,6 +43,12 @@ export const metadata: Metadata = pageMetadata("/projects/midtown-terraces", "Th
 export default function MidtownTerracesPage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(projectListingJsonLd("/projects/midtown-terraces", project)).replace(/</g, "\\u003c"),
+        }}
+      />
       <main>
         {/* --- Hero ----------------------------------------------------
             Figma 9342:5395 (desktop) / 9942:5285 (mobile): centred copy on

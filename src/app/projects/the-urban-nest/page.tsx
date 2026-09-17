@@ -1,4 +1,4 @@
-import { pageMetadata } from "@/lib/seo";
+import { pageMetadata, projectListingJsonLd } from "@/lib/seo";
 import type { Metadata } from "next";
 import Image from "next/image";
 import Breadcrumb from "@/components/Breadcrumb/Breadcrumb";
@@ -48,6 +48,12 @@ export const metadata: Metadata = pageMetadata("/projects/the-urban-nest", "The 
 export default function UrbanNestPage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(projectListingJsonLd("/projects/the-urban-nest", project)).replace(/</g, "\\u003c"),
+        }}
+      />
       <main>
         {/* --- Hero ---------------------------------------------------- */}
         <section className={styles.hero} aria-labelledby="project-heading">
