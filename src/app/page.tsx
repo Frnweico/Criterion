@@ -21,7 +21,10 @@ export default function HomePage() {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
         "@context": "https://schema.org", "@type": "Organization",
-        "@id": `${SEO_ORIGIN}/#organization`, name: "Criterion Homes", url: SEO_ORIGIN,
+        "@id": `${SEO_ORIGIN}/#organization`,
+        name: "Criterion Homes",
+        alternateName: ["Criterion Homes Ltd", "Criterion Homes Limited"],
+        url: SEO_ORIGIN,
         telephone: CONTACT.phone, email: CONTACT.email,
         address: { "@type": "PostalAddress", streetAddress: CONTACT.address, addressLocality: "Abuja", addressCountry: "NG" },
         sameAs: SOCIALS.map(social => social.href),
