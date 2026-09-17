@@ -258,11 +258,11 @@ export const PAYMENT: Payment = {
   unitPrice: "NGN 350,000,000",
   semiFinished: "NGN 275,000,000",
   milestones: [
-    { stage: "Foundation", instalment: "20% — 1st Instalment ₦70M", duration: "—", status: "Completed" },
-    { stage: "1st Floor Slab", instalment: "20% — 2nd Instalment ₦70M", duration: "3 Months", status: "Completed" },
-    { stage: "2nd Floor Slab", instalment: "20% — 3rd Instalment ₦70M", duration: "3 Months", status: "Completed" },
-    { stage: "Roofing and Plastering", instalment: "20% — 4th Instalment ₦70M", duration: "3 Months", status: "In-progress" },
-    { stage: "Finishes and Painting", instalment: "20% — 5th Instalment ₦70M", duration: "3 Months", status: "Upcoming" },
+    { stage: "Foundation", instalment: "20% · 1st Instalment ₦70M", duration: "Not applicable", status: "Completed" },
+    { stage: "1st Floor Slab", instalment: "20% · 2nd Instalment ₦70M", duration: "3 Months", status: "Completed" },
+    { stage: "2nd Floor Slab", instalment: "20% · 3rd Instalment ₦70M", duration: "3 Months", status: "Completed" },
+    { stage: "Roofing and Plastering", instalment: "20% · 4th Instalment ₦70M", duration: "3 Months", status: "In-progress" },
+    { stage: "Finishes and Painting", instalment: "20% · 5th Instalment ₦70M", duration: "3 Months", status: "Upcoming" },
   ],
   terms: [
     "All payments are tied to documented milestone completion. Full records of concluded milestones are made available to every investor on entry.",

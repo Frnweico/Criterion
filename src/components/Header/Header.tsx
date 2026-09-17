@@ -124,7 +124,7 @@ export default function Header({ solid, persistent, tone = "dark" }: Props) {
         <Link
           href="/"
           className={styles.brand}
-          aria-label="Criterion Homes — home"
+          aria-label="Criterion Homes home"
         >
           <Image
             src="/icons/logo-wordmark-mark.svg"
@@ -177,7 +177,7 @@ export default function Header({ solid, persistent, tone = "dark" }: Props) {
         <div className={styles.overlayBar}>
           <Link
             href="/"
-            aria-label="Criterion Homes — home"
+            aria-label="Criterion Homes home"
             onClick={() => setOpen(false)}
           >
             <Image

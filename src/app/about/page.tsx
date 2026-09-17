@@ -9,7 +9,7 @@ import ValuesSection from "@/components/ValuesSection/ValuesSection";
 import { ABOUT_INTRO } from "@/lib/about";
 import styles from "./about.module.css";
 
-export const metadata: Metadata = pageMetadata("/about", "Who We Are", "Criterion Homes is a real estate development firm reinventing the business in Nigeria — our vision, values, the Criterion Pact, and the team behind it.");
+export const metadata: Metadata = pageMetadata("/about", "Who We Are", "Criterion Homes is a real estate development firm reinventing the business in Nigeria. Learn about our vision, values, the Criterion Pact, and the team behind it.");
 
 export default function AboutPage() {
   return (

@@ -133,7 +133,7 @@ export default function Footer() {
       <div className={styles.foot}>
         {/* The mark and wordmark are separate assets; the frame sets them side
             by side at 175x50. */}
-        <Link href="/" className={styles.logo} aria-label={`${SITE.name} — home`}>
+        <Link href="/" className={styles.logo} aria-label={`${SITE.name} home`}>
           <Image
             src="/icons/logo-wordmark-mark.svg"
             alt=""

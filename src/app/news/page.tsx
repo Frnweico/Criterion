@@ -7,7 +7,7 @@ import NewsCards from "@/components/NewsCards/NewsCards";
 import { NEWS } from "@/lib/news";
 import styles from "./news.module.css";
 
-export const metadata: Metadata = pageMetadata("/news", "News", "Criterion Homes in the press — coverage from The Nation, The Guardian Nigeria, ThisDay Live and Punch.");
+export const metadata: Metadata = pageMetadata("/news", "News", "Criterion Homes in the press, with coverage from The Nation, The Guardian Nigeria, ThisDay Live and Punch.");
 
 export default function NewsPage() {
   return (

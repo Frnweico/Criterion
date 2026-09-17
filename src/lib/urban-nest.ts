@@ -59,35 +59,35 @@ export const PHILOSOPHY: ScrollPoint[] = [
     title: "Enduring Architecture",
     body: "Every decision is guided by precision and every detail is handled with care to create a home that holds its own well beyond the façade.",
     image: "/images/urban-nest-philosophy-1.webp",
-    imageAlt: "The Urban Nest — architectural detailing",
+    imageAlt: "The Urban Nest architectural detailing",
   },
   {
     id: "functional-layouts",
     title: "Functional Layouts",
     body: "Designed to flow seamlessly into daily life, with light and air moving freely and every area serving a clear purpose of living well.",
     image: "/images/urban-nest-philosophy-2.webp",
-    imageAlt: "The Urban Nest — an interior living space",
+    imageAlt: "The Urban Nest interior living space",
   },
   {
     id: "modern-character",
     title: "Modern Character",
     body: "A rejection of ornamentation in favor of functionality. Through simplicity of form and clarity of design, each detail caters to the modern homeowner and is crafted to endure through time.",
     image: "/images/urban-nest-philosophy-3.webp",
-    imageAlt: "The Urban Nest — exterior character",
+    imageAlt: "The Urban Nest exterior character",
   },
   {
     id: "bathed-in-air-and-light",
     title: "Bathed in Air and Light",
     body: "Generous openings and spaces shaped to glow with the rhythm of the day.",
     image: "/images/urban-nest-philosophy-4.webp",
-    imageAlt: "The Urban Nest — light-filled interior",
+    imageAlt: "The Urban Nest light-filled interior",
   },
   {
     id: "private-green-patches",
     title: "Private Green Patches",
     body: "Landscaped outdoor patches give each home breathing room, privacy, and a relaxing everyday experience.",
     image: "/images/urban-nest-philosophy-5.webp",
-    imageAlt: "The Urban Nest — landscaped outdoor space",
+    imageAlt: "The Urban Nest landscaped outdoor space",
   },
 ];
 
@@ -274,11 +274,11 @@ export const PAYMENT_INTRO = {
 export const PAYMENT: Payment = {
   unitPrice: "NGN 498,000,000",
   milestones: [
-    { stage: "Foundation", instalment: "~ 20% — 1st Instalment ₦100M", duration: "2 Months", status: "In-progress" },
-    { stage: "1st Floor Slab", instalment: "~ 20% — 2nd Instalment ₦100M", duration: "2 Months", status: "Upcoming" },
-    { stage: "2nd Floor Slab", instalment: "~ 20% — 3rd Instalment ₦100M", duration: "2 Months", status: "Upcoming" },
-    { stage: "Roofing and Plastering", instalment: "~ 20% — 4th Instalment ₦100M", duration: "3 Months", status: "Upcoming" },
-    { stage: "Finishes and Painting", instalment: "~ 20% — 5th Instalment ₦98M", duration: "3 Months", status: "Upcoming" },
+    { stage: "Foundation", instalment: "~ 20% · 1st Instalment ₦100M", duration: "2 Months", status: "In-progress" },
+    { stage: "1st Floor Slab", instalment: "~ 20% · 2nd Instalment ₦100M", duration: "2 Months", status: "Upcoming" },
+    { stage: "2nd Floor Slab", instalment: "~ 20% · 3rd Instalment ₦100M", duration: "2 Months", status: "Upcoming" },
+    { stage: "Roofing and Plastering", instalment: "~ 20% · 4th Instalment ₦100M", duration: "3 Months", status: "Upcoming" },
+    { stage: "Finishes and Painting", instalment: "~ 20% · 5th Instalment ₦98M", duration: "3 Months", status: "Upcoming" },
   ],
   terms: [
     "All payments are tied to documented milestone completion. Full records of concluded milestones are made available to every investor on entry.",

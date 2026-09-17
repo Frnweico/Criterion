@@ -15,7 +15,7 @@ import {
 } from "@/lib/blog";
 import styles from "./blog.module.css";
 
-export const metadata: Metadata = pageMetadata("/blog", "Blog", "A record of how we build — writing on restraint, structure and the long-term value of every Criterion Homes project.");
+export const metadata: Metadata = pageMetadata("/blog", "Blog", "A record of how we build, with writing on restraint, structure and the long-term value of every Criterion Homes project.");
 
 function BlogCardContent({ post }: { post: BlogGridItem }) {
   return (

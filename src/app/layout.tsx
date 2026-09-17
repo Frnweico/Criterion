@@ -21,23 +21,23 @@ const GA4_MEASUREMENT_ID = "G-F3KGQ2HGJJ";
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "Criterion Homes — Homes, Built With A Clear Standard",
+    default: "Criterion Homes: Homes, Built With A Clear Standard",
     template: "%s | Criterion Homes",
   },
   description:
-    "Criterion Homes approaches development with restraint. Every project is shaped by clear decisions — what to include, what to leave out, and what truly holds value over time.",
+    "Criterion Homes approaches development with restraint. Every project is shaped by clear decisions about what to include, what to leave out, and what truly holds value over time.",
   openGraph: {
     type: "website",
     locale: "en_NG",
     url: SITE_URL,
     siteName: "Criterion Homes",
-    title: "Criterion Homes — Homes, Built With A Clear Standard",
+    title: "Criterion Homes: Homes, Built With A Clear Standard",
     description:
       "A small number of homes in Abuja, each approached with the same level of care, clarity, and attention to detail.",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Criterion Homes — Homes, Built With A Clear Standard",
+    title: "Criterion Homes: Homes, Built With A Clear Standard",
     description:
       "A small number of homes in Abuja, each approached with the same level of care, clarity, and attention to detail.",
   },
