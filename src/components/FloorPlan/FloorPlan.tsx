@@ -38,6 +38,7 @@ export default function FloorPlan({ floors, projectName }: Props) {
   const wrapRef = useRef<HTMLDivElement>(null);
   const requestedFloors = useRef(new Set<string>());
   const current = floors.find((floor) => floor.id === active) ?? floors[0];
+  const visuallySelected = pending ?? active;
 
   const markFloorLoaded = useCallback((floorId: string) => {
     setLoadedFloors((currentFloors) => {
@@ -113,7 +114,7 @@ export default function FloorPlan({ floors, projectName }: Props) {
                 aria-selected={floor.id === active}
                 aria-controls={`floor-panel-${floor.id}`}
                 className={`${styles.tab} ${
-                  floor.id === active ? styles.tabOn : ""
+                  floor.id === visuallySelected ? styles.tabOn : ""
                 }`}
                 onClick={() => selectFloor(floor)}
               >
