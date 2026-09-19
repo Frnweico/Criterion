@@ -17,6 +17,7 @@ import { getProject } from "@/lib/projects";
 import {
   ADDRESS_BODY,
   ADDRESS_HEADING,
+  DESKTOP_GALLERY,
   ESSENTIALS,
   FLOORS,
   GALLERY,
@@ -179,7 +180,7 @@ export default function UrbanNestPage() {
           pinOnMobile
         />
 
-        <Gallery photos={GALLERY} note={GALLERY_NOTE} desktopPhotos={GALLERY} />
+        <Gallery photos={GALLERY} note={GALLERY_NOTE} desktopPhotos={DESKTOP_GALLERY} />
 
         {/* --- Location ---------------------------------------------------- */}
         <LocationStory

@@ -123,6 +123,15 @@ export const GALLERY: GalleryShot[] = [
   },
 ];
 
+/** Desktop opens with the palm-framed corner elevation; mobile retains the
+ * original editorial sequence above. */
+export const DESKTOP_GALLERY: GalleryShot[] = [
+  GALLERY[2],
+  GALLERY[0],
+  GALLERY[1],
+  GALLERY[3],
+];
+
 export const LOCATION_QUOTE: LocationQuote = {
   lead: "Rooted in Abuja's city center,",
   body: "Wuse offers the rare advantage of living where the city is already established around you.",
