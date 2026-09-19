@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import styles from "./Gallery.module.css";
 
@@ -20,10 +20,60 @@ type Props = {
 export default function Gallery({ photos, note, desktopPhotos }: Props) {
   const [order, setOrder] = useState(() => photos.map((_, index) => index));
   const [active, setActive] = useState(0);
+  const [pending, setPending] = useState<number | null>(null);
+  const [loadedSlides, setLoadedSlides] = useState<Set<number>>(
+    () => new Set([0]),
+  );
+  const galleryRef = useRef<HTMLElement>(null);
+  const requestedSlides = useRef(new Set<number>());
   const lead = order[0];
   const carouselPhotos = desktopPhotos ?? photos;
   const activeShot = carouselPhotos[active];
   const usesDesktopCarousel = Boolean(desktopPhotos);
+
+  const markSlideLoaded = useCallback((index: number) => {
+    setLoadedSlides((currentSlides) => {
+      if (currentSlides.has(index)) return currentSlides;
+      return new Set(currentSlides).add(index);
+    });
+  }, []);
+
+  const preloadSlide = useCallback((index: number) => {
+    if (requestedSlides.current.has(index)) return;
+    requestedSlides.current.add(index);
+
+    const image = new window.Image();
+    image.onload = () => markSlideLoaded(index);
+    image.onerror = () => requestedSlides.current.delete(index);
+    image.src = carouselPhotos[index].src;
+  }, [carouselPhotos, markSlideLoaded]);
+
+  useEffect(() => {
+    if (!usesDesktopCarousel || !window.matchMedia("(min-width: 1024px)").matches) {
+      return;
+    }
+
+    const gallery = galleryRef.current;
+    if (!gallery) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (!entries.some((entry) => entry.isIntersecting)) return;
+        carouselPhotos.forEach((_, index) => preloadSlide(index));
+        observer.disconnect();
+      },
+      { rootMargin: "600px 0px" },
+    );
+
+    observer.observe(gallery);
+    return () => observer.disconnect();
+  }, [carouselPhotos, preloadSlide, usesDesktopCarousel]);
+
+  useEffect(() => {
+    if (pending === null || !loadedSlides.has(pending)) return;
+    setActive(pending);
+    setPending(null);
+  }, [loadedSlides, pending]);
 
   const select = (position: number) =>
     setOrder((current) => {
@@ -32,11 +82,20 @@ export default function Gallery({ photos, note, desktopPhotos }: Props) {
       return next;
     });
 
-  const changeSlide = (direction: 1 | -1) =>
-    setActive(
-      (current) =>
-        (current + direction + carouselPhotos.length) % carouselPhotos.length,
-    );
+  const changeSlide = (direction: 1 | -1) => {
+    const current = pending ?? active;
+    const next =
+      (current + direction + carouselPhotos.length) % carouselPhotos.length;
+
+    if (loadedSlides.has(next)) {
+      setActive(next);
+      setPending(null);
+      return;
+    }
+
+    setPending(next);
+    preloadSlide(next);
+  };
 
   return (
     <section
@@ -45,6 +104,7 @@ export default function Gallery({ photos, note, desktopPhotos }: Props) {
       }`}
       aria-labelledby="gallery-heading"
       data-parallax-preserve
+      ref={galleryRef}
     >
       <h2 id="gallery-heading" className={styles.heading}>
         Gallery
@@ -65,7 +125,7 @@ export default function Gallery({ photos, note, desktopPhotos }: Props) {
       </div>
 
       {usesDesktopCarousel ? (
-        <div className={styles.carousel} aria-label="Gallery">
+        <div className={styles.carousel} aria-label="Gallery" aria-busy={pending !== null}>
           <div className={styles.carouselFrame}>
             <Image
               src={activeShot.src}
@@ -73,6 +133,8 @@ export default function Gallery({ photos, note, desktopPhotos }: Props) {
               fill
               sizes="(min-width: 1024px) 92vw, 100vw"
               className={styles.carouselImage}
+              unoptimized
+              onLoad={() => markSlideLoaded(active)}
             />
           </div>
 

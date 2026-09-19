@@ -183,6 +183,7 @@
 
   .carouselControls {
     position: absolute;
+    z-index: 1;
     bottom: 24px;
     left: var(--gutter);
     display: flex;
@@ -197,11 +198,11 @@
     width: 46px;
     height: 46px;
     padding: 0;
-    border: 1.5px solid rgb(255 255 255 / 0.88);
+    border: 1.5px solid rgb(255 255 255 / 0.92);
     border-radius: 50%;
-    color: rgb(255 255 255 / 0.96);
-    background: rgb(255 255 255 / 0.08);
-    box-shadow: 0 3px 7px rgb(0 0 0 / 0.28);
+    color: #fff;
+    background: rgb(25 25 25 / 0.78);
+    box-shadow: 0 4px 12px rgb(0 0 0 / 0.38);
     backdrop-filter: blur(14px) saturate(125%);
     -webkit-backdrop-filter: blur(14px) saturate(125%);
     cursor: pointer;
