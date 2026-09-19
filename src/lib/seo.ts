@@ -41,6 +41,12 @@ export function projectListingJsonLd(path: string, project: Project) {
         addressRegion: "Federal Capital Territory",
         addressCountry: "NG",
       },
+      geo: {
+        "@type": "GeoCoordinates",
+        latitude: project.coordinates.latitude,
+        longitude: project.coordinates.longitude,
+      },
+      hasMap: `https://www.google.com/maps?q=${project.coordinates.latitude},${project.coordinates.longitude}`,
       additionalProperty: [
         { "@type": "PropertyValue", name: "Neighbourhood", value: neighbourhood },
         { "@type": "PropertyValue", name: "Property type", value: project.type },

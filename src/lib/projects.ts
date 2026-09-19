@@ -14,6 +14,10 @@ export type Project = {
   slug: string;
   name: string;
   location: string;
+  coordinates: {
+    latitude: number;
+    longitude: number;
+  };
   /** Unit description, e.g. "4-Bedroom Terrace Duplexes". */
   type: string;
   /** Rendered verbatim. Do not prepend "From" — it is already here if wanted. */
@@ -31,6 +35,7 @@ export const PROJECTS: Project[] = [
     slug: "midtown-terraces",
     name: "The Midtown Terraces",
     location: "Gwarinpa, Abuja, Nigeria",
+    coordinates: { latitude: 9.1191331, longitude: 7.3799771 },
     type: "4-Bedroom Terrace Duplexes",
     priceLabel: "From ₦275M",
     completion: "Q4 2026",
@@ -44,6 +49,7 @@ export const PROJECTS: Project[] = [
     slug: "the-urban-nest",
     name: "The Urban Nest",
     location: "Wuse Zone 7, Abuja, Nigeria",
+    coordinates: { latitude: 9.0522984, longitude: 7.4547366 },
     type: "4-Bedroom Terrace Duplexes",
     priceLabel: "₦498M",
     completion: "Q4 2027",
