@@ -68,6 +68,10 @@
   background: var(--color-accent);
 }
 
+.tabOn:hover {
+  background: #78b7c9;
+}
+
 .tab:focus-visible {
   outline: 2px solid var(--color-carbon);
   outline-offset: 2px;
