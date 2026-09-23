@@ -49,7 +49,7 @@ export const PROJECTS: Project[] = [
     slug: "the-urban-nest",
     name: "The Urban Nest",
     location: "Wuse Zone 7, Abuja, Nigeria",
-    coordinates: { latitude: 9.0522984, longitude: 7.4547366 },
+    coordinates: { latitude: 9.0523333, longitude: 7.4548611 },
     type: "4-Bedroom Terrace Duplexes",
     priceLabel: "₦498M",
     completion: "Q4 2027",
