@@ -44,6 +44,9 @@ function SlideImage({
     alt: slide.imageAlt,
     sizes: "100vw",
     quality: 75,
+    // The opening frame is the page's LCP image. It must begin downloading
+    // immediately; the remaining carousel images can wait their turn.
+    loading: slideIndex === 0 ? ("eager" as const) : ("lazy" as const),
     fetchPriority: slideIndex === 0 ? ("high" as const) : ("auto" as const),
   };
   const {

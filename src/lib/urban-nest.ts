@@ -290,8 +290,8 @@ export const PAYMENT: Payment = {
     { stage: "Finishes and Painting", instalment: "~ 20% · 5th Instalment ₦98M", duration: "3 Months", status: "Upcoming" },
   ],
   terms: [
-    "All payments are tied to documented milestone completion. Full records of concluded milestones are made available to every investor on entry.",
-    "Investors entering after completed milestones are brought in at the project’s current position, with the instalments of prior phases incorporated into the entry commitment. Remaining instalments follow the standard schedule outlined above.",
+    "You pay as each project stage is completed, with records of completion provided when you join.",
+    "If you join later, your first payment includes all completed stages and the rest follows the schedule above.",
   ],
 };
 
