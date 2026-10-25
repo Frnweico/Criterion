@@ -102,6 +102,14 @@ html {
   color: var(--color-platinum);
 }
 
+.formStatus {
+  min-height: 1.4em;
+  margin: 16px 0 0;
+  font-size: 14px;
+  line-height: 1.4;
+  color: var(--color-platinum);
+}
+
 /* Only one label is present at a time — `display: none` keeps the hidden one
    out of the accessibility tree too, so a screen reader hears a single button
    rather than two submit controls. */

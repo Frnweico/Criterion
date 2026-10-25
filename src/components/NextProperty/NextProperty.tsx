@@ -10,18 +10,23 @@ export default function NextProperty({ name, href }: { name: string; href: strin
 
   return (
     <nav className={styles.section} aria-label="Explore another property">
-      <Link className={`${menuStyles.latest} ${styles.mobileCard}`} href={href} aria-label={`Explore ${name}`}>
-        <div className={menuStyles.latestText}>
-          <p className={menuStyles.latestLabel}>Also by Criterion Homes</p>
-          <div className={menuStyles.latestMeta}>
-            <p className={menuStyles.latestLocation}>{project.location}</p>
-            <p className={menuStyles.latestName}>{name}</p>
+      <div className={styles.mobileCard}>
+        <Link className={styles.mobileCardMain} href={href} aria-label={`Explore ${name}`}>
+          <div className={menuStyles.latestText}>
+            <p className={menuStyles.latestLabel}>Also by Criterion Homes</p>
+            <div className={menuStyles.latestMeta}>
+              <p className={menuStyles.latestLocation}>{project.location}</p>
+              <p className={menuStyles.latestName}>{name}</p>
+            </div>
           </div>
-        </div>
-        <div className={`${menuStyles.latestFigure} ${styles.mobileFigure}`}>
-          <Image src={project.image} alt={project.imageAlt} fill sizes="142px" className={menuStyles.latestImage} />
-        </div>
-      </Link>
+          <div className={`${menuStyles.latestFigure} ${styles.mobileFigure}`}>
+            <Image src={project.image} alt={project.imageAlt} fill sizes="142px" className={menuStyles.latestImage} />
+          </div>
+        </Link>
+        <Link className={styles.mobileExplore} href={href}>
+          Explore Project
+        </Link>
+      </div>
       <div className={styles.desktopContent}>
       <Link className={styles.imageLink} href={href} aria-label={`Explore ${name}`}>
         <Image src={project.image} alt={project.imageAlt} fill sizes="(min-width: 1024px) calc(100vw - 80px), calc(100vw - 40px)" className={styles.image} />

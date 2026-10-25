@@ -25,6 +25,8 @@ export type Project = {
   completion: string;
   /** Build progress, shown on the homepage card only. */
   stage: string;
+  /** Availability replaces build progress wherever a release is sold out. */
+  availability?: string;
   description: string;
   image: string;
   imageAlt: string;
@@ -37,7 +39,7 @@ export const PROJECTS: Project[] = [
     location: "Gwarinpa, Abuja, Nigeria",
     coordinates: { latitude: 9.1191331, longitude: 7.3799771 },
     type: "4-Bedroom Terrace Duplexes",
-    priceLabel: "From ₦275M",
+    priceLabel: "From \u20a6275M",
     completion: "Q4 2026",
     stage: "Stage 4/5",
     description:
@@ -51,9 +53,10 @@ export const PROJECTS: Project[] = [
     location: "Wuse Zone 7, Abuja, Nigeria",
     coordinates: { latitude: 9.0523333, longitude: 7.4548611 },
     type: "4-Bedroom Terrace Duplexes",
-    priceLabel: "₦498M",
+    priceLabel: "\u20a6498M",
     completion: "Q4 2027",
     stage: "Stage 2/5",
+    availability: "Sold out",
     description:
       "Located in the highly connected district of Wuse Zone 7, The Urban Nest provides a secure, low-density residential base. The design prioritizes a deliberately quiet way of living without sacrificing citywide access.",
     image: "/images/urban-nest-hero.webp",

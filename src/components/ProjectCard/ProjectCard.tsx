@@ -10,13 +10,17 @@ type Props = {
 /**
  * A development card, used on the homepage's Current Developments section.
  *
- * Price, stage and completion all come from `projects.ts` rather than being
- * typed in here — the Figma frames still carry the superseded figures
+ * Price, stage (or availability) and completion all come from `projects.ts`
+ * rather than being typed in here - the Figma frames still carry superseded figures
  * (From 55Million / Q4 2027 and From 80Million / Q2 2028), and hardcoding them
  * is what let the homepage and Projects page disagree in the first place.
  */
 export default function ProjectCard({ project }: Props) {
-  const facts = [project.priceLabel, project.stage, project.completion];
+  const facts = [
+    project.priceLabel,
+    project.availability ?? project.stage,
+    project.completion,
+  ];
 
   return (
     <Link href={`/projects/${project.slug}`} className={styles.card}>
@@ -41,7 +45,9 @@ export default function ProjectCard({ project }: Props) {
         {facts.map((fact, index) => (
           <span key={fact} className={styles.fact}>
             {index > 0 && <span className={styles.divider} aria-hidden />}
-            {fact}
+            {fact === project.availability ? (
+              <strong className={styles.availability}>{fact}</strong>
+            ) : fact}
           </span>
         ))}
       </p>

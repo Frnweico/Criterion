@@ -214,3 +214,17 @@
     font-size: 36px;
   }
 }
+
+
+.availability {
+  width: fit-content;
+  margin: 0;
+  padding: 6px 10px;
+  border: 1px solid currentColor;
+  color: var(--color-heading);
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}

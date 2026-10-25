@@ -1,15 +1,15 @@
 import { pageMetadata, projectListingJsonLd } from "@/lib/seo";
 import type { Metadata } from "next";
 import Image from "next/image";
+import Link from "next/link";
 import Breadcrumb from "@/components/Breadcrumb/Breadcrumb";
-import ChecklistSection from "@/components/ChecklistSection/ChecklistSection";
 import Button from "@/components/Button/Button";
+import ChecklistSection from "@/components/ChecklistSection/ChecklistSection";
 import FloorPlan from "@/components/FloorPlan/FloorPlan";
 import Footer from "@/components/Footer/Footer";
 import Gallery from "@/components/Gallery/Gallery";
 import NextProperty from "@/components/NextProperty/NextProperty";
 import LocationStory from "@/components/LocationStory/LocationStory";
-import PaymentPlan from "@/components/PaymentPlan/PaymentPlan";
 import ReasonsList from "@/components/ReasonsList/ReasonsList";
 import ScrollStory from "@/components/ScrollStory/ScrollStory";
 import SectionHeader from "@/components/SectionHeader/SectionHeader";
@@ -25,20 +25,18 @@ import {
   LOCATION_POINTS,
   LOCATION_QUOTE,
   PAYMENT,
-  PAYMENT_INTRO,
   PHILOSOPHY,
   PHILOSOPHY_INTRO,
   PROXIMITY,
   REASONS,
   SPECIFICATION,
   URBAN_NEST_TAGLINE,
-  VIEWING_INTRO,
 } from "@/lib/urban-nest";
 import styles from "./urban-nest.module.css";
 
 const project = getProject("the-urban-nest")!;
 
-export const metadata: Metadata = pageMetadata("/projects/the-urban-nest", "The Urban Nest in Wuse, Abuja", "Explore The Urban Nest: 4-bedroom terrace duplexes in Wuse Zone 7, Abuja, designed for quiet living with convenient city access.", "/images/urban-nest-hero.webp");
+export const metadata: Metadata = pageMetadata("/projects/the-urban-nest", "The Urban Nest in Wuse, Abuja", "The Urban Nest is fully sold out. Explore its design and construction progress in Wuse Zone 7, Abuja, with projected completion in Q4 2027.", "/images/urban-nest-hero.webp");
 
 /**
  * A replica of the Midtown Terraces page — same sections, same components,
@@ -81,10 +79,16 @@ export default function UrbanNestPage() {
                   <br />
                   {project.name}
                 </h1>
+                <p className={styles.heroPrice}>{project.priceLabel}</p>
+                {project.availability ? (
+                  <p className={styles.heroAvailability}>
+                    {project.availability}
+                  </p>
+                ) : null}
               </div>
 
-              <a href="#viewing" className={styles.heroLink}>
-                Book a private viewing
+              <a href="#availability" className={styles.heroLink}>
+                Explore other available homes
               </a>
             </div>
 
@@ -195,7 +199,7 @@ export default function UrbanNestPage() {
         <section className={styles.reasons} aria-labelledby="reasons-heading">
           <div className={styles.reasonsInner}>
             <h2 id="reasons-heading" className={styles.sectionHeading}>
-              Why buy into {project.name}?
+              The thinking behind {project.name}
             </h2>
             <ReasonsList reasons={REASONS} />
           </div>
@@ -206,53 +210,59 @@ export default function UrbanNestPage() {
           <FloorPlan floors={FLOORS} projectName={project.name} />
         </section>
 
-        {/* --- Payment plan -------------------------------------------------
-            No semi-finished tier — Urban Nest's frame has no equivalent to
-            Midtown's box, so the field is simply omitted. */}
-        <section className={styles.payment} aria-labelledby="payment-heading">
-          <PaymentPlan
-            payment={PAYMENT}
-            intro={PAYMENT_INTRO}
-            projectName={project.name}
-            completion={project.completion}
-          />
+        <section className={styles.progress} aria-labelledby="progress-heading">
+          <div className={styles.progressHead}>
+            <div>
+              <p className={styles.progressLabel}>Construction record</p>
+              <h2 id="progress-heading" className={styles.sectionHeading}>
+                Construction progress
+              </h2>
+            </div>
+            <p className={styles.progressCompletion}>
+              Projected completion <strong>{project.completion}</strong>
+            </p>
+          </div>
+          <p className={styles.progressIntro}>
+            The Urban Nest is fully sold out. Follow the construction milestones
+            as the development takes shape.
+          </p>
+          <table className={styles.progressTable}>
+            <caption className="visually-hidden">
+              Construction milestones for The Urban Nest
+            </caption>
+            <thead>
+              <tr><th scope="col">Construction milestone</th><th scope="col">Status</th></tr>
+            </thead>
+            <tbody>
+              {PAYMENT.milestones.map((milestone) => (
+                <tr key={milestone.stage}>
+                  <th scope="row">{milestone.stage}</th>
+                  <td>{milestone.status}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </section>
 
-        {/* --- Request a viewing --------------------------------------------
-            Only one button here — Urban Nest's frame carries no product-paper
-            download, and no PDF exists for this project. */}
-        <section id="viewing" className={styles.viewing} aria-labelledby="viewing-heading">
+        {/* --- Available homes -----------------------------------------------
+            This development is sold out, so enquiries lead people to the
+            available release and the newsletter rather than a viewing form. */}
+        <section id="availability" className={styles.viewing} aria-labelledby="availability-heading">
           <div className={styles.viewingCard}>
             <div className={styles.viewingInner}>
-              <h2 id="viewing-heading" className={styles.viewingHeading}>
-                Request a Private Viewing
+              <h2 id="availability-heading" className={styles.viewingHeading}>
+                Explore available homes
               </h2>
-              <p className={styles.viewingIntro}>{VIEWING_INTRO}</p>
-
-              {/* No destination yet — see TODO.md. */}
-              <form className={styles.form}>
-                {[
-                  { name: "name", label: "Full Name", type: "text", autoComplete: "name" },
-                  { name: "email", label: "Email", type: "email", autoComplete: "email" },
-                  { name: "phone", label: "Phone Number", type: "tel", autoComplete: "tel" },
-                ].map((field) => (
-                  <label key={field.name} className={styles.field}>
-                    <span className="visually-hidden">{field.label}</span>
-                    <input
-                      type={field.type}
-                      name={field.name}
-                      placeholder={field.label}
-                      autoComplete={field.autoComplete}
-                      required
-                      className={styles.input}
-                    />
-                  </label>
-                ))}
-
-                <div className={styles.formActions}>
-                  <Button text="Request viewing" type="submit" />
-                </div>
-              </form>
+              <p className={styles.availabilityCopy}>
+                The Urban Nest is fully sold out. Explore The Midtown Terraces
+                for currently available homes.
+              </p>
+              <div className={styles.availabilityActions}>
+                <Button text="Explore The Midtown Terraces" href="/projects/midtown-terraces" />
+                <Link className={styles.newsletterLink} href="/approach#signup-title">
+                  Sign up to our newsletter
+                </Link>
+              </div>
             </div>
 
             {/* Decorative — same shared outline mark Midtown uses (9500:4981

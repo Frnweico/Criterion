@@ -5,7 +5,7 @@ import Header from "./Header";
 
 const LIGHT_HEADER_PATHS = [
   "/approach",
-  "/blog",
+  "/insights",
   "/contact",
   "/news",
   "/projects",

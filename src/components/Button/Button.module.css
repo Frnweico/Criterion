@@ -12,6 +12,18 @@
   white-space: nowrap;
 }
 
+/* Editorial actions may contain longer, natural-language labels. They keep
+   their intended sentence case and can wrap inside the available width rather
+   than creating horizontal overflow on small screens. */
+.sentenceCase {
+  max-width: 100%;
+  text-align: center;
+  text-transform: none;
+  white-space: normal;
+}
+
+.sentenceCase .label { min-width: 0; }
+
 /* On narrow screens a long label plus 40px of padding either side can exceed
    the viewport — "Download the buyer checklist" measured 374px against a 375px
    screen. Wrapping lets it fit instead of forcing a horizontal scroll on the

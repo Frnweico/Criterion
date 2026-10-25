@@ -18,7 +18,7 @@ export const NAV: NavItem[] = [
   { label: "Our approach", href: "/approach" },
   { label: "Projects", href: "/projects" },
   { label: "News", href: "/news" },
-  { label: "Blog", href: "/blog" },
+  { label: "Insights", href: "/insights" },
   { label: "Contact us", href: "/contact" },
 ];
 

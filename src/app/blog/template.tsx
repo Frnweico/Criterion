@@ -2,7 +2,7 @@ import type { ReactNode } from "react";
 import type {} from "react/canary";
 import { ViewTransition } from "react";
 
-/** Covers Blog archive-to-article and article-to-article navigation. */
+/** Retained for the legacy route while it redirects to Insights. */
 export default function BlogTemplate({ children }: { children: ReactNode }) {
   return (
     <ViewTransition

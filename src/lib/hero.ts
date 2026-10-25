@@ -9,6 +9,7 @@ export type HeroSlide = {
   body: string;
   /** Pipe-separated facts shown under the title. Slide 1 has none. */
   meta?: string[];
+  availability?: string;
   ctaText: string;
   ctaHref: string;
   /** Outlined second CTA. Desktop only — the mobile frames show one button. */
@@ -72,6 +73,7 @@ export const HERO_SLIDES: HeroSlide[] = [
   {
     id: urbanNest.slug,
     title: urbanNest.name,
+    availability: urbanNest.availability,
     body: "A considered approach to modern terrace living, built for location, structure, and return.",
     meta: [
       "Wuse Zone 7, Abuja",
@@ -79,10 +81,10 @@ export const HERO_SLIDES: HeroSlide[] = [
       urbanNest.priceLabel,
       urbanNest.completion,
     ],
-    ctaText: "View The Urban Nest",
+    ctaText: "Explore the development",
     ctaHref: `/projects/${urbanNest.slug}`,
-    secondaryCtaText: SECONDARY_CTA,
-    secondaryCtaHref: SECONDARY_CTA_HREF,
+    secondaryCtaText: "Explore The Midtown Terraces",
+    secondaryCtaHref: "/projects/midtown-terraces",
     image: "/images/Webp images/hero-slide-3-v2 - Copy.webp",
     imageAlt: urbanNest.imageAlt,
   },

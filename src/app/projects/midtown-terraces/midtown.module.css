@@ -363,6 +363,14 @@
   margin-top: 28px;
 }
 
+.formStatus {
+  min-height: 1.4em;
+  margin: 12px 0 0;
+  font-size: 14px;
+  line-height: 1.4;
+  color: var(--color-body);
+}
+
 .field {
   display: block;
   width: 100%;

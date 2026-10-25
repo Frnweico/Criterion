@@ -4,8 +4,38 @@
   background: var(--color-platinum);
 }
 .desktopContent { display: none; }
-.mobileCard:focus-visible { outline: 2px solid currentColor; outline-offset: 6px; }
+.mobileCard {
+  display: flex;
+  flex-direction: column;
+  min-height: 178px;
+  padding: 10px;
+  background: #f1f1f1;
+}
+.mobileCardMain {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  justify-content: space-between;
+  color: var(--color-carbon);
+  text-decoration: none;
+}
 .mobileCard .mobileFigure { max-width: 40%; }
+.mobileExplore {
+  width: fit-content;
+  margin-top: auto;
+  padding-top: 20px;
+  padding-bottom: 1px;
+  border-bottom: 1px solid currentColor;
+  color: var(--color-carbon);
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+.mobileCardMain:focus-visible,
+.mobileExplore:focus-visible { outline: 2px solid currentColor; outline-offset: 4px; }
 @media (min-width: 1024px) {
   .section .mobileCard { display: none; }
   .desktopContent { display: block; }
