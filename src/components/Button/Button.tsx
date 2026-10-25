@@ -9,12 +9,14 @@ import styles from "./Button.module.css";
 type ButtonVariant = "secondary" | "small" | "outline" | "outlineDark";
 
 type CommonProps = {
-  /** Button label. Rendered uppercase by CSS, so pass it in normal case. */
+  /** Button label. Most buttons are uppercase; sentence case is opt-in. */
   text: string;
   /** "secondary" is the large default; "small" is the compact one. */
   variant?: ButtonVariant;
   /** The diamond icon. Only ever shown on the "secondary" variant. */
   icon?: boolean;
+  /** Keeps editorial actions such as "Read insight" in sentence case. */
+  sentenceCase?: boolean;
   className?: string;
 };
 
@@ -36,16 +38,23 @@ type ActionProps = CommonProps & {
   href?: never;
   onClick?: () => void;
   type?: "button" | "submit";
+  disabled?: boolean;
 };
 
 export default function Button({
   text,
   variant = "secondary",
   icon = true,
+  sentenceCase = false,
   className,
   ...rest
 }: LinkProps | ActionProps) {
-  const classes = [styles.button, styles[variant], className]
+  const classes = [
+    styles.button,
+    styles[variant],
+    sentenceCase ? styles.sentenceCase : undefined,
+    className,
+  ]
     .filter(Boolean)
     .join(" ");
 
@@ -95,10 +104,10 @@ export default function Button({
     );
   }
 
-  const { onClick, type = "button" } = rest as ActionProps;
+  const { onClick, type = "button", disabled = false } = rest as ActionProps;
 
   return (
-    <button className={classes} onClick={onClick} type={type}>
+    <button className={classes} onClick={onClick} type={type} disabled={disabled}>
       {content}
     </button>
   );

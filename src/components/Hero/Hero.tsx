@@ -202,6 +202,9 @@ export default function Hero() {
                   {/* Only the first slide is the page's h1. The other two are
                       project names, not the page's subject — three h1s on one
                       page muddies both the document outline and SEO. */}
+                  {slide.availability ? (
+                    <p className={styles.availability}>{slide.availability}</p>
+                  ) : null}
                   {slideIndex === 0 ? (
                     <h1 className={`type-h1 ${styles.title}`}>{slide.title}</h1>
                   ) : (

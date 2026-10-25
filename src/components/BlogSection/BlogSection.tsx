@@ -6,12 +6,12 @@ import { IMAGE_BLUR_PLACEHOLDER } from "@/lib/image-placeholder";
 import { BLOG_GRID, formatPostDate } from "@/lib/blog";
 import styles from "./BlogSection.module.css";
 
-/** "Perspectives on Home and Value" — the three most recent posts. */
+/** "Perspectives on Home and Value" - the three most recent insights. */
 export default function BlogSection() {
   return (
     <section className={styles.section} aria-labelledby="blog-heading">
       <div className={styles.inner}>
-        <SectionHeader text="Blogs" />
+        <SectionHeader text="Insights" />
 
         <h2 id="blog-heading" className={styles.heading}>
           Perspectives on Home and Value
@@ -20,7 +20,7 @@ export default function BlogSection() {
         <ul className={styles.cards} data-motion-stagger>
           {BLOG_GRID.slice(0, 3).map((post) => (
             <li key={post.slug}>
-              <Link href={`/blog/${post.slug}`} className={styles.card}>
+              <Link href={`/insights/${post.slug}`} className={styles.card}>
                 <div className={styles.figure}>
                   <Image
                     src={post.image}
@@ -45,8 +45,8 @@ export default function BlogSection() {
         </ul>
 
         <Button
-          text="Explore more stories"
-          href="/blog"
+          text="Explore more insights"
+          href="/insights"
           variant="outlineDark"
           icon={false}
           className={styles.more}

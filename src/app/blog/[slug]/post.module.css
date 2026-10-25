@@ -4,7 +4,7 @@
 
 .articleHeader {
   display: grid;
-  gap: 48px;
+  gap: 16px;
   justify-items: center;
   padding: 56px var(--gutter) 48px;
   text-align: center;
@@ -12,18 +12,33 @@
 
 .date {
   font-size: 12px;
-  font-weight: 400;
+  font-weight: 500;
   line-height: 1.4;
-  color: var(--color-body);
+  color: var(--color-carbon);
+}
+
+.articleMeta {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.author {
+  margin: 0;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--color-carbon);
 }
 
 .articleHeader h1 {
   max-width: 353px;
   margin: 0;
   font-size: 40px;
-  font-weight: 400;
+  font-weight: 500;
   line-height: 0.96;
   letter-spacing: -0.06em;
+  color: var(--color-carbon);
 }
 
 .heroImageWrap {
@@ -47,9 +62,10 @@
 .body h2 {
   margin: 0 0 24px;
   font-size: 16px;
-  font-weight: 400;
+  font-weight: 700;
   line-height: 1.3;
   text-transform: uppercase;
+  color: var(--color-carbon);
 }
 
 .body p {
@@ -62,6 +78,42 @@
 }
 
 .body p + p { margin-top: 21px; }
+
+.articleCta {
+  margin-top: 40px !important;
+}
+
+.articleCta a {
+  display: inline-block;
+  max-width: 100%;
+  padding-bottom: 4px;
+  border-bottom: 1px solid currentColor;
+  color: var(--color-carbon);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.35;
+  text-decoration: none;
+  text-transform: none;
+}
+
+.articleCta a:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 4px;
+}
+
+.body ul {
+  display: block;
+  margin: 21px 0 0;
+  padding-left: 1.25em;
+  list-style: disc;
+  font-size: 16px;
+  line-height: 1.3;
+  letter-spacing: -0.02em;
+}
+
+.body p + ul { margin-top: 21px; }
+
+.body li + li { margin-top: 8px; }
 
 .standfirst {
   margin-bottom: 25px !important;
@@ -219,8 +271,9 @@
   .breadcrumbWrap nav { background: none; }
   .breadcrumbWrap nav ol { padding: 15px var(--gutter); }
   .breadcrumbWrap nav * { font-size: 10px; }
-  .articleHeader { gap: 36px; padding: 97px var(--gutter) 42px; }
-  .date { font-size: 16px; }
+  .articleHeader { gap: 20px; padding: 97px var(--gutter) 42px; }
+  .date,
+  .author { font-size: 16px; }
   .articleHeader h1 { max-width: none; font-size: 64px; }
   .heroImageWrap { height: auto; aspect-ratio: 2.45 / 1; }
   .body { max-width: 840px; padding-top: 72px; }
@@ -228,6 +281,9 @@
   .body h2 { margin-bottom: 22px; font-size: 28px; }
   .body p { font-size: 20px; line-height: 1.4; }
   .body p + p { margin-top: 17px; }
+  .body ul { margin-top: 17px; font-size: 20px; line-height: 1.4; }
+  .body li + li { margin-top: 10px; }
+  .articleCta { margin-top: 48px !important; }
   .standfirst { margin-bottom: 34px !important; }
   .subscribe { gap: 31px; margin-top: 112px; padding: 0 var(--gutter); }
   .subscribe h2 { font-size: 36px; }

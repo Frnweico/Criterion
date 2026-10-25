@@ -9,6 +9,8 @@ export type Milestone = {
 
 export type Payment = {
   unitPrice: string;
+  /** Only shown when a development is no longer available. */
+  availability?: string;
   /** Not every project has an off-plan tier — Urban Nest's frame has none. */
   semiFinished?: string;
   milestones: Milestone[];
@@ -30,7 +32,7 @@ type Props = {
 /**
  * Figma 9342:5218. Heading and intro on the left with the price box opposite;
  * the milestone table sits under both, indented to x 297. Completed stages
- * are greyed and their status set bold, which is how the frame marks them.
+ * recede, while the current underway stage is emphasised.
  */
 export default function PaymentPlan({
   payment,
@@ -68,6 +70,15 @@ export default function PaymentPlan({
             </dt>
             <dd className={styles.priceValue}>{completion}</dd>
           </div>
+          {payment.availability && (
+            <div className={styles.priceRow}>
+              <dt className={styles.priceLabel}>
+                <span className={styles.marker} aria-hidden />
+                Availability
+              </dt>
+              <dd className={styles.priceValue}>{payment.availability}</dd>
+            </div>
+          )}
         </dl>
       </div>
 
@@ -87,10 +98,17 @@ export default function PaymentPlan({
           <tbody>
             {payment.milestones.map((row) => {
               const done = row.status === "Completed";
+              const underway = row.status === "Underway";
               return (
                 <tr
                   key={row.stage}
-                  className={done ? styles.rowDone : undefined}
+                  className={
+                    done
+                      ? styles.rowDone
+                      : underway
+                        ? styles.rowUnderway
+                        : undefined
+                  }
                 >
                   <th scope="row" className={styles.stage}>
                     {row.stage}

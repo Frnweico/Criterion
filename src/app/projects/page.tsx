@@ -67,6 +67,9 @@ export default function ProjectsPage() {
                       </Link>
                     </h2>
 
+                    {project.availability ? (
+                      <p className={styles.availability}>{project.availability}</p>
+                    ) : null}
                     <p className={styles.description}>{project.description}</p>
                   </div>
 

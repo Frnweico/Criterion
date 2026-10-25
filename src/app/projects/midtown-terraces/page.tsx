@@ -2,7 +2,6 @@ import { pageMetadata, projectListingJsonLd } from "@/lib/seo";
 import type { Metadata } from "next";
 import Image from "next/image";
 import Breadcrumb from "@/components/Breadcrumb/Breadcrumb";
-import Button from "@/components/Button/Button";
 import ChecklistSection from "@/components/ChecklistSection/ChecklistSection";
 import FloorPlan from "@/components/FloorPlan/FloorPlan";
 import Footer from "@/components/Footer/Footer";
@@ -10,6 +9,7 @@ import Gallery from "@/components/Gallery/Gallery";
 import NextProperty from "@/components/NextProperty/NextProperty";
 import LocationStory from "@/components/LocationStory/LocationStory";
 import PaymentPlan from "@/components/PaymentPlan/PaymentPlan";
+import PrivateViewingForm from "@/components/PrivateViewingForm/PrivateViewingForm";
 import ReasonsList from "@/components/ReasonsList/ReasonsList";
 import ScrollStory from "@/components/ScrollStory/ScrollStory";
 import SectionHeader from "@/components/SectionHeader/SectionHeader";
@@ -245,37 +245,14 @@ export default function MidtownTerracesPage() {
               </h2>
               <p className={styles.viewingIntro}>{VIEWING_INTRO}</p>
 
-              {/* No destination yet — see TODO.md. */}
-              <form className={styles.form}>
-                {[
-                  { name: "name", label: "Full Name", type: "text", autoComplete: "name" },
-                  { name: "email", label: "Email", type: "email", autoComplete: "email" },
-                  { name: "phone", label: "Phone Number", type: "tel", autoComplete: "tel" },
-                ].map((field) => (
-                  <label key={field.name} className={styles.field}>
-                    <span className="visually-hidden">{field.label}</span>
-                    <input
-                      type={field.type}
-                      name={field.name}
-                      placeholder={field.label}
-                      autoComplete={field.autoComplete}
-                      required
-                      className={styles.input}
-                    />
-                  </label>
-                ))}
-
-                <div className={styles.formActions}>
-                  <Button text="Request viewing" type="submit" />
-                  <Button
-                    text="Download product paper"
-                    href="/midtown-terraces-product-paper.pdf"
-                    newTab
-                    variant="outlineDark"
-                    icon={false}
-                  />
-                </div>
-              </form>
+              <PrivateViewingForm
+                formClassName={styles.form}
+                fieldClassName={styles.field}
+                inputClassName={styles.input}
+                actionsClassName={styles.formActions}
+                statusClassName={styles.formStatus}
+                productPaperHref="/midtown-terraces-product-paper.pdf"
+              />
             </div>
 
             {/* Decorative — the mark drawn as outline (9500:4981). */}

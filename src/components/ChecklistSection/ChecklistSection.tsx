@@ -1,17 +1,50 @@
+"use client";
+
+import { FormEvent, useState } from "react";
 import Button from "@/components/Button/Button";
+import { trackLead } from "@/lib/analytics";
 import styles from "./ChecklistSection.module.css";
 
 /**
  * "Start with the right questions" — the buyer-checklist capture band.
- *
- * The form has no destination yet; there's no newsletter provider chosen, so
- * it renders and validates but does not submit. Logged in TODO.md.
  *
  * Note the frames disagree on fields: desktop asks for Name and Email, the
  * mobile homepage asks for Email only. Both are built with Name and Email,
  * since what you collect shouldn't depend on the visitor's screen size.
  */
 export default function ChecklistSection() {
+  const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">(
+    "idle",
+  );
+
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    const form = event.currentTarget;
+    const formData = new FormData(form);
+    setStatus("submitting");
+
+    try {
+      const response = await fetch("/api/buyer-checklist", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: formData.get("name"),
+          email: formData.get("email"),
+          phone: formData.get("phone"),
+        }),
+      });
+
+      if (!response.ok) throw new Error("Buyer checklist request failed");
+
+      trackLead("buyer-checklist");
+      form.reset();
+      setStatus("success");
+    } catch {
+      setStatus("error");
+    }
+  };
+
   return (
     <section
       id="buyer-checklist"
@@ -29,7 +62,7 @@ export default function ChecklistSection() {
             before committing to a property.
           </p>
 
-          <form className={styles.form}>
+          <form className={styles.form} onSubmit={handleSubmit}>
             <label className={styles.field}>
               <span className={styles.srOnly}>Name</span>
               <input
@@ -38,6 +71,7 @@ export default function ChecklistSection() {
                 placeholder="Name"
                 autoComplete="name"
                 className={styles.input}
+                disabled={status === "submitting"}
               />
             </label>
 
@@ -50,6 +84,7 @@ export default function ChecklistSection() {
                 autoComplete="email"
                 required
                 className={styles.input}
+                disabled={status === "submitting"}
               />
             </label>
 
@@ -62,6 +97,7 @@ export default function ChecklistSection() {
                 autoComplete="tel"
                 inputMode="tel"
                 className={styles.input}
+                disabled={status === "submitting"}
               />
             </label>
 
@@ -72,12 +108,18 @@ export default function ChecklistSection() {
                 variant="outline"
                 type="submit"
                 className={styles.ctaMobile}
+                disabled={status === "submitting"}
               />
               <p className={styles.fineprint}>
                 We&rsquo;ll send the checklist and relevant real estate
                 insights. No spam.
               </p>
             </div>
+            <p className={styles.formStatus} aria-live="polite">
+              {status === "success" && "Your details have been received."}
+              {status === "error" &&
+                "We could not receive your details just now. Please try again."}
+            </p>
           </form>
         </div>
       </div>

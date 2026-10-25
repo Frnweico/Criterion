@@ -36,7 +36,7 @@ export type SpecRow = { label: string; value: string };
  */
 export const SPECIFICATION: SpecRow[] = [
   { label: "Property Type", value: "Terrace Duplexes" },
-  { label: "Available Units", value: "2/3" },
+  { label: "Available Units", value: "Sold out" },
   { label: "Bedrooms", value: "4" },
   { label: "Floors", value: "3" },
   { label: "Location", value: "Wuse, Zone 7, Abuja." },
@@ -213,29 +213,29 @@ export const MAP_CATEGORIES = [
  */
 export const REASONS: Reason[] = [
   {
-    id: "un-aspirational-lifestyle",
-    title: "Aspirational Lifestyle",
-    body: "A vision of living for those with a cultivated taste, where every detail reflects discernment, and your space embodies the assured confidence of distinction.",
+    id: "un-everyday-living",
+    title: "Everyday Living",
+    body: "The layouts bring living, private and outdoor spaces together around everyday routines.",
   },
   {
-    id: "un-coveted-address",
-    title: "A Place of Standing",
-    body: "Ownership in Wuse Zone 7 places you at a coveted address, where centrality, privacy, and lasting value give the home a quiet sense of standing.",
+    id: "un-central-setting",
+    title: "A Central Setting",
+    body: "The Wuse Zone 7 address connects the development to established services and key parts of Abuja.",
   },
   {
-    id: "un-exclusivity",
-    title: "Exclusivity and Privacy",
-    body: "A rare property in a prestigious, low-density neighborhood.",
+    id: "un-privacy",
+    title: "Privacy",
+    body: "A low-density residential development in an established neighbourhood.",
   },
   {
-    id: "un-green-inspired",
-    title: "Green-Inspired",
-    body: "Each home is built around lushly landscaped compound spaces to enhance mental well-being, air quality, and aesthetics.",
+    id: "un-outdoor-space",
+    title: "Outdoor Space",
+    body: "Landscaped outdoor areas form part of the development's design.",
   },
   {
-    id: "un-quality-assurance",
-    title: "Quality Assurance",
-    body: "Crafted with enduring masonry and attentive workmanship, upheld by an uncompromising standard of care",
+    id: "un-construction-standard",
+    title: "Construction Standard",
+    body: "The design is supported by deliberate material choices and attention to workmanship.",
   },
 ];
 
@@ -282,12 +282,13 @@ export const PAYMENT_INTRO = {
 /** No semi-finished tier — the frame has no equivalent to Midtown's box. */
 export const PAYMENT: Payment = {
   unitPrice: "NGN 498,000,000",
+  availability: "Sold out",
   milestones: [
-    { stage: "Foundation", instalment: "~ 20% · 1st Instalment ₦100M", duration: "2 Months", status: "In-progress" },
-    { stage: "1st Floor Slab", instalment: "~ 20% · 2nd Instalment ₦100M", duration: "2 Months", status: "Upcoming" },
-    { stage: "2nd Floor Slab", instalment: "~ 20% · 3rd Instalment ₦100M", duration: "2 Months", status: "Upcoming" },
-    { stage: "Roofing and Plastering", instalment: "~ 20% · 4th Instalment ₦100M", duration: "3 Months", status: "Upcoming" },
-    { stage: "Finishes and Painting", instalment: "~ 20% · 5th Instalment ₦98M", duration: "3 Months", status: "Upcoming" },
+    { stage: "Foundation", instalment: "1st Instalment ₦100M", duration: "2 Months", status: "Completed" },
+    { stage: "1st Floor Slab", instalment: "2nd Instalment ₦100M", duration: "2 Months", status: "Completed" },
+    { stage: "2nd Floor Slab", instalment: "3rd Instalment ₦100M", duration: "2 Months", status: "Underway" },
+    { stage: "Roofing and Plastering", instalment: "4th Instalment ₦100M", duration: "3 Months", status: "Upcoming" },
+    { stage: "Finishes and Painting", instalment: "5th Instalment ₦98M", duration: "3 Months", status: "Upcoming" },
   ],
   terms: [
     "You pay as each project stage is completed, with records of completion provided when you join.",

@@ -1,6 +1,7 @@
 export type BlogSection = {
   heading: string;
   paragraphs: string[];
+  items?: string[];
 };
 
 export type BlogPost = {
@@ -12,6 +13,10 @@ export type BlogPost = {
   image: string;
   imageAlt: string;
   body: BlogSection[];
+  cta?: {
+    label: string;
+    href: string;
+  };
 };
 
 export type BlogGridItem = Pick<
@@ -20,6 +25,285 @@ export type BlogGridItem = Pick<
 > & {
   slug?: string;
 };
+
+const APPROVED_INSIGHTS: BlogPost[] = [
+  {
+    slug: "buying-off-plan-gwarinpa-abuja",
+    title: "Buying an Off-Plan Home in Gwarinpa, Abuja? 5 Things to Check Now",
+    excerpt:
+      "Five practical checks to make before committing to an off-plan home in Gwarinpa.",
+    date: "2026-10-20",
+    image: "/images/insights/buying-off-plan-gwarinpa.webp",
+    imageAlt: "The Midtown Terraces under construction in Gwarinpa, Abuja",
+    cta: {
+      label: "Explore The Midtown Terraces",
+      href: "/projects/midtown-terraces",
+    },
+    body: [
+      {
+        heading: "1. Start with life in Gwarinpa",
+        paragraphs: [
+          "You may not be able to experience the finished home yet, but you can already experience where it will be.",
+          "Gwarinpa is an established residential district in Abuja, but streets and estates differ in access, surroundings and activity.",
+          "Where possible, visit at the times you would normally travel. If you cannot visit, ask for a clear address, current photographs and a live virtual walkthrough.",
+        ],
+        items: [
+          "Schools, shopping and healthcare",
+          "Worship and work routes",
+          "Drainage and parking",
+          "Immediate surroundings",
+          "The services your household needs",
+        ],
+      },
+      {
+        heading: "2. Understand what is being built",
+        paragraphs: [
+          "A render helps you picture the finished home, but it should be read alongside the floor plan, approved drawings and specification schedule.",
+          "Check what is included in the property, such as finishes, fittings, parking, services, common areas and any exclusions. These documents provide a clearer reference for what should be delivered.",
+        ],
+      },
+      {
+        heading: "3. Verify the transaction",
+        paragraphs: [
+          "Confirm the company behind the development through the Corporate Affairs Commission.",
+          "A solicitor should also review the following documents. Where necessary, the appropriate authorities can be consulted to verify supporting information.",
+        ],
+        items: [
+          "Title documents",
+          "Survey information",
+          "Relevant transaction documents",
+        ],
+      },
+      {
+        heading: "4. Follow construction and payments",
+        paragraphs: [
+          "You should be able to see what has been completed, what is ongoing and what comes next.",
+          "Ask how construction progress will be documented and how each completed milestone will be confirmed.",
+          "Where payments are linked to construction, the contract should state what must be completed before the next payment becomes due. It should also explain what happens in the event of delays, changes or other issues affecting delivery.",
+        ],
+      },
+      {
+        heading: "5. Know what happens at handover",
+        paragraphs: [
+          "Before committing, ask what handover includes. Keep your contract, payment plan, construction updates and receipts together so you can follow the purchase from reservation to handover.",
+        ],
+        items: [
+          "Final inspection",
+          "Snagging",
+          "Keys",
+          "Utility arrangements",
+          "Outstanding documents",
+        ],
+      },
+      {
+        heading: "The Midtown Terraces in Gwarinpa",
+        paragraphs: [
+          "The Midtown Terraces is a four-unit residential development in Gwarinpa and an example of how these checks can work in practice.",
+          "The property is no longer something buyers can only see in 3D. Three of five construction milestones have been completed in record time: the foundation, first-floor slab and second-floor slab.",
+          "Milestone four, roofing and plastering, is ongoing. Painting and final works will follow, with projected completion in Q4 2026.",
+          "Through Build As You Pay, buyers make five 20% payments, with each payment following a completed construction milestone.",
+        ],
+      },
+    ],
+  },
+  {
+    slug: "buy-property-abuja-from-abroad",
+    title: "How to Buy Property in Abuja From Abroad: What to Verify Before You Commit",
+    excerpt:
+      "A practical process for buyers abroad to verify an Abuja property purchase and follow construction with confidence.",
+    date: "2026-10-20",
+    image: "/images/insights/buy-property-abuja-from-abroad.webp",
+    imageAlt: "Abuja city gateway",
+    cta: {
+      label: "Explore The Midtown Terraces",
+      href: "/projects/midtown-terraces",
+    },
+    body: [
+      {
+        heading: "1. Verify the company, land and development",
+        paragraphs: [
+          "Start by confirming who you are buying from. Check the property developer's registered details through the Corporate Affairs Commission. The company named in the contract should match the legal entity receiving payment.",
+          "Also verify the land records, plot information, survey plan and relevant development approval through the appropriate authorities.",
+          "These checks answer different questions. Together, they help establish who you are buying from, which land the transaction concerns and whether the proposed development is properly documented.",
+        ],
+      },
+      {
+        heading: "2. Put the purchase terms in writing",
+        paragraphs: [
+          "Once you know who you are buying from, make sure the terms of the purchase are clear. Before paying, review the contract, property specifications, payment schedule and projected completion date.",
+          "Keep the reservation documents, contract, payment instructions and receipts in one secure record.",
+        ],
+        items: [
+          "What you are buying",
+          "What is included in the property",
+          "When each payment becomes due",
+          "How construction progress will be reported",
+          "What happens if the work or specifications change",
+        ],
+      },
+      {
+        heading: "3. Follow a clear construction plan",
+        paragraphs: [
+          "If the property is still being built, ask for a defined construction plan. You should be able to understand what has been completed, what comes next and how the work is progressing towards the projected completion date.",
+          "Criterion Homes uses Build As You Pay to give buyers a clearer way to follow their property. Each project is divided into five documented construction milestones, with five 20% payments tied to completed construction milestones.",
+        ],
+      },
+      {
+        heading: "4. Agree how remote updates will work",
+        paragraphs: [
+          "A construction plan is only useful from a distance if you can see how the work is progressing. Agree how often updates will be provided and what each update should contain.",
+          "A local representative can also inspect the site at agreed points in the payment schedule. The purpose is not constant contact. It is to maintain a reliable record when work is completed and another payment becomes due.",
+        ],
+        items: [
+          "The completed construction milestone or current construction stage",
+          "The date of the update",
+          "Dated photographs or video",
+          "The next expected construction stage",
+        ],
+      },
+      {
+        heading: "5. Appoint people who act for you",
+        paragraphs: [
+          "Appoint an independent solicitor to review the transaction and explain what each document means.",
+          "You may also appoint a trusted local representative to attend inspections or meetings on your behalf. Define the person's role clearly. A representative can observe and report, while legal questions should be handled by a qualified professional.",
+        ],
+      },
+      {
+        heading: "6. Give every Abuja visit a purpose",
+        paragraphs: [
+          "If you will be in Abuja during the purchase, use the opportunity to see what remote updates cannot fully show. Arrange the site visit in advance.",
+          "Use the visit to inspect a completed construction milestone, review documents, meet the project team or confirm agreed property specifications. A purposeful visit should answer questions that photographs and video cannot answer on their own.",
+        ],
+      },
+    ],
+  },
+  {
+    slug: "property-developer-due-diligence-nigeria",
+    title: "Property Developer Due Diligence in Nigeria: CAC, Title and Site Checks",
+    excerpt:
+      "The core checks that help confirm a property developer, the land and the approval all support the same transaction.",
+    date: "2026-10-06",
+    image: "/images/insights/property-developer-due-diligence.webp",
+    imageAlt: "A contemporary residential development in Abuja",
+    cta: {
+      label: "Read: How to Buy Property in Abuja From Abroad",
+      href: "/insights/buy-property-abuja-from-abroad",
+    },
+    body: [
+      {
+        heading: "1. Confirm the property developer at the CAC",
+        paragraphs: [
+          "Start with the company selling the property.",
+          "Search for the property developer through the Corporate Affairs Commission. Confirm its registered name and registration details. The name should match the company named in the contract, reservation documents and payment instructions.",
+          "If different company names appear across the documents, ask for an explanation in writing before making a payment.",
+        ],
+      },
+      {
+        heading: "2. Check the land title and plot information",
+        paragraphs: [
+          "A company can be properly registered without owning or controlling the land connected to a development. The land must therefore be checked separately.",
+          "Ask for the title document, plot reference and survey plan. Your solicitor should confirm that the land description matches the property being offered and check whether any registered interest could affect the transaction.",
+          "For property in Abuja, the relevant land records and legal searches are handled through the appropriate FCT land administration channels, including Abuja Geographic Information Systems.",
+        ],
+      },
+      {
+        heading: "3. Make sure the survey information matches the site",
+        paragraphs: [
+          "A survey plan identifies the location and boundaries of the land.",
+          "The coordinates, plot description and other details on the survey plan should correspond with the title documents and the site being presented to you. A qualified professional should verify the plan through the appropriate authority.",
+          "If the documents refer to different plots or produce different locations, the difference should be investigated rather than explained away.",
+        ],
+      },
+      {
+        heading: "4. Confirm the development approval",
+        paragraphs: [
+          "Land ownership and development approval are not the same thing.",
+          "Ask for the approval information connected to the project. Confirm that it covers the type and scale of development being offered and that the approved proposal corresponds with what is being built.",
+          "If the design or use has changed, ask whether the change has also been approved.",
+        ],
+      },
+      {
+        heading: "5. Keep one clear property record",
+        paragraphs: [
+          "Keep the company search, title report, survey information, approval records, contract, payment schedule, receipts and written correspondence together.",
+          "For buyers outside Nigeria, this record is especially important. It allows your solicitor or local representative to report what has been checked, what remains outstanding and what each document confirms.",
+          "Due diligence is not about collecting documents for the sake of it. It is about making sure the company, the land, the survey and the approval all tell the same story.",
+        ],
+      },
+    ],
+  },
+  {
+    slug: "off-plan-payment-plans-nigeria",
+    title: "Off-Plan Payment Plans: Time-Based vs Milestone-Based Payments",
+    excerpt:
+      "What the payment structure should show you about construction progress before the next instalment is due.",
+    date: "2026-09-29",
+    image: "/images/insights/off-plan-payment-plans.webp",
+    imageAlt: "A residential development under construction",
+    cta: {
+      label: "Explore The Midtown Terraces",
+      href: "/projects/midtown-terraces",
+    },
+    body: [
+      {
+        heading: "1. What is a time-based payment plan?",
+        paragraphs: [
+          "A time-based payment plan sets payments by the calendar. After the initial deposit, further instalments may be due monthly, quarterly or on other agreed dates.",
+          "The advantage is predictability. You know when the next payment is coming.",
+          "The concern is that the calendar can move faster than the building. Another instalment may become due even if construction has not progressed as expected.",
+          "Before signing, ask what progress should have been made by each payment date, how that progress will be reported and what happens if construction falls behind.",
+        ],
+      },
+      {
+        heading: "2. What is a milestone-based payment plan?",
+        paragraphs: [
+          "A milestone-based payment plan connects each payment to a defined stage of construction. That could include the foundation, floor slabs, roofing, plastering or final works.",
+          "Instead of another payment becoming due simply because a date has arrived, the next payment follows the completion of an agreed construction milestone.",
+          "The principle is simple: see the work, then make the next payment.",
+          "Each milestone should still be clearly defined. You should know what must be completed, how completion will be documented and who confirms that the work is complete.",
+        ],
+      },
+      {
+        heading: "3. Time-based vs milestone-based payment plans",
+        paragraphs: [
+          "The main difference is what triggers the next payment.",
+          "A time-based payment plan is triggered by an agreed date; a milestone-based plan is triggered by a completed construction milestone.",
+          "Neither structure should be judged on the payment schedule alone. The contract, construction plan, building specifications, documentation and projected completion date still matter.",
+        ],
+      },
+      {
+        heading: "4. Five questions to ask before choosing an off-plan payment plan",
+        paragraphs: [
+          "The answers should not depend only on a conversation with a sales representative. They should appear in the contract or an attached schedule.",
+          "If you are buying from outside Nigeria, also ask how construction updates will be shared. Dated photographs, videos and inspection records can help you verify progress without being physically present.",
+        ],
+        items: [
+          "What are the construction milestones?",
+          "What must be completed at each stage?",
+          "How will completed work be documented?",
+          "What is the projected timeline?",
+          "What happens if construction is delayed?",
+        ],
+      },
+      {
+        heading: "5. How Criterion Homes' Build As You Pay works",
+        paragraphs: [
+          "Criterion Homes uses Build As You Pay to give buyers a clearer way to follow the construction of their property.",
+          "At The Midtown Terraces in Gwarinpa, Abuja, the payment structure is simple: five construction milestones, five payments and 20% per payment.",
+          "Each 20% payment follows the completion of a construction milestone.",
+          "This means the payment plan moves with the building. When a milestone is completed, the buyer can see what has been built before the next 20% payment becomes due.",
+        ],
+        items: [
+          "Foundation",
+          "First-floor slab",
+          "Second-floor slab",
+          "Roofing and plastering",
+          "Painting and final works",
+        ],
+      },
+    ],
+  },
+];
 
 /**
  * Newest first.
@@ -32,7 +316,7 @@ export type BlogGridItem = Pick<
  * newest-first order is used at both sizes — reading order shouldn't depend on
  * screen width.
  */
-export const BLOG_POSTS: BlogPost[] = [
+const LEGACY_INSIGHTS: BlogPost[] = [
   {
     slug: "the-architecture-of-restraint",
     title: "The Architecture of Restraint",
@@ -271,26 +555,16 @@ export function formatPostDate(iso: string): string {
 }
 
 export function getBlogPost(slug: string): BlogPost | undefined {
-  return BLOG_POSTS.find((post) => post.slug === slug);
+  return INSIGHT_POSTS.find((post) => post.slug === slug);
 }
 
-const ARCHITECTURE = BLOG_POSTS[0];
-const ABUJA_REPORT = BLOG_POSTS[1];
-const BEYOND_FINISH = BLOG_POSTS[2];
-const BELONGING = BLOG_POSTS[3];
-const ADDRESS = BLOG_POSTS[4];
-const QUIET_LUXURY = BLOG_POSTS[5];
-const DETAIL = BLOG_POSTS[6];
+/** New articles retain their agreed publishing dates; existing writing follows. */
+export const INSIGHT_POSTS: BlogPost[] = [...APPROVED_INSIGHTS, ...LEGACY_INSIGHTS]
+  .sort((a, b) => b.date.localeCompare(a.date));
 
-/** The Abuja Report is the current featured story. */
-export const FEATURED_BLOG: BlogPost = ABUJA_REPORT;
-
-/** Card order follows the supplied blog index design. */
-export const BLOG_GRID: BlogGridItem[] = [
-  BEYOND_FINISH,
-  ARCHITECTURE,
-  DETAIL,
-  BELONGING,
-  ADDRESS,
-  QUIET_LUXURY,
-];
+/** The current names retain compatibility with shared components during the move. */
+export const BLOG_POSTS = INSIGHT_POSTS;
+export const FEATURED_BLOG: BlogPost = INSIGHT_POSTS[0];
+export const BLOG_GRID: BlogGridItem[] = INSIGHT_POSTS.filter(
+  (post) => post.slug !== FEATURED_BLOG.slug,
+);

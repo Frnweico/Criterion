@@ -58,9 +58,10 @@
 .heroCopy h1 {
   margin: 0;
   font-size: 40px;
-  font-weight: 400;
+  font-weight: 500;
   line-height: 0.96;
   letter-spacing: -0.055em;
+  color: var(--color-carbon);
 }
 
 .heroCopy p:last-child {
@@ -88,6 +89,7 @@
   font-weight: 400;
   line-height: 1;
   letter-spacing: -0.055em;
+  color: var(--color-carbon);
 }
 
 .grid {

@@ -79,24 +79,23 @@
 /* Mobile shows the pair as value-over-label, with no rule around them. */
 .priceBox {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
+  flex-wrap: nowrap;
   gap: 24px;
-  justify-content: space-between;
   margin: 0;
 }
 
 .priceRow {
   display: flex;
-  flex-direction: column-reverse;
+  flex-direction: column;
   gap: 2px;
 }
 
 .completionRow {
-  flex: 1 0 100%;
-  flex-direction: row;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 24px;
+  flex: none;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 2px;
 }
 
 .priceLabel {
@@ -192,12 +191,23 @@
   opacity: 0.6;
 }
 
-/* Completed stages recede; their status is the thing to read. */
+/* Completed stages are historical context. The current stage is the decision
+   point, so its status receives the strongest treatment. */
 .rowDone .stage {
+  color: var(--color-body);
   opacity: 0.45;
 }
 
+.rowDone .instalment,
+.rowDone .duration,
 .rowDone .status {
+  color: var(--color-body);
+  font-weight: 400;
+  opacity: 0.45;
+}
+
+.rowUnderway .status {
+  color: var(--color-carbon);
   font-weight: 700;
   opacity: 1;
 }
@@ -364,11 +374,6 @@
     grid-area: auto;
     font-size: 20px;
     text-align: left;
-    opacity: 1;
-  }
-
-  .rowDone .instalment,
-  .rowDone .duration {
     opacity: 1;
   }
 

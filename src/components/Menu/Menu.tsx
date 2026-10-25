@@ -20,7 +20,7 @@ const MENU_NAV = [
   { label: "Home", href: "/" },
   { label: "Projects", href: "/projects" },
   { label: "News", href: "/news" },
-  { label: "Blog", href: "/blog" },
+  { label: "Insights", href: "/insights" },
   { label: "About Us", href: "/about" },
   { label: "Contact Us", href: "/contact" },
 ];
