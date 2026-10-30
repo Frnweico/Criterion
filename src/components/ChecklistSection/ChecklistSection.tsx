@@ -3,6 +3,8 @@
 import { FormEvent, useState } from "react";
 import Button from "@/components/Button/Button";
 import { trackLead } from "@/lib/analytics";
+import { formContext } from "@/lib/form-context";
+import FormConsent from "@/components/FormConsent/FormConsent";
 import styles from "./ChecklistSection.module.css";
 
 /**
@@ -32,6 +34,7 @@ export default function ChecklistSection() {
           name: formData.get("name"),
           email: formData.get("email"),
           phone: formData.get("phone"),
+          ...formContext(form),
         }),
       });
 
@@ -101,6 +104,7 @@ export default function ChecklistSection() {
               />
             </label>
 
+            <FormConsent disabled={status === "submitting"} />
             <div className={styles.actions}>
               {/* One submission action is used at every viewport. */}
               <Button

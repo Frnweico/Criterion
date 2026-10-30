@@ -8,6 +8,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import Breadcrumb from "@/components/Breadcrumb/Breadcrumb";
 import Footer from "@/components/Footer/Footer";
+import NewsletterSignupForm from "@/components/NewsletterSignupForm/NewsletterSignupForm";
 import { IMAGE_BLUR_PLACEHOLDER } from "@/lib/image-placeholder";
 import {
   BLOG_GRID,
@@ -175,20 +176,11 @@ export default async function InsightPostPage({
               <br className={styles.desktopBreak} /> insights, property updates, and more from
               <br className={styles.desktopBreak} /> Criterion Homes.
             </h2>
-            <form className={styles.subscribeForm}>
-              <label className="visually-hidden" htmlFor={`article-email-${post.slug}`}>
-                Email address
-              </label>
-              <input
-                id={`article-email-${post.slug}`}
-                name="email"
-                type="email"
-                autoComplete="email"
-                placeholder="Email"
-                required
-              />
-              <button type="submit">Subscribe</button>
-            </form>
+            <NewsletterSignupForm
+              id={`article-email-${post.slug}`}
+              source="article-newsletter"
+              controlsClassName={styles.subscribeForm}
+            />
           </section>
 
           <section className={styles.related} aria-labelledby="more-insights-heading">

@@ -3,6 +3,8 @@
 import { FormEvent, useState } from "react";
 import Button from "@/components/Button/Button";
 import { trackLead } from "@/lib/analytics";
+import { formContext } from "@/lib/form-context";
+import FormConsent from "@/components/FormConsent/FormConsent";
 
 type PrivateViewingFormProps = {
   formClassName: string;
@@ -40,6 +42,7 @@ export default function PrivateViewingForm({
           name: formData.get("name"),
           email: formData.get("email"),
           phone: formData.get("phone"),
+          ...formContext(form),
         }),
       });
 
@@ -79,6 +82,7 @@ export default function PrivateViewingForm({
         </label>
       ))}
 
+      <FormConsent disabled={status === "submitting"} />
       <div className={actionsClassName}>
         <Button
           text={status === "submitting" ? "Sending request" : "Request viewing"}

@@ -2,6 +2,8 @@
 
 import { FormEvent, useState } from "react";
 import { trackLead } from "@/lib/analytics";
+import { formContext } from "@/lib/form-context";
+import FormConsent from "@/components/FormConsent/FormConsent";
 import { BENCHMARKER_COPY, BENCHMARKER_OPTIONS } from "@/lib/benchmarkers";
 import styles from "./BenchmarkerForm.module.css";
 
@@ -54,7 +56,7 @@ export default function BenchmarkerForm() {
       const response = await fetch("/api/benchmarkers-signup", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(Object.fromEntries(new FormData(form))),
+        body: JSON.stringify({ ...Object.fromEntries(new FormData(form)), ...formContext(form) }),
       });
 
       const result: unknown = await response.json();
@@ -151,6 +153,7 @@ export default function BenchmarkerForm() {
         />
       </fieldset>
 
+      <FormConsent disabled={status === "submitting"} />
       <div className={styles.submitArea}>
         <button type="submit" className={styles.submit} disabled={status === "submitting"}>
           <span aria-hidden>◇</span>

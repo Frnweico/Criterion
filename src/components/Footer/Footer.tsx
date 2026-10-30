@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import Button from "@/components/Button/Button";
+import NewsletterSignupForm from "@/components/NewsletterSignupForm/NewsletterSignupForm";
 import { CONTACT, NAV, SITE, SOCIALS } from "@/lib/site";
 import styles from "./Footer.module.css";
 
@@ -25,28 +26,15 @@ export default function Footer() {
             things Criterion Homes
           </p>
 
-          {/* TODO: no submit destination yet — needs a newsletter provider. */}
-          <form className={styles.signupForm}>
-            <label htmlFor="footer-email" className="visually-hidden">
-              Email address
-            </label>
-            <input
-              id="footer-email"
-              name="email"
-              type="email"
-              required
-              autoComplete="email"
-              placeholder="email address"
-              className={styles.signupInput}
-            />
-            <Button
-              text="Sign up"
-              type="submit"
-              variant="small"
-              icon={false}
-              className={styles.signupSubmit}
-            />
-          </form>
+          <NewsletterSignupForm
+            id="footer-email"
+            source="footer-newsletter"
+            controlsClassName={styles.signupForm}
+            inputClassName={styles.signupInput}
+            buttonClassName={styles.signupSubmit}
+            buttonText="Sign up"
+            footerButton
+          />
         </section>
 
         {/* Contact and Resources share a column in the frame. */}
