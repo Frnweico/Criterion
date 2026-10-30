@@ -2,6 +2,9 @@ export type BlogSection = {
   heading: string;
   paragraphs: string[];
   items?: string[];
+  image?: string;
+  imageAlt?: string;
+  imageCaption?: string;
 };
 
 export type BlogPost = {
@@ -65,7 +68,6 @@ const APPROVED_INSIGHTS: BlogPost[] = [
         paragraphs: [
           "Buying off-plan can feel like a leap of faith, especially when trust in the market is low. Build As You Pay is designed to restore confidence through visible proof: each payment follows a completed, documented stage of work.",
           "You can see what is finished, what comes next and how the project is moving toward its projected completion date. Each instalment has work behind it, rather than a date on a calendar alone.",
-          "Visibility does not remove every risk. Review the contract, specifications, milestone evidence and terms for delays with an independent adviser.",
         ],
       },
       {
@@ -80,13 +82,19 @@ const APPROVED_INSIGHTS: BlogPost[] = [
         paragraphs: [
           "The Urban Nest in Wuse Zone 7 sold out at the first construction stage. We’ll continue publishing its Build As You Pay updates, so the record of work remains visible after the sale.",
         ],
+        image: "/images/urban-nest-hero.webp",
+        imageAlt: "Architectural rendering of The Urban Nest in Wuse Zone 7, Abuja",
+        imageCaption: "The Urban Nest, Wuse Zone 7",
       },
       {
         heading: "The Midtown Terraces: Build As You Pay in progress",
         paragraphs: [
-          "At The Midtown Terraces in Gwarinpa, two of four homes have sold. Construction began in September 2025; the first three milestones are complete, and stage four is underway. The plan allows roughly three months per milestone, with completion projected for Q4 2026.",
+          "At The Midtown Terraces in Gwarinpa, two of four homes have sold. Construction began in September 2025, and each of the first three milestones was completed within the model’s three-month schedule for that stage. Stage four is underway, with completion projected for Q4 2026.",
           "That progress gives prospective buyers a record to examine before choosing one of the two remaining homes. Explore the project page to learn more and request a private viewing.",
         ],
+        image: "/images/midtown-milestone-4-blockwork.webp",
+        imageAlt: "Blockwork in progress at The Midtown Terraces in Gwarinpa, Abuja",
+        imageCaption: "The Midtown Terraces, stage four",
       },
     ],
   },
