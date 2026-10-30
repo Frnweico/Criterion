@@ -210,7 +210,11 @@ export default async function InsightPostPage({
               </section>
             ))}
             {post.cta ? (
-              <p className={styles.articleCta}>
+              <p
+                className={`${styles.articleCta} ${
+                  post.cta.label.startsWith("Read:") ? styles.readCta : ""
+                }`}
+              >
                 <Link href={post.cta.href}>{post.cta.label}</Link>
               </p>
             ) : null}
