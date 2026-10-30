@@ -149,8 +149,26 @@ export default async function InsightPostPage({
             <p className={styles.standfirst}>{post.excerpt}</p>
             {post.body.map((section) => (
               <section key={section.heading}>
+                {section.image && section.imageAlt && section.imageBeforeHeading ? (
+                  <figure className={styles.sectionFigure}>
+                    <div className={styles.sectionImageWrap}>
+                      <Image
+                        src={section.image}
+                        alt={section.imageAlt}
+                        fill
+                        sizes="(min-width: 1024px) 800px, 100vw"
+                        placeholder="blur"
+                        blurDataURL={IMAGE_BLUR_PLACEHOLDER}
+                        className={styles.sectionImage}
+                      />
+                    </div>
+                    {section.imageCaption ? (
+                      <figcaption>{section.imageCaption}</figcaption>
+                    ) : null}
+                  </figure>
+                ) : null}
                 {section.heading ? <h2>{section.heading}</h2> : null}
-                {section.image && section.imageAlt ? (
+                {section.image && section.imageAlt && !section.imageBeforeHeading ? (
                   <figure className={styles.sectionFigure}>
                     <div className={styles.sectionImageWrap}>
                       <Image
@@ -192,7 +210,11 @@ export default async function InsightPostPage({
               </section>
             ))}
             {post.cta ? (
-              <p className={styles.articleCta}>
+              <p
+                className={`${styles.articleCta} ${
+                  post.cta.label.startsWith("Read:") ? styles.readCta : ""
+                }`}
+              >
                 <Link href={post.cta.href}>{post.cta.label}</Link>
               </p>
             ) : null}
@@ -236,3 +258,4 @@ export default async function InsightPostPage({
     </>
   );
 }
+
