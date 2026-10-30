@@ -115,8 +115,7 @@ export default function ChecklistSection() {
                 disabled={status === "submitting"}
               />
               <p className={styles.fineprint}>
-                We&rsquo;ll send the checklist and relevant real estate
-                insights. No spam.
+                We&rsquo;ll send the checklist you requested.
               </p>
             </div>
             <p className={styles.formStatus} aria-live="polite">
