@@ -78,9 +78,6 @@ export default function BuyerChecklistBand() {
             <FormConsent disabled={status === "submitting"} />
             <div className={styles.actions}>
               <Button text={status === "submitting" ? "Sending" : "Send me the checklist"} type="submit" variant="outline" disabled={status === "submitting"} />
-              <p className={styles.fineprint}>
-                We&rsquo;ll send the checklist you requested.
-              </p>
             </div>
             <p role="status" aria-live="polite">
               {status === "success" && "Your details have been received."}
