@@ -248,7 +248,11 @@
 
 .relatedLink,
 .relatedStatic { display: block; color: inherit; }
-.relatedLink { text-decoration: none; }
+.relatedLink {
+  text-align: left;
+  text-decoration: none;
+  touch-action: manipulation;
+}
 
 .relatedImageWrap {
   position: relative;
@@ -260,14 +264,38 @@
 .relatedImage { object-fit: cover; transition: transform 680ms cubic-bezier(0.22, 1, 0.36, 1) 120ms; }
 @media (hover: hover) and (pointer: fine) { .relatedLink:hover .relatedImage { transform: scale(1.012); } }
 
-.relatedCopy { padding-top: 16px; }
+.relatedCopy { padding-top: 16px; text-align: left; }
 
 .relatedCopy h3 {
+  display: inline;
   margin: 0;
   font-size: 20px;
   font-weight: 500;
   line-height: 1.2;
   letter-spacing: -0.04em;
+  background-image: linear-gradient(currentColor, currentColor);
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  background-size: 100% 1px;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+
+@keyframes related-underline-redraw {
+  0% { background-position: 100% 100%; background-size: 100% 1px; }
+  45% { background-position: 100% 100%; background-size: 0 1px; }
+  46% { background-position: 0 100%; background-size: 0 1px; }
+  100% { background-position: 0 100%; background-size: 100% 1px; }
+}
+
+.relatedLink:active .relatedCopy h3 {
+  animation: related-underline-redraw 440ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .relatedLink:hover .relatedCopy h3 {
+    animation: related-underline-redraw 440ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
 }
 
 .relatedCopy p {
@@ -289,6 +317,27 @@
 }
 
 .footerTaupe > footer { background: var(--color-taupe-grey); }
+
+@media (max-width: 639px) {
+  .heroImageWrap,
+  .sectionImageWrap,
+  .heroImageWrap.progressionHero {
+    height: auto;
+    aspect-ratio: auto;
+    overflow: visible;
+    background: transparent;
+  }
+
+  .heroImage,
+  .sectionImage,
+  .progressionHero .heroImage {
+    position: relative !important;
+    inset: auto !important;
+    width: 100% !important;
+    height: auto !important;
+    object-fit: contain;
+  }
+}
 
 @media (min-width: 640px) {
   .articleHeader h1 { width: 70%; }
