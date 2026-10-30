@@ -14,11 +14,12 @@ type Props = {
   source: string;
   buttonText?: string;
   footerButton?: boolean;
+  hideDisclosure?: boolean;
 };
 
 export default function NewsletterSignupForm({
   id, controlsClassName, inputClassName, buttonClassName, source,
-  buttonText = "Subscribe", footerButton = false,
+  buttonText = "Subscribe", footerButton = false, hideDisclosure = false,
 }: Props) {
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
   const inFlight = useRef(false);
@@ -61,7 +62,7 @@ export default function NewsletterSignupForm({
           </button>
         )}
       </div>
-      <FormConsent newsletter disabled={status === "submitting"} />
+      <FormConsent newsletter hideNewsletterNotice={hideDisclosure} disabled={status === "submitting"} />
       <p role="status" aria-live="polite">
         {status === "success" && "You're subscribed. You can unsubscribe at any time."}
         {status === "error" && "We could not add your email just now. Please try again."}
