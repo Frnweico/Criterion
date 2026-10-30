@@ -22,7 +22,7 @@ export default function Footer() {
             Stay One Step Ahead
           </h2>
           <p className={styles.updatesBody}>
-            Get occasional property updates and investment insights from Criterion Homes.
+            Sign up to get updates on our latest developments, industry insights, exclusive opportunities
           </p>
 
           <NewsletterSignupForm
