@@ -22,8 +22,8 @@ export default function Footer() {
             Stay One Step Ahead
           </h2>
           <p className={styles.updatesBody}>
-            Sign up for our newsletter to receive occasional updates on all
-            things Criterion Homes
+            Get occasional property updates and considered investment insights,
+            delivered to your inbox.
           </p>
 
           <NewsletterSignupForm
