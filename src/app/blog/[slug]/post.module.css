@@ -290,6 +290,27 @@
 
 .footerTaupe > footer { background: var(--color-taupe-grey); }
 
+@media (max-width: 639px) {
+  .heroImageWrap,
+  .sectionImageWrap,
+  .heroImageWrap.progressionHero {
+    height: auto;
+    aspect-ratio: auto;
+    overflow: visible;
+    background: transparent;
+  }
+
+  .heroImage,
+  .sectionImage,
+  .progressionHero .heroImage {
+    position: relative !important;
+    inset: auto !important;
+    width: 100% !important;
+    height: auto !important;
+    object-fit: contain;
+  }
+}
+
 @media (min-width: 640px) {
   .articleHeader h1 { width: 70%; }
   .articleCta a { width: auto; }
