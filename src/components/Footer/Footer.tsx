@@ -33,6 +33,7 @@ export default function Footer() {
             buttonClassName={styles.signupSubmit}
             buttonText="Sign up"
             footerButton
+            hideDisclosure
           />
         </section>
 
