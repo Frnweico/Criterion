@@ -36,7 +36,7 @@ const APPROVED_INSIGHTS: BlogPost[] = [
     image: "/images/insights/off-plan-payment-plans.webp",
     imageAlt: "A residential development under construction",
     cta: {
-      label: "Explore The Midtown Terraces and request a private viewing",
+      label: "Explore The Midtown Terraces",
       href: "/projects/midtown-terraces",
     },
     body: [
@@ -63,10 +63,9 @@ const APPROVED_INSIGHTS: BlogPost[] = [
       {
         heading: "What the structure gives a buyer",
         paragraphs: [
-          "A clearer record of progress: documented updates show what has been completed and what remains.",
-          "A more informed timeline: the projected completion date gives you a basis for planning, while regular progress reports help you understand how the work is moving toward it.",
-          "Payments connected to real work: you can review the completed stage before the next instalment becomes due, instead of relying on a calendar date alone.",
-          "This structure reduces the uncertainty of paying without a clear view of construction progress. It does not remove construction or delivery risk, so buyers should still review the contract, specifications, milestone evidence and provisions for delays with an independent adviser.",
+          "Buying off-plan can feel like a leap of faith, especially when trust in the market is low. Build As You Pay is designed to restore confidence through visible proof: each payment follows a completed, documented stage of work.",
+          "You can see what is finished, what comes next and how the project is moving toward its projected completion date. Each instalment has work behind it, rather than a date on a calendar alone.",
+          "Visibility does not remove every risk. Review the contract, specifications, milestone evidence and terms for delays with an independent adviser.",
         ],
       },
       {
@@ -77,17 +76,16 @@ const APPROVED_INSIGHTS: BlogPost[] = [
         ],
       },
       {
-        heading: "The Urban Nest: sold out, with the record continuing",
+        heading: "The Urban Nest: the record continues",
         paragraphs: [
-          "The Urban Nest in Wuse Zone 7 sold out at the first construction stage. Its homes are no longer available, but the construction record does not stop at the sale. Criterion Homes will continue publishing updates as the development moves through its Build As You Pay milestones.",
+          "The Urban Nest in Wuse Zone 7 sold out at the first construction stage. We’ll continue publishing its Build As You Pay updates, so the record of work remains visible after the sale.",
         ],
       },
       {
-        heading: "The Midtown Terraces: see the model in progress",
+        heading: "The Midtown Terraces: Build As You Pay in progress",
         paragraphs: [
-          "The Midtown Terraces is a four-home development in Gwarinpa, Abuja. Two homes have sold and two remain available.",
-          "Construction began in September 2025. The project schedule allows around three months per milestone. As of October 2026, the foundation, first-floor slab and second-floor slab are complete, and the development is at stage four of five. Its projected completion is in Q4 2026.",
-          "That record shows Build As You Pay in practice: buyers can look at the completed stages, follow the current work and see what remains before the next stage and handover. On The Midtown Terraces project page, you can explore the homes and request a private viewing.",
+          "At The Midtown Terraces in Gwarinpa, two of four homes have sold. Construction began in September 2025; the first three milestones are complete, and stage four is underway. The plan allows roughly three months per milestone, with completion projected for Q4 2026.",
+          "That progress gives prospective buyers a record to examine before choosing one of the two remaining homes. Explore the project page to learn more and request a private viewing.",
         ],
       },
     ],
