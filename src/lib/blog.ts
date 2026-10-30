@@ -28,6 +28,58 @@ export type BlogGridItem = Pick<
 
 const APPROVED_INSIGHTS: BlogPost[] = [
   {
+    slug: "build-as-you-pay-explained",
+    title: "Build As You Pay: How Milestone Payments Work",
+    excerpt:
+      "See how Criterion Homes links five 20% payments to completed construction milestones and documents the journey to handover.",
+    date: "2026-10-30",
+    image: "/images/insights/off-plan-payment-plans.webp",
+    imageAlt: "A residential development under construction",
+    cta: {
+      label: "Explore the Criterion Homes approach",
+      href: "/approach",
+    },
+    body: [
+      {
+        heading: "A payment plan you can follow",
+        paragraphs: [
+          "Buying an off-plan home should bring you closer to a defined handover date. It should also give you a clear view of the work being done along the way.",
+          "Criterion Homes uses Build As You Pay to connect each payment to visible construction progress. The project works toward a projected completion date, while each instalment follows a completed construction milestone. Buyers receive documented updates so they can see what is finished and what comes next.",
+        ],
+      },
+      {
+        heading: "How Build As You Pay works",
+        paragraphs: [
+          "The purchase value is divided into five instalments of 20%. Each instalment falls due after its corresponding construction milestone has been completed and verified. The agreed contract and milestone schedule should set out the work and confirmation process for each stage.",
+        ],
+        items: [
+          "Foundation — 20%",
+          "First-floor slab — 20%",
+          "Second-floor slab — 20%",
+          "Roofing and plastering — 20%",
+          "Finishes and painting — 20%",
+        ],
+      },
+      {
+        heading: "What the structure gives a buyer",
+        paragraphs: [
+          "A clearer record of progress: documented updates show what has been completed and what remains.",
+          "A more informed timeline: the projected completion date gives you a basis for planning, while regular progress reports help you understand how the work is moving toward it.",
+          "Payments connected to real work: you can review the completed stage before the next instalment becomes due, instead of relying on a calendar date alone.",
+          "This structure reduces the uncertainty of paying without a clear view of construction progress. It does not remove construction or delivery risk, so buyers should still review the contract, specifications, milestone evidence and provisions for delays with an independent adviser.",
+        ],
+      },
+      {
+        heading: "Follow the work, even from elsewhere",
+        paragraphs: [
+          "A buyer does not have to be on site every day to understand the build. Dated photographs, videos and written milestone updates can provide a record from foundation to finishes. Where needed, a buyer can appoint a representative to inspect completed work.",
+          "The principle is simple: see the work, know what comes next, and understand what each payment is building.",
+        ],
+      },
+    ],
+  },
+
+  {
     slug: "buying-off-plan-gwarinpa-abuja",
     title: "Buying an Off-Plan Home in Gwarinpa, Abuja? 5 Things to Check Now",
     excerpt:
