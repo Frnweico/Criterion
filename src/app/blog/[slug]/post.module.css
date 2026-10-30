@@ -32,7 +32,7 @@
 }
 
 .articleHeader h1 {
-  max-width: 353px;
+  max-width: 70%;
   margin: 0;
   font-size: 40px;
   font-weight: 500;
@@ -84,16 +84,22 @@
 }
 
 .articleCta a {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  width: 100%;
   max-width: 100%;
-  padding-bottom: 4px;
-  border-bottom: 1px solid currentColor;
+  padding: 14px 24px;
+  background: var(--color-accent);
   color: var(--color-carbon);
-  font-size: 14px;
-  font-weight: 600;
-  line-height: 1.35;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.15;
+  text-align: center;
   text-decoration: none;
   text-transform: none;
+  white-space: normal;
 }
 
 .articleCta a:focus-visible {
@@ -281,6 +287,7 @@
 .footerTaupe > footer { background: var(--color-taupe-grey); }
 
 @media (min-width: 640px) {
+  .articleCta a { width: auto; }
   .relatedGrid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px 16px; }
 }
 
@@ -292,7 +299,7 @@
   .articleHeader { gap: 20px; padding: 97px var(--gutter) 42px; }
   .date,
   .author { font-size: 16px; }
-  .articleHeader h1 { max-width: none; font-size: 64px; }
+  .articleHeader h1 { max-width: 70%; font-size: 64px; }
   .heroImageWrap { height: auto; aspect-ratio: 2.45 / 1; }
   .body { max-width: 840px; padding-top: 72px; }
   .body section + section { margin-top: 47px; }
@@ -326,3 +333,4 @@
 .progressionHero .heroImage { object-fit: contain; }
 .body p a { color: inherit; text-decoration: underline; text-underline-offset: 0.15em; }
 .body p a:focus-visible { outline: 2px solid currentColor; outline-offset: 4px; }
+
