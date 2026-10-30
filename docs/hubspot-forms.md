@@ -21,7 +21,7 @@ Run server behaviour tests with Node 24:
 - Authenticate the sending domain and verify updates@criterionhomesltd.com.
 - Configure welcome/acknowledgement emails and test them before enabling.
 - Supply the actual buyer-checklist file or hosted URL before enabling its delivery email.
-- Configure notification recipients. Current HubSpot user is criterionhomesltd@gmail.com; info@ is not yet a verified HubSpot notification recipient.
+- Configure and verify the intended team notification recipients in the account before launch.
 - Confirm full campaign attribution separately. Forms submit the actual page URL/title and any existing HubSpot cookie. This change does not install the HubSpot tracking script or create a new cookie policy.
 - Test each form through the deployed website, verify the contact and submission in HubSpot, and verify actual event receipt in GA4/Meta. Cloud build success alone is not an end-to-end test.
 
