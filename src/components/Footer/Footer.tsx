@@ -22,8 +22,8 @@ export default function Footer() {
             Stay One Step Ahead
           </h2>
           <p className={styles.updatesBody}>
-            Get occasional property updates and considered investment insights,
-            delivered to your inbox.
+            See what’s taking shape with occasional property updates and
+            considered investment insights.
           </p>
 
           <NewsletterSignupForm
