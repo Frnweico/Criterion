@@ -5,6 +5,7 @@ export type BlogSection = {
   image?: string;
   imageAlt?: string;
   imageCaption?: string;
+  imageBeforeHeading?: boolean;
   paragraphLink?: { label: string; href: string };
   benefits?: { heading: string; text: string }[];
 };
@@ -13,7 +14,7 @@ export type BlogPost = {
   slug: string;
   title: string;
   excerpt: string;
-  /** ISO date — formatted for display at render time. */
+  /** ISO date - formatted for display at render time. */
   date: string;
   image: string;
   imageAlt: string;
@@ -34,7 +35,7 @@ export type BlogGridItem = Pick<
 const APPROVED_INSIGHTS: BlogPost[] = [
   {
     "slug": "build-as-you-pay-explained",
-    "title": "Criterion Homes’ Build As You Pay: How Milestone Payments Work",
+    "title": "Criterion Homes' Build As You Pay: How Milestone Payments Work",
     "excerpt": "See how Criterion Homes links five 20% payments to completed construction milestones and documents the journey to handover.",
     "date": "2026-10-30",
     "image": "/images/insights/build-as-you-pay-progression.webp",
@@ -47,7 +48,7 @@ const APPROVED_INSIGHTS: BlogPost[] = [
       {
         "heading": "",
         "paragraphs": [
-          "Buying off-plan can feel like a leap of faith, especially when trust in the market is low. Criterion Homes’ Build As You Pay is designed to restore confidence through visible proof: each payment follows a completed, documented stage of work.",
+          "Buying off-plan can feel like a leap of faith, especially when trust in the market is low. Criterion Homes' Build As You Pay is designed to restore confidence through visible proof: each payment follows a completed, documented stage of work.",
           "This reduces the uncertainty of paying without knowing how your home is progressing. You can see what is finished, understand what comes next and follow the project towards its projected completion date."
         ]
       },
@@ -70,8 +71,8 @@ const APPROVED_INSIGHTS: BlogPost[] = [
         "paragraphs": [],
         "benefits": [
           {
-            "heading": "You’re never left in the dark.",
-            "text": "Buying a home is a significant commitment. Documented updates keep you close to the build, so you’re not left wondering what is happening with your investment."
+            "heading": "You're never left in the dark.",
+            "text": "Buying a home is a significant commitment. Documented updates keep you close to the build, so you're not left wondering what is happening with your investment."
           },
           {
             "heading": "Each payment comes with proof.",
@@ -111,7 +112,7 @@ const APPROVED_INSIGHTS: BlogPost[] = [
         "heading": "The Midtown Terraces: nearing completion",
         "paragraphs": [
           "The Midtown Terraces in Gwarinpa, Abuja, is nearing completion, with stage four, roofing and plastering, underway and completion projected for Q4 2026.",
-          "Construction began in September 2025, with each of the first three milestones, foundation, first-floor slab and second-floor slab, completed within the model’s three-month schedule for each stage.",
+          "Construction began in September 2025, with each of the first three milestones, foundation, first-floor slab and second-floor slab, completed within the model's three-month schedule for each stage.",
           "Two of the four homes have sold. With two remaining, you can review the progress already made and arrange a private viewing to see the work for yourself."
         ],
         "image": "/images/midtown-hero.webp",
@@ -127,8 +128,8 @@ const APPROVED_INSIGHTS: BlogPost[] = [
     excerpt:
       "Five practical checks to make before committing to an off-plan home in Gwarinpa.",
     date: "2026-10-20",
-    image: "/images/insights/buying-off-plan-gwarinpa.webp",
-    imageAlt: "The Midtown Terraces under construction in Gwarinpa, Abuja",
+    image: "/images/midtown-hero.webp",
+    imageAlt: "Architectural render of The Midtown Terraces in Gwarinpa, Abuja",
     cta: {
       label: "Explore The Midtown Terraces",
       href: "/projects/midtown-terraces",
@@ -191,6 +192,10 @@ const APPROVED_INSIGHTS: BlogPost[] = [
       },
       {
         heading: "The Midtown Terraces in Gwarinpa",
+        image: "/images/insights/buying-off-plan-gwarinpa.webp",
+        imageAlt: "The Midtown Terraces under construction in Gwarinpa, Abuja",
+        imageCaption: "The Midtown Terraces under construction in Gwarinpa, Abuja.",
+        imageBeforeHeading: true,
         paragraphs: [
           "The Midtown Terraces is a four-unit residential development in Gwarinpa and an example of how these checks can work in practice.",
           "The property is no longer something buyers can only see in 3D. Three of five construction milestones have been completed in record time: the foundation, first-floor slab and second-floor slab.",
@@ -407,7 +412,7 @@ const APPROVED_INSIGHTS: BlogPost[] = [
  * homepage section won't need changing when that happens.
  *
  * Note the frames order these differently on mobile and desktop. A single
- * newest-first order is used at both sizes — reading order shouldn't depend on
+ * newest-first order is used at both sizes - reading order shouldn't depend on
  * screen width.
  */
 const LEGACY_INSIGHTS: BlogPost[] = [
@@ -455,7 +460,7 @@ const LEGACY_INSIGHTS: BlogPost[] = [
       {
         heading: "Two different investment questions",
         paragraphs: [
-          "Gwarinpa and Wuse answer different needs within Abuja, and that is precisely why both deserve careful attention. One offers the appeal of an established residential rhythm and room to settle into a neighbourhood. The other places daily life closer to the city’s commercial and social core.",
+          "Gwarinpa and Wuse answer different needs within Abuja, and that is precisely why both deserve careful attention. One offers the appeal of an established residential rhythm and room to settle into a neighbourhood. The other places daily life closer to the city's commercial and social core.",
           "A useful property decision begins by separating location from assumption. Convenience is not just a pin on a map; it is the quality of the journeys that make up an ordinary week, the services that are actually within reach and the way a district is likely to mature.",
         ],
       },
@@ -469,7 +474,7 @@ const LEGACY_INSIGHTS: BlogPost[] = [
       {
         heading: "From neighbourhood to decision",
         paragraphs: [
-          "There is no universal best address. There is, however, a better fit between a buyer’s priorities and a project’s context. An investor may weigh rental demand and future infrastructure differently from a family looking for a dependable daily routine.",
+          "There is no universal best address. There is, however, a better fit between a buyer's priorities and a project's context. An investor may weigh rental demand and future infrastructure differently from a family looking for a dependable daily routine.",
           "The most durable decisions are made with both horizons in view: how the place serves you now, and what will continue to make it desirable later. That is the lens through which we approach every Criterion Homes location.",
         ],
       },
@@ -487,7 +492,7 @@ const LEGACY_INSIGHTS: BlogPost[] = [
       {
         heading: "A home is a system",
         paragraphs: [
-          "The visible finish is only one part of a home’s quality. The comfort people remember is shaped by the systems behind the walls: the structure carrying the building, the waterproofing that protects it, the services that make it work and the workmanship connecting each layer.",
+          "The visible finish is only one part of a home's quality. The comfort people remember is shaped by the systems behind the walls: the structure carrying the building, the waterproofing that protects it, the services that make it work and the workmanship connecting each layer.",
           "These are not glamorous decisions, but they determine whether a home feels dependable. They influence sound, temperature, maintenance, running costs and the ease with which a property can adapt to the years ahead.",
         ],
       },
@@ -637,7 +642,7 @@ const LEGACY_INSIGHTS: BlogPost[] = [
   },
 ];
 
-/** "MARCH 15, 2026" — the uppercase form the cards use. */
+/** "MARCH 15, 2026" - the uppercase form the cards use. */
 export function formatPostDate(iso: string): string {
   return new Date(`${iso}T00:00:00`)
     .toLocaleDateString("en-GB", {
@@ -662,3 +667,4 @@ export const FEATURED_BLOG: BlogPost = INSIGHT_POSTS[0];
 export const BLOG_GRID: BlogGridItem[] = INSIGHT_POSTS.filter(
   (post) => post.slug !== FEATURED_BLOG.slug,
 );
+
