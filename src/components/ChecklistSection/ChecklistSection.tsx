@@ -114,9 +114,6 @@ export default function ChecklistSection() {
                 className={styles.ctaMobile}
                 disabled={status === "submitting"}
               />
-              <p className={styles.fineprint}>
-                We&rsquo;ll send the checklist you requested.
-              </p>
             </div>
             <p className={styles.formStatus} aria-live="polite">
               {status === "success" && "Your details have been received."}
