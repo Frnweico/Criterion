@@ -4,6 +4,7 @@
 
 .articleHeader {
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   gap: 16px;
   justify-items: center;
   padding: 56px var(--gutter) 48px;
@@ -32,12 +33,15 @@
 }
 
 .articleHeader h1 {
-  max-width: 70%;
+  width: 90%;
+  max-width: 100%;
+  min-width: 0;
   margin: 0;
-  font-size: 40px;
+  font-size: 28px;
   font-weight: 500;
   line-height: 0.96;
   letter-spacing: -0.06em;
+  overflow-wrap: break-word;
   color: var(--color-carbon);
 }
 
@@ -287,6 +291,7 @@
 .footerTaupe > footer { background: var(--color-taupe-grey); }
 
 @media (min-width: 640px) {
+  .articleHeader h1 { width: 70%; }
   .articleCta a { width: auto; }
   .relatedGrid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px 16px; }
 }
