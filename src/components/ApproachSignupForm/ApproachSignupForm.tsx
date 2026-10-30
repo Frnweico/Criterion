@@ -26,7 +26,7 @@ export default function ApproachSignupForm() {
       const response = await fetch("/api/approach-signup", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, ...formContext(form) }),
+        body: JSON.stringify({ email, ...formContext(form), marketingConsent: true }),
       });
 
       if (!response.ok) throw new Error("Signup request failed");
@@ -70,7 +70,7 @@ export default function ApproachSignupForm() {
           {status === "submitting" ? "Sending" : "Stay close"}
         </button>
       </div>
-      <FormConsent required disabled={status === "submitting"} />
+      <FormConsent newsletter disabled={status === "submitting"} />
       <p className={styles.status} aria-live="polite">
         {status === "error" &&
           "We could not add your email just now. Please try again."}

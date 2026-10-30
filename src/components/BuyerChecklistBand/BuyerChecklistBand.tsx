@@ -79,8 +79,7 @@ export default function BuyerChecklistBand() {
             <div className={styles.actions}>
               <Button text={status === "submitting" ? "Sending" : "Send me the checklist"} type="submit" variant="outline" disabled={status === "submitting"} />
               <p className={styles.fineprint}>
-                We&rsquo;ll send the checklist and relevant real estate
-                insights. No spam.
+                We&rsquo;ll send the checklist you requested.
               </p>
             </div>
             <p role="status" aria-live="polite">

@@ -28,7 +28,7 @@ export default function NewsletterSignupForm({
     inFlight.current = true;
     const form = event.currentTarget;
     const data = new FormData(form);
-    const payload = { email: data.get("email"), ...formContext(form) };
+    const payload = { email: data.get("email"), ...formContext(form), marketingConsent: true };
     setStatus("submitting");
     try {
       const response = await fetch("/api/newsletter-signup", {
@@ -61,7 +61,7 @@ export default function NewsletterSignupForm({
           </button>
         )}
       </div>
-      <FormConsent required disabled={status === "submitting"} />
+      <FormConsent newsletter disabled={status === "submitting"} />
       <p role="status" aria-live="polite">
         {status === "success" && "You're subscribed. You can unsubscribe at any time."}
         {status === "error" && "We could not add your email just now. Please try again."}
