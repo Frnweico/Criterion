@@ -160,6 +160,24 @@ export default async function InsightPostPage({
                     ))}
                   </ul>
                 ) : null}
+                {section.image && section.imageAlt ? (
+                  <figure className={styles.sectionFigure}>
+                    <div className={styles.sectionImageWrap}>
+                      <Image
+                        src={section.image}
+                        alt={section.imageAlt}
+                        fill
+                        sizes="(min-width: 1024px) 800px, 100vw"
+                        placeholder="blur"
+                        blurDataURL={IMAGE_BLUR_PLACEHOLDER}
+                        className={styles.sectionImage}
+                      />
+                    </div>
+                    {section.imageCaption ? (
+                      <figcaption>{section.imageCaption}</figcaption>
+                    ) : null}
+                  </figure>
+                ) : null}
               </section>
             ))}
             {post.cta ? (
