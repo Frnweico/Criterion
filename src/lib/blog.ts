@@ -36,8 +36,8 @@ const APPROVED_INSIGHTS: BlogPost[] = [
     image: "/images/insights/off-plan-payment-plans.webp",
     imageAlt: "A residential development under construction",
     cta: {
-      label: "Explore the Criterion Homes approach",
-      href: "/approach",
+      label: "Explore The Midtown Terraces and request a private viewing",
+      href: "/projects/midtown-terraces",
     },
     body: [
       {
@@ -74,6 +74,20 @@ const APPROVED_INSIGHTS: BlogPost[] = [
         paragraphs: [
           "A buyer does not have to be on site every day to understand the build. Dated photographs, videos and written milestone updates can provide a record from foundation to finishes. Where needed, a buyer can appoint a representative to inspect completed work.",
           "The principle is simple: see the work, know what comes next, and understand what each payment is building.",
+        ],
+      },
+      {
+        heading: "The Urban Nest: sold out, with the record continuing",
+        paragraphs: [
+          "The Urban Nest in Wuse Zone 7 sold out during its first sales stage. Its homes are no longer available, but the construction record does not stop at the sale. Criterion Homes will continue publishing updates as the development moves through its Build As You Pay milestones.",
+        ],
+      },
+      {
+        heading: "The Midtown Terraces: see the model in progress",
+        paragraphs: [
+          "The Midtown Terraces is a four-home development in Gwarinpa, Abuja. Two homes have sold and two remain available.",
+          "Construction began in September 2025. The project schedule allows around three months per milestone. As of October 2026, the foundation, first-floor slab and second-floor slab are complete, and the development is at stage four of five. Its projected completion is in Q4 2026.",
+          "That record shows Build As You Pay in practice: buyers can look at the completed stages, follow the current work and see what remains before the next stage and handover. On The Midtown Terraces project page, you can explore the homes and request a private viewing.",
         ],
       },
     ],
