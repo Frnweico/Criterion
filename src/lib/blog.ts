@@ -79,7 +79,7 @@ const APPROVED_INSIGHTS: BlogPost[] = [
       {
         heading: "The Urban Nest: sold out, with the record continuing",
         paragraphs: [
-          "The Urban Nest in Wuse Zone 7 sold out during its first sales stage. Its homes are no longer available, but the construction record does not stop at the sale. Criterion Homes will continue publishing updates as the development moves through its Build As You Pay milestones.",
+          "The Urban Nest in Wuse Zone 7 sold out at the first construction stage. Its homes are no longer available, but the construction record does not stop at the sale. Criterion Homes will continue publishing updates as the development moves through its Build As You Pay milestones.",
         ],
       },
       {
