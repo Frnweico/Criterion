@@ -121,6 +121,24 @@
   line-height: 1.3 !important;
 }
 
+.sectionFigure { margin: 0 0 24px; }
+
+.sectionImageWrap {
+  position: relative;
+  aspect-ratio: 3 / 2;
+  overflow: hidden;
+  background: var(--color-image-bg);
+}
+
+.sectionImage { object-fit: cover; }
+
+.sectionFigure figcaption {
+  margin-top: 9px;
+  font-size: 12px;
+  line-height: 1.4;
+  color: var(--color-body);
+}
+
 .subscribe {
   display: grid;
   gap: 40px;
@@ -302,3 +320,9 @@
   .relatedCopy p { margin-top: 5px; font-size: 16px; }
   .relatedCopy time { margin-top: 22px; font-size: 16px; }
 }
+
+/* Keep every construction stage visible on narrow screens. */
+.heroImageWrap.progressionHero { height: auto; aspect-ratio: 1672 / 941; background: var(--color-green); }
+.progressionHero .heroImage { object-fit: contain; }
+.body p a { color: inherit; text-decoration: underline; text-underline-offset: 0.15em; }
+.body p a:focus-visible { outline: 2px solid currentColor; outline-offset: 4px; }

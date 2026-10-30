@@ -2,6 +2,11 @@ export type BlogSection = {
   heading: string;
   paragraphs: string[];
   items?: string[];
+  image?: string;
+  imageAlt?: string;
+  imageCaption?: string;
+  paragraphLink?: { label: string; href: string };
+  benefits?: { heading: string; text: string }[];
 };
 
 export type BlogPost = {
@@ -28,55 +33,92 @@ export type BlogGridItem = Pick<
 
 const APPROVED_INSIGHTS: BlogPost[] = [
   {
-    slug: "build-as-you-pay-explained",
-    title: "Build As You Pay: How Milestone Payments Work",
-    excerpt:
-      "See how Criterion Homes links five 20% payments to completed construction milestones and documents the journey to handover.",
-    date: "2026-10-30",
-    image: "/images/insights/off-plan-payment-plans.webp",
-    imageAlt: "A residential development under construction",
-    cta: {
-      label: "Explore the Criterion Homes approach",
-      href: "/approach",
+    "slug": "build-as-you-pay-explained",
+    "title": "Criterion Homes’ Build As You Pay: How Milestone Payments Work",
+    "excerpt": "See how Criterion Homes links five 20% payments to completed construction milestones and documents the journey to handover.",
+    "date": "2026-10-30",
+    "image": "/images/insights/build-as-you-pay-progression.webp",
+    "imageAlt": "Five architectural models showing construction progressing from foundation to the finished homes",
+    "cta": {
+      "label": "Explore The Midtown Terraces",
+      "href": "/projects/midtown-terraces"
     },
-    body: [
+    "body": [
       {
-        heading: "A payment plan you can follow",
-        paragraphs: [
-          "Buying an off-plan home should bring you closer to a defined handover date. It should also give you a clear view of the work being done along the way.",
-          "Criterion Homes uses Build As You Pay to connect each payment to visible construction progress. The project works toward a projected completion date, while each instalment follows a completed construction milestone. Buyers receive documented updates so they can see what is finished and what comes next.",
-        ],
+        "heading": "",
+        "paragraphs": [
+          "Buying off-plan can feel like a leap of faith, especially when trust in the market is low. Criterion Homes’ Build As You Pay is designed to restore confidence through visible proof: each payment follows a completed, documented stage of work.",
+          "This reduces the uncertainty of paying without knowing how your home is progressing. You can see what is finished, understand what comes next and follow the project towards its projected completion date."
+        ]
       },
       {
-        heading: "How Build As You Pay works",
-        paragraphs: [
-          "The purchase value is divided into five instalments of 20%. Each instalment falls due after its corresponding construction milestone has been completed and verified. The agreed contract and milestone schedule should set out the work and confirmation process for each stage.",
+        "heading": "How Build As You Pay works",
+        "paragraphs": [
+          "The purchase value is divided into five instalments of 20%. Each instalment becomes due after its corresponding construction milestone has been completed and verified.",
+          "The contract and milestone schedule define the work covered at each stage and how its completion is confirmed. The five milestones are:"
         ],
-        items: [
-          "Foundation — 20%",
-          "First-floor slab — 20%",
-          "Second-floor slab — 20%",
-          "Roofing and plastering — 20%",
-          "Finishes and painting — 20%",
-        ],
+        "items": [
+          "Foundation: 20%",
+          "First-floor slab: 20%",
+          "Second-floor slab: 20%",
+          "Roofing and plastering: 20%",
+          "Finishes and painting: 20%"
+        ]
       },
       {
-        heading: "What the structure gives a buyer",
-        paragraphs: [
-          "A clearer record of progress: documented updates show what has been completed and what remains.",
-          "A more informed timeline: the projected completion date gives you a basis for planning, while regular progress reports help you understand how the work is moving toward it.",
-          "Payments connected to real work: you can review the completed stage before the next instalment becomes due, instead of relying on a calendar date alone.",
-          "This structure reduces the uncertainty of paying without a clear view of construction progress. It does not remove construction or delivery risk, so buyers should still review the contract, specifications, milestone evidence and provisions for delays with an independent adviser.",
-        ],
+        "heading": "What this gives you as a buyer",
+        "paragraphs": [],
+        "benefits": [
+          {
+            "heading": "You’re never left in the dark.",
+            "text": "Buying a home is a significant commitment. Documented updates keep you close to the build, so you’re not left wondering what is happening with your investment."
+          },
+          {
+            "heading": "Each payment comes with proof.",
+            "text": "Before your next instalment becomes due, there is completed work to review. You can take the next step with confidence grounded in what has already been built."
+          },
+          {
+            "heading": "You can prepare for each next step.",
+            "text": "Spreading the purchase across five construction milestones gives you room to organise your finances, so you can look forward to your next milestone feeling prepared."
+          },
+          {
+            "heading": "You can plan the life ahead.",
+            "text": "A projected completion date, supported by regular progress reports, helps you prepare for your move and the decisions that come with it."
+          }
+        ]
       },
       {
-        heading: "Follow the work, even from elsewhere",
-        paragraphs: [
-          "A buyer does not have to be on site every day to understand the build. Dated photographs, videos and written milestone updates can provide a record from foundation to finishes. Where needed, a buyer can appoint a representative to inspect completed work.",
-          "The principle is simple: see the work, know what comes next, and understand what each payment is building.",
-        ],
+        "heading": "Follow the work, even from elsewhere",
+        "paragraphs": [
+          "You do not have to be on site every day to understand how your home is taking shape. Dated photographs, videos and written milestone updates provide a record from foundation to finishes. You can also appoint a representative to inspect completed work on your behalf.",
+          "The principle is simple: see the work, know what comes next and understand what each payment is building."
+        ]
       },
-    ],
+      {
+        "heading": "The Urban Nest: confidence from the first stage",
+        "paragraphs": [
+          "The Urban Nest in Wuse Zone 7, Abuja, sold out at the first construction milestone, foundation, and is now at the second milestone, first-floor slab. For its buyers, the journey continues through documented updates, keeping them informed as their homes take shape."
+        ],
+        "paragraphLink": {
+          "label": "The Urban Nest",
+          "href": "/projects/the-urban-nest"
+        },
+        "image": "/images/urban-nest-hero.webp",
+        "imageAlt": "Architectural render of The Urban Nest in Wuse Zone 7, Abuja",
+        "imageCaption": "The Urban Nest, Wuse Zone 7, Abuja. Architectural render."
+      },
+      {
+        "heading": "The Midtown Terraces: nearing completion",
+        "paragraphs": [
+          "The Midtown Terraces in Gwarinpa, Abuja, is nearing completion, with stage four, roofing and plastering, underway and completion projected for Q4 2026.",
+          "Construction began in September 2025, with each of the first three milestones, foundation, first-floor slab and second-floor slab, completed within the model’s three-month schedule for each stage.",
+          "Two of the four homes have sold. With two remaining, you can review the progress already made and arrange a private viewing to see the work for yourself."
+        ],
+        "image": "/images/midtown-hero.webp",
+        "imageAlt": "Architectural render of The Midtown Terraces in Gwarinpa, Abuja",
+        "imageCaption": "The Midtown Terraces, Gwarinpa, Abuja. Architectural render."
+      }
+    ]
   },
 
   {
