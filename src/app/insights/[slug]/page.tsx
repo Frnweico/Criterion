@@ -10,7 +10,6 @@ import Breadcrumb from "@/components/Breadcrumb/Breadcrumb";
 import Footer from "@/components/Footer/Footer";
 import { IMAGE_BLUR_PLACEHOLDER } from "@/lib/image-placeholder";
 import {
-  BLOG_GRID,
   BLOG_POSTS,
   formatPostDate,
   getBlogPost,
@@ -92,7 +91,7 @@ export default async function InsightPostPage({
 
   if (!post) notFound();
 
-  const relatedPosts = BLOG_GRID.filter((item) => item.slug !== post.slug).slice(0, 3);
+  const relatedPosts = BLOG_POSTS.filter((item) => item.slug !== post.slug).slice(0, 3);
 
   return (
     <>
