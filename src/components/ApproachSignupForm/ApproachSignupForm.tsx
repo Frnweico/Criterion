@@ -1,19 +1,12 @@
 "use client";
 
 import { FormEvent, useEffect, useState } from "react";
-import { trackLead } from "@/lib/analytics";
+import { trackSignup } from "@/lib/analytics";
+import { formContext } from "@/lib/form-context";
+import FormConsent from "@/components/FormConsent/FormConsent";
 import styles from "./ApproachSignupForm.module.css";
 
 type Status = "idle" | "submitting" | "success" | "error";
-
-declare global {
-  interface Window {
-    fbq?: (
-      eventType: "track",
-      eventName: "PageView" | "ViewContent" | "Lead",
-    ) => void;
-  }
-}
 
 export default function ApproachSignupForm() {
   const [status, setStatus] = useState<Status>("idle");
@@ -33,13 +26,12 @@ export default function ApproachSignupForm() {
       const response = await fetch("/api/approach-signup", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, source: "approach" }),
+        body: JSON.stringify({ email, ...formContext(form), marketingConsent: true }),
       });
 
       if (!response.ok) throw new Error("Signup request failed");
 
-      window.fbq?.("track", "Lead");
-      trackLead("approach-email-signup");
+      trackSignup("approach-email-signup");
       form.reset();
       setStatus("success");
     } catch {
@@ -74,11 +66,11 @@ export default function ApproachSignupForm() {
         <button
           type="submit"
           disabled={status === "submitting"}
-          data-meta-event="Lead"
         >
           {status === "submitting" ? "Sending" : "Stay close"}
         </button>
       </div>
+      <FormConsent newsletter disabled={status === "submitting"} />
       <p className={styles.status} aria-live="polite">
         {status === "error" &&
           "We could not add your email just now. Please try again."}
