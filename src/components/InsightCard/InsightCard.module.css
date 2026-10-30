@@ -1,0 +1,69 @@
+.link,
+.staticCard {
+  display: block;
+  color: inherit;
+}
+
+.link { text-decoration: none; }
+
+.figure {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: var(--color-image-bg);
+}
+
+.image {
+  object-fit: contain;
+  object-position: center;
+  transition: transform 680ms cubic-bezier(0.22, 1, 0.36, 1) 120ms;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .link:hover .image { transform: scale(1.012); }
+}
+
+.copy { padding-top: 9px; }
+
+.copy h3 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1.08;
+  letter-spacing: -0.04em;
+}
+
+.copy p {
+  margin: 5px 0 0;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  color: var(--color-body);
+}
+
+.copy time {
+  display: block;
+  margin-top: 18px;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1;
+  text-transform: uppercase;
+  color: rgb(25 25 25 / 43%);
+}
+
+@media (min-width: 1024px) {
+  .copy { padding-top: 12px; }
+  .copy h3 { font-size: 24px; font-weight: 400; }
+  .copy p { margin-top: 6px; font-size: 16px; }
+  .copy time { margin-top: 25px; font-size: 16px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .image,
+  .link:hover .image {
+    transform: none;
+    transition: none;
+  }
+}
+
