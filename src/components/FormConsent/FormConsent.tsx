@@ -3,12 +3,13 @@ import styles from "./FormConsent.module.css";
 
 export default function FormConsent({
   newsletter = false,
+  hideNewsletterNotice = false,
   disabled = false,
-}: { newsletter?: boolean; disabled?: boolean }) {
+}: { newsletter?: boolean; hideNewsletterNotice?: boolean; disabled?: boolean }) {
   return (
     <div className={styles.consent}>
       {newsletter ? (
-        <p>Sign up for occasional Criterion Homes newsletters and property updates. Unsubscribe anytime.</p>
+        hideNewsletterNotice ? null : <p>Sign up for occasional Criterion Homes newsletters and property updates. Unsubscribe anytime.</p>
       ) : (
         <label className={styles.checkbox}>
           <input type="checkbox" name="marketingConsent" disabled={disabled} />
