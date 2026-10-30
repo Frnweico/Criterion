@@ -3,6 +3,10 @@ import { contactFields, isValidEmail, jsonResponse, normalisePhone, readSubmissi
 export const runtime = "nodejs";
 import { BENCHMARKER_OPTIONS } from "@/lib/benchmarkers";
 
+function isOption(value: string, options: readonly string[]) {
+  return options.includes(value);
+}
+
 export async function POST(request: Request) {
   const submission = await readSubmission(request);
   if (submission.error) return submission.error;
@@ -17,10 +21,10 @@ export async function POST(request: Request) {
   const location = stringValue(payload.location);
   const communication = stringValue(payload.communication);
   const referral = stringValue(payload.referral);
-  if (!BENCHMARKER_OPTIONS.interest.includes(interest) ||
-      !BENCHMARKER_OPTIONS.location.includes(location) ||
-      !BENCHMARKER_OPTIONS.communication.includes(communication) ||
-      !BENCHMARKER_OPTIONS.referral.includes(referral)) {
+  if (!isOption(interest, BENCHMARKER_OPTIONS.interest) ||
+      !isOption(location, BENCHMARKER_OPTIONS.location) ||
+      !isOption(communication, BENCHMARKER_OPTIONS.communication) ||
+      !isOption(referral, BENCHMARKER_OPTIONS.referral)) {
     return jsonResponse({ error: "Choose an option for every preference." }, 400);
   }
   return submitToHubSpot(request, "benchmarkers", {
