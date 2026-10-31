@@ -35,6 +35,7 @@ export async function generateMetadata({
     post.excerpt,
     post.image,
     post.date,
+    post.modifiedDate ?? post.date,
   );
 }
 
@@ -68,6 +69,7 @@ export default async function InsightPostPage({
               post.excerpt,
               post.image,
               post.date,
+              post.modifiedDate ?? post.date,
             ),
           ).replace(/</g, "\u003c"),
         }}
