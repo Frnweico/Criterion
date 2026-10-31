@@ -47,7 +47,9 @@
 
 .heroImageWrap {
   position: relative;
-  height: 260px;
+  width: calc(100% - (2 * var(--gutter)));
+  height: auto;
+  aspect-ratio: 16 / 9;
   margin: 0 var(--gutter);
   overflow: hidden;
   background: var(--color-image-bg);
@@ -278,12 +280,6 @@
 .footerTaupe > footer { background: var(--color-taupe-grey); }
 
 @media (max-width: 639px) {
-  .heroImageWrap {
-    height: auto;
-    aspect-ratio: 16 / 9;
-  }
-
-  .heroImage,
   .sectionImage {
     object-fit: contain;
   }
@@ -303,7 +299,7 @@
   .date,
   .author { font-size: 16px; }
   .articleHeader h1 { max-width: 70%; font-size: 64px; }
-  .heroImageWrap { height: auto; aspect-ratio: 2.45 / 1; }
+  .heroImageWrap { aspect-ratio: 16 / 9; }
   .body { max-width: 840px; padding-top: 72px; }
   .body section + section { margin-top: 47px; }
   .body h2 { margin-bottom: 22px; font-size: 28px; }
@@ -326,7 +322,7 @@
 }
 
 /* Keep every construction stage visible on narrow screens. */
-.heroImageWrap.progressionHero { height: auto; aspect-ratio: 1672 / 941; background: var(--color-green); }
+.heroImageWrap.progressionHero { aspect-ratio: 16 / 9; background: var(--color-green); }
 .progressionHero .heroImage { object-fit: contain; }
 .body p:not(.articleCta) a { color: inherit; text-decoration: underline; text-underline-offset: 0.15em; }
 .body p:not(.articleCta) a:focus-visible,
