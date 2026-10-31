@@ -7,13 +7,13 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import Breadcrumb from "@/components/Breadcrumb/Breadcrumb";
+import Button from "@/components/Button/Button";
 import Footer from "@/components/Footer/Footer";
+import InsightCard from "@/components/InsightCard/InsightCard";
 import { IMAGE_BLUR_PLACEHOLDER } from "@/lib/image-placeholder";
 import {
   BLOG_POSTS,
-  formatPostDate,
   getBlogPost,
-  type BlogGridItem,
 } from "@/lib/blog";
 import styles from "../../blog/[slug]/post.module.css";
 
@@ -44,43 +44,6 @@ function formatArticleDate(iso: string) {
     month: "long",
     year: "numeric",
   });
-}
-
-function RelatedCard({ post, index }: { post: BlogGridItem; index: number }) {
-  const content = (
-    <>
-      <div className={styles.relatedImageWrap}>
-        <Image
-          src={post.image}
-          alt={post.imageAlt}
-          fill
-          sizes="(min-width: 1024px) 31vw, 100vw"
-          placeholder="blur"
-          blurDataURL={IMAGE_BLUR_PLACEHOLDER}
-          className={styles.relatedImage}
-        />
-      </div>
-      <div className={styles.relatedCopy}>
-        <h3>{post.title}</h3>
-        <p>{post.excerpt}</p>
-        <time dateTime={post.date}>{formatPostDate(post.date)}</time>
-      </div>
-    </>
-  );
-
-  const className = `${styles.relatedCard} ${styles[`relatedCard${index}`]}`;
-
-  return (
-    <li className={className}>
-      {post.slug ? (
-        <Link href={`/insights/${post.slug}`} className={styles.relatedLink}>
-          {content}
-        </Link>
-      ) : (
-        <article className={styles.relatedStatic}>{content}</article>
-      )}
-    </li>
-  );
 }
 
 export default async function InsightPostPage({
@@ -241,9 +204,20 @@ export default async function InsightPostPage({
             <h2 id="more-insights-heading">More insights</h2>
             <ul className={styles.relatedGrid} data-motion-stagger>
               {relatedPosts.map((relatedPost, index) => (
-                <RelatedCard key={`${relatedPost.title}-${index}`} post={relatedPost} index={index} />
+                <li key={`${relatedPost.title}-${index}`}>
+                  <InsightCard post={relatedPost} />
+                </li>
               ))}
             </ul>
+            <div className={styles.relatedAction}>
+              <Button
+                text="View all insights"
+                href="/insights"
+                variant="outlineDark"
+                icon={false}
+                sentenceCase
+              />
+            </div>
           </section>
         </article>
       </main>

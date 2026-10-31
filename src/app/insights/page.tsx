@@ -1,17 +1,16 @@
 import { pageMetadata } from "@/lib/seo";
 import type { Metadata } from "next";
 import Image from "next/image";
-import Link from "next/link";
 import Breadcrumb from "@/components/Breadcrumb/Breadcrumb";
 import Button from "@/components/Button/Button";
 import ChecklistSection from "@/components/ChecklistSection/ChecklistSection";
 import Footer from "@/components/Footer/Footer";
+import InsightCard from "@/components/InsightCard/InsightCard";
 import { IMAGE_BLUR_PLACEHOLDER } from "@/lib/image-placeholder";
 import {
   BLOG_GRID,
   FEATURED_BLOG,
   formatPostDate,
-  type BlogGridItem,
 } from "@/lib/blog";
 import styles from "../blog/blog.module.css";
 
@@ -20,29 +19,6 @@ export const metadata: Metadata = pageMetadata(
   "Insights",
   "Practical guidance and considered perspectives on buying, building and long-term value from Criterion Homes.",
 );
-
-function InsightCardContent({ post }: { post: BlogGridItem }) {
-  return (
-    <>
-      <div className={styles.cardFigure}>
-        <Image
-          src={post.image}
-          alt={post.imageAlt}
-          fill
-          sizes="(min-width: 1024px) 33vw, 100vw"
-          placeholder="blur"
-          blurDataURL={IMAGE_BLUR_PLACEHOLDER}
-          className={styles.cardImage}
-        />
-      </div>
-      <div className={styles.cardBody}>
-        <h3>{post.title}</h3>
-        <p>{post.excerpt}</p>
-        <time dateTime={post.date}>{formatPostDate(post.date)}</time>
-      </div>
-    </>
-  );
-}
 
 export default function InsightsPage() {
   return (
@@ -90,15 +66,7 @@ export default function InsightsPage() {
             <ul className={styles.grid} data-motion-stagger>
               {BLOG_GRID.map((post, index) => (
                 <li key={`${post.title}-${index}`} className={styles.card}>
-                  {post.slug ? (
-                    <Link href={`/insights/${post.slug}`} className={styles.cardLink}>
-                      <InsightCardContent post={post} />
-                    </Link>
-                  ) : (
-                    <article className={styles.cardStatic}>
-                      <InsightCardContent post={post} />
-                    </article>
-                  )}
+                  <InsightCard post={post} />
                 </li>
               ))}
             </ul>
@@ -113,3 +81,4 @@ export default function InsightsPage() {
     </>
   );
 }
+
