@@ -16,6 +16,8 @@ export type BlogPost = {
   excerpt: string;
   /** ISO date - formatted for display at render time. */
   date: string;
+  /** ISO date for substantial revisions; defaults to the publication date. */
+  modifiedDate?: string;
   image: string;
   imageAlt: string;
   body: BlogSection[];
