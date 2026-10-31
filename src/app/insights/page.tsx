@@ -1,6 +1,7 @@
 import { pageMetadata } from "@/lib/seo";
 import type { Metadata } from "next";
 import Image from "next/image";
+import Link from "next/link";
 import Breadcrumb from "@/components/Breadcrumb/Breadcrumb";
 import Button from "@/components/Button/Button";
 import ChecklistSection from "@/components/ChecklistSection/ChecklistSection";
@@ -29,7 +30,11 @@ export default function InsightsPage() {
             <Breadcrumb items={[{ label: "Home", href: "/" }, { label: "Insights" }]} />
             <div className={styles.heroLayout}>
               <p className={styles.latestStory}>Latest insight</p>
-              <div className={styles.heroMedia}>
+              <Link
+                href={`/insights/${FEATURED_BLOG.slug}`}
+                className={styles.heroMedia}
+                aria-label={`Read ${FEATURED_BLOG.title}`}
+              >
                 <Image
                   src={FEATURED_BLOG.image}
                   alt={FEATURED_BLOG.imageAlt}
@@ -40,7 +45,7 @@ export default function InsightsPage() {
                   blurDataURL={IMAGE_BLUR_PLACEHOLDER}
                   className={styles.heroImage}
                 />
-              </div>
+              </Link>
               <div className={styles.heroContent}>
                 <div className={styles.heroCopy}>
                   <p className={styles.heroDate}>{formatPostDate(FEATURED_BLOG.date)}</p>
@@ -63,7 +68,7 @@ export default function InsightsPage() {
         <section className={styles.list} aria-labelledby="all-insights-heading">
           <div className={styles.listInner}>
             <h2 id="all-insights-heading">More insights</h2>
-            <ul className={styles.grid} data-motion-stagger>
+            <ul className={styles.grid}>
               {BLOG_GRID.map((post, index) => (
                 <li key={`${post.title}-${index}`} className={styles.card}>
                   <InsightCard post={post} />

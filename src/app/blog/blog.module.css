@@ -14,7 +14,7 @@
 
 .heroLayout {
   display: grid;
-  grid-template-rows: auto 40svh auto;
+  grid-template-rows: auto auto auto;
   gap: 24px;
   min-height: 0;
 }
@@ -35,6 +35,11 @@
   min-height: 0;
   overflow: hidden;
   background: var(--color-image-bg);
+}
+
+.heroMedia:focus-visible {
+  outline: 2px solid var(--color-deep-blue);
+  outline-offset: 4px;
 }
 
 .heroImage { object-fit: contain; object-position: center; }
@@ -59,7 +64,7 @@
 
 .heroCopy h1 {
   margin: 0;
-  font-size: 40px;
+  font-size: 28px;
   font-weight: 500;
   line-height: 0.96;
   letter-spacing: -0.055em;
