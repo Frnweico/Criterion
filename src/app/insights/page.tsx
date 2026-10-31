@@ -67,7 +67,7 @@ export default function InsightsPage() {
 
         <section className={styles.list} aria-labelledby="all-insights-heading">
           <div className={styles.listInner}>
-            <h2 id="all-insights-heading">More insights</h2>
+            <h3 id="all-insights-heading">More insights</h3>
             <ul className={styles.grid}>
               {BLOG_GRID.map((post, index) => (
                 <li key={`${post.title}-${index}`} className={styles.card}>
