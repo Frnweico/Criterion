@@ -1,9 +1,7 @@
-import Image from "next/image";
-import Link from "next/link";
 import Button from "@/components/Button/Button";
+import InsightCard from "@/components/InsightCard/InsightCard";
 import SectionHeader from "@/components/SectionHeader/SectionHeader";
-import { IMAGE_BLUR_PLACEHOLDER } from "@/lib/image-placeholder";
-import { BLOG_GRID, formatPostDate } from "@/lib/blog";
+import { BLOG_GRID } from "@/lib/blog";
 import styles from "./BlogSection.module.css";
 
 /** "Perspectives on Home and Value" - the three most recent insights. */
@@ -20,26 +18,7 @@ export default function BlogSection() {
         <ul className={styles.cards} data-motion-stagger>
           {BLOG_GRID.slice(0, 3).map((post) => (
             <li key={post.slug}>
-              <Link href={`/insights/${post.slug}`} className={styles.card}>
-                <div className={styles.figure}>
-                  <Image
-                    src={post.image}
-                    alt={post.imageAlt}
-                    fill
-                    sizes="(min-width: 1024px) 423px, 100vw"
-                    placeholder="blur"
-                    blurDataURL={IMAGE_BLUR_PLACEHOLDER}
-                    className={styles.image}
-                  />
-                </div>
-
-                <div className={styles.cardBody}>
-                  <h3 className={styles.cardTitle}>{post.title}</h3>
-                  <time className={styles.date} dateTime={post.date}>
-                    {formatPostDate(post.date)}
-                  </time>
-                </div>
-              </Link>
+              <InsightCard post={post} />
             </li>
           ))}
         </ul>
