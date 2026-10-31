@@ -18,6 +18,7 @@ export function articleMetadata(
   description: string,
   image: string,
   publishedTime: string,
+  modifiedTime = publishedTime,
 ): Metadata {
   const url = `${SEO_ORIGIN}${path}`;
 
@@ -33,6 +34,8 @@ export function articleMetadata(
       title,
       description,
       publishedTime,
+      modifiedTime,
+      section: "Insights",
       authors: ["Criterion Homes Editorial Team"],
       images: [{ url: `${SEO_ORIGIN}${image}` }],
     },
@@ -51,6 +54,7 @@ export function articleJsonLd(
   description: string,
   image: string,
   publishedTime: string,
+  modifiedTime = publishedTime,
 ) {
   const url = `${SEO_ORIGIN}${path}`;
 
@@ -62,7 +66,8 @@ export function articleJsonLd(
     description,
     image: `${SEO_ORIGIN}${image}`,
     datePublished: publishedTime,
-    dateModified: publishedTime,
+    dateModified: modifiedTime,
+    articleSection: "Insights",
     mainEntityOfPage: {
       "@type": "WebPage",
       "@id": url,
@@ -76,6 +81,10 @@ export function articleJsonLd(
       "@type": "Organization",
       name: "Criterion Homes",
       url: SEO_ORIGIN,
+      logo: {
+        "@type": "ImageObject",
+        url: `${SEO_ORIGIN}/icons/logo-wordmark-mark.svg`,
+      },
     },
   };
 }
@@ -122,3 +131,4 @@ export function projectListingJsonLd(path: string, project: Project) {
     },
   };
 }
+
