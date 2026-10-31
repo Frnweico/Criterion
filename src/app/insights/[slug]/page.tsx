@@ -14,6 +14,7 @@ import { IMAGE_BLUR_PLACEHOLDER } from "@/lib/image-placeholder";
 import {
   BLOG_POSTS,
   getBlogPost,
+  getLatestInsights,
 } from "@/lib/blog";
 import styles from "../../blog/[slug]/post.module.css";
 
@@ -55,7 +56,7 @@ export default async function InsightPostPage({
 
   if (!post) notFound();
 
-  const relatedPosts = BLOG_POSTS.filter((item) => item.slug !== post.slug).slice(0, 3);
+  const relatedPosts = getLatestInsights({ excludeSlug: post.slug, limit: 3 });
 
   return (
     <>
