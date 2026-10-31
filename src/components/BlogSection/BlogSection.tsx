@@ -1,7 +1,7 @@
 import Button from "@/components/Button/Button";
 import InsightCard from "@/components/InsightCard/InsightCard";
 import SectionHeader from "@/components/SectionHeader/SectionHeader";
-import { BLOG_GRID } from "@/lib/blog";
+import { getLatestInsights } from "@/lib/blog";
 import styles from "./BlogSection.module.css";
 
 /** "Perspectives on Home and Value" - the three most recent insights. */
@@ -16,7 +16,7 @@ export default function BlogSection() {
         </h2>
 
         <ul className={styles.cards} data-motion-stagger>
-          {BLOG_GRID.slice(0, 3).map((post) => (
+          {getLatestInsights({ limit: 3 }).map((post) => (
             <li key={post.slug}>
               <InsightCard post={post} />
             </li>
