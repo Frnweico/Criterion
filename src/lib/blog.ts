@@ -663,10 +663,27 @@ export function getBlogPost(slug: string): BlogPost | undefined {
 export const INSIGHT_POSTS: BlogPost[] = [...APPROVED_INSIGHTS, ...LEGACY_INSIGHTS]
   .sort((a, b) => b.date.localeCompare(a.date));
 
+/**
+ * Returns one canonical latest-first feed for every insight surface.
+ * Pass excludeSlug on article pages so the current article is never repeated.
+ */
+export function getLatestInsights({
+  excludeSlug,
+  limit,
+}: {
+  excludeSlug?: string;
+  limit?: number;
+} = {}): BlogPost[] {
+  const posts = excludeSlug
+    ? INSIGHT_POSTS.filter((post) => post.slug !== excludeSlug)
+    : INSIGHT_POSTS;
+
+  return typeof limit === "number" ? posts.slice(0, limit) : posts;
+}
+
 /** The current names retain compatibility with shared components during the move. */
 export const BLOG_POSTS = INSIGHT_POSTS;
 export const FEATURED_BLOG: BlogPost = INSIGHT_POSTS[0];
-export const BLOG_GRID: BlogGridItem[] = INSIGHT_POSTS.filter(
-  (post) => post.slug !== FEATURED_BLOG.slug,
-);
-
+export const BLOG_GRID: BlogGridItem[] = getLatestInsights({
+  excludeSlug: FEATURED_BLOG.slug,
+});
