@@ -580,32 +580,32 @@ const LEGACY_INSIGHTS: BlogPost[] = [
   },
   {
     slug: "the-quiet-luxury-of-living-well",
-    title: "The Quiet Luxury of Living Well",
+    title: "The Quiet Value of Living Well",
     excerpt:
-      "Inside the material, light and spatial decisions that turn a residence into a lasting retreat.",
+      "How thoughtful planning, durable materials and natural light make a home easier to live in over time.",
     date: "2025-12-10",
     image: "/images/Webp images/WP-blog-card-6 - Copy.webp",
-    imageAlt: "A warm, considered interior living space",
+    imageAlt: "A warm, welcoming interior living space",
     body: [
       {
-        heading: "A quality you can feel",
+        heading: "A home that feels right",
         paragraphs: [
-          "Quiet luxury is not a list of finishes. It is the feeling that comes from rooms being composed with care: light arriving where it is needed, materials sitting comfortably beside one another and space being allowed to breathe.",
-          "The most lasting interiors do not need to announce themselves. Their details are useful, durable and calm enough to support the people living among them rather than competing for attention.",
+          "A well-planned home feels calm because the important things have been properly thought through. Light should arrive where it is needed, materials should work well together and rooms should give people enough space to live comfortably.",
+          "The best homes don't just impress at first glance. Their details are useful, durable and calm enough to support the people living among them rather than competing for attention.",
         ],
       },
       {
-        heading: "Material with meaning",
+        heading: "Materials that hold up to daily life",
         paragraphs: [
           "Every material carries a practical responsibility. It must work with the climate, stand up to everyday use and become more characterful rather than more difficult over time. Texture, warmth and maintenance all matter together.",
-          "A restrained palette gives those choices room to register. When a space is not crowded with competing gestures, the grain of timber, the softness of a fabric or the depth of a stone can do the quieter work of making a room feel resolved.",
+          "A restrained palette gives those choices room to register. When a space is not crowded with competing gestures, the grain of timber, the softness of a fabric or the depth of a stone can make a room feel settled without adding visual noise.",
         ],
       },
       {
-        heading: "Designed for the long stay",
+        heading: "Made to live well over time",
         paragraphs: [
-          "Living well is not about a moment of arrival. It is about whether a home continues to offer comfort, ease and a sense of retreat after the first impression has passed.",
-          "That is the standard we value: spaces that are beautifully made, quietly useful and generous enough to become personal over time.",
+          "Living well is not about a moment of arrival. It is about whether a home continues to offer comfort and ease long after the first impression has passed.",
+          "That is the standard we value: homes that are well built, comfortable to use and able to remain useful as life changes.",
         ],
       },
     ],
