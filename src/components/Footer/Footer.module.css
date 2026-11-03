@@ -9,8 +9,8 @@
   display: flex;
   flex-direction: column;
   gap: 48px;
-  max-width: var(--page-max);
-  margin: 0 auto;
+  width: 100%;
+  margin: 0;
 }
 
 .logo {
@@ -204,8 +204,8 @@
   display: flex;
   flex-direction: column;
   gap: 24px;
-  max-width: var(--page-max);
-  margin: 48px auto 0;
+  width: 100%;
+  margin: 48px 0 0;
   padding-top: 20px;
   border-top: 1px solid rgb(252 251 255 / 14%);
 }
