@@ -13,25 +13,20 @@
   margin: 0 auto;
 }
 
-.brand {
-  display: flex;
-  align-items: flex-start;
-}
-
 .logo {
   display: flex;
-  gap: 14px;
+  gap: 11px;
   align-items: end;
   width: fit-content;
 }
 
 .logoMark {
-  width: 44px;
+  width: 34px;
   height: auto;
 }
 
 .logoText {
-  width: 100px;
+  width: 78px;
   height: auto;
 }
 
@@ -50,6 +45,7 @@
   display: flex;
   flex-direction: column;
   gap: 16px;
+  min-width: 0;
 }
 
 .updatesHeading {
@@ -123,18 +119,21 @@
   display: flex;
   flex-direction: column;
   gap: 28px;
+  min-width: 0;
 }
 
 .linkColumns {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 32px;
+  gap: clamp(24px, 4vw, 48px);
+  min-width: 0;
 }
 
 .group {
   display: flex;
   flex-direction: column;
   gap: 16px;
+  min-width: 0;
 }
 
 .list {
@@ -151,10 +150,12 @@
 .socialLink {
   display: inline-block;
   width: fit-content;
+  max-width: 100%;
   font-size: 16px;
   line-height: 1.45;
   color: var(--color-platinum);
   text-decoration: none;
+  overflow-wrap: anywhere;
   transition:
     opacity 200ms ease,
     color 200ms ease;
@@ -180,6 +181,7 @@
   gap: 8px;
   align-items: center;
   width: fit-content;
+  max-width: 100%;
   padding-bottom: 4px;
   border-bottom: 1px solid rgb(252 251 255 / 45%);
   font-size: 14px;
@@ -199,6 +201,9 @@
 /* --- Bottom bar ------------------------------------------------------- */
 
 .foot {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
   max-width: var(--page-max);
   margin: 48px auto 0;
   padding-top: 20px;
@@ -217,13 +222,18 @@
 @media (min-width: 640px) {
   .columns {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
     gap: 48px 36px;
   }
 
-  .brand,
   .updates {
     grid-column: 1 / -1;
+  }
+
+  .foot {
+    flex-direction: row;
+    align-items: end;
+    justify-content: space-between;
   }
 }
 
@@ -235,34 +245,16 @@
   }
 
   .columns {
-    display: grid;
     grid-template-columns:
-      minmax(180px, 0.65fr)
-      minmax(340px, 1.45fr)
-      minmax(220px, 0.9fr)
-      minmax(270px, 1fr);
-    gap: 56px;
+      minmax(300px, 1.25fr)
+      minmax(210px, 0.8fr)
+      minmax(280px, 1fr);
+    gap: clamp(36px, 5vw, 72px);
     align-items: start;
   }
 
-  .brand,
   .updates {
     grid-column: auto;
-  }
-
-  .logo {
-    gap: 18px;
-  }
-
-  .logoMark {
-    width: 58px;
-  }
-
-  .logoText {
-    width: 132px;
-  }
-
-  .updates {
     max-width: 470px;
   }
 
@@ -270,17 +262,23 @@
     font-size: 28px;
   }
 
-  .linkColumns {
-    gap: 40px;
-  }
-
   .foot {
-    margin-top: 64px;
+    margin-top: 56px;
   }
 }
 
-@media (min-width: 1440px) {
-  .columns {
-    gap: 72px;
+@media (max-width: 479px) {
+  .linkColumns {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .signupForm {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .signupSubmit {
+    align-self: flex-start;
   }
 }
