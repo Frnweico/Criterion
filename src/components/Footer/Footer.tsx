@@ -15,25 +15,6 @@ export default function Footer() {
   return (
     <footer className={styles.footer}>
       <div className={styles.columns}>
-        <div className={styles.brand}>
-          <Link href="/" className={styles.logo} aria-label={`${SITE.name} home`}>
-            <Image
-              src="/icons/logo-wordmark-mark.svg"
-              alt=""
-              width={498}
-              height={502}
-              className={styles.logoMark}
-            />
-            <Image
-              src="/icons/logo-wordmark-text.svg"
-              alt=""
-              width={1144}
-              height={449}
-              className={styles.logoText}
-            />
-          </Link>
-        </div>
-
         <section className={styles.updates} aria-labelledby="footer-newsletter">
           <p className={styles.groupTitle}>Updates</p>
           <h2 id="footer-newsletter" className={styles.updatesHeading}>
@@ -149,6 +130,23 @@ export default function Footer() {
       </div>
 
       <div className={styles.foot}>
+        <Link href="/" className={styles.logo} aria-label={`${SITE.name} home`}>
+          <Image
+            src="/icons/logo-wordmark-mark.svg"
+            alt=""
+            width={498}
+            height={502}
+            className={styles.logoMark}
+          />
+          <Image
+            src="/icons/logo-wordmark-text.svg"
+            alt=""
+            width={1144}
+            height={449}
+            className={styles.logoText}
+          />
+        </Link>
+
         <p className={styles.colophon}>
           © {new Date().getFullYear()} {SITE.legalName}. All rights reserved.
         </p>
