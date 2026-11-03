@@ -1,6 +1,6 @@
 .footer {
-  padding: 50px var(--gutter) 40px;
-  border-top: 1px solid rgb(252 251 255 / 20%);
+  padding: 56px var(--gutter) 28px;
+  border-top: 1px solid rgb(252 251 255 / 16%);
   background: var(--color-carbon);
   color: var(--color-platinum);
 }
@@ -8,17 +8,40 @@
 .columns {
   display: flex;
   flex-direction: column;
-  gap: 44px;
+  gap: 48px;
+  max-width: var(--page-max);
+  margin: 0 auto;
 }
 
-/* Muted column labels. */
+.brand {
+  display: flex;
+  align-items: flex-start;
+}
+
+.logo {
+  display: flex;
+  gap: 14px;
+  align-items: end;
+  width: fit-content;
+}
+
+.logoMark {
+  width: 44px;
+  height: auto;
+}
+
+.logoText {
+  width: 100px;
+  height: auto;
+}
+
 .groupTitle {
   margin: 0;
-  font-size: 20px;
+  font-size: 16px;
   font-weight: 400;
   line-height: 1.2;
   letter-spacing: -0.01em;
-  opacity: 0.5;
+  color: rgb(252 251 255 / 52%);
 }
 
 /* --- Updates ---------------------------------------------------------- */
@@ -26,39 +49,42 @@
 .updates {
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 16px;
 }
 
-/* Uppercase and modest — not a display heading. */
 .updatesHeading {
   margin: 0;
   font-size: 24px;
-  font-weight: 600;
-  line-height: 1.2;
+  font-weight: 500;
+  line-height: 1.12;
+  letter-spacing: -0.025em;
   text-transform: uppercase;
   color: var(--color-platinum);
 }
 
 .updatesBody {
-  margin: -12px 0 0;
+  max-width: 430px;
+  margin: 0;
   font-size: 16px;
-  line-height: 1.32;
-  color: var(--color-platinum);
+  line-height: 1.4;
+  color: rgb(252 251 255 / 82%);
 }
 
-/* Input and button sit side by side on mobile, stacked at desktop. */
 .signupForm {
   display: flex;
-  gap: 16px;
+  gap: 12px;
   align-items: flex-end;
+  width: 100%;
+  max-width: 470px;
+  margin-top: 8px;
 }
 
 .signupInput {
   flex: 1;
   min-width: 0;
-  padding: 9px 0;
+  padding: 10px 0;
   border: 0;
-  border-bottom: 1px solid var(--color-platinum);
+  border-bottom: 1px solid rgb(252 251 255 / 55%);
   appearance: none;
   background: linear-gradient(currentColor, currentColor) left bottom / 0 1px no-repeat;
   font-family: inherit;
@@ -70,7 +96,7 @@
 }
 
 .signupInput::placeholder {
-  color: rgb(255 255 255 / 40%);
+  color: rgb(252 251 255 / 42%);
 }
 
 .signupInput:focus {
@@ -91,24 +117,30 @@
   flex-shrink: 0;
 }
 
-/* --- Groups ----------------------------------------------------------- */
+/* --- Information groups ---------------------------------------------- */
 
-.column {
+.contactColumn {
   display: flex;
   flex-direction: column;
-  gap: 44px;
+  gap: 28px;
+}
+
+.linkColumns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 32px;
 }
 
 .group {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 16px;
 }
 
 .list {
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: 5px;
   margin: 0;
   padding: 0;
   list-style: none;
@@ -117,85 +149,80 @@
 .link,
 .navLink,
 .socialLink {
+  display: inline-block;
+  width: fit-content;
   font-size: 16px;
   line-height: 1.45;
   color: var(--color-platinum);
   text-decoration: none;
-  transition: opacity 0.2s ease;
-  width: 75%;
+  transition:
+    opacity 200ms ease,
+    color 200ms ease;
 }
 
 .link:hover,
 .navLink:hover,
 .socialLink:hover {
-  opacity: 0.7;
-}
-
-/* Underlined in the frame, unlike the navigation column. */
-.socialLink {
-  text-decoration: underline;
+  opacity: 0.68;
 }
 
 .address {
-  margin-top: 18px;
+  max-width: 240px;
+  margin: 13px 0 0;
   font-style: normal;
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 400;
   line-height: 1.45;
 }
 
-.profileButton {
-  align-self: flex-start;
-  padding: 12px 28px;
-  font-weight: 400;
+.profileLink {
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+  width: fit-content;
+  padding-bottom: 4px;
+  border-bottom: 1px solid rgb(252 251 255 / 45%);
+  font-size: 14px;
+  line-height: 1.3;
+  color: var(--color-platinum);
   text-decoration: none;
+  transition:
+    border-color 200ms ease,
+    opacity 200ms ease;
 }
 
-/* --- Foot ------------------------------------------------------------- */
+.profileLink:hover {
+  border-color: currentColor;
+  opacity: 0.72;
+}
+
+/* --- Bottom bar ------------------------------------------------------- */
 
 .foot {
-  display: flex;
-  flex-direction: column;
-  gap: 32px;
-  margin-top: 56px;
-}
-
-.logo {
-  display: flex;
-  gap: 14px;
-  align-items: end;
-  width: fit-content;
-}
-
-.logoMark {
-  width: 44px;
-  height: auto;
-}
-
-.logoText {
-  width: 100px;
-  height: auto;
+  max-width: var(--page-max);
+  margin: 48px auto 0;
+  padding-top: 20px;
+  border-top: 1px solid rgb(252 251 255 / 14%);
 }
 
 .colophon {
   margin: 0;
   font-size: 12px;
   line-height: 1.4;
-  color: var(--color-platinum);
+  color: rgb(252 251 255 / 62%);
 }
 
 /* --- Tablet ----------------------------------------------------------- */
 
-/* Navigation and Socials pair up first, as in the mobile frame. */
-@media (min-width: 480px) {
+@media (min-width: 640px) {
   .columns {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 44px 32px;
+    gap: 48px 36px;
   }
 
-  .updates,
-  .column {
+  .brand,
+  .updates {
     grid-column: 1 / -1;
   }
 }
@@ -204,56 +231,56 @@
 
 @media (min-width: 1024px) {
   .footer {
-    padding: 76px var(--gutter) 40px;
+    padding: 64px var(--gutter) 28px;
   }
 
   .columns {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) 290px 170px 100px;
-    column-gap: 56px;
-    row-gap: 0;
+    grid-template-columns:
+      minmax(180px, 0.65fr)
+      minmax(340px, 1.45fr)
+      minmax(220px, 0.9fr)
+      minmax(270px, 1fr);
+    gap: 56px;
+    align-items: start;
   }
 
-  .updates,
-  .column {
+  .brand,
+  .updates {
     grid-column: auto;
   }
 
-  .updates {
-    max-width: 356px;
-  }
-
-  .signupForm {
-    flex-direction: column;
-    gap: 28px;
-    align-items: stretch;
-  }
-
-  .signupSubmit {
-    align-self: flex-start;
-  }
-
-  .foot {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) auto;
-    align-items: end;
-    max-width: var(--page-max);
-    margin: 100px auto 0;
+  .logo {
+    gap: 18px;
   }
 
   .logoMark {
-    width: 78px;
+    width: 58px;
   }
 
   .logoText {
-    width: 178px;
+    width: 132px;
   }
 
-  .logo {
-    gap: 24px;
+  .updates {
+    max-width: 470px;
   }
 
-  .colophon {
-    justify-self: end;
+  .updatesHeading {
+    font-size: 28px;
+  }
+
+  .linkColumns {
+    gap: 40px;
+  }
+
+  .foot {
+    margin-top: 64px;
+  }
+}
+
+@media (min-width: 1440px) {
+  .columns {
+    gap: 72px;
   }
 }
