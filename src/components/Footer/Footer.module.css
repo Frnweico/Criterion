@@ -210,6 +210,25 @@
   border-top: 1px solid rgb(252 251 255 / 14%);
 }
 
+.legal {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 20px;
+}
+
+.legal a {
+  width: fit-content;
+  font-size: 12px;
+  line-height: 1.4;
+  color: rgb(252 251 255 / 72%);
+  text-decoration: none;
+  transition: opacity 200ms ease;
+}
+
+.legal a:hover {
+  opacity: 0.65;
+}
+
 .colophon {
   margin: 0;
   font-size: 12px;
@@ -231,9 +250,18 @@
   }
 
   .foot {
-    flex-direction: row;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
     align-items: end;
-    justify-content: space-between;
+  }
+
+  .legal {
+    justify-content: center;
+  }
+
+  .colophon {
+    justify-self: end;
+    text-align: right;
   }
 }
 
