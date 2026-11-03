@@ -88,7 +88,7 @@ export default async function InsightPostPage({
           </div>
 
           <header className={styles.articleHeader}>
-            <h1>{post.title}</h1>
+            <h1 data-motion-line-safe>{post.title}</h1>
             <div className={styles.articleMeta}>
               <time className={styles.date} dateTime={post.date}>
                 {formatArticleDate(post.date)}
@@ -183,9 +183,8 @@ export default async function InsightPostPage({
 
           <section className={styles.subscribe} aria-labelledby="article-subscribe-heading">
             <h2 id="article-subscribe-heading">
-              Like what you&apos;ve read? Subscribe for
-              <br className={styles.desktopBreak} /> insights, property updates, and more from
-              <br className={styles.desktopBreak} /> Criterion Homes.
+              Like what you&apos;ve read? Subscribe for insights, property updates, and more{" "}
+              <span className={styles.brandPhrase}>from Criterion Homes.</span>
             </h2>
             <form className={styles.subscribeForm}>
               <label className="visually-hidden" htmlFor={`article-email-${post.slug}`}>
