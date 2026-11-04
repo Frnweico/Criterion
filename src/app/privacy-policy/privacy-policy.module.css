@@ -1,0 +1,150 @@
+.policy {
+  padding: 124px var(--gutter) 96px;
+  background: var(--color-platinum);
+  color: var(--color-carbon);
+}
+
+.header,
+.content {
+  width: 100%;
+  max-width: 900px;
+  margin-inline: auto;
+}
+
+.header {
+  padding: 72px 0 64px;
+  border-bottom: 1px solid rgb(25 25 25 / 20%);
+}
+
+.eyebrow {
+  margin-bottom: 42px;
+}
+
+.header h1 {
+  margin: 0 0 32px;
+  font-size: 42px;
+  font-weight: 400;
+  line-height: 0.98;
+  letter-spacing: -0.055em;
+}
+
+.header p,
+.content p,
+.content li,
+.content address {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.55;
+  letter-spacing: -0.015em;
+}
+
+.header p {
+  max-width: 760px;
+  margin: 0;
+}
+
+.header p + p {
+  margin-top: 18px;
+}
+
+.content {
+  padding-top: 64px;
+}
+
+.content section + section {
+  margin-top: 64px;
+}
+
+.content h2 {
+  margin: 0 0 22px;
+  font-size: 22px;
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: -0.035em;
+}
+
+.content p {
+  margin: 0;
+}
+
+.content p + p,
+.content ul + p {
+  margin-top: 18px;
+}
+
+.content ul {
+  display: grid;
+  gap: 10px;
+  margin: 18px 0 0;
+  padding-left: 1.25em;
+  list-style: disc;
+}
+
+.content address {
+  margin-top: 18px;
+  font-style: normal;
+}
+
+.content a {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.updated {
+  margin-top: 80px !important;
+  padding-top: 24px;
+  border-top: 1px solid rgb(25 25 25 / 20%);
+  color: rgb(25 25 25 / 64%);
+  font-size: 14px !important;
+}
+
+@media (min-width: 768px) {
+  .policy {
+    padding-bottom: 128px;
+  }
+
+  .header {
+    padding-top: 96px;
+    padding-bottom: 88px;
+  }
+
+  .header h1 {
+    font-size: 64px;
+  }
+
+  .header p,
+  .content p,
+  .content li,
+  .content address {
+    font-size: 18px;
+  }
+
+  .content {
+    padding-top: 88px;
+  }
+
+  .content section + section {
+    margin-top: 80px;
+  }
+
+  .content h2 {
+    font-size: 30px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .policy {
+    padding-inline: var(--gutter);
+  }
+
+  .header h1 {
+    font-size: 72px;
+  }
+
+  .header p,
+  .content p,
+  .content li,
+  .content address {
+    font-size: 20px;
+  }
+}
