@@ -74,7 +74,7 @@
 
 .content ul {
   display: grid;
-  gap: 10px;
+  gap: 2px;
   margin: 18px 0 0;
   padding-left: 1.25em;
   list-style: disc;
