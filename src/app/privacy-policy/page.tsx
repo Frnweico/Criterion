@@ -42,11 +42,8 @@ export default function PrivacyPolicyPage() {
               <h2>1. Who we are</h2>
               <p>
                 Criterion Homes Limited is a property development company
-                operating in Abuja, Nigeria.
-              </p>
-              <p>
-                Criterion Homes Limited is responsible for determining how
-                personal data collected through this website is used.
+                operating in Abuja, Nigeria, and is responsible for determining
+                how personal data collected through this website is used.
               </p>
               <p>
                 For questions about this Privacy Policy or your personal data,
