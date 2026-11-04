@@ -149,7 +149,6 @@ export default function Footer() {
 
         <nav className={styles.legal} aria-label="Legal">
           <Link href="/privacy-policy">Privacy Policy</Link>
-          <Link href="/terms-of-use">Terms of Use</Link>
         </nav>
 
         <p className={styles.colophon}>
