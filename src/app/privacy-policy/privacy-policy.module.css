@@ -34,7 +34,7 @@
 .content address {
   font-size: 16px;
   font-weight: 400;
-  line-height: 1.55;
+  line-height: 1.4;
   letter-spacing: -0.015em;
 }
 
@@ -44,7 +44,7 @@
 }
 
 .header p + p {
-  margin-top: 18px;
+  margin-top: 12px;
 }
 
 .content {
@@ -69,7 +69,7 @@
 
 .content p + p,
 .content ul + p {
-  margin-top: 18px;
+  margin-top: 12px;
 }
 
 .content ul {
