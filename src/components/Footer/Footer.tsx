@@ -7,25 +7,25 @@ import styles from "./Footer.module.css";
 /** Static asset, so it is linked directly rather than through a route. */
 const COMPANY_PROFILE = "/Criterion-Homes-Company-Profile.pdf";
 
+function formatPhone(phone: string) {
+  return phone.replace(/^(\+234)(\d{3})(\d{3})(\d{4})$/, "$1 $2 $3 $4");
+}
+
 export default function Footer() {
   return (
     <footer className={styles.footer}>
       <div className={styles.columns}>
-        <section
-          className={styles.updates}
-          aria-labelledby="footer-newsletter"
-        >
+        <section className={styles.updates} aria-labelledby="footer-newsletter">
           <p className={styles.groupTitle}>Updates</p>
-
           <h2 id="footer-newsletter" className={styles.updatesHeading}>
             Stay One Step Ahead
           </h2>
           <p className={styles.updatesBody}>
-            Sign up for our newsletter to receive occasional updates on all
-            things Criterion Homes
+            Sign up to get updates on our latest developments, industry insights,
+            and exclusive opportunities.
           </p>
 
-          {/* TODO: no submit destination yet — needs a newsletter provider. */}
+          {/* TODO: connect this form to the newsletter provider. */}
           <form className={styles.signupForm}>
             <label htmlFor="footer-email" className="visually-hidden">
               Email address
@@ -36,7 +36,7 @@ export default function Footer() {
               type="email"
               required
               autoComplete="email"
-              placeholder="email address"
+              placeholder="Email address"
               className={styles.signupInput}
             />
             <Button
@@ -49,8 +49,7 @@ export default function Footer() {
           </form>
         </section>
 
-        {/* Contact and Resources share a column in the frame. */}
-        <div className={styles.column}>
+        <div className={styles.contactColumn}>
           <section className={styles.group} aria-labelledby="footer-contact">
             <p id="footer-contact" className={styles.groupTitle}>
               Contact
@@ -63,76 +62,74 @@ export default function Footer() {
               </li>
               <li>
                 <a href={`tel:${CONTACT.phone}`} className={styles.link}>
-                  {CONTACT.phone}
+                  {formatPhone(CONTACT.phone)}
+                </a>
+              </li>
+              <li>
+                <a
+                  href={CONTACT.mapsUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={styles.link}
+                >
+                  <address className={styles.address}>{CONTACT.address}</address>
                 </a>
               </li>
             </ul>
-            <a
-              href={CONTACT.mapsUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={styles.link}
-            >
-              <address className={styles.address}>{CONTACT.address}</address>
-            </a>
           </section>
 
-          <section className={styles.group} aria-labelledby="footer-resources">
-            <p id="footer-resources" className={styles.groupTitle}>
-              Resources
-            </p>
-            <Button
-              text="Download company profile"
-              href={COMPANY_PROFILE}
-              variant="outline"
-              icon={false}
-              newTab
-              className={styles.profileButton}
-            />
-          </section>
+          <a
+            href={COMPANY_PROFILE}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={styles.profileLink}
+          >
+            Download company profile
+            <span aria-hidden="true">↗</span>
+          </a>
         </div>
 
-        <section className={styles.group} aria-labelledby="footer-nav">
-          <p id="footer-nav" className={styles.groupTitle}>
-            Navigation
-          </p>
-          <nav>
+        <div className={styles.linkColumns}>
+          <section className={styles.group} aria-labelledby="footer-nav">
+            <p id="footer-nav" className={styles.groupTitle}>
+              Navigation
+            </p>
+            <nav>
+              <ul className={styles.list}>
+                {NAV.map((item) => (
+                  <li key={item.href}>
+                    <Link href={item.href} className={styles.navLink}>
+                      {item.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+          </section>
+
+          <section className={styles.group} aria-labelledby="footer-socials">
+            <p id="footer-socials" className={styles.groupTitle}>
+              Socials
+            </p>
             <ul className={styles.list}>
-              {NAV.map((item) => (
-                <li key={item.href}>
-                  <Link href={item.href} className={styles.navLink}>
-                    {item.label}
-                  </Link>
+              {SOCIALS.map((social) => (
+                <li key={social.label}>
+                  <a
+                    href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={styles.socialLink}
+                  >
+                    {social.label}
+                  </a>
                 </li>
               ))}
             </ul>
-          </nav>
-        </section>
-
-        <section className={styles.group} aria-labelledby="footer-socials">
-          <p id="footer-socials" className={styles.groupTitle}>
-            Socials
-          </p>
-          <ul className={styles.list}>
-            {SOCIALS.map((social) => (
-              <li key={social.label}>
-                <a
-                  href={social.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={styles.socialLink}
-                >
-                  {social.label}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </section>
+          </section>
+        </div>
       </div>
 
       <div className={styles.foot}>
-        {/* The mark and wordmark are separate assets; the frame sets them side
-            by side at 175x50. */}
         <Link href="/" className={styles.logo} aria-label={`${SITE.name} home`}>
           <Image
             src="/icons/logo-wordmark-mark.svg"
@@ -149,6 +146,11 @@ export default function Footer() {
             className={styles.logoText}
           />
         </Link>
+
+        <nav className={styles.legal} aria-label="Legal">
+          <Link href="/privacy-policy">Privacy Policy</Link>
+          <Link href="/terms-of-use">Terms of Use</Link>
+        </nav>
 
         <p className={styles.colophon}>
           © {new Date().getFullYear()} {SITE.legalName}. All rights reserved.
