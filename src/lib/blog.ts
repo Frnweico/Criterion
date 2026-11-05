@@ -394,6 +394,10 @@ const APPROVED_INSIGHTS: BlogPost[] = [
           "Each 20% payment follows the completion of a construction milestone.",
           "This means the payment plan moves with the building. When a milestone is completed, the buyer can see what has been built before the next 20% payment becomes due.",
         ],
+        paragraphLink: {
+          label: "Build As You Pay",
+          href: "/insights/build-as-you-pay-explained",
+        },
         items: [
           "Foundation",
           "First-floor slab",

@@ -127,6 +127,12 @@ export default function ApproachPage() {
               </li>
             ))}
           </ol>
+          <Link
+            href="/insights/build-as-you-pay-explained"
+            className={styles.approachLink}
+          >
+            See how Build As You Pay works <span aria-hidden>→</span>
+          </Link>
         </section>
 
         <section className={styles.evidence} aria-labelledby="evidence-title">
