@@ -37,8 +37,8 @@ export type BlogGridItem = Pick<
 const APPROVED_INSIGHTS: BlogPost[] = [
   {
     "slug": "build-as-you-pay-explained",
-    "title": "Criterion Homes' Build As You Pay: How Milestone Payments Work",
-    "excerpt": "See how Criterion Homes links five 20% payments to completed construction milestones and documents the journey to handover.",
+    "title": "Build As You Pay: How Criterion Homes' Milestone Payments Work",
+    "excerpt": "Learn how Criterion Homes' Build As You Pay links five 20% instalments to completed construction milestones, with documented progress towards handover.",
     "date": "2026-10-30",
     "image": "/images/insights/build-as-you-pay-progression.webp",
     "imageAlt": "Five architectural models showing construction progressing from foundation to the finished homes",
