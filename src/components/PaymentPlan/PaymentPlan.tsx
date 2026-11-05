@@ -1,3 +1,4 @@
+import Link from "next/link";
 import styles from "./PaymentPlan.module.css";
 
 export type Milestone = {
@@ -53,6 +54,12 @@ export default function PaymentPlan({
               <li key={point}>{point}</li>
             ))}
           </ul>
+          <Link
+            href="/insights/build-as-you-pay-explained"
+            className={styles.insightLink}
+          >
+            See how Build As You Pay works <span aria-hidden>→</span>
+          </Link>
         </div>
 
         <dl className={styles.priceBox}>
