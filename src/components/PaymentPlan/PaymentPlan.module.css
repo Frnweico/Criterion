@@ -63,6 +63,21 @@
   opacity: 0.45;
 }
 
+.insightLink {
+  width: fit-content;
+  padding-bottom: 4px;
+  border-bottom: 1px solid currentColor;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: 0.02em;
+}
+
+.insightLink:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 4px;
+}
+
 /* Filled diamond, drawn in CSS to match SectionHeader's marker. */
 .marker {
   display: inline-block;
