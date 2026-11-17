@@ -72,6 +72,12 @@
   object-position: right center;
 }
 
+/* Portrait project artwork in a landscape hero stays flush to the frame's
+   bottom edge and fills the full width. Any necessary crop comes from above. */
+.mediaBottom img {
+  object-position: center bottom;
+}
+
 /* Slides 2 and 3 carry white copy over façades with changing brightness.
    This mobile-first wash stays concentrated behind that copy instead of
    dimming the architecture across the entire frame. */
