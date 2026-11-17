@@ -39,7 +39,7 @@ export const PROJECTS: Project[] = [
     location: "Gwarinpa, Abuja, Nigeria",
     coordinates: { latitude: 9.1191331, longitude: 7.3799771 },
     type: "4-Bedroom Terrace Duplexes",
-    priceLabel: "From \u20a6275M",
+    priceLabel: "From \u20a6300M",
     completion: "Q4 2026",
     stage: "Stage 4/5",
     description:

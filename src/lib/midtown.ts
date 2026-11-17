@@ -256,7 +256,7 @@ export const PAYMENT_INTRO = {
 
 export const PAYMENT: Payment = {
   unitPrice: "NGN 350,000,000",
-  semiFinished: "NGN 275,000,000",
+  semiFinished: "NGN 300,000,000",
   milestones: [
     { stage: "Foundation", instalment: "20% · 1st Instalment ₦70M", duration: "3 Months", status: "Completed" },
     { stage: "1st Floor Slab", instalment: "20% · 2nd Instalment ₦70M", duration: "3 Months", status: "Completed" },
