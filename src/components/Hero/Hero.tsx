@@ -186,6 +186,8 @@ export default function Hero() {
                     : ""
                 } ${
                   slideIndex > 0 ? styles.mediaContrast : ""
+                } ${
+                  slide.id === "midtown-terraces" ? styles.mediaBottom : ""
                 }`}
               >
                 <SlideImage slide={slide} slideIndex={slideIndex} />
