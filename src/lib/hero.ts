@@ -67,7 +67,7 @@ export const HERO_SLIDES: HeroSlide[] = [
     ctaHref: `/projects/${midtown.slug}`,
     secondaryCtaText: SECONDARY_CTA,
     secondaryCtaHref: SECONDARY_CTA_HREF,
-    image: "/images/midtown-main.jpg",
+    image: "/images/midtown-landscape.jpg",
     imageAlt: midtown.imageAlt,
   },
   {
