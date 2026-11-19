@@ -38,7 +38,7 @@ import styles from "./midtown.module.css";
 
 const project = getProject("midtown-terraces")!;
 
-export const metadata: Metadata = pageMetadata("/projects/midtown-terraces", "The Midtown Terraces in Gwarinpa, Abuja", "Discover The Midtown Terraces: 4-bedroom terrace duplexes in Gwarinpa, Abuja, with everyday essentials close by and a calmer place to come home to.", "/images/midtown-hero.webp");
+export const metadata: Metadata = pageMetadata("/projects/midtown-terraces", "The Midtown Terraces in Gwarinpa, Abuja", "Discover The Midtown Terraces: 4-bedroom terrace duplexes in Gwarinpa, Abuja, with everyday essentials close by and a calmer place to come home to.", "/images/midtown-main.jpg");
 
 export default function MidtownTerracesPage() {
   return (
@@ -88,10 +88,10 @@ export default function MidtownTerracesPage() {
 
             <div className={styles.heroFigure}>
               <Image
-                src="/images/midtown-hero.webp"
+                src="/images/midtown-main.jpg"
                 alt={project.imageAlt}
-                width={2880}
-                height={1750}
+                width={1448}
+                height={1998}
                 sizes="100vw"
                 preload
                 className={styles.heroImage}
