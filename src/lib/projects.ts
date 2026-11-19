@@ -44,7 +44,7 @@ export const PROJECTS: Project[] = [
     stage: "Stage 4/5",
     description:
       "Set within Abuja's established Gwarinpa II Estate, The Midtown Terraces introduces Criterion Homes' signature architecture of restraint. Anchored by a foundational central atrium, these four highly individualized residences deliver continuous natural aeration and deliberate, light-filled living spaces over generic layouts.",
-    image: "/images/midtown-main.jpg",
+    image: "/images/midtown-landscape.jpg",
     imageAlt: "The Midtown Terraces, Gwarinpa, Abuja",
   },
   {
